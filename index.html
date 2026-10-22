@@ -2114,14 +2114,14 @@ function vResult(){
       +(won.length?`<br>Lencana baru: ${won.map(b=>b.e+' '+b.n).join(', ')}`:'');
     box=`<div class="big">${starStr(st)}</div><p>Skor <b>${n}/${tot}</b> · +${xp} XP · 🔥 ${P.streak} hari</p>`;
   }
-  const nextMod=S.m+1<lv().mods.length,nextLv=LEVELS[S.lv+1]&&unlocked(S.lv+1);
+  const nextMod=window.nextInPath(S.lv,S.m)>=0,nextLv=LEVELS[S.lv+1]&&unlocked(S.lv+1);
   view.innerHTML=guide(msg)+`<div class="res">${box}</div><div class="foot">
     ${S.wrong.length?'<button class="btn" id="rw">Ulangi soal yang salah</button>':''}
     ${nextMod?'<button class="btn" id="nm">Modul berikutnya</button>':nextLv?'<button class="btn" id="nl">Buka level berikutnya</button>':''}
     ${M.game?'<button class="btn ghost" id="gm">🎮 Main Misi modul ini</button>':''}<button class="btn ghost" id="re">Belajar ulang</button><button class="btn ghost" id="mn">Kembali ke peta</button></div>`;
   const on=(id,f)=>{const e=$(id);if(e)e.onclick=f};
   on('#rw',()=>go('quiz',{list:S.wrong,wrong:[],q:0,score:0,retry:true}));
-  on('#nm',()=>go('learn',{m:S.m+1,step:0}));
+  on('#nm',()=>go('learn',{m:window.nextInPath(S.lv,S.m),step:0}));
   on('#nl',()=>go('mods',{lv:S.lv+1}));
   on('#re',()=>go('learn',{step:0}));on('#gm',()=>startGame(M));
   on('#mn',()=>go('menu'));
@@ -3750,5 +3750,240 @@ const h=document.querySelector('header');h.insertAdjacentHTML('afterbegin','<div
 const _r=window.render;window.render=function(){document.body.dataset.v=S.view;_r()};document.body.dataset.v=S.view;
 }catch(e){console.warn('v59 logo gagal',e)}})();
 </script>
+<script id="alur-v63">
+/* v63: ALUR BELAJAR. Urutan modul per bab (fondasi → lanjut), penghapusan materi dobel,
+   jembatan antar-modul, pemanasan 3 soal dari modul sebelumnya, tombol "Lanjut" mengikuti jalur. */
+(function(){try{
+const strip=h=>String(h||'').replace(/<[^>]+>/g,'');
+const toks=s=>new Set(strip(s).toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>3));
+/* 1. buang langkah materi yang isinya mengulang langkah sebelumnya */
+LEVELS.forEach(L=>L.mods.forEach(M=>{const T=M.steps.map(s=>toks((s.s||'')+' '+(s.ex||[]).join(' ')));const drop=new Set();
+ for(let i=0;i<T.length;i++)for(let j=i+1;j<T.length;j++){if(drop.has(i)||drop.has(j)||!T[i].size||!T[j].size)continue;
+  if(M.steps[j].tbl||M.steps[j].map||M.steps[i].map)continue;let c=0;T[i].forEach(w=>T[j].has(w)&&c++);
+  if(c/Math.min(T[i].size,T[j].size)>=.6&&M.steps.length-drop.size>4)drop.add(j)}
+ if(drop.size)M.steps=M.steps.filter((_,i)=>!drop.has(i))}));
+/* 2. jalur belajar: bab + urutan */
+const C=(t,goal,m)=>({t,goal,m});
+const CH=[
+[C('Kenalan dengan Kalimat','Bisa menyusun kalimat sederhana yang benar: siapa, apa, di mana.',['To Be','A / An','Kata Ganti','This / That','Preposisi']),
+ C('Bertanya & Bercerita','Bisa bertanya dengan kata tanya dan bercerita soal kemarin, sekarang, besok.',['Pertanyaan WH','Kemarin']),
+ C('Kosakata & Membaca','Bisa membaca teks pendek dan menulis kalimat sendiri.',['Kosakata Dasar','Jenis-jenis Teks','Membaca & Menulis','Reading'])],
+[C('Fondasi Kata & Kalimat','Paham jenis kata dan kata kerja bantu yang dipakai di hampir semua kalimat.',['Parts of Speech','Have / Has','Do / Does','Go / Goes','Possessive','There is','Subject-Verb']),
+ C('Tenses Inti','Bisa memilih tense yang tepat untuk kebiasaan, kejadian lampau, rencana, dan pengalaman.',['Peta 16','Simple Present','Adverb of Frequency','Present Continuous','Past Tense','Past Continuous','Future:','Present Perfect']),
+ C('Alat Kalimat','Bisa membandingkan, menyatakan keharusan, jumlah, dan menyambung kalimat.',['Modal','Comparative','Quantifiers','Kata Sambung']),
+ C('Kosakata, Bunyi & Percakapan','Bisa ngobrol sehari-hari dengan kosakata dan pelafalan yang pas.',['Kosakata Sehari','Kosakata Tema','Pronunciation','Percakapan']),
+ C('Reading & Jenis Teks','Bisa memahami dan menulis berbagai jenis teks.',['Reading Skills','Peta 13','Teks Faktual','Teks Penilaian','Reading:','Reading Panjang'])],
+[C('Tenses Lanjutan','Bisa membaca dan menulis semua 16 tense dengan tepat.',['Present Perfect Continuous','Past Perfect','Past Perfect Continuous','Future Continuous','Future Perfect','Future Perfect Continuous','Simple Past Future','Past Future Continuous','Past Future Perfect','Past Future Perfect Continuous']),
+ C('Struktur Kalimat Kompleks','Bisa menyusun kalimat bertingkat: pasif, pengandaian, kutipan, dan penjelas.',['Passive Voice','Conditional Type 1','Conditional Type 2','Reported Speech','Relative Clauses','Gerund vs','Wish','Subjunctive','Inversion']),
+ C('Kosakata & Gaya Bahasa','Punya kosakata akademik dan gaya bahasa santai yang tahu tempatnya.',['Kosakata Akademik','Word Families','Kosakata Tema','Phrasal Verbs','Idiom','Slang','Umpatan']),
+ C('Reading Akademik','Bisa menangkap ide utama dan kesimpulan dari bacaan panjang.',['Reading: Artikel','Reading: Inference','Reading Panjang','Reading']),
+ C('Writing','Bisa menulis paragraf, esai, dan argumen yang rapi.',['Menulis Paragraf','Paraphrasing','Academic Writing','Esai','Teks Argumentatif'])],
+[C('Melamar Kerja','Siap dengan CV, surat lamaran, wawancara, dan hari pertama.',['CV &','Job Interview','English untuk Kampus','Onboarding']),
+ C('Komunikasi di Kantor','Bisa email, telepon, rapat, dan ngobrol dengan rekan kerja.',['Small Talk','Email','Telepon','Kosakata Kantor','Meeting','Customer Service','Feedback','Surat Pengunduran']),
+ C('Presentasi & Data','Bisa presentasi dan menjelaskan angka serta grafik.',['Presentasi','Presentasi: Q&A','Angka']),
+ C('Siap Tes Internasional','Terbiasa dengan format soal TOEIC dan TOEFL.',['TOEIC: Detektif','TOEIC Part 5','TOEIC Part 6','TOEIC Reading','TOEIC Listening','TOEFL: Parallelism','TOEFL: Error']),
+ C('English untuk Hidup','Bisa bertahan di perjalanan dan layanan sehari-hari.',['Wisata'])]];
+window.pathOf=function(li){const L=LEVELS[li],ch=CH[li],B=ch.map(c=>({t:c.t,goal:c.goal,ids:[]})),X={t:'Pendalaman',goal:'Materi pelengkap untuk menguatkan bab-bab di atas.',ids:[]};
+ L.mods.forEach((M,i)=>{let best=0,bc=-1,br=0;ch.forEach((c,ci)=>c.m.forEach((s,ri)=>{const sc=M.n===s?1000+s.length:M.n.includes(s)?s.length:0;if(sc>best){best=sc;bc=ci;br=ri}}));
+  (bc<0?X.ids:B[bc].ids).push([i,bc<0?0:br])});
+ const out=B.concat(X.ids.length?[X]:[]);out.forEach(c=>{c.ids=c.ids.sort((a,b)=>a[1]-b[1]||a[0]-b[0]).map(x=>x[0])});return out.filter(c=>c.ids.length)};
+const flat=li=>pathOf(li).flatMap(c=>c.ids);
+window.nextInPath=(li,m)=>{const f=flat(li),k=f.indexOf(m);return k>=0&&k<f.length-1?f[k+1]:-1};
+const prevOf=(li,m)=>{const f=flat(li),k=f.indexOf(m);return k>0?f[k-1]:-1};
+/* 3. peta modul bergaya jalur belajar */
+window.vMods=function(){const L=lv(),Pt=pathOf(S.lv),f=flat(S.lv),nx=f.find(i=>!star(S.lv,i)),done=f.filter(i=>star(S.lv,i)>0).length;title.textContent=L.name;
+ const card=(i,n)=>`<button class="card" data-m="${i}"><span class="ico">${L.emoji}</span><span class="txt"><small>Modul ${n}${L.mods[i].game?' · 🎮 Misi':''}${i===nx?' · ▶ giliranmu':''}</small><b>${L.mods[i].n}</b></span><span class="stars">${starStr(star(S.lv,i))}</span></button>`;
+ let n=0;view.innerHTML=guide(`Jalur ${L.name}: <b>${Pt.length} bab</b>, ${f.length} modul, disusun dari fondasi ke tingkat lanjut. ${done?`Sudah selesai <b>${done}</b>.`:'Mulai dari Bab 1, urut ya!'}`)
+ +(nx!=null?`<div class="path"><button class="card" data-m="${nx}"><span class="ico">▶️</span><span class="txt"><small>${done?'Lanjutkan belajar':'Mulai belajar'}</small><b>${L.mods[nx].n}</b></span></button></div>`:'')
+ +Pt.map((c,ci)=>`<section class="grp"><h3><span>Bab ${ci+1} · ${c.t}</span><small>${c.ids.filter(i=>star(S.lv,i)>0).length}/${c.ids.length} selesai</small></h3><p style="margin:2px 4px 10px;font-size:.9em;opacity:.8">🎯 ${c.goal}</p><div class="path">${c.ids.map(i=>card(i,++n)).join('')}</div></section>`).join('');
+ view.querySelectorAll('.card[data-m]').forEach(b=>b.onclick=()=>go('learn',{m:+b.dataset.m,step:0}));
+ view.insertAdjacentHTML('beforeend',`<button class="card" id="ex" style="margin-bottom:18px"><span class="ico">📝</span><span class="txt"><small>${P.pass[L.id]?'Sudah lulus ✅':'Siap diambil (lulus min. 70%)'}</small><b>Ujian Akhir ${L.name}</b></span></button>`);$('#ex').onclick=()=>startExam()};
+/* 4. jembatan antar-modul + pemanasan */
+const _vl=window.vLearn;window.vLearn=function(){_vl();if(S.ex)return;const M=mod(),f=flat(S.lv),k=f.indexOf(S.m);if(k<0)return;
+ const pv=k>0?LEVELS[S.lv].mods[f[k-1]]:null,nx=k<f.length-1?LEVELS[S.lv].mods[f[k+1]]:null,ch=pathOf(S.lv).findIndex(c=>c.ids.includes(S.m)),c=pathOf(S.lv)[ch];
+ if(S.step===0){const pq=pv?pv.quiz.filter(q=>!q.t||q.t==='mc'):[];
+  view.insertAdjacentHTML('afterbegin',`<div class="tip v63br" style="margin-bottom:10px">📍 <b>Bab ${ch+1} · ${c.t}</b>, modul ${c.ids.indexOf(S.m)+1} dari ${c.ids.length}.${pv?` Nyambung dari <b>${pv.n}</b>.`:' Ini pintu masuk bab ini.'}<br>🎯 Target bab: ${c.goal}${pq.length>=3?'<br><button class="btn ghost" id="wu" style="margin-top:8px">🔥 Pemanasan 3 soal dari modul sebelumnya</button>':''}</div>`);
+  const w=$('#wu');if(w)w.onclick=()=>startQuiz(shuffle(pq).slice(0,3),'warm','Pemanasan')}
+ if(S.step===M.steps.length-1&&nx)view.insertAdjacentHTML('beforeend',`<p style="text-align:center;opacity:.75;margin-top:10px">Habis ini kita lanjut ke <b>${nx.n}</b> 🚀</p>`)};
+const _k=window.kindResult;window.kindResult=function(t,n){if(S.kind!=='warm')return _k(t,n);P.xp+=n*3;save();
+ view.innerHTML=guide(n===t?'Otak sudah panas! 🔥 Yuk lanjut ke materi baru.':'Gapapa, ingatan itu kayak otot: makin dilatih makin kuat. Materi baru ini bakal nyambung ke yang tadi.')+`<div class="res"><p>Pemanasan: <b>${n}/${t}</b> · +${n*3} XP</p></div><div class="foot"><button class="btn" id="gl">Mulai: ${LEVELS[S.lv].mods[S.m].n}</button></div>`;
+ $('#gl').onclick=()=>go('learn',{step:0});setTimeout(()=>react(n>=2?'cheer':'oops'),350)};
+render();
+}catch(e){console.warn('v63 alur gagal',e)}})();
+</script>
+
+<style id="v64css">
+/* v64: konten (tabel, kartu) tidak boleh bocor di bawah/di atas footer tombol */
+.view .tbl,.view .ex,.view .tip,.view .qcard,.view .mm{isolation:isolate}
+.view .foot{z-index:30;background:var(--cream)}
+</style>
+<style id="v65css">
+/* v65: gerak Pak Yood lebih halus & hidup: napas + goyang pelan, kedip alami, sayap bernapas,
+   lompat dengan squash & stretch, geleng lembut saat salah. Aksi a-* lama tetap jalan. */
+.mascot{animation:v65float 4.2s ease-in-out infinite;will-change:transform}
+.mascot svg{transform-origin:50% 92%;animation:v65idle 8.4s ease-in-out infinite}
+.mascot .eye{transform-box:fill-box;transform-origin:center;animation:v65blink 5.6s infinite}
+.mascot .eye circle{transition:translate .28s cubic-bezier(.2,.8,.2,1)}
+.mascot:not([class*="a-"]) .wl{transform-origin:50% 12%;animation:v65wl 4.2s ease-in-out infinite}
+.mascot:not([class*="a-"]) .wr{transform-origin:50% 12%;animation:v65wr 4.2s ease-in-out infinite}
+.mascot.cheer{animation:v65float 4.2s ease-in-out infinite,v65hop .95s cubic-bezier(.3,1.3,.5,1)}
+.mascot.cheer .wl{animation:v65flapl .17s ease-in-out 6}
+.mascot.cheer .wr{animation:v65flapr .17s ease-in-out 6}
+.mascot.oops{animation:v65oops .75s cubic-bezier(.36,.07,.19,.97)}
+.mascot.oops .wl{animation:none;rotate:-14deg}
+.mascot.oops .wr{animation:none;rotate:14deg}
+@keyframes v65float{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes v65idle{0%,100%{rotate:-1.3deg;scale:1 1}25%{rotate:0deg;scale:1.014 .986}50%{rotate:1.3deg;scale:1 1}75%{rotate:0deg;scale:1.014 .986}}
+@keyframes v65blink{0%,90%,100%{transform:scaleY(1)}92%{transform:scaleY(.08)}94%{transform:scaleY(1)}96%{transform:scaleY(.08)}98%{transform:scaleY(1)}}
+@keyframes v65wl{0%,100%{rotate:0deg}50%{rotate:-7deg}}
+@keyframes v65wr{0%,100%{rotate:0deg}50%{rotate:7deg}}
+@keyframes v65flapl{0%,100%{rotate:0deg}50%{rotate:-48deg}}
+@keyframes v65flapr{0%,100%{rotate:0deg}50%{rotate:48deg}}
+@keyframes v65hop{0%{transform:none}14%{transform:translateY(3px) scale(1.09,.9)}38%{transform:translateY(-26px) scale(.93,1.09) rotate(-5deg)}62%{transform:translateY(0) scale(1.07,.93) rotate(3deg)}78%{transform:translateY(-7px) scale(.98,1.03)}100%{transform:none}}
+@keyframes v65oops{0%{transform:none}15%{transform:translateX(-5px) rotate(-5deg)}35%{transform:translateX(4px) rotate(4deg) scale(.98,1.01)}55%{transform:translateX(-3px) rotate(-2.5deg)}75%{transform:translateX(2px) rotate(1.5deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.mascot,.mascot svg,.mascot .eye,.mascot .wing{animation:none!important}}
+</style>
+<script id="struktur-v66">
+/* v66: STRUKTUR MATERI. Tiap langkah punya tahap (Pembuka → Konsep → Rumus → Contoh → Jebakan → Naik Level → Peta),
+   Jebakan & tips ujian dipindah ke belakang, ada daftar isi di awal dan checklist "kamu sekarang bisa" di akhir. */
+(function(){try{
+const strip=h=>String(h||'').replace(/<[^>]+>/g,'').replace(/^[\s\p{Extended_Pictographic}\uFE0F\u200D]+/u,'').trim();
+const ST={intro:['🧲','Pembuka',0],konsep:['🧠','Konsep',1],rumus:['📐','Rumus & Pola',1],contoh:['🔎','Contoh Nyata',1],ucap:['🔊','Ucapan',1],jebakan:['⚠️','Jebakan Umum',2],ujian:['🏆','Naik Level',3],map:['🗺️','Peta Konsep',4],praktik:['🎤','Praktik Sendiri',2]};
+const stageOf=(s,i)=>{const t=strip(s.s||'');
+ if(s.map)return'map';if(/Jebakan|Kesalahan (umum|paling)|salah kaprah/i.test(t)||/^\s*(<b>)?\s*⚠️/.test(s.s||''))return'jebakan';
+ if(/IELTS|TOEFL|TOEIC|nilai tinggi|Naik level|Strategi ujian/i.test(t))return'ujian';
+ if(i===0)return'intro';if(s.tbl)return'rumus';if(/Bunyi|Pronunciation|Speaking|Lafal/i.test(t))return'ucap';
+ if(/^(Contoh|Kalimat inti|Dialog|Latihan)/i.test(t)&&(s.ex||[]).length>=3)return'contoh';return'konsep'};
+const key=(s,M)=>{if(s._st==='intro')return M.n;const b=[...String(s.s||'').matchAll(/<b>(.*?)<\/b>/g)].map(x=>strip(x[1]).replace(/[:.]+$/,'')).find(x=>x.length>=6&&x.length<=48);
+ return b||strip(s.s).split(/\s+/).slice(0,6).join(' ')+'…'};
+LEVELS.forEach(L=>L.mods.forEach(M=>{if(M._v66)return;M._v66=1;M.steps.forEach((s,i)=>{s._st=stageOf(s,i)});
+ const rank=s=>ST[s._st][2],keep=M.steps.map((s,i)=>[s,i]);
+ keep.sort((a,b)=>rank(a[0])-rank(b[0])||a[1]-b[1]);M.steps=keep.map(x=>x[0])}));
+const _vl=window.vLearn;window.vLearn=function(){_vl();if(S.ex)return;const M=mod(),st=M.steps[S.step];if(!st||!st._st)return;const n=M.steps.length,ss=ST[st._st];
+ view.insertAdjacentHTML('afterbegin',`<div class="v66chip" style="display:flex;gap:8px;align-items:center;font-size:.8em;font-weight:700;opacity:.85;margin:0 0 2px"><span style="padding:3px 10px;border-radius:99px;background:var(--cream-d,#eee)">${ss[0]} ${ss[1]}</span><span>Langkah ${S.step+1} dari ${n}</span></div>`);
+ if(S.step===0){const tip=view.querySelector('.tip');const html=`<details style="margin:0 0 10px;padding:8px 12px;border-radius:14px;background:var(--cream-d,#eee)"><summary style="cursor:pointer;font-weight:700">🧭 Isi modul ini (${n} langkah)</summary><ol style="margin:8px 0 2px;padding-left:20px;line-height:1.7">${M.steps.map(s=>`<li>${ST[s._st][0]} ${key(s,M)}</li>`).join('')}</ol></details>`;
+  tip?tip.insertAdjacentHTML('afterend',html):view.querySelector('.guide').insertAdjacentHTML('beforebegin',html)}
+ if(S.step===n-1){const f=M.steps.filter(s=>['konsep','rumus','jebakan','ucap'].includes(s._st)).slice(0,7),foot=view.querySelector('.foot');
+  if(f.length&&foot)foot.insertAdjacentHTML('beforebegin',`<div class="tip" style="margin-top:6px">✅ <b>Checklist: setelah modul ini kamu bisa</b><ul style="margin:6px 0 0;padding-left:18px;line-height:1.7">${f.map(s=>`<li>${key(s,M)}</li>`).join('')}</ul><small style="opacity:.75">Kalau ada yang masih ragu, tekan Kembali dan baca langkahnya lagi sebelum kuis.</small></div>`)}};
+render();
+}catch(e){console.warn('v66 struktur gagal',e)}})();
+</script>
+
+<script id="materi-v67">
+/* v67: UPGRADE ISI MATERI untuk 10 modul inti. Tiap modul dapat 2 langkah baru:
+   (1) Jebakan khas penutur Indonesia (❌→✅ + alasannya), (2) Praktik sendiri (salin pola, ganti jadi hidupmu),
+   plus 2 soal kuis baru yang menguji jebakan itu. */
+(function(){try{
+const qz=(a)=>a.map(([q,o,why],i)=>{const c=o[0],k=i%o.length,r=o.slice(1);r.splice(k,0,c);return{t:'mc',q,o:r,a:k,why}});
+const U=[
+[0,'To Be: am / is / are',
+ `⚠️ <b>Jebakan anak Indonesia: lupa "lem"-nya</b>. Kita bilang "Dia cantik" tanpa kata penghubung. Di Inggris, kalimat wajib punya kata kerja, dan untuk sifat atau pekerjaan kata kerjanya adalah am / is / are.`,
+ [`❌ She beautiful. → ✅ She <b>is</b> beautiful.`,`❌ My father a driver. → ✅ My father <b>is</b> a driver.`,`❌ I am agree. → ✅ I agree. (agree sudah kata kerja, tidak butuh am)`],
+ `🎤 <b>Giliranmu: bikin kalimat sendiri</b>. Salin pola, ganti bagian yang tebal jadi tentang hidupmu, lalu ucapkan keras-keras.`,
+ [`I <b>am</b> a student at <b>SMAN 56</b>.`,`My mother <b>is</b> <b>a teacher</b>.`,`My friends <b>are</b> <b>funny</b>.`],
+ [[`Kalimat mana yang benar?`,[`My brother is a student.`,`My brother a student.`,`My brother are a student.`],`Status atau pekerjaan butuh lem <b>is</b> untuk satu orang.`],
+  [`Pilih yang benar:`,[`I agree with you.`,`I am agree with you.`,`I is agree with you.`],`<b>agree</b> sudah kata kerja, jadi tidak perlu am. Jangan pasang dua kata kerja berdampingan.`]]],
+[0,'Pertanyaan WH',
+ `⚠️ <b>Jebakan anak Indonesia: kata tanya jangan ditaruh di belakang</b>. Kita bilang "Kamu tinggal di mana?". Di Inggris, kata tanya <b>selalu maju ke depan</b>, lalu disusul do/does atau am/is/are.`,
+ [`❌ You live where? → ✅ <b>Where</b> do you live?`,`❌ Where you live? → ✅ Where <b>do</b> you live?`,`❌ What your name? → ✅ What <b>is</b> your name?`],
+ `🎤 <b>Wawancara teman 60 detik</b>. Tanyakan 4 hal ke temanmu pakai pola ini, catat jawabannya, lalu ceritakan dalam satu kalimat.`,
+ [`<b>What</b> is your favorite food?`,`<b>Where</b> do you live?`,`<b>Who</b> is your best friend?`],
+ [[`Pertanyaan yang benar untuk "Kamu tinggal di mana?" adalah...`,[`Where do you live?`,`You live where?`,`Where you live?`],`Kata tanya maju ke depan, lalu <b>do</b> + subjek + V1.`],
+  [`___ is your teacher? (Siapa gurumu?)`,[`Who`,`Where`,`When`],`"Siapa" = <b>Who</b>. Where = di mana, When = kapan.`]]],
+[1,'Simple Present Tense',
+ `⚠️ <b>Jebakan anak Indonesia: kata kerja nggak ikut berubah</b>. Di bahasa kita, "dia pergi" dan "mereka pergi" bentuknya sama. Di Inggris, he/she/it bikin verb pakai -s, dan di negatif/tanya yang jadi tanggungan <b>does</b>, bukan verb-nya.`,
+ [`❌ She go to school. → ✅ She <b>goes</b> to school.`,`❌ He don't like bakso. → ✅ He <b>doesn't</b> like bakso.`,`❌ Does she goes there? → ✅ Does she <b>go</b> there?`,`❌ I am go to school every day. → ✅ I <b>go</b> to school every day. (jangan dobel kata kerja)`],
+ `🎤 <b>Rutinitas lo dalam 5 kalimat</b>. Ganti bagian tebal jadi kegiatan lo, bacakan keras-keras, dan tambah satu kalimat tentang orang lain biar latihan -s-nya kepake.`,
+ [`I <b>take the KRL</b> to school every morning.`,`My mom <b>cooks</b> breakfast at six.`,`My brother <b>doesn't</b> like <b>vegetables</b>.`],
+ [[`My sister ___ to school by TransJakarta.`,[`goes`,`go`,`going`],`Sister = she, jadi verb pakai topi: go + es = <b>goes</b>.`],
+  [`He ___ coffee in the morning. (negatif)`,[`doesn't drink`,`don't drink`,`doesn't drinks`],`Negatif he/she/it = <b>doesn't + V1 polos</b>. Topi -s pindah ke does.`]]],
+[1,'Present Continuous',
+ `⚠️ <b>Jebakan anak Indonesia: "sedang" nggak berlaku buat semua verb</b>. Pola be + V-ing buat aksi yang <b>berlangsung sekarang</b>. Verb kondisi pikiran atau perasaan (know, like, want, understand, need) biasanya <b>nggak</b> dipakai V-ing.`,
+ [`❌ I am knowing the answer. → ✅ I <b>know</b> the answer.`,`❌ She is wanting a drink. → ✅ She <b>wants</b> a drink.`,`❌ He is play game now. → ✅ He <b>is playing</b> a game now. (jangan lupa -ing)`],
+ `🎤 <b>Laporan "live" dari tempat lo</b>. Lihat sekeliling, deskripsikan 4 hal yang lagi terjadi sekarang. Pola: orang + is/are + V-ing + tempat.`,
+ [`My cat <b>is sleeping</b> on the sofa.`,`The rain <b>is falling</b> outside.`,`I <b>am reading</b> this lesson right now.`],
+ [[`Pilih yang benar:`,[`I know the answer.`,`I am knowing the answer.`,`I knowing the answer.`],`<b>know</b> itu verb kondisi pikiran, jadi pakai Simple Present.`],
+  [`Look! The children ___ in the rain.`,[`are playing`,`play`,`is playing`],`Ada "Look!" (aksi sedang terjadi) + children jamak: <b>are playing</b>.`]]],
+[1,'Past Tense',
+ `⚠️ <b>Jebakan anak Indonesia: kata "kemarin" saja nggak cukup</b>. Di bahasa kita, waktu cukup ditandai kata "kemarin". Di Inggris, <b>verb-nya sendiri</b> harus berubah, dan cuma sekali: di negatif/tanya yang berubah adalah did, bukan verb-nya.`,
+ [`❌ Yesterday I go to Bandung. → ✅ Yesterday I <b>went</b> to Bandung.`,`❌ I didn't went there. → ✅ I didn't <b>go</b> there.`,`❌ Did she bought a book? → ✅ Did she <b>buy</b> a book?`],
+ `🎤 <b>Cerita akhir pekan lo, 4 kalimat</b>. Mulai dari "Last weekend, I…" lalu lanjutkan pakai verb lampau (went, ate, watched, met).`,
+ [`Last weekend, I <b>went</b> to <b>Ancol</b> with my family.`,`We <b>ate</b> seafood and <b>took</b> many photos.`,`I <b>didn't</b> do my homework until Sunday night.`],
+ [[`Last night, we ___ a movie.`,[`watched`,`watch`,`watching`],`"Last night" = lampau, regular verb + ed: <b>watched</b>.`],
+  [`She didn't ___ the answer.`,[`know`,`knew`,`known`],`Setelah <b>didn't</b>, verb kembali polos: <b>know</b>.`]]],
+[1,'Present Perfect',
+ `⚠️ <b>Jebakan anak Indonesia: "sudah" nggak selalu Present Perfect</b>. Present Perfect dipakai kalau <b>waktunya nggak disebut</b> atau masih nyambung ke sekarang. Begitu ada kata waktu spesifik (yesterday, in 2019, last week), balik ke Past Simple. Dan "sejak / selama" itu dua kata beda: <b>since</b> (titik awal) vs <b>for</b> (durasi).`,
+ [`❌ I have seen him yesterday. → ✅ I <b>saw</b> him yesterday.`,`❌ I have lived here since 3 years. → ✅ I have lived here <b>for</b> 3 years.`,`✅ I have lived here <b>since</b> 2021.`],
+ `🎤 <b>CV pengalaman versi lo</b>. Tulis 3 hal yang pernah lo lakukan (tanpa menyebut kapan) dan 1 hal yang sudah lo lakukan selama beberapa tahun.`,
+ [`I <b>have visited</b> Yogyakarta twice.`,`I <b>have never eaten</b> durian ice cream.`,`I <b>have studied</b> English <b>for</b> three years.`],
+ [[`I have lived in Jakarta ___ 2020.`,[`since`,`for`,`ago`],`Tahun 2020 = titik awal, jadi <b>since</b>. For dipakai untuk durasi (for 5 years).`],
+  [`Pilih yang benar:`,[`I saw her yesterday.`,`I have seen her yesterday.`,`I have saw her yesterday.`],`Ada kata waktu spesifik <b>yesterday</b>, jadi harus Past Simple: <b>saw</b>.`]]],
+[1,'Modal: can / must / should',
+ `⚠️ <b>Jebakan anak Indonesia: modal itu nggak ikut aturan verb biasa</b>. Modal (can, must, should, may) <b>nggak pernah</b> ditambah -s, <b>nggak pakai to</b>, dan verb setelahnya polos. Beda sama "harus pergi" yang di bahasa kita kadang pakai "untuk".`,
+ [`❌ She can sings well. → ✅ She can <b>sing</b> well.`,`❌ I must to go now. → ✅ I must <b>go</b> now.`,`❌ He cans swim. → ✅ He <b>can</b> swim.`],
+ `🎤 <b>Aturan kamar atau rumah lo</b>. Bikin 4 kalimat: 1 kemampuan (can), 1 keharusan (must), 1 saran (should), 1 larangan (mustn't).`,
+ [`I <b>can</b> cook nasi goreng.`,`You <b>must</b> take off your shoes at my house.`,`You <b>should</b> sleep before 11 p.m.`],
+ [[`She can ___ the guitar very well.`,[`play`,`plays`,`to play`],`Setelah modal <b>can</b>, verb polos: <b>play</b>.`],
+  [`Kamu pilek. Saran yang sopan: "You ___ see a doctor."`,[`should`,`must not`,`can`],`<b>should</b> = saran. must = keharusan kuat, bukan sekadar saran.`]]],
+[2,'Passive Voice',
+ `⚠️ <b>Jebakan anak Indonesia: "di-" bukan sekadar V3</b>. Kata "dimakan" di Inggris butuh <b>be + V3</b>, bukan V3 saja. Dan verb yang <b>nggak punya objek</b> (happen, arrive, die, sleep) nggak bisa dipasifkan.`,
+ [`❌ The cake eaten by Dina. → ✅ The cake <b>was eaten</b> by Dina.`,`❌ The accident was happened. → ✅ The accident <b>happened</b>.`,`✅ English <b>is spoken</b> in many countries.`],
+ `🎤 <b>Ubah 3 kalimat aktif jadi pasif</b>. Geser objek ke depan, tambah be sesuai tense, lalu V3. "By …" boleh dibuang kalau pelakunya nggak penting.`,
+ [`They sell bakso here. → Bakso <b>is sold</b> here.`,`Someone stole my bike. → My bike <b>was stolen</b>.`,`They will announce the winner. → The winner <b>will be announced</b>.`],
+ [[`The window ___ by the boys yesterday.`,[`was broken`,`broken`,`is breaking`],`Kemarin (lampau) + pasif = <b>was + V3</b>.`],
+  [`Pilih yang benar:`,[`The meeting happened at 9.`,`The meeting was happened at 9.`,`The meeting is happened at 9.`],`<b>happen</b> nggak punya objek, jadi tidak bisa dipasifkan.`]]],
+[2,'Conditional Type 1',
+ `⚠️ <b>Jebakan anak Indonesia: "kalau" itu dua kata di Inggris</b>. <b>If</b> = mungkin terjadi, <b>when</b> = pasti terjadi. Dan "kalau gue kaya…" (khayalan) bukan Type 1, melainkan Type 2.`,
+ [`✅ <b>When</b> I get home, I will call you. (pasti pulang)`,`✅ <b>If</b> it rains tomorrow, I will take a taxi. (mungkin hujan)`,`✅ If I <b>were</b> rich, I would buy a house. (khayalan → Type 2)`],
+ `🎤 <b>Rencana "kalau-maka" buat besok</b>. Bikin 3 kalimat: kondisi yang mungkin terjadi + hasilnya.`,
+ [`If I <b>finish</b> early, I <b>will go</b> to the gym.`,`If my friend <b>invites</b> me, I <b>will join</b> the trip.`,`If I <b>don't study</b>, I <b>will fail</b> the test.`],
+ [[`If I ___ time tomorrow, I will call you.`,[`have`,`will have`,`had`],`Sisi if pakai present: <b>have</b>. Will cuma di sisi hasil.`],
+  [`"___ the sun sets, it gets dark." (pasti terjadi)`,[`When`,`If`,`Unless`],`Kejadian pasti pakai <b>when</b>; if untuk kemungkinan.`]]],
+[2,'Reported Speech',
+ `⚠️ <b>Jebakan anak Indonesia: "bilang" itu say atau tell?</b> <b>say</b> nggak langsung diikuti orang, <b>tell</b> wajib diikuti orang. Dan waktu cerita ulang, tense biasanya mundur satu langkah.`,
+ [`❌ He said me he was tired. → ✅ He <b>told me</b> he was tired.`,`✅ He <b>said to me</b> that he was tired.`,`"I am hungry." → She said she <b>was</b> hungry. (am → was)`],
+ `🎤 <b>Ceritakan ulang omongan orang</b>. Ambil 3 kalimat yang teman lo ucapkan hari ini, lalu laporkan. Mundurkan tense dan ubah kata waktunya (today → that day, tomorrow → the next day).`,
+ [`"I'm tired." → She said she <b>was</b> tired.`,`"I will come tomorrow." → He said he <b>would</b> come <b>the next day</b>.`,`"I live in Depok." → She told me she <b>lived</b> in Depok.`],
+ [[`He ___ me that he was late.`,[`told`,`said`,`say`],`<b>tell</b> wajib diikuti orang (me): told me. Say nggak.`],
+  [`"I will call you tomorrow." → She said she ___ call me the next day.`,[`would`,`will`,`wills`],`Will mundur jadi <b>would</b>, tomorrow jadi the next day.`]]]];
+U.forEach(([li,n,js,jex,ps,pex,q])=>{const M=LEVELS[li].mods.find(x=>x.n===n);if(!M||M._v67)return;M._v67=1;
+ let at=M.steps.findIndex(s=>s.map||s._st==='ujian'||s._st==='map');if(at<0)at=M.steps.length;
+ M.steps.splice(at,0,{s:js,ex:jex,_st:'jebakan'},{s:ps,ex:pex,_st:'praktik'});M.quiz.push(...qz(q))});
+render();
+}catch(e){console.warn('v67 materi gagal',e)}})();
+</script>
+
+<style id="v68css">
+/* v68: rapi & premium. Header 2 baris (judul 1 baris + progress penuh), celah bocor footer ditutup,
+   tombol pemanasan terbaca, judul bab rapi, mikro-interaksi halus, fokus keyboard jelas. */
+#app{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+#app header{flex-wrap:wrap;row-gap:8px;padding-bottom:12px}
+#app #title{flex:1 1 0;min-width:0;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;text-wrap:nowrap;font-size:19px;line-height:1.3}
+#app #prog{order:5;flex:0 0 100%;gap:4px;height:5px}
+#app #prog:empty{display:none}
+#app #prog i{flex:1;width:auto!important;height:5px!important;border-radius:99px!important}
+#app .view{padding-bottom:0!important;gap:14px;scroll-behavior:smooth;scroll-padding-bottom:120px}
+#app .view .foot{padding-bottom:calc(16px + env(safe-area-inset-bottom))!important;z-index:30}
+#app .v63br{font-size:.9em;line-height:1.6;padding:12px 14px}
+#app #wu{background:transparent!important;color:var(--terra)!important;border:1.5px solid var(--terra)!important;box-shadow:none!important;animation:none!important;font-size:.86em;font-weight:700;padding:8px 14px;min-height:0;width:auto;border-radius:99px}
+#app .v66chip span:first-child{border:1px solid var(--line,rgba(0,0,0,.08))}
+#app details>summary{list-style:none}#app details>summary::-webkit-details-marker{display:none}
+#app .grp h3{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#app .grp h3 span{flex:1;min-width:0;line-height:1.25}
+#app .grp h3 small{flex:none;white-space:nowrap;padding:4px 10px;font-size:.75rem}
+#app .card,#app .btn{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,background .18s}
+@media (hover:hover){#app .path .card:hover{transform:translateY(-2px)}}
+#app .card:active,#app .btn:active{transform:translateY(1px) scale(.992)}
+#app :is(button,summary,input,a):focus-visible{outline:2.5px solid color-mix(in srgb,var(--terra) 70%,white);outline-offset:3px}
+#app .stats .pill,#app .stars,#app small{font-variant-numeric:tabular-nums}
+#app ::selection{background:color-mix(in srgb,var(--gold) 45%,transparent)}
+#app .path .card{animation:v68in .5s cubic-bezier(.2,.8,.2,1) backwards}
+#app .path .card:nth-child(2){animation-delay:.04s}#app .path .card:nth-child(3){animation-delay:.08s}#app .path .card:nth-child(4){animation-delay:.12s}#app .path .card:nth-child(5){animation-delay:.16s}#app .path .card:nth-child(n+6){animation-delay:.2s}
+@keyframes v68in{from{opacity:0;transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){#app .path .card{animation:none}#app .view{scroll-behavior:auto}}
+/* halaman soal: gutter buku tulis diperkecil (58px → 40px) supaya jawaban lebih lega di HP */
+#app .qcard:has(>.q){padding:14px 16px 18px 40px;background:linear-gradient(90deg,transparent 26px,var(--margin) 26px 27.5px,transparent 27.5px),var(--paper)}
+#app .qcard>.q{margin:0 -16px 0 -40px;padding:0 16px 0 40px;background:linear-gradient(90deg,transparent 26px,var(--margin) 26px 27.5px,transparent 27.5px),linear-gradient(transparent 31px,var(--rule) 31px) 0 0/100% 32px repeat-y}
+</style>
 </body>
 </html>
