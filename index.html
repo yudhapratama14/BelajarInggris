@@ -1966,6 +1966,217 @@ qz(`Parts of Speech`,[
 [`Bentuk adverb dari "careful" adalah …`,[`carefully`,`carefulness`,`care`],`+ly → <b>carefully</b>.`]]);
 }catch(e){console.warn('v62 materi gagal',e)}})();
 </script>
+<script id="materi-ielts">
+/* ===== LEVEL IELTS: jalur khusus Band 5 → 7+ (Listening · Reading · Writing · Speaking) ===== */
+(function(){try{
+const mc=(q,o,why,p)=>({q,o,a:0,why,p});
+const fix=(L)=>L.map((x,i)=>{if(x.t)return x;const c=x.o[0],k=i%x.o.length,r=x.o.slice(1);r.splice(k,0,c);const y={q:x.q,o:r,a:k,why:x.why};if(x.p)y.p=x.p;return y});
+const T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const PR=(q,pairs,why)=>({t:'pairs',q,pairs,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const MS=mp=>({s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k:k.flat()}))});
+const M=(n,g,st,qz,mp,fc)=>{const m={n,g,steps:[...st,MS(mp)],quiz:fix(qz),map:mp};if(fc)m.fc=1;return m};
+const G='🎯 IELTS';
+const mods=[
+M('IELTS 101: Format & Band Score',G,[
+S('Halo, aku <b>Pak Yood</b> 🦉! IELTS itu ibarat <b>ujian SIM</b>: bukan soal pintar, tapi soal <b>tahu aturan mainnya</b>. Banyak orang gagal bukan karena Inggrisnya jelek, tapi karena salah strategi dan salah atur waktu.',[]),
+S('Ada 2 versi. <b>Academic</b> untuk kuliah S1/S2 dan registrasi profesi. <b>General Training</b> untuk migrasi dan kerja. <b>Listening & Speaking sama persis</b>. Yang beda hanya <b>Reading & Writing</b>.',[],{tbl:[['Bagian','Durasi','Isi'],['Listening','±30 menit (+10 menit memindah jawaban di kertas)','4 bagian, 40 soal'],['Reading','60 menit','3 teks, 40 soal, tanpa waktu tambahan'],['Writing','60 menit','Task 1 (min. 150 kata) + Task 2 (min. 250 kata)'],['Speaking','11–14 menit','Tatap muka: Part 1, 2, 3']]}),
+S('Skor memakai <b>band 0–9</b>. Nilai akhir = <b>rata-rata 4 skill</b>, dibulatkan ke 0,5 terdekat. Contoh: 6,5 + 7 + 6 + 6 = 6,375 → <b>6,5</b>. Rata-rata 6,25 naik ke 6,5; 6,75 naik ke 7.',['L 7 · R 6,5 · W 6 · S 6,5 → rata-rata 6,5','L 6 · R 6 · W 5,5 · S 6 → 5,875 → <b>6,0</b>']),
+S('Writing dan Speaking dinilai <b>4 kriteria berbobot sama</b>. Ini kunci! Tidak ada nilai ekstra untuk kata sulit saja.',[],{tbl:[['Writing','Speaking'],['Task Achievement / Response','Fluency & Coherence'],['Coherence & Cohesion','Lexical Resource'],['Lexical Resource','Grammatical Range & Accuracy'],['Grammatical Range & Accuracy','Pronunciation']],tip:'<b>Task 2 bobotnya 2× Task 1</b>. Jadi jangan habiskan waktu di Task 1: ±20 menit untuk Task 1, ±40 menit untuk Task 2.'}),
+S('Target umum: kampus top butuh <b>6,5–7,0</b> (tiap skill min. 6,0–6,5), beasiswa LPDP/Chevening biasanya <b>6,5–7,0</b>, migrasi Australia/Kanada sering <b>7+</b>. Cek syarat resmi tujuanmu dulu, karena tiap institusi beda.',[])
+],[
+{q:'Skill mana yang SAMA untuk Academic dan General Training?',o:['Listening dan Speaking','Reading dan Writing','Semua skill sama'],why:'Hanya <b>Reading & Writing</b> yang berbeda.'},
+{q:'Berapa bobot Writing Task 2 dibanding Task 1?',o:['2 kali lipat','Sama','Setengahnya'],why:'Task 2 bernilai <b>dua kali</b> Task 1, jadi alokasikan ±40 menit.'},
+{q:'Skor L 6, R 6, W 5,5, S 6 → nilai akhirnya?',o:['6,0','5,5','6,5'],why:'Rata-rata 5,875 → dibulatkan ke <b>6,0</b>.'},
+{q:'Reading mendapat waktu tambahan 10 menit untuk memindah jawaban.',o:['Salah: itu hanya untuk Listening (kertas)','Benar','Benar, tapi hanya di Academic'],why:'Reading <b>tidak</b> punya waktu transfer. Tulis jawaban langsung ke lembar jawaban.'},
+T('Ketik: Berapa jumlah soal Listening? (angka)',['40'],'Listening: 4 bagian × 10 soal = <b>40 soal</b>.'),
+PR('Jodohkan skill dengan durasinya.',[['Reading','60 menit'],['Writing','60 menit total'],['Speaking','11–14 menit']],'Reading dan Writing sama-sama 60 menit; Speaking paling singkat.')
+],K('IELTS 101',['📋 Format',['L 40 soal','R 3 teks','W 2 task','S 3 part']],['🧮 Skor',['band 0–9','rata-rata 4 skill','bulat 0,5']],['🎯 Strategi',['Task 2 = 2×','tahu aturan main']])),
+
+M('IELTS Listening: Strategi & Jebakan',G,[
+S('Listening itu <b>menangkap bola</b>, bukan mengerjakan soal sambil bengong. Kamu hanya dengar <b>satu kali</b>. Jadi tugas utamamu: <b>baca soal dulu, tebak jenis jawabannya</b> (angka? nama? kata sifat?), baru dengarkan.',[]),
+S('Struktur 4 bagian, makin sulit.',[],{tbl:[['Bagian','Situasi','Contoh'],['1','Percakapan sehari-hari (2 orang)','Booking hotel, daftar kursus'],['2','Monolog sehari-hari','Panduan tur, pengumuman'],['3','Diskusi akademik (2–4 orang)','Mahasiswa & dosen soal tugas'],['4','Kuliah akademik (1 orang)','Kuliah biologi, sejarah']]}),
+S('<b>Jebakan terbesar: distractor</b> 🪤. Pembicara sering <b>mengoreksi diri</b>. Jawaban benar biasanya yang <b>terakhir disebut</b>.',['“It starts at 9… oh sorry, <b>9:30</b>.” → jawabannya <b>9:30</b>','“The fee is $50… no wait, it’s <b>$45</b> for students.” → <b>45</b>']),
+S('<b>Aturan emas penulisan</b>: ejaan harus benar (salah huruf = salah), ikuti batas kata (<b>NO MORE THAN TWO WORDS</b> berarti 3 kata = nol), jawaban muncul <b>berurutan</b> sesuai soal, dan pakai satu ejaan konsisten (British atau American).',[],{tip:'Angka & nama: dengarkan ejaan huruf demi huruf. <b>Double</b> “M” = MM. Pelajari alfabet Inggris dan cara baca <i>0 = zero / oh</i>.'}),
+S('Sisa waktu 10 menit di kertas? <b>Cek ejaan, plural (-s), dan huruf besar</b>. Di versi komputer tidak ada waktu transfer, jadi tulis rapi sejak awal.',[])
+],[
+{q:'Pembicara: “The class begins at eight… no, sorry, nine.” Jawabannya?',o:['nine','eight','eight or nine'],why:'Pembicara mengoreksi diri; yang <b>terakhir</b> disebut yang benar.'},
+{q:'Soal: NO MORE THAN TWO WORDS. Mana jawaban yang AMAN?',o:['swimming pool','the big swimming pool','a swimming pool area'],why:'Maksimal <b>2 kata</b>. Lainnya melebihi batas.'},
+{q:'Apa yang harus dilakukan SEBELUM audio mulai?',o:['Baca soal & tebak jenis jawaban','Menutup mata','Menulis esai'],why:'Pra-baca soal membuat telingamu tahu apa yang dicari.'},
+{q:'Bagian mana yang berupa kuliah akademik satu pembicara?',o:['Bagian 4','Bagian 1','Bagian 2'],why:'<b>Bagian 4</b> = monolog akademik, paling sulit.'},
+T('Ketik: salah ejaan di jawaban Listening dianggap … (benar/salah)',['salah'],'Ejaan salah = jawaban <b>salah</b>, walau bunyinya benar.'),
+O('Susun: “Jawaban benar biasanya yang terakhir disebut.”',['The','answer','is','usually','the','last','one','mentioned'],'The answer is usually the last one mentioned','Distractor muncul dulu, koreksi muncul belakangan.')
+],K('LISTENING',['🪤 Jebakan',['koreksi diri','distractor']],['✍️ Aturan',['ejaan','batas kata','urut']],['🧠 Strategi',['pra-baca soal','prediksi jawaban']])),
+
+M('IELTS Reading: True / False / Not Given',G,[
+S('Soal ini penyumbang salah terbanyak. Anggap kamu <b>hakim di pengadilan</b> ⚖️: kamu hanya boleh memutuskan berdasarkan <b>bukti di teks</b>, bukan pengetahuan atau opinimu.',[]),
+S('Tiga putusan: <b>TRUE</b> = teks <b>menyatakan hal yang sama</b>. <b>FALSE</b> = teks <b>menyatakan kebalikannya</b>. <b>NOT GIVEN</b> = teks <b>tidak membahas</b> hal itu sama sekali.',['Teks: <i>The library opens at 8 a.m.</i>','“Opens at 8” → <b>TRUE</b>','“Opens at 9” → <b>FALSE</b>','“Is free for students” → <b>NOT GIVEN</b>']),
+S('Bedakan dua versi: <b>True/False/Not Given</b> untuk <b>fakta</b>, <b>Yes/No/Not Given</b> untuk <b>opini penulis</b>. Salah memakai format di lembar jawaban = tidak dapat poin.',[]),
+S('<b>Jebakan</b> ⚠️: kata <b>kuantitas & kepastian</b> mengubah makna: <b>all, some, most, always, may, must</b>. Kalau teks bilang <i>some</i> tapi soal bilang <i>all</i>, itu <b>FALSE</b> (atau Not Given bila tidak ada info).',[],{tip:'Cara cepat: cari kalimat bukti di teks → bandingkan makna → kalau tidak ketemu setelah dicari serius, kemungkinan <b>NOT GIVEN</b>.'}),
+S('Strategi waktu: <b>20 menit per teks</b>. Jangan baca semua kata. Skim dulu judul dan paragraf awal, <b>scan</b> kata kunci soal, lalu baca detail di sekitar kata kunci.',[])
+],[
+{q:'Teks: “Most students walk to school.” Soal: “All students walk to school.”',o:['FALSE','TRUE','NOT GIVEN'],why:'<b>Most</b> ≠ <b>all</b>. Pernyataan soal berlawanan dengan teks.',p:'<b>Teks</b>: Most students walk to school, while a few take the bus.'},
+{q:'Soal: “The school provides free lunch.”',o:['NOT GIVEN','TRUE','FALSE'],why:'Teks tidak menyebut makan siang sama sekali → <b>NOT GIVEN</b>.',p:'<b>Teks</b>: Most students walk to school, while a few take the bus.'},
+{q:'Soal tentang OPINI penulis memakai format …',o:['Yes / No / Not Given','True / False / Not Given','Matching headings'],why:'Opini → <b>Yes/No/Not Given</b>; fakta → True/False/Not Given.'},
+{q:'Kamu tidak bisa menemukan info soal setelah dicari serius. Jawaban paling mungkin?',o:['NOT GIVEN','TRUE','FALSE'],why:'Tak ada bukti di teks → <b>Not Given</b>.'},
+T('Ketik: waktu ideal per teks Reading (menit, angka)',['20'],'60 menit ÷ 3 teks = <b>20 menit</b> per teks.'),
+PR('Jodohkan kata dengan makna.',[['all','semua tanpa kecuali'],['some','sebagian'],['may','mungkin, belum pasti']],'Kata kepastian mengubah putusan T/F/NG.')
+],K('READING',['⚖️ Putusan',['TRUE sama','FALSE lawan','NOT GIVEN tak disebut']],['⚠️ Jebakan',['all/some/most','may/must']],['⏱️ Waktu',['20 menit/teks','skim lalu scan']])),
+
+M('IELTS Writing Task 1: Menjelaskan Data',G,[
+S('Task 1 Academic itu seperti <b>jadi reporter data</b> 🎙️: kamu melaporkan <b>apa yang terlihat</b>, bukan berpendapat. <b>Tidak ada opini</b>, tidak ada prediksi di luar data.',[]),
+S('Kerangka 4 paragraf (±150–180 kata):',[],{tbl:[['Paragraf','Isi'],['1 Intro','Parafrase soal (1–2 kalimat)'],['2 Overview','2–3 tren/fitur utama, <b>tanpa angka</b>'],['3 Detail 1','Data kelompok pertama + angka'],['4 Detail 2','Data kelompok kedua + perbandingan']],tip:'<b>Overview wajib ada</b>. Tanpa overview, Task Achievement sulit lewat band 5.'}),
+S('Kosakata tren: naik <b>rose / increased / climbed</b>, turun <b>fell / declined / dropped</b>, stabil <b>remained stable / levelled off</b>, puncak <b>peaked at</b>, titik terendah <b>bottomed out at</b>.',['Sales <b>rose sharply</b> from 20% to 45%.','Prices <b>remained stable</b> at around $5.']),
+S('Kata keterangan seberapa cepat: <b>sharply / dramatically</b> (cepat), <b>steadily / gradually</b> (pelan & konsisten), <b>slightly / marginally</b> (sedikit).',['a <b>slight</b> decrease (noun)','decreased <b>slightly</b> (adverb)']),
+S('<b>Jangan</b>: menyalin kata soal mentah-mentah, menulis alasan yang tidak ada di data (“because of the economy”), atau menyebut semua angka. Pilih yang <b>menonjol</b> saja.',[])
+],[
+{q:'Paragraf yang WAJIB di Task 1 Academic selain intro dan detail?',o:['Overview','Opini pribadi','Kesimpulan panjang'],why:'<b>Overview</b> merangkum tren utama tanpa angka.'},
+{q:'“Sales ___ from 20 to 45.” (naik drastis)',o:['rose sharply','fell gradually','remained stable'],why:'Naik cepat → <b>rose sharply</b>.'},
+{q:'Apakah boleh menulis alasan di luar data, misalnya “because of the economy”?',o:['Tidak boleh','Boleh','Wajib'],why:'Task 1 hanya melaporkan data, <b>tanpa asumsi</b>.'},
+{q:'Mana bentuk NOUN?',o:['a slight decrease','decreased slightly','slightly decreasing'],why:'<b>a slight decrease</b> = noun phrase (a + adj + noun).'},
+T('Ketik antonim “rose”: (kata kerja lampau)',['fell','dropped','declined','decreased'],'Lawan naik: <b>fell / dropped / declined</b>.'),
+O('Susun: “The chart shows the percentage of internet users.”',['The','chart','shows','the','percentage','of','internet','users'],'The chart shows the percentage of internet users','Intro = parafrase soal.')
+],K('TASK 1',['🧱 Kerangka',['Intro','Overview','Detail 1','Detail 2']],['📈 Tren',['rose/fell','peaked','stable']],['🚫 Jangan',['opini','alasan di luar data']])),
+
+M('IELTS Writing Task 2: Esai Band 7',G,[
+S('Task 2 itu <b>membangun jembatan</b> 🌉: tiap bagian harus kuat dan <b>nyambung</b>. Wajib jawab <b>semua bagian pertanyaan</b>. Salah satu alasan terbesar skor turun adalah menjawab hanya sebagian soal.',[]),
+S('Kenali 5 tipe soal: <b>Opinion</b> (agree/disagree), <b>Discussion</b> (both views), <b>Problem–Solution</b>, <b>Advantages–Disadvantages</b>, <b>Two-part question</b>.',[]),
+S('Kerangka 4 paragraf (min. 250 kata, target 270–300):',[],{tbl:[['Paragraf','Isi'],['Intro','Parafrase + <b>posisi/thesis</b> jelas'],['Body 1','Ide utama + penjelasan + contoh'],['Body 2','Ide utama + penjelasan + contoh'],['Conclusion','Ulang posisi, tanpa ide baru']]}),
+S('Rumus body paragraph <b>PEEL</b>: <b>P</b>oint (inti) → <b>E</b>xplain (kenapa) → <b>E</b>xample (spesifik) → <b>L</b>ink (kembali ke soal).',['<b>P</b>: Public transport reduces pollution.','<b>E</b>: Fewer private cars means lower emissions.','<b>E</b>: In Jakarta, MRT riders skip millions of car trips yearly.','<b>L</b>: Therefore, investing in it benefits the environment.']),
+S('<b>Kesalahan umum</b> ⚠️: menyalin pertanyaan tanpa parafrase, thesis kabur, ide tanpa contoh, kalimat super panjang yang salah tata bahasa, dan kurang dari 250 kata (kena penalti).',[],{tip:'Band 7 bukan soal kata sulit. Band 7 = <b>ide jelas, tersusun rapi, dan tata bahasa bervariasi dengan sedikit salah</b>.'})
+],[
+{q:'Soal: “Discuss both views and give your opinion.” Apa yang wajib ada?',o:['Dua pandangan + opinimu','Hanya opinimu','Hanya satu pandangan'],why:'Tipe discussion: bahas <b>kedua sisi</b> lalu berikan opini.'},
+{q:'Minimal kata Task 2?',o:['250','150','350'],why:'Task 2 min. <b>250 kata</b>.'},
+{q:'PEEL: huruf terakhir “L” berarti …',o:['Link ke soal','Listen','Learn'],why:'<b>Link</b> menutup paragraf dengan menghubungkan ide ke pertanyaan.'},
+{q:'Di conclusion, kamu sebaiknya …',o:['Ulangi posisi, tanpa ide baru','Tambahkan ide baru','Tanya pembaca'],why:'Kesimpulan merangkum, <b>bukan</b> membuka topik baru.'},
+T('Ketik: PEEL, huruf pertama P = … (satu kata)',['point'],'<b>P</b> = Point, inti ide paragraf.'),
+O('Susun: “Public transport reduces pollution in big cities.”',['Public','transport','reduces','pollution','in','big','cities'],'Public transport reduces pollution in big cities','Contoh kalimat topik (Point) yang ringkas.')
+],K('TASK 2',['🧱 Kerangka',['Intro+thesis','Body 1','Body 2','Conclusion']],['🧩 PEEL',['Point','Explain','Example','Link']],['🎯 Band 7',['jawab semua','ide + contoh','variasi gramatika']])),
+
+M('IELTS Speaking: Part 1, 2, 3',G,[
+S('Speaking itu <b>ngobrol dengan teman yang menilai</b>. Yang dicari: <b>lancar, ide berkembang, kosakata bervariasi, dan pelafalan jelas</b>. Bukan aksen Inggris, bukan jawaban “benar”.',[]),
+S('3 bagian: <b>Part 1</b> pertanyaan pribadi (4–5 menit). <b>Part 2</b> cue card: 1 menit siap, bicara 1–2 menit. <b>Part 3</b> diskusi abstrak (4–5 menit).',[]),
+S('Part 1: jawab <b>2–3 kalimat</b>, bukan satu kata. Rumus: <b>Jawab langsung + alasan + contoh kecil</b>.',['Q: Do you like cooking?','A: <b>Yes, quite a lot</b>, because it helps me relax after work. <b>For example</b>, I often try new recipes on weekends.']),
+S('Part 2: pakai <b>1 menit persiapan</b> untuk mencatat <b>kata kunci</b> (bukan kalimat) dengan urutan: <b>Past → Present → Feeling/Why</b>. Pertahankan bicara sampai penguji menghentikanmu.',[],{tip:'Kehabisan ide? Tambahkan <b>detail indra</b>: apa yang dilihat, didengar, dirasakan.'}),
+S('Part 3: soal abstrak, jadi <b>perluas ide</b>. Pola: <b>Opinion + Reason + Example + Contrast</b>.',['“I think social media does more good than harm, <b>because</b> it connects people. <b>For instance</b>…, <b>However</b>, it can also…”']),
+S('Fillers yang aman saat berpikir: <b>Well…, Let me think…, That’s an interesting question.</b> Hindari diam lama dan jangan menghafal jawaban template, karena penguji mudah mendeteksinya.',[])
+],[
+{q:'Cue card Part 2: berapa waktu persiapan?',o:['1 menit','2 menit','Tidak ada'],why:'Kamu dapat <b>1 menit</b> untuk mencatat keyword.'},
+{q:'Jawaban Part 1 yang paling baik?',o:['“Yes, quite a lot, because it relaxes me.”','“Yes.”','Berbicara 3 menit'],why:'2–3 kalimat dengan <b>alasan</b>, bukan satu kata.'},
+{q:'Penilaian Speaking BUKAN berdasarkan …',o:['Aksen Inggris/Amerika','Fluency','Pronunciation'],why:'Yang dinilai <b>kejelasan</b>, bukan aksen tertentu.'},
+{q:'Apa yang dilakukan jika kehabisan ide di Part 2?',o:['Tambah detail indra & perasaan','Diam','Minta berhenti'],why:'Detail <b>apa yang dilihat/dirasa</b> memperpanjang jawaban secara natural.'},
+T('Ketik filler aman: “Let me ___” (kata kerja)',['think'],'<b>Let me think…</b> memberi jeda yang natural.'),
+PR('Jodohkan bagian dengan ciri.',[['Part 1','pertanyaan pribadi'],['Part 2','cue card'],['Part 3','diskusi abstrak']],'Tiap bagian punya format berbeda.')
+],K('SPEAKING',['🎤 Format',['Part 1','Part 2 cue card','Part 3']],['🧩 Rumus',['jawab+alasan','contoh','kontras']],['🚫 Hindari',['jawaban hafalan','diam lama']])),
+
+M('IELTS Cohesion & Linking Words',G,[
+S('Coherence & Cohesion itu <b>lem antar-kalimat</b> 🧴. Tanpa lem, esaimu seperti tumpukan kertas lepas. Tapi hati-hati: terlalu banyak <b>lem</b> juga membuat berantakan.',[]),
+S('Kelompok linking words yang sering dipakai:',[],{tbl:[['Fungsi','Kata','Contoh'],['Menambah','Moreover, In addition, Furthermore','Moreover, it saves time.'],['Kontras','However, Nevertheless, Whereas','However, it costs more.'],['Sebab','Because of, Due to, Since','Due to heavy traffic…'],['Akibat','Therefore, Consequently, As a result','Therefore, many switch to trains.'],['Contoh','For instance, For example, Such as','For instance, Tokyo…']]}),
+S('Kunci <b>Band 7</b>: variasikan dan letakkan <b>dengan tepat</b>. Jangan membuka setiap kalimat dengan <i>Firstly, Secondly, Moreover</i> secara mekanis.',[],{tip:'Cohesion juga lewat <b>referensi</b>: this, these, such, the latter, the former. Contoh: <i>This trend</i> shows…'}),
+S('<b>Tanda baca</b>: <b>However</b> di awal kalimat diikuti koma. Di tengah, pakai <b>titik koma</b> sebelumnya: <i>It is cheap; however, it is slow.</i>',[])
+],[
+{q:'Fungsi “Consequently”?',o:['Menyatakan akibat','Menambah','Memberi kontras'],why:'<b>Consequently</b> = akibatnya.'},
+{q:'“It is cheap; ___, it is slow.”',o:['however','because','moreover'],why:'Kontras → <b>however</b>, dengan titik koma di depan dan koma di belakang.'},
+{q:'Kesalahan umum cohesion?',o:['Memakai Firstly/Secondly di tiap kalimat','Memakai referensi this/these','Memakai paragraf'],why:'Linking mekanis terasa dipaksakan dan menurunkan skor.'},
+T('Ketik kata penghubung berarti “selain itu” (diawali M):',['moreover'],'<b>Moreover</b> = lagipula, menambah informasi.'),
+PR('Jodohkan fungsi dengan kata.',[['Kontras','However'],['Sebab','Due to'],['Contoh','For instance']],'Pilih linking sesuai fungsi logis.')
+],K('COHESION',['🧴 Linking',['tambah','kontras','sebab','akibat','contoh']],['🔗 Referensi',['this','these','such']],['⚠️ Hati-hati',['jangan mekanis','tanda baca']]),1)
+];
+LEVELS.push({id:'ielts',name:'Level IELTS',tag:'Band 5 → 7+',emoji:'🎯',mods});
+/* dialog Speaking */
+if(window.DL)window.DL.push({e:'🎤',t:'IELTS Speaking Part 1',l:'Level IELTS',p:['👩‍🏫','Examiner'],s:[
+['Let’s talk about your hometown. Where are you from?','Mari bicara soal kotamu. Kamu dari mana?'],
+[['I’m from Jakarta, a busy city, and I’ve lived there all my life.','I am Jakarta.','Jakarta from.'],0,'Jawab langsung, <b>tambah satu detail</b> agar panjang 2 kalimat.'],
+['What do you like most about it?','Apa yang paling kamu suka?'],
+[['I like the food scene because there is so much variety.','The food.','I like because.'],0,'Pola: <b>opini + because + alasan</b>.'],
+['Would you like to live there in the future?','Apakah kamu ingin tinggal di sana nanti?'],
+[['Probably not, as it is quite crowded, so I would prefer a calmer place.','No.','I will not want.'],0,'Beri <b>alasan</b> dan alternatif, jangan satu kata.']]});
+}catch(e){console.warn('materi-ielts gagal',e)}})();
+</script>
+<script id="materi-v72">
+(function(){try{
+const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const MS=mp=>({s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+const A=(L,n,g,st,qz,mp,fc)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;const m={n,g,steps:[...st,MS(mp)],quiz:qz,map:mp};if(fc)m.fc=1;LEVELS[L].mods.push(m)};
+
+A(0,'Kata Kerja Sehari-hari','📦 Kosakata & Tata Bahasa Dasar',[
+S('Kata kerja itu <b>mesin penggerak kalimat</b> ⚙️. Tanpa dia, kalimat tidak jalan. Mulai dari 12 kata kerja paling sering dipakai.',[],{tbl:[['Kata kerja','Arti','Contoh'],['eat / drink','makan / minum','I eat rice.'],['sleep / wake up','tidur / bangun','She wakes up at six.'],['go / come','pergi / datang','He goes to school.'],['read / write','membaca / menulis','They read books.'],['play / study','bermain / belajar','We study English.'],['wash / clean','mencuci / membersihkan','I wash my hands.']]}),
+S('Susun kalimat dengan rumus <b>pelaku + kata kerja + benda</b>. Ketuk contoh ini biar Pak Yood yang bacakan!',['I <b>drink</b> water.','My brother <b>plays</b> football.','We <b>clean</b> the room.'],{tip:'Pelaku He/She/It: kata kerja pakai topi -s. She <b>reads</b>, bukan She read.'})
+],[
+Q('Kata kerja untuk "makan":',['eat','drink','sleep'],0,'Makan = <b>eat</b>.'),
+Q('She ___ English every day.',['study','studies','studying'],1,'She butuh topi: study jadi <b>studies</b>.'),
+T('Ketik bahasa Inggris "membaca":','read','Membaca = <b>read</b>.'),
+O('Susun: "Aku mencuci tanganku."',['I','wash','my','hands'],'I wash my hands','Pelaku + kata kerja + benda.')
+],K('KATA KERJA',['🍚 Makan-minum','eat','drink'],['🛏️ Rutinitas','sleep','wake up','go'],['📚 Sekolah','read','write','study']),1);
+
+A(0,'Jam, Hari & Bulan','📦 Kosakata & Tata Bahasa Dasar',[
+S('Waktu itu ibarat <b>jam dinding di kamarmu</b> 🕒. Hari, bulan, dan jam punya nama sendiri. Hafalkan sebagai satu keluarga.',[],{tbl:[['Kelompok','Isi'],['Hari','Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday'],['Bulan','January, February, March, April, May, June, July, August, September, October, November, December'],['Waktu','morning, afternoon, evening, night']]}),
+S('Cara menyebut jam: <b>It is + angka + o\'clock</b>. Pakai <b>at</b> untuk jam, <b>on</b> untuk hari, <b>in</b> untuk bulan.',['It is <b>seven o\'clock</b>.','I wake up <b>at</b> six.','My birthday is <b>on</b> Friday.','School starts <b>in</b> July.'],{tip:'at = jam, on = hari, in = bulan atau tahun.'})
+],[
+Q('Hari setelah Monday:',['Tuesday','Sunday','Friday'],0,'Setelah Monday datang <b>Tuesday</b>.'),
+Q('I go to school ___ Monday.',['in','on','at'],1,'Hari pakai <b>on</b>.'),
+T('Ketik: We have lunch ___ twelve o\'clock. (at/on)','at','Jam pakai <b>at</b>.'),
+Q('Bulan ke-3 dalam setahun:',['March','May','June'],0,'Januari, Februari, <b>March</b>.')
+],K('WAKTU',['🗓️ Hari','Monday','Sunday'],['📆 Bulan','January','December'],['🔑 Kunci','at jam','on hari','in bulan']));
+
+A(1,'Imperatives & Let\'s','🔗 Grammar Rules',[
+S('<b>Imperative</b> itu kalimat <b>remote control</b> 🎮: memberi perintah atau ajakan. Rumusnya super mudah: <b>kata kerja polos di depan</b>, tanpa pelaku.',['<b>Open</b> the door.','<b>Please sit</b> down.','<b>Be</b> quiet!'],{tbl:[['Jenis','Rumus','Contoh'],['Perintah','V1','Close the window.'],['Larangan','Don\'t + V1','Don\'t run here.'],['Ajakan','Let\'s + V1','Let\'s play football.'],['Sopan','Please + V1','Please help me.']]}),
+S('Rambu-rambu juga memakai imperative. Lihat di jalan, sekolah, dan kantor.',['<b>Keep</b> off the grass.','<b>Don\'t</b> litter.','<b>Wash</b> your hands.'],{tip:'Setelah Let\'s selalu kata kerja polos: Let\'s go, bukan Let\'s going.'})
+],[
+Q('___ the door, please.',['Close','Closes','Closing'],0,'Perintah memakai V1: <b>Close</b>.'),
+Q('Larangan yang benar:',['Don\'t run here.','Not run here.','No running here do.'],0,'Larangan = <b>Don\'t + V1</b>.'),
+T('Ketik: Let\'s ___ (go) to the park.','go','Setelah Let\'s: V1 polos.'),
+O('Susun: "Tolong bantu aku."',['Please','help','me'],'Please help me','Please + V1 + objek.'),
+Q('"Let\'s study together" artinya…',['Ayo belajar bersama','Dia belajar sendiri','Jangan belajar'],0,'Let\'s = ajakan.')
+],K('IMPERATIVE',['🎮 Perintah','V1'],['🚫 Larangan','Don\'t + V1'],['🤝 Ajakan','Let\'s + V1']));
+
+A(1,'Arah & Tempat (Directions)','🗣️ Basic Conversation',[
+S('Bertanya arah itu seperti <b>memakai GPS manusia</b> 🧭. Kamu bertanya, orang lain memberi petunjuk. Hafalkan kata arah ini dulu.',[],{tbl:[['Kata','Arti'],['turn left / right','belok kiri / kanan'],['go straight','lurus'],['at the corner','di pojok'],['next to / opposite','di sebelah / seberang'],['block','blok jalan']]}),
+S('Rumus tanya dan jawab, dipakai di mal, bandara, dan jalan.',['<b>Excuse me, where is</b> the bank?','<b>Go straight</b> and <b>turn left</b> at the corner.','It is <b>next to</b> the supermarket.'],{tip:'Awali dengan Excuse me, lalu ucapkan Thank you setelah mendapat jawaban.'})
+],[
+Q('"Belok kanan" dalam bahasa Inggris:',['turn right','go left','turn back'],0,'Belok kanan = <b>turn right</b>.'),
+Q('Excuse me, ___ is the post office?',['where','when','who'],0,'Mencari tempat = <b>where</b>.'),
+T('Ketik: Go ___ and turn left. (lurus)','straight','Lurus = <b>straight</b>.'),
+O('Susun: "Bank ada di sebelah toko."',['The','bank','is','next','to','the','shop'],'The bank is next to the shop','next to = di sebelah.')
+],K('DIRECTIONS',['🧭 Arah','turn left','turn right','go straight'],['📍 Posisi','next to','opposite','at the corner'],['🙏 Sopan','Excuse me','Thank you']),1);
+
+A(2,'Cohesion: Linking Words Lanjutan','✍️ Academic Writing',[
+S('Tulisan yang rapi itu seperti <b>jalan tol dengan rambu jelas</b> 🛣️. Linking words menjaga pembaca tetap di jalur. Kelompokkan berdasarkan <b>fungsi</b>-nya.',[],{tbl:[['Fungsi','Kata','Contoh'],['Tambahan','moreover, furthermore, in addition','Moreover, it saves time.'],['Kontras','however, nevertheless, whereas','However, it is costly.'],['Sebab-akibat','therefore, consequently, as a result','Therefore, we changed it.'],['Contoh','for instance, such as','For instance, rice.'],['Urutan','firstly, subsequently, finally','Finally, we tested it.']]}),
+S('Posisi dan tanda baca: kata sambung kalimat diikuti <b>koma</b>, dan di antara dua klausa dipisah <b>titik koma</b>.',['It rained; <b>consequently</b>, the match was cancelled.','Prices rose. <b>As a result</b>, sales fell.'],{tip:'Jangan memakai terlalu banyak. Satu transisi per hubungan ide sudah cukup.'})
+],[
+Q('Cuaca buruk. ___, penerbangan ditunda.',['Consequently','However','For instance'],0,'Akibat = <b>Consequently</b>.'),
+Q('Kata kontras yang paling formal:',['nevertheless','and','so'],0,'<b>Nevertheless</b> = meskipun begitu.'),
+T('Ketik kata penambah (awalan m): Prices are low. ___, quality is high.','moreover','<b>Moreover</b> = lagipula.'),
+Q('Mana yang menunjukkan CONTOH?',['for instance','however','therefore'],0,'<b>For instance</b> = misalnya.'),
+Q('"As a result" menandai…',['akibat','kontras','urutan'],0,'Menandai hasil atau akibat.')
+],K('LINKING WORDS',['➕ Tambah','moreover','furthermore'],['↩️ Kontras','however','whereas'],['➡️ Akibat','therefore','consequently'],['🔎 Contoh','for instance','such as']));
+
+A(2,'Modal Perfect: should have / could have','🧠 Advanced Grammar',[
+S('Modal perfect itu <b>mesin waktu penyesalan</b> ⏪: kita membahas masa lalu yang tidak bisa diulang. Rumus: <b>modal + have + V3</b>.',['I <b>should have studied</b> harder. (menyesal)','She <b>could have won</b>. (sebenarnya mampu)','They <b>must have left</b>. (pasti sudah pergi)'],{tbl:[['Bentuk','Makna','Contoh'],['should have V3','seharusnya (tapi tidak)','You should have called.'],['could have V3','sebenarnya bisa','He could have helped.'],['must have V3','pasti (tebakan kuat)','She must have forgotten.'],['can\'t have V3','mustahil sudah','He can\'t have known.']]}),
+S('Bedakan dengan Conditional Type 3: modal perfect berdiri sendiri, tanpa kalimat <b>if</b>.',['If I had known, I would have come. (Type 3)','I should have come. (modal perfect)'],{tip:'Setelah have selalu V3: should have gone, bukan should have went.'})
+],[
+Q('I missed the bus. I ___ left earlier.',['should have','should','will have'],0,'Penyesalan = <b>should have</b> + V3.'),
+Q('He is not here. He ___ forgotten.',['must have','can\'t have','should'],0,'Tebakan kuat = <b>must have</b>.'),
+T('Ketik V3: She could have ___ (win) the prize.','won','win, won, <b>won</b>.'),
+O('Susun: "Kamu seharusnya menelepon."',['You','should','have','called'],'You should have called','should have + V3.')
+],K('MODAL PERFECT',['⏪ Penyesalan','should have V3'],['💪 Mampu','could have V3'],['🕵️ Tebakan','must have V3',"can't have V3"]));
+
+A(3,'Telepon & Panggilan Kantor','💼 Komunikasi Kerja',[
+S('Percakapan telepon itu <b>tanpa wajah</b> 📞, jadi bahasa harus jelas dan sopan. Pola dasarnya: sapa, sebut nama, tanya keperluan.',['<b>Good morning, this is</b> Rina from ABC.','<b>May I speak to</b> Mr. Adi, please?','<b>Could I take a message?</b>'],{tbl:[['Situasi','Frasa'],['Membuka','Good morning, [company]. How can I help you?'],['Minta tersambung','May I speak to…, please?'],['Meminta menunggu','Hold on, please. / One moment, please.'],['Tidak ada','I\'m afraid he is not available.'],['Meminta ulang','Could you repeat that, please?'],['Menutup','Thank you for calling.']]}),
+S('Ejaan nama dan nomor adalah titik rawan. Gunakan <b>jurus konfirmasi</b> supaya tidak salah.',['Let me <b>repeat</b> that to confirm.','<b>Could you spell</b> your name, please?'],{tip:'Selalu ulangi nomor dan nama untuk memastikan. Itu tanda profesional.'})
+],[
+Q('Cara sopan meminta tersambung ke Mr. Adi:',['May I speak to Mr. Adi, please?','Give me Mr. Adi.','Where is Adi?'],0,'<b>May I speak to…</b> sopan.'),
+Q('"I\'m afraid he is not available" artinya…',['Maaf, beliau tidak bisa dihubungi','Beliau takut','Beliau sudah pulang kemarin'],0,'<b>I\'m afraid</b> = maaf, sayangnya.'),
+T('Ketik: Could I take a ___? (pesan)','message','<b>take a message</b> = mencatat pesan.'),
+Q('Ucapan untuk menutup telepon:',['Thank you for calling.','See you later, bro.','Hold on.'],0,'Penutup profesional.')
+],K('TELEPON',['📞 Buka','this is…','How can I help?'],['🔁 Konfirmasi','Could you spell…?','Let me repeat'],['🙏 Tutup','Thank you for calling']),1);
+}catch(e){console.warn('materi-v72 gagal',e)}})();
+</script>
 <script id="engine">
 /* ━━━━ BAGIAN 1: inti (state, belajar, kuis, hasil, misi, dialog, materi tambahan) ━━━━ */
 /* =====================================================
@@ -3783,7 +3994,11 @@ const CH=[
  C('Komunikasi di Kantor','Bisa email, telepon, rapat, dan ngobrol dengan rekan kerja.',['Small Talk','Email','Telepon','Kosakata Kantor','Meeting','Customer Service','Feedback','Surat Pengunduran']),
  C('Presentasi & Data','Bisa presentasi dan menjelaskan angka serta grafik.',['Presentasi','Presentasi: Q&A','Angka']),
  C('Siap Tes Internasional','Terbiasa dengan format soal TOEIC dan TOEFL.',['TOEIC: Detektif','TOEIC Part 5','TOEIC Part 6','TOEIC Reading','TOEIC Listening','TOEFL: Parallelism','TOEFL: Error']),
- C('English untuk Hidup','Bisa bertahan di perjalanan dan layanan sehari-hari.',['Wisata'])]];
+ C('English untuk Hidup','Bisa bertahan di perjalanan dan layanan sehari-hari.',['Wisata'])],
+[C('Kenali Ujiannya','Paham format, durasi, dan cara skor IELTS dihitung.',['IELTS 101']),
+ C('Listening & Reading','Tahu jebakan Listening dan putusan True/False/Not Given.',['IELTS Listening','IELTS Reading']),
+ C('Writing','Bisa menulis Task 1 dan Task 2 dengan kerangka yang jelas.',['IELTS Writing Task 1','IELTS Writing Task 2','IELTS Cohesion']),
+ C('Speaking','Punya rumus menjawab Part 1, 2, dan 3.',['IELTS Speaking'])]];
 window.pathOf=function(li){const L=LEVELS[li],ch=CH[li],B=ch.map(c=>({t:c.t,goal:c.goal,ids:[]})),X={t:'Pendalaman',goal:'Materi pelengkap untuk menguatkan bab-bab di atas.',ids:[]};
  L.mods.forEach((M,i)=>{let best=0,bc=-1,br=0;ch.forEach((c,ci)=>c.m.forEach((s,ri)=>{const sc=M.n===s?1000+s.length:M.n.includes(s)?s.length:0;if(sc>best){best=sc;bc=ci;br=ri}}));
   (bc<0?X.ids:B[bc].ids).push([i,bc<0?0:br])});
@@ -4172,7 +4387,7 @@ let dp=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;c
 const addInst=s=>{s.insertAdjacentHTML('beforeend','<button class="pill" id="inst">📲 Pasang aplikasi</button>');$('#inst').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$('#inst')&&$('#inst').remove()}};
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 /* ---- 3. CEFR ---- */
-const CEFR={sd:['A1','Pemula'],smp:['A2 – B1','Dasar'],sma:['B1 – B2','Menengah'],kerja:['B2 – C1','Mahir & profesional']};
+const CEFR={sd:['A1','Pemula'],smp:['A2 – B1','Dasar'],sma:['B1 – B2','Menengah'],kerja:['B2 – C1','Mahir & profesional'],ielts:['B2 – C2','Target band 6,5–7,5']};
 const cf=i=>CEFR[LEVELS[i].id]||['',''];
 /* ---- 4. jebakan khas penutur Indonesia ---- */
 const MIST=[
@@ -4682,5 +4897,22 @@ swap();new MutationObserver(()=>{try{swap()}catch(e){}}).observe(document.body,{
 }catch(e){console.warn('nb-owl gagal',e)}})();
 </script>
 <script id="nb-cup">(function(){try{const C='<svg class="nbi" viewBox="0 0 24 24" aria-hidden="true"><path class="f3" d="M5 9h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z"/><path d="M16 10.500h1.500a2.500 2.500 0 0 1 0 5H15.500M8 3.500v2M11 3.500v2"/></svg>';const f=()=>document.querySelectorAll('.supb .cup').forEach(e=>{if(!e.querySelector('.nbi'))e.innerHTML=C});f();new MutationObserver(f).observe(document.getElementById('app'),{childList:true,subtree:true})}catch(e){}})();</script>
+<script id="home-premium">
+(function(){try{
+const css=document.createElement('style');
+css.textContent=`#app #home69,#app .v69nav #v69h{position:relative;width:42px;height:42px;padding:0;border-radius:50%;
+border:1.5px solid transparent;background:linear-gradient(150deg,#FFFFFF,#FBEFD9) padding-box,linear-gradient(145deg,#F4D58A,#C98A3A 55%,#F1CD84) border-box;
+box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 8px 18px -8px rgba(160,100,30,.55),0 2px 4px rgba(80,40,25,.12);transition:transform .15s,box-shadow .15s}
+#app .v69nav #v69h{width:auto;min-width:46px;height:46px;border-radius:14px;background:linear-gradient(150deg,#FFFFFF,#FBEFD9) padding-box,linear-gradient(145deg,#F4D58A,#C98A3A 55%,#F1CD84) border-box}
+#app #home69:hover,#app .v69nav #v69h:hover{box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 12px 22px -8px rgba(160,100,30,.7),0 2px 4px rgba(80,40,25,.14)}
+#app #home69:active,#app .v69nav #v69h:active{transform:translateY(1px) scale(.96)}
+#app .hpi{position:absolute;inset:0;margin:auto;width:24px;height:24px;display:block;filter:drop-shadow(0 1px 1px rgba(120,60,20,.25))}
+html[data-theme=dark] #app #home69,html[data-theme=dark] #app .v69nav #v69h{background:linear-gradient(150deg,#3A2F29,#2A211D) padding-box,linear-gradient(145deg,#F4D58A,#B9782E 55%,#E8C070) border-box}`;
+document.head.appendChild(css);
+const SV='<svg class="hpi" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="hpr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F08A5D"/><stop offset="1" stop-color="#B8442C"/></linearGradient><linearGradient id="hpb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF8EA"/><stop offset="1" stop-color="#F1DDB8"/></linearGradient><linearGradient id="hpg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7D987"/><stop offset="1" stop-color="#D79A3C"/></linearGradient></defs><path d="M5.5 11v8.2c0 .5.4.8.8.8h11.4c.4 0 .8-.3.8-.8V11L12 5.6z" fill="url(#hpb)" stroke="#B9782E" stroke-width="1" stroke-linejoin="round"/><path d="M2.8 11.6 12 3.8l9.2 7.8" fill="none" stroke="url(#hpr)" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><rect x="10" y="13.4" width="4" height="6.6" rx="1.4" fill="url(#hpg)" stroke="#B9782E" stroke-width=".8"/><circle cx="13" cy="16.8" r=".5" fill="#8A531C"/><path d="M16.2 5.2v2.6" stroke="#B8442C" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const sw=()=>['home69','v69h'].forEach(id=>{const b=document.getElementById(id);if(b&&!b.querySelector('.hpi')){b.textContent='';b.insertAdjacentHTML('beforeend',SV)}});
+sw();new MutationObserver(sw).observe(document.body,{childList:true,subtree:true});
+}catch(e){console.warn('home-premium gagal',e)}})();
+</script>
 </body>
 </html>
