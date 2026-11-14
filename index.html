@@ -4914,5 +4914,303 @@ const sw=()=>['home69','v69h'].forEach(id=>{const b=document.getElementById(id);
 sw();new MutationObserver(sw).observe(document.body,{childList:true,subtree:true});
 }catch(e){console.warn('home-premium gagal',e)}})();
 </script>
+<script id="animasi-tenses">
+/* v73: ANIMASI GARIS WAKTU di tiap sub-bab Tenses. Satu langkah baru "🎬 Animasi" disisipkan setelah Pembuka. */
+(function(){try{
+const RM=window.matchMedia?matchMedia('(prefers-reduced-motion:reduce)'):{matches:false};
+const AY=104,NX=190,PA='#2C7C8A',PR='#C2593F',FU='#4F7F55',PF='#7A55B8',GO='#D98A1F',MU='var(--mute)';
+const X=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const tx=(x,y,s,sz,col,anc,wt)=>{sz=sz||10;const L=String(s).split('|');return `<text x="${x}" y="${y}" font-size="${sz}" text-anchor="${anc||'middle'}" font-weight="${wt||700}"${col?` style="fill:${col}"`:''}>${L.map((l,i)=>`<tspan x="${x}" dy="${i?sz*1.2:0}">${X(l)}</tspan>`).join('')}</text>`};
+const G=(t,c,h,st)=>`<g class="tn-e ${c||''}" data-t="${t}"${st?` style="${st}"`:''}>${h}</g>`;
+const em=(t,x,y,e,sz)=>G(t,'pop',tx(x,y,e,sz||20));
+const nt=(t,x,y,s,col,sz,anc)=>G(t,'pop',tx(x,y,s,sz||9.5,col,anc));
+const pt=(t,x,e,lab,col,ly,fr)=>G(t,'pop',(fr?`<rect x="${x-19}" y="${AY-44}" width="38" height="40" rx="5" stroke-width="1.5" style="fill:var(--white);stroke:${col}"/>`:'')+`<circle cx="${x}" cy="${AY}" r="6" style="fill:${col}"/>`+tx(x,AY-14,e,20)+(lab?tx(x,ly||AY+19,lab,9.5,col):''));
+const flag=(t,x,lab,col,top)=>{top=top||34;return G(t,'pop',`<line x1="${x}" y1="${top}" x2="${x}" y2="${AY}" stroke-width="1.8" stroke-dasharray="4 3" style="stroke:${col}"/>`+tx(x,top-6,lab,9.5,col))};
+const bar=(t,x1,x2,col,du,e,lab,y)=>{y=y||AY-34;const w=x2-x1;return G(t,'',`<line x1="${x1}" y1="${y+6}" x2="${x1}" y2="${AY}" stroke-dasharray="2 3" opacity=".6" style="stroke:${col}"/><line x1="${x2}" y1="${y+6}" x2="${x2}" y2="${AY}" stroke-dasharray="2 3" opacity=".6" style="stroke:${col}"/><rect class="gr" x="${x1}" y="${y-6}" width="${w}" height="12" rx="6" style="fill:${col};fill-opacity:.88"/><g class="hd" style="--dx:${-w}px">${tx(x2,y+7,e,18)}</g>`+(lab?tx((x1+x2)/2,y-12,lab,9.5,col):''),`--du:${du}ms`)};
+const dl=(t,x1,x2,y,col)=>G(t,'',`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 8" style="stroke:${col}"/>`);
+const arc=(t,x1,x2,col,du,lab)=>{const y0=AY-40,m=(x1+x2)/2;return G(t,'',`<path class="dr" pathLength="1" d="M${x1} ${y0} Q${m} ${AY-98} ${x2} ${y0}" fill="none" stroke-width="3" stroke-linecap="round" style="stroke:${col};--du:${du}ms"/>`)+G(t+du,'pop',`<path d="M${x2-5} ${y0-9} L${x2} ${y0} L${x2+5} ${y0-9}" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke:${col}"/>`)+(lab?nt(t+du*.5,m,26,lab,col):'')};
+const base=()=>`<line x1="10" y1="${AY}" x2="344" y2="${AY}" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--mute)"/><path d="M343 ${AY-5} L352 ${AY} L343 ${AY+5}" style="fill:var(--mute)"/>`
+ +`<line x1="${NX}" y1="30" x2="${NX}" y2="${AY+10}" stroke-width="2" stroke-dasharray="3 3" style="stroke:${PR}"/><circle cx="${NX}" cy="${AY}" r="4" style="fill:${PR}"/>`
+ +tx(NX,AY+24,'SEKARANG',8.5,PR,'middle',800)+tx(10,164,'← MASA LALU',8.5,MU,'start')+tx(350,164,'MASA DEPAN →',8.5,MU,'end');
+
+const gridSvg=()=>{
+ const cols=[['📸','Simple'],['🎥','Continuous'],['📒','Perfect'],['⏱️','Perfect|Continuous']];
+ const rows=[['Present',PR,['V1 / V-s','am/is/are|+ V-ing','have/has|+ V3','have/has been|+ V-ing']],['Past',PA,['V2','was/were|+ V-ing','had + V3','had been|+ V-ing']],['Future',FU,['will + V1','will be|+ V-ing','will have|+ V3','will have been|+ V-ing']],['Past Future',PF,['would + V1','would be|+ V-ing','would have|+ V3','would have been|+ V-ing']]];
+ let s='';
+ cols.forEach((c,i)=>{const x=68+i*72+35;s+=G(300+i*180,'pop',tx(x,13,c[0],12)+tx(x,25,c[1],8,MU))});
+ rows.forEach((r,ri)=>{const y=44+ri*35,t0=1300+ri*1900;
+  s+=G(t0,'pop',`<rect x="2" y="${y}" width="64" height="32" rx="8" style="fill:${r[1]}"/>`+tx(34,y+20,r[0],9,'#fff','middle',800));
+  r[2].forEach((c,ci)=>{const x=68+ci*72,two=c.indexOf('|')>-1;
+   s+=G(t0+300+ci*260,'pop',`<rect x="${x}" y="${y}" width="70" height="32" rx="8" stroke-width="1.3" style="fill:${r[1]};fill-opacity:.14;stroke:${r[1]}"/>`+tx(x+35,two?y+13:y+20,c,8.2,r[1],'middle',800))})});
+ return s};
+
+const SPECS={
+sp:{n:'Simple Present',ana:'📔 Buku harian',sent:'She <b>drinks</b> tea every morning.',say:'She drinks tea every morning.',
+ frm:'S + V1 · He/She/It + V-s/es',sig:'every day · always · usually · often · never',
+ intro:'Lihat animasinya dulu ya 🎬. Garis di bawah itu <b>garis waktu</b>: kiri = masa lalu, kanan = masa depan, garis putus-putus oranye = <b>SEKARANG</b>. Perhatikan: kejadiannya muncul <b>berulang-ulang</b>.',
+ els:()=>{let s='';[40,82,124,190,256,298,340].forEach((x,i)=>s+=pt(400+i*420,x,'🍵','',PR));return s+nt(3500,NX,AY+46,'🔁 berulang tanpa putus',PR,10)},
+ caps:[[200,'Perhatikan: <b>kejadian yang sama muncul lagi dan lagi</b> 🍵'],[3300,'Dulu, sekarang, dan nanti: selalu <b>berulang</b>. Itulah kebiasaan.'],[5200,'Kebiasaan atau fakta umum → <b>Simple Present</b>. Ingat topi -s untuk He/She/It!']],end:6600},
+
+pc:{n:'Present Continuous',ana:'🎥 Siaran langsung',sent:'She <b>is cooking</b> now.',say:'She is cooking now.',
+ frm:'S + am/is/are + V-ing',sig:'now · at the moment · Look! · Listen!',
+ intro:'Kalau Simple Present itu buku harian, <b>Present Continuous</b> itu <b>siaran langsung</b> 🎥. Lihat di mana kejadiannya berada terhadap garis <b>SEKARANG</b>.',
+ els:()=>G(200,'',`<circle class="tn-live" cx="26" cy="20" r="5" style="fill:#E0382B"/>`+tx(36,24,'LIVE',10,'#E0382B','start',800))+bar(600,140,240,PR,2200,'🍳','sedang masak')+dl(2900,100,136,AY-34,PR)+dl(2900,244,280,AY-34,PR)+nt(3200,NX,AY+46,'awalnya sudah lewat, akhirnya belum tiba',PR,9.5),
+ caps:[[200,'Bayangkan <b>siaran langsung</b> 🎥: kamera menyorot detik ini'],[900,'Ia sedang memasak… tepat di titik <b>SEKARANG</b>'],[3200,'Belum selesai, masih berjalan → <b>am/is/are + V-ing</b>']],end:4800},
+
+pp:{n:'Present Perfect',ana:'🌉 Jembatan ke sekarang',sent:'I <b>have lost</b> my keys.',say:'I have lost my keys.',
+ frm:'S + have/has + V3',sig:'already · yet · ever · never · just · since · for',
+ intro:'<b>Present Perfect</b> itu <b>jembatan</b> 🌉: kejadiannya di masa lalu, tapi <b>akibatnya tersambung sampai sekarang</b>. Tonton jembatannya terbentuk.',
+ els:()=>pt(500,80,'🔑','hilang|(kapan? tak penting)',PA)+arc(1500,80,NX,PR,1400,'🌉 jembatan')+em(3000,NX,AY-14,'😟',22)+nt(3200,214,AY-18,'masih hilang!',PR,9.5,'start'),
+ caps:[[200,'Aku <b>kehilangan kunci</b> di masa lalu 🔑 (kapan persisnya? tidak disebut)'],[1500,'Dari titik itu dibangun <b>jembatan 🌉 ke sekarang</b>'],[3200,'Akibatnya <b>masih terasa sekarang</b>: kuncinya masih hilang 😟'],[5200,'Masa lalu yang <b>nyambung ke sekarang</b> → <b>have/has + V3</b>']],end:6700},
+
+ppc:{n:'Present Perfect Continuous',ana:'🌉🎥 Jembatan + video',sent:'I <b>have been studying</b> for three hours.',say:'I have been studying for three hours.',
+ frm:'S + have/has been + V-ing',sig:'for · since · all day · lately · how long',
+ intro:'Ini <b>jembatan + video</b> 🌉🎥: kegiatan mulai di masa lalu, terus berjalan sampai sekarang, dan yang disorot adalah <b>lamanya</b>. Lihat durasinya bertambah.',
+ els:()=>pt(300,60,'🚩','mulai',PA)+bar(700,60,NX,PR,2600,'📖','')+nt(1500,100,AY-48,'1 jam',PR)+nt(2400,145,AY-48,'2 jam',PR)+nt(3300,NX,AY-48,'3 jam',PR)+dl(3500,196,250,AY-34,PR)+nt(3700,254,AY-31,'…masih lanjut?',PR,9.5,'start'),
+ caps:[[200,'Ia <b>mulai belajar</b> di masa lalu 🚩'],[900,'…dan terus belajar, <b>jam demi jam</b> bertambah'],[3400,'Sampai SEKARANG, bahkan mungkin lanjut. Yang disorot: <b>lamanya proses</b>'],[5400,'Durasi sampai sekarang → <b>have/has been + V-ing</b>']],end:6900},
+
+sPast:{n:'Simple Past',ana:'📷 Foto lama',sent:'I <b>watched</b> a movie <b>yesterday</b>.',say:'I watched a movie yesterday.',
+ frm:'S + V2 · did + V1 (negatif/tanya)',sig:'yesterday · last week · ago · in 2020',
+ intro:'<b>Simple Past</b> itu <b>foto lama</b> 📷: kejadiannya sudah selesai di waktu yang jelas, lalu <b>putus</b> dari sekarang.',
+ els:()=>pt(500,90,'🎬','kemarin',PA,AY+19,true)+dl(1800,116,176,AY-20,MU)+em(2000,140,AY-14,'✂️',18)+nt(2300,134,AY+19,'sudah putus',MU,9.5),
+ caps:[[200,'<b>Kemarin</b>, ia nonton film 🎬'],[1500,'Kejadiannya <b>selesai</b> di waktu yang jelas (foto lama 📷)'],[2800,'Tidak ada sambungan ke sekarang ✂️'],[4600,'Selesai + waktu jelas → <b>Simple Past</b> (V2)']],end:6000},
+
+pastC:{n:'Past Continuous',ana:'⏸️ Video di-pause',sent:'I <b>was cooking</b> when the phone <b>rang</b>.',say:'I was cooking when the phone rang.',
+ frm:'S + was/were + V-ing',sig:'while · when · at 8 last night',
+ intro:'<b>Past Continuous</b> itu <b>video yang di-pause di tengah adegan</b> ⏸️. Aksi panjang ibarat <b>sungai</b> 🌊, lalu dipotong aksi pendek ibarat <b>batu</b> 🪨.',
+ els:()=>bar(500,40,150,PA,2600,'🍲','was cooking')+em(1950,100,AY-62,'📞',20)+nt(1950,100,AY-84,'rang!',GO,10),
+ caps:[[200,'Sore itu aku <b>sedang memasak</b> 🍲 (aksi panjang, sungai 🌊)'],[1900,'Tiba-tiba <b>telepon berdering</b> 📞 memotong (aksi pendek, batu 🪨)'],[3600,'Yang <b>sedang berlangsung</b> di masa lalu → <b>was/were + V-ing</b>; yang memotong → V2']],end:5400},
+
+fut:{n:'Future: will & going to',ana:'💡 Ide mendadak vs 🎟️ rencana',sent:'I <b>will</b> answer it.<br>I <b>am going to</b> visit Bali.',say:'I will answer it. I am going to visit Bali.',
+ frm:'will + V1 · am/is/are going to + V1',sig:'tomorrow · next week · soon · tonight',
+ intro:'Dua cara bicara masa depan. Lihat bedanya: <b>will</b> muncul dari <b>ide mendadak</b> 💡, <b>going to</b> dari <b>rencana yang sudah disiapkan</b> 🎟️.',
+ els:()=>pt(500,245,'💡','will|ide mendadak',FU)+pt(2200,90,'🎟️','beli tiket|(sudah siap)',PA)+arc(2900,90,310,FU,1500,'rencana')+pt(4500,310,'🏝️','going to',FU),
+ caps:[[200,'<b>will</b>: kamu memutuskan <b>saat itu juga</b> 💡'],[2200,'<b>going to</b>: rencana yang <b>sudah disiapkan lebih dulu</b> 🎟️'],[4300,'Rencananya jadi kenyataan di masa depan 🏝️'],[6000,'Ide mendadak → <b>will + V1</b> · Rencana atau ada bukti → <b>am/is/are going to + V1</b>']],end:7600},
+
+kemarin:{n:'Kemarin, Sekarang, Besok',ana:'📸 Album foto waktu',sent:'I <b>played</b> football yesterday.<br>I <b>play</b> football every day.<br>I <b>will play</b> football tomorrow.',say:'I played football yesterday. I play football every day. I will play football tomorrow.',
+ frm:'V2 · V1 / V-s · will + V1',sig:'yesterday · every day · tomorrow',
+ intro:'Tiga foto di album waktu 📸. Lihat tiap foto ditempel di garis waktu, lalu cocokkan dengan <b>bentuk kata kerjanya</b>.',
+ els:()=>pt(400,70,'📸','kemarin|played',PA,AY+19,true)+pt(1900,NX,'📸','sekarang|play',PR,AY+42,true)+pt(3300,310,'📸','besok|will play',FU,AY+19,true),
+ caps:[[200,'Foto lama = <b>kemarin</b> (sudah selesai)'],[1800,'Foto langsung = <b>sekarang</b> (kebiasaan)'],[3200,'Foto belum dicetak = <b>besok</b> (rencana)'],[4900,'Baca labelnya: <b>yesterday</b> → V2 · <b>every day</b> → V1 · <b>tomorrow</b> → will + V1']],end:6400},
+
+wasWere:{n:'To Be Lampau: was / were',ana:'🧍 To be versi kemarin',sent:'I <b>was</b> at home. They <b>were</b> at school.',say:'I was at home. They were at school.',
+ frm:'I/He/She/It + was · You/We/They + were',sig:'yesterday · last night · two days ago',
+ intro:'Di masa lalu, <b>am / is</b> berubah jadi <b>was</b>, dan <b>are</b> berubah jadi <b>were</b>. Lihat siapa pakai yang mana.',
+ els:()=>flag(300,95,'kemarin',PA,34)+pt(600,55,'🧍','I/He/She/It|was',PA,AY+19)+pt(2200,130,'🧍🧍','You/We/They|were',PA,AY+19),
+ caps:[[200,'Semua ini terjadi <b>kemarin</b> (masa lalu)'],[600,'<b>I / He / She / It</b> → <b>was</b> (satu orang)'],[2200,'<b>You / We / They</b> → <b>were</b> (banyak orang)'],[4000,'am/is → <b>was</b> · are → <b>were</b>']],end:5400},
+
+peta:{n:'Peta 16 Tenses',ana:'🏢 Gedung 4 lantai × 4 kamar',sent:'Waktu × Gaya = 16 tenses',say:'Sixteen tenses.',vb:'0 0 360 190',raw:true,
+ frm:'be + V-ing · have + V3 · have been + V-ing',sig:'tiap lantai tinggal ganti kata bantu: have → had → will have → would have',
+ intro:'Tonton gedung <b>16 tenses</b> 🏢 dibangun: 4 lantai (waktu) × 4 kamar (gaya). Kamu akan lihat polanya sama di semua lantai.',
+ els:()=>gridSvg(),
+ caps:[[200,'Ada <b>4 waktu</b> (baris) × <b>4 gaya</b> (kolom) = <b>16 tenses</b>'],[300,'<b>4 gaya</b>: 📸 foto · 🎥 video · 📒 rapor (hasil) · ⏱️ durasi'],[1300,'Lantai 1 · <b>Present</b>: dilihat dari sekarang'],[3200,'Lantai 2 · <b>Past</b>: sudah lewat'],[5100,'Lantai 3 · <b>Future</b>: akan datang'],[7000,'Lantai 4 · <b>Past Future</b>: masa depan versi masa lalu'],[8900,'Polanya sama! Cukup ganti kata bantu pertama: <b>have → had → will have → would have</b>']],end:10600},
+
+pastP:{n:'Past Perfect',ana:'🎞️ Flashback',sent:'When I arrived, the bus <b>had left</b>.',say:'When I arrived, the bus had left.',
+ frm:'S + had + V3',sig:'before · after · by the time · already',
+ intro:'<b>Past Perfect</b> itu <b>flashback</b> 🎞️: ada dua kejadian di masa lalu, dan yang <b>terjadi lebih dulu</b> memakai <b>had + V3</b>.',
+ els:()=>pt(500,80,'🚌','① had left|bus pergi',PA)+pt(2200,140,'🧍','② arrived|aku tiba',PA)+arc(3600,140,80,PA,1400,'🎞️ flashback'),
+ caps:[[200,'<b>Dua kejadian</b> di masa lalu. Mana yang terjadi duluan?'],[800,'① Bus sudah pergi 🚌'],[2300,'② Kemudian aku tiba 🧍'],[3700,'Dari ② menengok ke belakang: <b>flashback 🎞️</b> ke ①'],[5300,'Yang <b>lebih dulu</b> → <b>had + V3</b> · yang kemudian → V2']],end:6800},
+
+pastPC:{n:'Past Perfect Continuous',ana:'🎥 Rekaman yang sudah lama jalan',sent:'She <b>had been waiting</b> for two hours when the bus <b>arrived</b>.',say:'She had been waiting for two hours when the bus arrived.',
+ frm:'S + had been + V-ing',sig:'for · since · before · by the time',
+ intro:'Ini <b>rekaman video yang sudah lama berjalan</b> 🎥 sebelum kejadian lampau lain muncul. Yang disorot: <b>durasinya</b>.',
+ els:()=>pt(300,30,'🚩','mulai',PA)+bar(600,30,140,PA,2800,'⏳','')+nt(2000,85,AY-48,'1 jam',PA)+nt(3400,140,AY-48,'2 jam',PA)+pt(3500,152,'🚌','bus tiba|(arrived)',PA),
+ caps:[[200,'Ia <b>sudah menunggu</b> ⏳ sejak masa lalu'],[1900,'…satu jam… dua jam: <b>durasinya terus bertambah</b>'],[3500,'…sampai kejadian lampau lain muncul: <b>bus tiba</b> 🚌'],[5200,'Lamanya proses sebelum titik lampau → <b>had been + V-ing</b>']],end:6700},
+
+fc:{n:'Future Continuous',ana:'⏸️ Pause di jam tertentu besok',sent:'At 8 tomorrow, I <b>will be studying</b>.',say:'At 8 tomorrow, I will be studying.',
+ frm:'S + will be + V-ing',sig:'at 8 tomorrow · this time next week',
+ intro:'<b>Future Continuous</b> itu menekan <b>pause ⏸️ di jam tertentu besok</b>: apa yang <b>sedang berlangsung</b> saat itu?',
+ els:()=>flag(300,285,'besok jam 8',FU,34)+bar(800,245,325,FU,2000,'📚','')+em(3000,285,AY-50,'⏸️',20),
+ caps:[[200,'Loncat ke <b>besok jam 8</b> 🕗'],[1400,'Saat itu kamu sedang apa? Kamu <b>sedang belajar</b> 📚'],[3100,'Tekan <b>pause ⏸️</b>: kegiatan sedang berjalan di tengah-tengah'],[4600,'Sedang berlangsung di waktu tertentu besok → <b>will be + V-ing</b>']],end:6100},
+
+fp:{n:'Future Perfect',ana:'✅ Centang sebelum tenggat',sent:'By Friday, I <b>will have finished</b> the report.',say:'By Friday, I will have finished the report.',
+ frm:'S + will have + V3',sig:'by + waktu · by the time · before',
+ intro:'<b>Future Perfect</b> itu <b>centang di daftar tugas</b> ✅ sebelum tenggat: pada waktu tertentu di masa depan, pekerjaannya <b>sudah selesai</b>.',
+ els:()=>flag(300,300,'tenggat: Jumat',FU,34)+bar(800,205,270,FU,1800,'📝','')+em(2700,270,AY-50,'✅',22)+nt(3000,258,AY-56,'sudah selesai!',FU,10,'end'),
+ caps:[[200,'Ada <b>tenggat hari Jumat</b> 🚩 di masa depan'],[900,'Kamu mengerjakan laporan 📝'],[2900,'Sebelum tenggat tiba, <b>pekerjaan sudah selesai ✅</b>'],[4800,'Hasil sudah jadi pada titik masa depan → <b>will have + V3</b>']],end:6300},
+
+fpc:{n:'Future Perfect Continuous',ana:'🚗 Odometer sampai titik masa depan',sent:'By July, I <b>will have been working</b> here for ten years.',say:'By July, I will have been working here for ten years.',
+ frm:'S + will have been + V-ing',sig:'by + waktu + for + durasi',
+ intro:'Ini <b>odometer</b> 🚗 yang menghitung jarak tempuh sampai titik tertentu: pada saat itu, kegiatan <b>sudah berlangsung selama…</b>',
+ els:()=>flag(300,300,'Juli',FU,34)+pt(500,50,'🚩','mulai kerja',PA)+bar(1100,50,300,FU,3200,'💼','')+nt(1870,110,AY-48,'2 th',FU)+nt(3020,200,AY-48,'5 th',FU)+nt(4300,300,AY-48,'10 th',FU)+nt(4500,236,AY-64,'sudah 10 tahun!',FU,10),
+ caps:[[200,'Titik di masa depan: <b>bulan Juli</b> 🚩'],[900,'Kamu <b>mulai kerja</b> di masa lalu dan terus berjalan melewati SEKARANG…'],[4200,'Pada Juli, kegiatan itu <b>sudah berlangsung 10 tahun</b> ⏱️'],[5900,'Yang dihitung <b>lamanya proses</b> sampai titik masa depan → <b>will have been + V-ing</b>']],end:7500},
+
+spf:{n:'Simple Past Future',ana:'🎞️ Trailer film lama',sent:'He <b>said</b> he <b>would come</b> on Monday.',say:'He said he would come on Monday.',
+ frm:'S + would + V1',sig:'said · told · thought · knew (reported speech)',
+ intro:'<b>Past Future</b> itu seperti menonton <b>trailer film lama</b> 🎞️: kita berdiri <b>di masa lalu</b>, lalu menengok <b>ke depan dari sana</b>.',
+ els:()=>pt(300,60,'🗣️','dia bilang|(said)',PF)+arc(1400,60,140,PF,1400,'menengok ke depan')+pt(3000,140,'🚶','akan datang|(would come)',PF),
+ caps:[[200,'Kita <b>berdiri di masa lalu</b>: dia sedang berkata 🗣️'],[1400,'Dari titik itu ia <b>menengok ke depan</b>…'],[3000,'…"aku <b>akan</b> datang" 🔮 (masa depan versi masa lalu)'],[4800,'<b>will</b> mundur jadi <b>would</b> → <b>would + V1</b>']],end:6300},
+
+pfc:{n:'Past Future Continuous',ana:'📼 Memutar ulang video lama',sent:'She <b>said</b> she <b>would be waiting</b> at five.',say:'She said she would be waiting at five.',
+ frm:'S + would be + V-ing',sig:'said / thought + would be + V-ing',
+ intro:'Ibarat <b>memutar ulang video lama</b> 📼: dulu seseorang bilang pada jam tertentu ia akan <b>sedang melakukan</b> sesuatu.',
+ els:()=>pt(300,40,'🗣️','dia bilang|(said)',PF)+arc(900,40,140,PF,1400,'ke depan')+flag(2500,140,'jam 5',PF,34)+bar(3000,105,175,PF,1800,'⏳',''),
+ caps:[[200,'Di masa lalu, dia berkata 🗣️ tentang <b>jam 5</b>'],[2500,'Jam 5 itu ada di <b>masa depan versi masa lalu</b> 🔮'],[3000,'Pada jam itu, ia akan <b>sedang menunggu</b> ⏳'],[5000,'would + be + V-ing → <b>would be waiting</b>']],end:6500},
+
+pfp:{n:'Past Future Perfect',ana:'✅ Kalender lama yang dicentang',sent:'He <b>said</b> he <b>would have finished</b> by Friday.',say:'He said he would have finished by Friday.',
+ frm:'S + would have + V3',sig:'said / thought + would have + V3 · by + waktu',
+ intro:'Ibarat <b>kalender lama yang sudah dicentang</b> ✅: dulu seseorang memperkirakan pekerjaan <b>akan sudah selesai</b> pada waktu tertentu.',
+ els:()=>pt(300,35,'🗣️','dia bilang|(said)',PF)+arc(1000,35,150,PF,1400,'ke depan')+flag(2600,150,'tenggat: Jumat',PF,34)+bar(3000,85,130,PF,1500,'📝','')+em(4500,130,AY-50,'✅',22),
+ caps:[[200,'Di masa lalu, dia berkata 🗣️ tentang <b>tenggat Jumat</b>'],[2600,'Pada tenggat itu…'],[4500,'…pekerjaannya <b>sudah selesai ✅</b>'],[5800,'would + have + V3 → <b>would have finished</b>']],end:7300},
+
+pfpc:{n:'Past Future Perfect Continuous',ana:'🚗 Odometer di cerita lama',sent:'She <b>said</b> that by June she <b>would have been teaching</b> for ten years.',say:'She said that by June she would have been teaching for ten years.',
+ frm:'S + would have been + V-ing',sig:'said / thought + by + waktu + for + durasi',
+ intro:'Tense terpanjang! Ibarat <b>odometer di cerita lama</b> 🚗. Pecah jadi 3 potong: <b>would</b> · <b>have been</b> · <b>V-ing</b>.',
+ els:()=>pt(300,34,'🗣️','dia bilang|(said)',PF)+pt(1000,75,'🚩','mulai',PF)+flag(1600,165,'Juni',PF,34)+bar(2000,75,165,PF,2400,'🏫','')+nt(3200,120,AY-48,'5 th',PF)+nt(4400,165,AY-48,'10 th',PF),
+ caps:[[200,'Di masa lalu, dia berkata 🗣️ tentang <b>bulan Juni</b>'],[1000,'Ia <b>mulai mengajar</b> 🚩 dan terus berjalan…'],[4400,'…pada Juni itu <b>sudah sepuluh tahun</b> ⏱️'],[5900,'<b>would</b> + <b>have been</b> + <b>V-ing</b> → <b>would have been teaching</b>']],end:7500}
+};
+
+const NAMES={'Kemarin, Sekarang, Besok':'kemarin','To Be Lampau: was / were':'wasWere','Peta 16 Tenses':'peta','Simple Present Tense':'sp','Present Continuous':'pc','Past Tense':'sPast','Past Continuous':'pastC','Future: will & going to':'fut','Present Perfect':'pp','Present Perfect Continuous':'ppc','Past Perfect':'pastP','Past Perfect Continuous':'pastPC','Future Continuous':'fc','Future Perfect':'fp','Future Perfect Continuous':'fpc','Simple Past Future':'spf','Past Future Continuous':'pfc','Past Future Perfect':'pfp','Past Future Perfect Continuous':'pfpc'};
+
+const css=document.createElement('style');
+css.textContent=`
+.tn{background:var(--white);border:1.5px solid var(--cream-d);border-radius:20px;padding:12px;margin:10px 0;box-shadow:0 6px 18px -10px rgba(110,50,30,.35)}
+.tn-h{display:flex;align-items:center;justify-content:space-between;gap:6px 10px;flex-wrap:wrap;margin-bottom:8px}
+.tn-b{font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px;background:var(--terra-l);color:var(--terra-d)}
+.tn-an{font-size:12px;color:var(--mute);font-weight:600}
+.tn-s{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;font-size:15px;font-weight:700;line-height:1.45;background:var(--cream);border-radius:12px;padding:8px 10px;margin-bottom:8px}
+.tn-s b{color:var(--terra)}
+.tn-v{display:block;width:100%;height:auto;background:var(--cream);border-radius:14px}
+.tn-v text{fill:var(--ink);font-family:inherit}
+.tn-c{min-height:4.4em;background:var(--cream);border-radius:12px;padding:9px 11px;font-size:14px;line-height:1.5;margin-top:8px}
+.tn-c b{color:var(--terra)}
+.tn-c.pp{animation:tnp .35s ease}
+@keyframes tnp{from{opacity:.1;transform:translateY(5px)}}
+.tn-f{display:grid;gap:4px;font-size:13px;margin-top:8px;background:var(--terra-l);border-radius:12px;padding:8px 11px;animation:tnp .4s ease}
+.tn-f[hidden]{display:none}
+.tn-r{display:flex;justify-content:flex-end;margin-top:8px}
+.tn-rp{font-size:13px;font-weight:700;padding:7px 14px;border-radius:99px;background:var(--terra);color:#fff}
+.tn-rp:disabled{opacity:.5}
+.tn-e{opacity:0;transition:opacity .5s ease}
+.tn-e.on{opacity:1}
+.tn-e.pop{transform-box:fill-box;transform-origin:center bottom;transform:scale(.3);transition:opacity .4s ease,transform .55s cubic-bezier(.34,1.56,.64,1)}
+.tn-e.pop.on{transform:none}
+.tn-e .gr{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform var(--du,1.6s) linear}
+.tn-e.on .gr{transform:scaleX(1)}
+.tn-e .hd{transform:translateX(var(--dx,0));transition:transform var(--du,1.6s) linear}
+.tn-e.on .hd{transform:none}
+.tn-e .dr{stroke-dasharray:1 2;stroke-dashoffset:1;transition:stroke-dashoffset var(--du,1.2s) ease}
+.tn-e.on .dr{stroke-dashoffset:0}
+.tn.nt .tn-e,.tn.nt .tn-e *{transition:none!important}
+.tn-live{animation:tnb 1s ease-in-out infinite}
+@keyframes tnb{50%{opacity:.25}}
+`;
+document.head.appendChild(css);
+
+const strip=h=>String(h).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+const widget=k=>{const sp=SPECS[k];
+ return `<div class="tn" data-k="${k}"><div class="tn-h"><span class="tn-b">🎬 Animasi · ${X(sp.n)}</span><span class="tn-an">${sp.ana}</span></div>`
+ +`<button type="button" class="tn-s" aria-label="Dengarkan kalimat contoh"><span>🔊</span><span>${sp.sent}</span></button>`
+ +`<svg class="tn-v" viewBox="${sp.vb||'0 0 360 170'}" role="img" aria-label="Animasi garis waktu: ${X(sp.n)}">${sp.raw?'':base()}${sp.els()}</svg>`
+ +`<div class="tn-c" aria-live="polite"></div>`
+ +`<div class="tn-f" hidden><div><b>📐 Rumus:</b> ${sp.frm}</div><div><b>🔑 Kata kunci:</b> ${sp.sig}</div></div>`
+ +`<div class="tn-r"><button type="button" class="tn-rp">▶ Putar ulang</button></div></div>`};
+
+const play=w=>{(w._t||[]).forEach(clearTimeout);w._t=[];
+ const sp=SPECS[w.dataset.k],els=[...w.querySelectorAll('.tn-e')],cap=w.querySelector('.tn-c'),fm=w.querySelector('.tn-f'),btn=w.querySelector('.tn-rp');
+ w.classList.add('nt');els.forEach(e=>e.classList.remove('on'));void w.offsetWidth;w.classList.remove('nt');
+ fm.hidden=true;cap.innerHTML='';btn.disabled=true;
+ if((RM&&RM.matches)||(window.P&&P.calm)){els.forEach(e=>e.classList.add('on'));cap.innerHTML=sp.caps.map(c=>c[1]).join('<br>');fm.hidden=false;btn.disabled=false;return}
+ els.forEach(e=>w._t.push(setTimeout(()=>e.classList.add('on'),+e.dataset.t)));
+ sp.caps.forEach(c=>w._t.push(setTimeout(()=>{cap.innerHTML=c[1];cap.classList.remove('pp');void cap.offsetWidth;cap.classList.add('pp')},c[0])));
+ w._t.push(setTimeout(()=>{fm.hidden=false;btn.disabled=false;btn.textContent='🔁 Putar ulang'},sp.end))};
+
+LEVELS.forEach(L=>L.mods.forEach(M=>{const k=NAMES[M.n];if(!k||M._tn)return;M._tn=1;
+ M.steps.splice(Math.min(1,M.steps.length),0,{s:SPECS[k].intro,ex:[],tn:k,_st:'contoh'})}));
+
+const _vl=window.vLearn;
+window.vLearn=function(){_vl();
+ try{const M=mod(),st=M&&M.steps[S.step];if(!st||!st.tn)return;
+  const g=view.querySelector('.guide');if(!g)return;
+  g.insertAdjacentHTML('afterend',widget(st.tn));
+  const w=view.querySelector('.tn');if(!w)return;
+  w.querySelector('.tn-rp').onclick=()=>play(w);
+  w.querySelector('.tn-s').onclick=()=>speak(SPECS[st.tn].say,1);
+  setTimeout(()=>play(w),350)}catch(e){console.warn('animasi tenses gagal',e)}};
+window.TNX={SPECS,widget,NAMES};
+}catch(e){console.warn('animasi-tenses gagal',e)}})();
+</script>
+<script id="simulasi-preposisi">
+/* v74: SIMULASI modul "Preposisi: in / on / at". Dua bagian: (1) boneka & kotak, (2) in / on / at untuk tempat dan waktu. */
+(function(){try{
+const TR='#C2593F',TL='#2C7C8A',GR='#4F7F55',GO='#D98A1F',MU='var(--mute)',IN='var(--ink)';
+const tx=(x,y,s,sz,col,anc,wt)=>`<text x="${x}" y="${y}" font-size="${sz||11}" text-anchor="${anc||'middle'}" font-weight="${wt||700}" style="fill:${col||IN}">${s}</text>`;
+const BEAR={
+ in:{x:180,y:80,en:'The bear is <b>in</b> the box.',id:'Di <b>dalam</b> kotak (masuk ke ruang wadahnya).'},
+ on:{x:180,y:50,en:'The bear is <b>on</b> the box.',id:'Di <b>atas</b> kotak, menempel di permukaannya.'},
+ under:{x:180,y:144,en:'The bear is <b>under</b> the box.',id:'Di <b>bawah</b> kotak.'},
+ next:{x:292,y:144,en:'The bear is <b>next to</b> the box.',id:'Di <b>samping</b> kotak.'}
+};
+const bearSvg=()=>`<svg class="pv-v" viewBox="0 0 360 160" role="img" aria-label="Simulasi boneka dan kotak">`
+ +`<line x1="10" y1="148" x2="350" y2="148" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--mute)"/>`
+ +`<rect x="130" y="50" width="100" height="12" rx="3" style="fill:#8C5A3C"/>`
+ +`<g class="pv-bear" style="transform:translate(180px,80px)">${tx(0,0,'🧸',34)}</g>`
+ +`<rect x="130" y="62" width="100" height="44" rx="4" style="fill:#D9A066;stroke:#8C5A3C" stroke-width="2"/>`
+ +tx(180,89,'BOX',11,'#6B4226','middle',800)+`</svg>`;
+const SC={
+ in:{pl:`<rect x="10" y="22" width="160" height="88" rx="14" stroke-width="2" style="fill:${TR};fill-opacity:.12;stroke:${TR}"/>`+tx(24,40,'Jakarta',11,TR,'start')+tx(90,78,'🏠',26)+tx(90,128,'in Jakarta',11,TR),
+     tm:`<rect x="190" y="52" width="160" height="26" rx="13" stroke-width="2" style="fill:${TL};fill-opacity:.15;stroke:${TL}"/>`+tx(205,46,'May',11,TL,'start')+`<circle cx="280" cy="65" r="8" style="fill:${TL}"/>`+tx(270,128,'in May · in the morning',11,TL),
+     big:'ruang / waktu yang <b>BESAR</b>',ex:['in Jakarta','in the room','in May','in 2024','in the morning']},
+ on:{pl:`<rect x="25" y="76" width="130" height="10" rx="3" style="fill:#8C5A3C"/><rect x="38" y="86" width="8" height="26" style="fill:#8C5A3C"/><rect x="134" y="86" width="8" height="26" style="fill:#8C5A3C"/>`+tx(90,68,'📕',26)+tx(90,128,'on the table',11,TR),
+     tm:`<rect x="230" y="22" width="90" height="80" rx="8" stroke-width="2" style="fill:var(--white);stroke:${TL}"/><rect x="230" y="22" width="90" height="22" rx="8" style="fill:${TL}"/>`+tx(275,38,'MON',11,'#fff')+tx(275,78,'Monday',14,TL)+tx(270,128,'on Monday · on 17 August',11,TL),
+     big:'<b>PERMUKAAN</b> atau satu hari',ex:['on the table','on the wall','on Monday','on 17 August','on my birthday']},
+ at:{pl:tx(90,60,'📍',30)+`<circle cx="90" cy="76" r="6" style="fill:${TR}"/><circle cx="90" cy="76" r="16" fill="none" stroke-width="1.5" stroke-dasharray="3 3" style="stroke:${TR}"/>`+tx(90,104,'school',11,TR)+tx(90,128,'at school',11,TR),
+     tm:`<circle cx="270" cy="62" r="36" stroke-width="2" style="fill:var(--white);stroke:${TL}"/><line x1="270" y1="62" x2="270" y2="36" stroke-width="2.5" stroke-linecap="round" style="stroke:${TL}"/><line x1="270" y1="62" x2="252" y2="93" stroke-width="3.5" stroke-linecap="round" style="stroke:${TL}"/><circle cx="270" cy="62" r="3" style="fill:${TL}"/>`+tx(270,128,'at 7 o\'clock · at night',11,TL),
+     big:'<b>TITIK</b> yang pasti',ex:['at school','at the door','at 7 o\'clock','at night','at the station']}
+};
+const sceneSvg=k=>`<svg class="pv-v" viewBox="0 0 360 140" role="img" aria-label="Simulasi in, on, at"><line x1="180" y1="14" x2="180" y2="136" stroke-width="1" stroke-dasharray="3 4" style="stroke:var(--mute)"/>`
+ +tx(90,13,'TEMPAT',10,MU,'middle',800)+tx(270,13,'WAKTU',10,MU,'middle',800)+`<g class="pv-pop">${SC[k].pl}${SC[k].tm}</g></svg>`;
+const btn=(g,k,t)=>`<button type="button" class="pv-b" data-g="${g}" data-k="${k}">${t}</button>`;
+const widget=()=>`<div class="pv">`
+ +`<div class="pv-h"><span class="pv-t">🎬 Simulasi 1 · Boneka &amp; kotak</span></div>`
+ +bearSvg()
+ +`<div class="pv-btns">${btn('b','in','in')}${btn('b','on','on')}${btn('b','under','under')}${btn('b','next','next to')}</div>`
+ +`<div class="pv-c" id="pvb"></div></div>`
+ +`<div class="pv"><div class="pv-h"><span class="pv-t">🎬 Simulasi 2 · in / on / at</span></div>`
+ +`<div id="pvs"></div>`
+ +`<div class="pv-btns">${btn('s','in','in')}${btn('s','on','on')}${btn('s','at','at')}</div>`
+ +`<div class="pv-c" id="pvc"></div>`
+ +`<div class="pv-k"><b>Jembatan keledai:</b> <b>in</b> = ruang besar · <b>on</b> = permukaan / hari · <b>at</b> = titik tertentu.</div></div>`;
+const css=document.createElement('style');
+css.textContent=`
+.pv{background:var(--white);border:1.5px solid var(--cream-d);border-radius:20px;padding:12px;margin:10px 0;box-shadow:0 6px 18px -10px rgba(110,50,30,.35)}
+.pv-h{margin-bottom:8px}
+.pv-t{font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px;background:var(--terra-l);color:var(--terra-d)}
+.pv-v{display:block;width:100%;height:auto;background:var(--cream);border-radius:14px}
+.pv-v text{fill:var(--ink);font-family:inherit}
+.pv-bear{transition:transform .7s cubic-bezier(.34,1.3,.5,1)}
+.pv-btns{display:flex;gap:8px;margin-top:10px}
+.pv-b{flex:1;font-weight:800;font-size:14px;padding:9px 6px;border-radius:12px;background:var(--cream);border:2px solid var(--cream-d);color:var(--ink)}
+.pv-b.on{background:var(--terra);border-color:var(--terra);color:#fff}
+.pv-c{min-height:4.6em;background:var(--cream);border-radius:12px;padding:9px 11px;font-size:14px;line-height:1.55;margin-top:8px}
+.pv-c b{color:var(--terra)}
+.pv-k{margin-top:8px;font-size:13px;background:var(--terra-l);border-radius:12px;padding:8px 11px}
+.pv-pop{transform-box:fill-box;transform-origin:center;animation:pvp .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pvp{from{opacity:0;transform:scale(.85)}}
+`;
+document.head.appendChild(css);
+const setBear=(w,k)=>{const d=BEAR[k];w.querySelector('.pv-bear').style.transform=`translate(${d.x}px,${d.y}px)`;
+ w.querySelector('#pvb').innerHTML=`<div style="font-weight:800;font-size:16px">${d.en}</div><div>${d.id}</div>`;
+ w.querySelectorAll('.pv-b[data-g="b"]').forEach(b=>b.classList.toggle('on',b.dataset.k===k))};
+const setScene=(w,k)=>{w.querySelector('#pvs').innerHTML=sceneSvg(k);
+ w.querySelector('#pvc').innerHTML=`<div>Dipakai untuk ${SC[k].big}</div><div style="margin-top:4px">${SC[k].ex.map(e=>`<span style="display:inline-block;margin:2px 6px 2px 0;padding:2px 9px;border-radius:99px;background:var(--white);font-weight:700">${e}</span>`).join('')}</div>`;
+ w.querySelectorAll('.pv-b[data-g="s"]').forEach(b=>b.classList.toggle('on',b.dataset.k===k))};
+LEVELS.forEach(L=>L.mods.forEach(M=>{if(M.n!=='Preposisi: in / on / at'||M._pv)return;M._pv=1;
+ M.steps.splice(Math.min(1,M.steps.length),0,{s:'Yuk lihat <b>simulasinya</b> 🎬. Pertama, ketuk kata di bawah gambar dan lihat <b>boneka pindah</b> terhadap kotak. Lalu lihat bedanya <b>in / on / at</b> untuk tempat dan waktu.',ex:[],pv:1,_st:'contoh'})}));
+const _vl=window.vLearn;
+window.vLearn=function(){_vl();
+ try{const M=mod(),st=M&&M.steps[S.step];if(!st||!st.pv)return;
+  const g=view.querySelector('.guide');if(!g)return;
+  g.insertAdjacentHTML('afterend',widget());
+  const w=view.querySelector('.pv').parentNode;
+  const wrap=document.createElement('div');
+  [...view.querySelectorAll('.pv')].forEach(e=>wrap.appendChild(e));
+  g.after(wrap);
+  wrap.onclick=e=>{const b=e.target.closest('.pv-b');if(!b)return;b.dataset.g==='b'?setBear(wrap,b.dataset.k):setScene(wrap,b.dataset.k)};
+  setBear(wrap,'on');setScene(wrap,'in');
+  setTimeout(()=>setBear(wrap,'in'),250)}catch(e){console.warn('simulasi preposisi gagal',e)}};
+window.PVX={widget,SC,BEAR,sceneSvg,bearSvg};
+}catch(e){console.warn('simulasi-preposisi gagal',e)}})();
+</script>
 </body>
 </html>
