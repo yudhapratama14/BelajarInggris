@@ -2095,6 +2095,91 @@ if(window.DL)window.DL.push({e:'🎤',t:'IELTS Speaking Part 1',l:'Level IELTS',
 [['Probably not, as it is quite crowded, so I would prefer a calmer place.','No.','I will not want.'],0,'Beri <b>alasan</b> dan alternatif, jangan satu kata.']]});
 }catch(e){console.warn('materi-ielts gagal',e)}})();
 </script>
+<script id="materi-ielts-plus">
+/* ===== v73: IELTS & TOEFL diperluas: 4 modul baru + soal tambahan + analogi baru ===== */
+(function(){try{
+const L=LEVELS.find(l=>l.id==='ielts');if(!L)return;
+const fix=a=>a.map((x,i)=>{if(x.t)return x;const c=x.o[0],k=i%x.o.length,r=x.o.slice(1);r.splice(k,0,c);return{q:x.q,o:r,a:k,why:x.why}});
+const T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const MS=mp=>({s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k:k.flat()}))});
+const M=(n,g,st,qz,mp)=>({n,g,steps:[...st,MS(mp)],quiz:fix(qz),map:mp});
+const G='🎯 IELTS',GT='🎓 TOEFL & Akademik';
+const mods=[
+M('IELTS Reading: Matching Headings',G,[
+S('Matching Headings itu seperti <b>menempel label di rak supermarket</b> 🛒. Setiap paragraf = satu rak, setiap heading = satu label. Tugasmu: label mana yang paling pas untuk isi rak itu? Biasanya <b>heading lebih banyak dari paragraf</b>, jadi ada label “nyasar” yang tidak terpakai.',[]),
+S('<b>Rumus 3 langkah</b> ⚡: (1) Baca semua heading dulu, garis bawahi kata kunci. (2) Per paragraf, baca <b>kalimat pertama dan terakhir</b> (di situ biasanya ide utama bersembunyi). (3) Cocokkan <b>ide besar</b>, bukan kata yang sama persis.',['Heading: <b>Why cities are growing</b> → paragraf yang bahas migrasi desa ke kota.','Heading: <b>A hidden cost</b> → paragraf yang bahas biaya tersembunyi, walau kata “cost” tak muncul.']),
+S('<b>Jebakan kata sama</b> 🪤. Paragraf sering memuat kata yang sama dengan heading yang SALAH. Ibarat label “Susu” ditempel di rak sabun karena ada tulisan “susu” di kemasan sabun. Cek <b>ide utama</b>, bukan satu kata.',[],{tip:'Kerjakan paragraf yang paling mudah dulu. Heading yang sudah terpakai dicoret, sisa pilihan makin sedikit.'})
+],[
+{q:'Pada Matching Headings, jumlah heading biasanya …',o:['lebih banyak dari paragraf','sama persis dengan paragraf','lebih sedikit dari paragraf'],why:'Ada heading ekstra sebagai <b>pengecoh</b>.'},
+{q:'Bagian paragraf mana yang paling sering memuat ide utama?',o:['Kalimat pertama dan terakhir','Kalimat tengah saja','Angka di tabel'],why:'Topic sentence biasanya di <b>awal</b>, kesimpulan di <b>akhir</b>.'},
+{q:'Heading cocok dengan paragraf jika …',o:['ide besarnya sama','satu kata kuncinya sama','paragraf paling panjang'],why:'Cocokkan <b>makna</b>, bukan kata yang kebetulan sama.'},
+T('Ketik: heading yang tidak terpakai disebut … (satu kata: pengecoh dalam bahasa Inggris, d______)',['distractor'],'Heading ekstra = <b>distractor</b>.'),
+O('Susun: “Read the first and last sentences first.”',['Read','the','first','and','last','sentences','first'],'Read the first and last sentences first','Awali dengan kalimat pembuka dan penutup.')
+],K('MATCHING HEADINGS',['🛒 Analogi',['paragraf = rak','heading = label']],['⚡ Langkah',['baca heading','kalimat awal & akhir','cocokkan ide']],['🪤 Jebakan',['kata sama','heading ekstra']])),
+
+M('IELTS Kosakata: Paraphrase & Collocation',G,[
+S('Paraphrase itu <b>ganti baju, orangnya tetap sama</b> 👗. Makna tidak berubah, hanya kata dan susunannya. Penguji Reading dan Writing <b>suka</b> memakainya: soal memakai “baju baru”, teksnya memakai “baju lama”.',[],{tbl:[['Kata biasa','Versi band 7','Contoh'],['rise','climb / surge','Prices <b>surged</b> in 2020.'],['a lot of','numerous / a great deal of','<b>Numerous</b> students agree.'],['important','crucial / vital','Sleep is <b>vital</b>.'],['show','illustrate / indicate','The chart <b>illustrates</b> sales.'],['problem','issue / challenge','Traffic is a major <b>challenge</b>.']]}),
+S('<b>Collocation</b> = pasangan kata yang “berjodoh” 💞. Seperti nasi berjodoh dengan lauk, bukan dengan semen. Orang Inggris bilang <b>make a decision</b> (bukan do a decision) dan <b>heavy traffic</b> (bukan strong traffic).',['<b>make</b> a decision / a mistake / progress','<b>do</b> research / homework / the dishes','<b>heavy</b> traffic / rain · <b>strong</b> coffee / wind','<b>take</b> a risk · <b>pay</b> attention · <b>raise</b> awareness']),
+S('<b>Aturan aman</b> 🛟: pakai kata baru <b>hanya jika kamu yakin pasangannya benar</b>. Satu kata sederhana yang tepat lebih bernilai daripada kata mewah yang salah tempat. Belajar dalam <b>frasa utuh</b>, bukan kata lepas.',[],{tip:'Buat buku mini: tulis 3 collocation baru per hari, lalu pakai satu di kalimat buatanmu sendiri.'})
+],[
+{q:'Mana collocation yang BENAR?',o:['make a decision','do a decision','take a decision of'],why:'Pasangan alami: <b>make a decision</b>.'},
+{q:'“Heavy ___” yang natural untuk lalu lintas padat adalah …',o:['traffic','coffee','wind speed'],why:'<b>Heavy traffic</b>. “Strong” cocok untuk kopi dan angin.'},
+{q:'Sinonim paling pas untuk “important” di Writing formal?',o:['crucial','nice','big thing'],why:'<b>Crucial / vital</b> terdengar akademik.'},
+{q:'Paraphrase dari “Prices rose sharply” adalah …',o:['Prices climbed dramatically','Prices were not changed','Prices fell slowly'],why:'Arah naik dan intensitas tajam tetap sama.'},
+T('Ketik pasangan yang benar: “___ research” (do/make)',['do'],'Yang benar: <b>do research</b>.'),
+O('Susun: “Schools should raise awareness of mental health.”',['Schools','should','raise','awareness','of','mental','health'],'Schools should raise awareness of mental health','<b>Raise awareness</b> adalah collocation baku.')
+],K('PARAPHRASE',['👗 Analogi',['ganti baju','makna sama']],['💞 Collocation',['make a decision','do research','heavy traffic']],['🛟 Aman',['yakin pasangannya','frasa utuh']])),
+
+M('IELTS Kalimat Kompleks: Jalan ke Band 7',G,[
+S('Kalimat itu <b>kereta api</b> 🚆. Kalimat sederhana = satu gerbong. Band 7 butuh <b>gerbong yang digandeng dengan benar</b>, bukan ditumpuk tanpa sambungan. Tiga jenis: simple, compound, complex.',[],{tbl:[['Jenis','Rumus','Contoh'],['Simple','1 klausa','Pollution is rising.'],['Compound','klausa + <b>FANBOYS</b> + klausa','Pollution is rising, <b>so</b> people are worried.'],['Complex','klausa + <b>subordinator</b> + klausa','<b>Although</b> pollution is rising, few people act.']]}),
+S('<b>FANBOYS</b> = For, And, Nor, But, Or, Yet, So. Sambungan sejajar, <b>pakai koma</b> sebelum kata sambung. Subordinator (although, because, while, if, when) = sambungan <b>bertingkat</b>: satu klausa jadi pelengkap klausa lain.',['She studied hard, <b>but</b> she was nervous.','<b>Because</b> she studied hard, she felt ready.']),
+S('<b>Jebakan comma splice</b> ⚠️: menyambung dua kalimat penuh hanya dengan koma. Ibarat dua gerbong yang diikat tali rafia. Perbaiki dengan FANBOYS, titik koma, atau subordinator.',[],{tbl:[['Salah','Benar'],['I was tired, I went to bed.','I was tired, <b>so</b> I went to bed.'],['It rained, we stayed home.','<b>Because</b> it rained, we stayed home.']]})
+],[
+{q:'Mana kalimat COMPLEX?',o:['Although it was late, we kept working.','It was late, so we stopped.','We worked.'],why:'<b>Although</b> = subordinator, membentuk kalimat kompleks.'},
+{q:'Kalimat yang benar adalah …',o:['I was hungry, so I ate.','I was hungry, I ate.','I was hungry so, I ate.'],why:'Dua klausa penuh butuh <b>FANBOYS</b> setelah koma.'},
+{q:'Apa kepanjangan huruf “S” di FANBOYS?',o:['So','Since','Still'],why:'For, And, Nor, But, Or, Yet, <b>So</b>.'},
+T('Ketik perbaikan kata sambung: “It rained, we stayed home.” → “It rained, ___ we stayed home.” (alasan: hasil)',['so'],'Hasil/akibat = <b>so</b>.'),
+O('Susun: “Although it rained, we went out.”',['Although','it','rained','we','went','out'],'Although it rained we went out','Subordinator di awal, lalu koma sebelum klausa utama.')
+],K('KALIMAT KOMPLEKS',['🚆 Jenis',['simple','compound','complex']],['🔗 Sambungan',['FANBOYS','although','because','while']],['⚠️ Salah',['comma splice','run-on']])),
+
+M('TOEFL & Akademik: Kosakata Kampus',GT,[
+S('Ruang kuliah itu <b>dapur restoran</b> 👨‍🍳. Dosen memakai “bumbu” khusus yang disebut <b>academic vocabulary</b>. Kamu tak perlu kata langka; cukup <b>kata akademik yang sering muncul</b> di teks dan kuliah.',[],{tbl:[['Kata','Arti','Contoh'],['analyze','menganalisis','Scientists <b>analyze</b> the data.'],['factor','faktor','Income is one <b>factor</b>.'],['significant','penting / nyata','A <b>significant</b> increase.'],['require','memerlukan','The course <b>requires</b> a project.'],['consequence','akibat','A serious <b>consequence</b>.'],['previous','sebelumnya','<b>Previous</b> studies disagree.']]}),
+S('<b>Catatan kuliah (note-taking)</b> 📝: jangan tulis semua. Tangkap <b>ide utama, contoh, dan angka</b>. Pakai singkatan sendiri: <b>→</b> (menyebabkan), <b>+</b> (dan), <b>vs</b> (lawan), <b>e.g.</b> (contoh). Seperti menulis daftar belanja, bukan menyalin buku resep.',['Lecture: pollution <b>→</b> health risk','e.g. smog in big cities']),
+S('<b>Kata sinyal dosen</b> 📣: <b>“The key point is…”</b> (penting, catat!), <b>“For instance…”</b> (contoh), <b>“However…”</b> (pembalikan, hati-hati), <b>“In conclusion…”</b> (ringkasan). Dengar sinyal ini, tangkap intinya.',[],{tip:'Format dan nama bagian TOEFL iBT dapat berubah. Selalu cek situs resmi ETS sebelum mendaftar; keterampilan di modul ini berguna untuk format apa pun.'})
+],[
+{q:'Arti “consequence” adalah …',o:['akibat','sebab','contoh'],why:'<b>Consequence</b> = hasil dari suatu tindakan.'},
+{q:'Dosen berkata “However…”. Artinya biasanya …',o:['akan ada pembalikan','akan ada contoh','kuliah selesai'],why:'<b>However</b> menandai kontras, jadi simak baik-baik.'},
+{q:'Dalam catatan, simbol “→” sering berarti …',o:['menyebabkan','dan','lawan'],why:'<b>→</b> = leads to / causes.'},
+{q:'“Previous studies” artinya …',o:['studi sebelumnya','studi terbaru','studi palsu'],why:'<b>Previous</b> = sebelumnya.'},
+T('Ketik kata akademik untuk “menganalisis” (a______):',['analyze','analyse'],'<b>Analyze</b> (AS) / analyse (UK).'),
+O('Susun: “The key point is the cause.”',['The','key','point','is','the','cause'],'The key point is the cause','Frasa sinyal untuk ide penting.')
+],K('AKADEMIK',['👨‍🍳 Analogi',['bumbu dapur','kata akademik']],['📝 Catatan',['ide utama','singkatan']],['📣 Sinyal',['key point','however','for instance']]))
+];
+mods.forEach(m=>{if(!L.mods.some(x=>x.n===m.n))L.mods.push(m)});
+/* soal tambahan di modul lama */
+const ex={
+'IELTS Reading: True / False / Not Given':[
+{q:'Teks: “The museum opens at 9.” Pernyataan: “The museum opens at 10.” Jawabannya?',o:['False','True','Not Given'],why:'Teks <b>bertentangan</b> langsung. Ibarat CCTV merekam sebaliknya: <b>False</b>.'},
+{q:'Teks tidak menyebut harga tiket sama sekali. Pernyataan: “Tickets are cheap.” Jawabannya?',o:['Not Given','True','False'],why:'Kamera CCTV tidak merekam bagian itu: <b>Not Given</b>. Jangan menebak dari pengetahuan sendiri.'},
+{q:'Not Given berarti …',o:['teks tidak memberi informasi itu','teks menyangkal pernyataan','teks setuju pernyataan'],why:'Tidak ada bukti ya atau tidak di teks.'}],
+'IELTS Writing Task 2: Esai Band 7':[
+{q:'Esai 4 paragraf yang rapi: Intro, Body 1, Body 2, lalu …',o:['Conclusion','Dedication','Abstract'],why:'Struktur klasik berakhir dengan <b>conclusion</b>.'},
+{q:'Satu paragraf body sebaiknya memuat …',o:['satu ide utama + penjelasan + contoh','lima ide tanpa contoh','hanya kutipan'],why:'Ibarat satu laci untuk satu jenis barang: <b>satu ide per paragraf</b>.'},
+{q:'Mana pembuka esai yang paling tepat?',o:['Some people believe that… This essay will discuss both views.','Hello everyone, today I will talk.','In my opinion yes.'],why:'Paraphrase soal + nyatakan arah esai.'}],
+'IELTS Speaking: Part 1, 2, 3':[
+{q:'Di Part 2, kamu bicara sekitar …',o:['1–2 menit','10 detik','5 menit'],why:'Part 2 = long turn, <b>1–2 menit</b> setelah persiapan 1 menit.'},
+{q:'Jawaban Part 1 “Yes.” kurang baik karena …',o:['terlalu pendek, tidak ada alasan','terlalu panjang','salah tata bahasa'],why:'Tambah <b>alasan atau contoh</b> agar bernilai.'},
+{q:'Kalau lupa satu kata saat bicara, sebaiknya …',o:['jelaskan dengan kata lain (paraphrase)','diam lama','pindah topik'],why:'Seperti kehabisan bensin lalu isi bensin eceran: <b>jelaskan lewat kata lain</b>, lanjut jalan.'}],
+'IELTS Listening: Strategi & Jebakan':[
+{q:'Audio “The fee is 40… sorry, 45.” Jawaban yang dituliskan?',o:['45','40','4045'],why:'Koreksi diri: ambil yang <b>terakhir</b>.'},
+{q:'Di Section 1 biasanya kamu mendengar …',o:['percakapan sehari-hari','kuliah ilmiah','berita politik'],why:'Section 1 = percakapan sehari-hari, paling mudah.'}]
+};
+for(const n in ex){const m=L.mods.find(x=>x.n===n);if(!m)continue;const have=new Set(m.quiz.map(q=>q.q));m.quiz.push(...fix(ex[n].filter(q=>!have.has(q.q))))}
+}catch(e){console.warn('materi-ielts-plus gagal',e)}})();
+</script>
 <script id="materi-v72">
 (function(){try{
 const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
@@ -2176,6 +2261,17 @@ T('Ketik: Could I take a ___? (pesan)','message','<b>take a message</b> = mencat
 Q('Ucapan untuk menutup telepon:',['Thank you for calling.','See you later, bro.','Hold on.'],0,'Penutup profesional.')
 ],K('TELEPON',['📞 Buka','this is…','How can I help?'],['🔁 Konfirmasi','Could you spell…?','Let me repeat'],['🙏 Tutup','Thank you for calling']),1);
 }catch(e){console.warn('materi-v72 gagal',e)}})();
+</script>
+<script id="fix-v77-keys">
+/* v77: perbaikan penyelarasan: teks Pengertian/Analogi dan Kesalahan Umum diindeks per posisi modul, sehingga bergeser setelah modul baru disisipkan. RK memetakan posisi sekarang ke kunci aslinya. */
+window.RK=function(i,j,t){const X='x',k=n=>i+'.'+n;
+if(i===0){if(j===10||j===11)return X;if(j>=12&&j<=14)return k(j-2)}
+else if(i===1){if(j===21||j===22)return X;if(j>=23&&j<=32)return k(j-2)}
+else if(i===2){if(j===18||j===19||j===24||j===25)return X;if(j>=20&&j<=23)return k(j-2);if(j>=26&&j<=36)return k(j-4)}
+else if(i===3){
+ if(t===0){if(j===2)return X;if(j===3)return k(2);if(j===4)return k(3);if([5,6,7,8,9,10,11,12,13,14,15,16,21,23].includes(j))return X;if([17,18,19,20,22,24].includes(j))return k(j-10)}
+ else{if(j===2)return X;if(j===3)return k(2);if(j===5)return k(4);if(j===15)return k(5);if(j===16)return k(6);if(j>=17&&j<=21)return k(j-10);if(j===23||j===24)return k(j-10);if([4,6,7,8,9,10,11,12,13,14,22].includes(j))return X}}
+return k(j)};
 </script>
 <script id="engine">
 /* ━━━━ BAGIAN 1: inti (state, belajar, kuis, hasil, misi, dialog, materi tambahan) ━━━━ */
@@ -3072,8 +3168,8 @@ window.WW=function(w,c,Q,ctx){const r=_WW(w,c,Q,ctx);const M=window.__M;if(!M)re
  if(a)return `<b>${String(w).replace(/<[^>]+>/g,'')}</b> di materi ini berarti/berfungsi: <i>${a}</i>. Itu bukan yang diminta soal. `+r;return r};
 const _x=window.explain;window.explain=function(ok,Q,M,a,w,g){window.__M=M;return _x(ok,Q,M,a,w,g)};
 const _g=window.go;
-try{LEVELS.forEach((lv,i)=>lv.mods.forEach((m,j)=>{const d=D[i+'.'+j];if(!d||m.__v14)return;m.__v14=1;
- const o=m.steps[0]||(m.steps[0]={s:'',ex:[]});const hasA=['1.2','1.5','1.10','1.13','1.16','2.5','2.16','3.4'].includes(i+'.'+j)||/ibarat|anggap|bayangkan|seperti|\bitu <b>|\bitu\b.*(<b>|🎥|📸)/i.test(o.s);
+try{LEVELS.forEach((lv,i)=>lv.mods.forEach((m,j)=>{const KD=RK(i,j,0),d=D[KD];if(!d||m.__v14)return;m.__v14=1;
+ const o=m.steps[0]||(m.steps[0]={s:'',ex:[]});const hasA=['1.2','1.5','1.10','1.13','1.16','2.5','2.16','3.4'].includes(KD)||/ibarat|anggap|bayangkan|seperti|\bitu <b>|\bitu\b.*(<b>|🎥|📸)/i.test(o.s);
  o.s=`📘 <b>Pengertian</b><br>${d[0]}<br><br>🎭 <b>Analogi</b><br>`+(hasA?o.s:`Anggap saja ini ${d[1]}<br><br>`+o.s);
 }))}catch(e){console.warn('v14',e)}
 })();
@@ -3176,7 +3272,7 @@ const X={
 "3.13":[["Menjawab dari ingatan","Cocokkan dengan teks dokumen","Dokumen TOEIC menyediakan jawabannya."],["Melewatkan footnote","Baca catatan kaki","Sering memuat detail soal."]],
 "3.14":[["Menebak maksud memo","Cari kalimat kebijakan inti","Memo menaruh kebijakan di awal."],["Mengabaikan tanggal berlaku","Catat tanggal berlaku","Soal detail sering menanyakannya."]]};
 Object.assign(E,X);
-try{LEVELS.forEach((lv,i)=>lv.mods.forEach((m,j)=>{const e=E[i+'.'+j];if(!e||m.__v15)return;m.__v15=1;
+try{LEVELS.forEach((lv,i)=>lv.mods.forEach((m,j)=>{const e=E[RK(i,j,1)];if(!e||m.__v15)return;m.__v15=1;
  const k=m.steps.findIndex(s=>s.map);
  const st={s:'⚠️ <b>Kesalahan umum</b>: ini jebakan yang paling sering bikin salah di modul ini. Bandingkan yang keliru dengan versi benarnya, lalu baca alasannya.',ex:e.map(([w,r,y])=>`❌ ${w} → ✅ <b>${r}</b> <small>${y}</small>`),tip:'Sebelum menjawab soal, cek dulu: apakah kalimatmu terkena salah satu jebakan di atas?'};
  m.steps.splice(k>=0?k:m.steps.length,0,st);
@@ -4789,6 +4885,225 @@ A('Reading: Artikel Ilmiah Singkat',[
 [SL,'The word "store" is closest in meaning to …','keep','sell','buy','<b>Store memories</b> = menyimpan ingatan.'],
 [SL,'Which is most likely true?','Staying up all night before an exam may lower recall.','Sleep makes people forget everything.','Words are easier to learn at night only.','Inferensi harus didukung teks, bukan klaim ekstrem.']]);
 }catch(e){console.warn('nb-materi gagal',e)}})();
+</script>
+<script id="materi-v74-soal">
+/* v74: audit SD→Kerja: perbaikan tipe soal 'pairs' + penambahan soal di modul tertipis */
+(function(){try{
+LEVELS.forEach(l=>l.mods.forEach(m=>m.quiz.forEach(q=>{if(q.t==='pairs')q.t='match'})));
+const mod=n=>LEVELS.flatMap(l=>l.mods).find(m=>m.n===n);
+const A=(n,rows)=>{const m=mod(n);if(!m)return;rows.forEach(([q,c,w1,w2,why])=>{if(m.quiz.some(x=>x.q===q))return;const k=m.quiz.length%3,o=[w1,w2];o.splice(k,0,c);m.quiz.push({t:'mc',q,o,a:k,why})})};
+const T=(n,q,a,why)=>{const m=mod(n);if(m&&!m.quiz.some(x=>x.q===q))m.quiz.push({t:'type',q,a:[].concat(a),why})};
+const O=(n,q,a,why)=>{const m=mod(n);if(m&&!m.quiz.some(x=>x.q===q))m.quiz.push({t:'order',q,w:a.split(' ').reverse(),a,why})};
+/* ===== SD ===== */
+A('Kata Kerja Sehari-hari',[['She ___ rice every day.','eats','eat','eating','He/She/It selalu pakai “topi” -s: <b>eats</b>.'],['They ___ English at school.','study','studies','studying','They = banyak orang, kata kerja polos tanpa -s.']]);
+T('Kata Kerja Sehari-hari','Ketik bentuk benar: He (wash) his hands every day.','washes','Akhiran -sh dapat topi <b>-es</b>: washes.');
+O('Kata Kerja Sehari-hari','Susun: “My brother plays football.”','My brother plays football','Pelaku → kata kerja (+s) → benda.');
+A('Jam, Hari & Bulan',[['The meeting is ___ Monday.','on','in','at','<b>On</b> untuk hari. Ingat: ON = hari, AT = jam, IN = bulan.'],['I wake up ___ six o’clock.','at','on','in','Jam pakai <b>at</b>.'],['My birthday is ___ July.','in','on','at','Bulan pakai <b>in</b>.']]);
+T('Jam, Hari & Bulan','Ketik hari setelah Tuesday:','wednesday','Senin, Selasa, <b>Rabu</b> = Wednesday.');
+A('Kemarin, Sekarang, Besok',[['Yesterday, I ___ to school.','went','go','will go','<b>Yesterday</b> = kemarin, jadi bentuk lampau: went.'],['Tomorrow, she ___ visit her aunt.','will','did','was','Besok = rencana ke depan → <b>will</b>.']]);
+A('This / That / These / Those',[['___ are my shoes here.','These','This','That','Banyak + dekat = <b>these</b>.'],['___ is a bird over there.','That','These','This','Satu + jauh = <b>that</b>.']]);
+/* ===== SMP ===== */
+A('Arah & Tempat (Directions)',[['The post office is ___ the bank and the school.','between','among','beside','Dua benda di kiri-kanan = <b>between</b>.'],['Walk ___ this road for two blocks.','along','across','between','<b>Along</b> = menyusuri jalan.']]);
+T('Arah & Tempat (Directions)','Ketik lawan kata “left”:','right','Left ↔ <b>right</b>.');
+A('There is / There are & Countable',[['There ___ two books on the desk.','are','is','be','Buku dua = jamak → <b>there are</b>.'],['There ___ some water in the glass.','is','are','were','Water tak bisa dihitung → <b>there is</b>.'],['How ___ apples are there?','many','much','lot','Apel bisa dihitung → <b>many</b>.']]);
+T('There is / There are & Countable','Ketik: ___ milk in the fridge. (There is / There are)','there is','Milk tak terhitung → <b>there is</b>.');
+A('Subject-Verb Agreement',[['The number of students ___ growing.','is','are','were','The <b>number</b> = satu angka → is.'],['Neither Ani nor her friends ___ here.','are','is','am','Neither…nor ikut subjek <b>terdekat</b> (friends) → are.'],['Everyone ___ ready.','is','are','be','Everyone dianggap tunggal.'],['My friend and I ___ classmates.','are','is','am','A and B = jamak → are.']]);
+A('Imperatives & Let\'s',[['___ late for class!','Don’t be','Be not','Not be','Larangan: <b>Don’t + V1</b>.'],['___ go to the park.','Let’s','Lets’','Let','<b>Let’s</b> = let us (ayo).'],['Please ___ the door.','close','closes','closing','Perintah pakai V1 polos.']]);
+A('Adverb of Frequency & Question Tags',[['She is ___ late. (0%)','never','always','usually','0% = <b>never</b>.'],['You like coffee, ___?','don’t you','aren’t you','do you','Kalimat positif → tag negatif, pakai do/does.'],['He doesn’t smoke, ___?','does he','doesn’t he','is he','Kalimat negatif → tag positif.'],['Mana yang benar?','I always eat breakfast.','I eat always breakfast.','Always eat I breakfast.','Adverb frekuensi di depan kata kerja utama.']]);
+/* ===== SMA ===== */
+A('Reading: Inference & Vocabulary in Context',[['Inference berarti …','kesimpulan dari petunjuk yang tidak ditulis langsung','salinan kalimat teks','pendapat bebas tanpa dasar','Seperti <b>detektif</b>: petunjuk di teks → kesimpulan.'],['“He grabbed an umbrella and a raincoat.” Inferensi paling masuk akal?','It was probably going to rain.','He was going swimming.','He hated umbrellas.','Payung + jas hujan → kemungkinan hujan.'],['“She was reluctant to speak.” Reluctant paling dekat dengan …','unwilling','eager','angry','Reluctant = enggan.']]);
+A('Modal Perfect: should have / could have',[['You were late. You ___ left earlier.','should have','should','must had','Penyesalan/kritik masa lalu: <b>should have + V3</b>.'],['The street is wet. It ___ rained.','must have','should have','needn’t have','Bukti kuat → deduksi <b>must have + V3</b>.'],['You ___ a gift; she did not expect one.','needn’t have bought','shouldn’t bought','mustn’t have buy','<b>Needn’t have + V3</b> = ternyata tak perlu, tapi sudah dilakukan.']]);
+A('Wish & Causative',[['I wish I ___ taller. (sekarang tidak)','were','am','will be','Wish untuk kenyataan sekarang → <b>were/V2</b>.'],['She had her hair ___ yesterday.','cut','cutting','to cut','Have + benda + <b>V3</b> = menyuruh orang lain.'],['I wish I ___ harder last year.','had studied','studied','have studied','Wish masa lalu → <b>had + V3</b>.']]);
+A('Inversion & Cleft Sentences',[['Never ___ such a beautiful sunset.','have I seen','I have seen','I saw have','Never di awal → kata bantu dibalik: <b>have I seen</b>.'],['It was Rina ___ won the prize.','who','which','whom','Cleft: It was + orang + <b>who</b>.'],['Not only ___ late, but he also forgot the files.','was he','he was','did he was','Not only di awal → <b>was he</b>.']]);
+A('Subjunctive & Reduced Clauses',[['I suggest that he ___ a doctor.','see','sees','saw','Subjunctive pakai V1 polos.'],['The man ___ by the door is my uncle.','standing','who standing','stands','Relative clause diringkas jadi <b>V-ing</b>.'],['It is essential that she ___ on time.','be','is','was','Setelah essential that → <b>be</b>.']]);
+A('Conditional Type 2 & 3',[['If I ___ rich, I would travel the world.','were','am','had been','Tipe 2 = khayalan sekarang → were.'],['If she had left earlier, she ___ the train.','would have caught','would catch','will have caught','Tipe 3 = penyesalan lampau → <b>would have + V3</b>.']]);
+T('Conditional Type 2 & 3','Ketik: If I (have) time, I would help you.','had','Tipe 2 memakai V2 di if-clause.');
+A('Cohesion: Linking Words Lanjutan',[['The plan was risky; ___, it succeeded.','nevertheless','therefore','for instance','Kontras halus = <b>nevertheless</b>.'],['He studied hard. ___, he passed.','As a result','On the other hand','Nevertheless','Hasil = <b>as a result</b>.']]);
+A('Present Perfect Continuous',[['I ___ for two hours.','have been waiting','am waiting','waited','For two hours + masih berlangsung → <b>have been V-ing</b>.']]);
+/* ===== KERJA ===== */
+A('TOEIC Part 5: Kalimat Rumpang',[['Employees must ___ their badges at the entrance.','show','showing','shown','Setelah must → <b>V1</b>.'],['The new policy is ___ effective.','immediately','immediate','immediacy','Menerangkan kata sifat → <b>adverb</b>.'],['Please contact ___ if you have questions.','us','we','our','Sesudah kata kerja butuh objek: <b>us</b>.'],['Ms. Lee is responsible ___ the budget.','for','of','to','Kolokasi: <b>responsible for</b>.']]);
+A('Kosakata Kantor & Kolokasi Bisnis',[['We must meet the ___ on Friday.','deadline','dateline','endtime','Kolokasi: <b>meet a deadline</b>.'],['We will ___ a new product next month.','launch','throw','hold','<b>Launch a product</b> = meluncurkan produk.'],['The company aims to ___ a profit.','make','do','take','Kolokasi: <b>make a profit</b>.']]);
+A('Telepon & Panggilan Kantor',[['Could I ___ to Mr. Tan, please?','speak','say','tell','Pola telepon: <b>speak to</b>.'],['Hold on, I’ll ___ you through.','put','push','pull','<b>Put you through</b> = menyambungkan.'],['Sorry, he is ___ a meeting right now.','in','on','at','<b>In a meeting</b>.']]);
+A('Customer Service & Komplain',[['I apologize ___ the inconvenience.','for','about to','of','Kolokasi: <b>apologize for</b>.']]);
+/* ===== IELTS ===== */
+A('IELTS 101: Format & Band Score',[['Skor IELTS dinyatakan dalam skala …','0–9','0–100','A–F','Band 0 sampai 9.'],['Skor akhir (overall) dihitung dari …','rata-rata empat skill','Writing saja','Listening + Reading saja','Rata-rata L, R, W, S.'],['Writing Task 2 dianggap lebih penting karena …','bobotnya dua kali Task 1','soalnya lebih pendek','tidak dinilai grammar','Task 2 menyumbang <b>dua kali</b> lipat.']]);
+A('IELTS Writing Task 1: Menjelaskan Data',[['Task 1 Academic menuntutmu …','menjelaskan data tanpa opini','menulis opini pribadi','menulis cerita fiksi','Task 1 = laporan faktual.'],['Minimal kata Task 1 adalah …','150','250','100','Task 1: 150 kata. Task 2: 250 kata.'],['Kata yang pas untuk “naik tajam”:','soared','dropped','remained','<b>Soared</b> = melonjak.']]);
+T('IELTS Writing Task 1: Menjelaskan Data','Ketik kebalikan dari “increase”:','decrease','Increase ↔ <b>decrease</b>.');
+A('IELTS Cohesion & Linking Words',[['Cars are cheap. ___, fuel is expensive.','However','Moreover','For example','Kontras = <b>however</b>.'],['Prices rose. ___, fewer people bought.','As a result','In contrast','For instance','Akibat = <b>as a result</b>.']]);
+}catch(e){console.warn('v74 gagal',e)}})();
+</script>
+<script id="materi-v75-reading">
+/* v75: tambahan soal untuk 5 modul Reading Panjang (SD, SMP, SMA x2, TOEIC), sesuai isi teks */
+(function(){try{
+const mod=n=>LEVELS.flatMap(l=>l.mods).find(m=>m.n===n);
+const R=(n,rows,ty)=>{const m=mod(n);if(!m)return;const p=(m.quiz.find(q=>q.p)||{}).p;if(!p)return;
+ rows.forEach(([q,c,w1,w2,why])=>{if(m.quiz.some(x=>x.q===q))return;const k=m.quiz.length%3,o=[w1,w2];o.splice(k,0,c);m.quiz.push({t:'mc',q,o,a:k,why,p})});
+ (ty||[]).forEach(([q,a,why])=>{if(!m.quiz.some(x=>x.q===q))m.quiz.push({t:'type',q,a:[].concat(a),why,p})})};
+R('Reading Panjang SD: A Day at the Zoo',[
+['What time did the family leave home?','Eight o’clock','Nine o’clock','Five o’clock','Teks: “We left home at eight o’clock.” <b>Leave</b> = berangkat.'],
+['What did the monkeys do?','They jumped from tree to tree.','They drank water.','They slept under a tree.','Cari kata <b>monkeys</b> di teks: jumped from tree to tree.'],
+['Who made the fried rice?','The narrator’s mother','The narrator’s father','Dito','“My mother made fried rice.” Cari siapa pelakunya, bukan menebak.'],
+['What did the father buy?','Cold orange juice','Fried rice','Ice cream','Father bought <b>cold orange juice</b>.'],
+['What time did they go home?','Five o’clock','Eight o’clock','Nine o’clock','“We went home at five o’clock.”'],
+['Who is Dito?','The narrator’s little brother','The narrator’s father','A zoo worker','“My little brother, Dito.”'],
+['What did the family see first?','The elephants','The monkeys','The parrots','Urutan: <b>First</b> elephants, then monkeys, in the afternoon birds.'],
+['What does the narrator want to do next month?','Go to the zoo again','Stay at home','Visit the beach','Kalimat terakhir: want to go to the zoo again.']],
+[['Lengkapi (satu kata dari teks): In the afternoon, they visited the ___ . (burung)','birds','Sore hari mereka melihat <b>birds</b>.']]);
+R('Reading Panjang SMP: Plastic Pollution',[
+['What can happen when animals eat plastic?','They can become sick or die.','They grow bigger.','They swim faster.','Paragraf 1: animals can become sick or even die.'],
+['Why may humans also be affected?','Because we eat seafood.','Because we swim in the sea.','Because we sell plastic.','“Since we eat seafood”: since di sini berarti <b>karena</b>.'],
+['What is the first suggestion to help?','Bring our own bags when shopping','Buy new bottles every day','Stop eating fish','“First, we can bring our own bags.”'],
+['“Fortunately” in paragraph 3 introduces …','good news','a new problem','a sad story','<b>Fortunately</b> = untungnya; setelah masalah, datang solusi.'],
+['What do students collect on beach clean-up days?','Hundreds of kilograms of waste','Hundreds of fish','Tiny sea animals','Teks: hundreds of kilograms of waste in a single morning.'],
+['The writer’s tone in the last paragraph is …','hopeful','angry','bored','“Small actions… can make a real difference”: nada <b>penuh harapan</b>.'],
+['“In addition” in paragraph 2 is used to …','add another point','give an example','show a contrast','<b>In addition</b> = selain itu, menambah poin.'],
+['What is the purpose of the last paragraph?','To encourage readers to act','To list plastic types','To tell a funny story','Penutup mengajak: “If everyone does a little…”']],
+[['Lengkapi (satu kata dari teks): We should throw trash in the ___ , not in rivers. (tempat sampah)','bin','Throw trash in the <b>bin</b>.']]);
+R('Reading Panjang SMA: The Gig Economy',[
+['According to supporters, who finds gig work especially attractive?','Students, parents, and people seeking extra income','Only large companies','Government officials','Paragraf 2 menyebut students, parents, dan supplementary income.'],
+['How do small businesses benefit from platforms?','They can hire specialized talent without full-time salaries.','They pay lower taxes.','They avoid all contracts.','Paragraf 2: hire specialized talent tanpa gaji penuh waktu.'],
+['What is a consequence of being an independent contractor?','Workers typically lack benefits like health insurance.','Workers get paid leave.','Workers receive retirement plans.','Paragraf 3: tidak ada benefits seperti health insurance.'],
+['“Fluctuate” is closest to …','go up and down','stay the same','disappear','Earnings fluctuate = naik-turun seperti grafik gelombang.'],
+['“However” in paragraph 3 signals …','a contrast','an example','a conclusion','<b>However</b> membalik arah: dari pendukung ke pengkritik.'],
+['The author’s attitude is best described as …','balanced','strongly opposed','enthusiastic','Penulis memaparkan dua sisi tanpa memihak.'],
+['“Supplementary income” means …','extra income','no income','fixed salary','<b>Supplementary</b> = tambahan.'],
+['What is the proposed “new legal category” meant to do?','Give limited protections without ending flexibility','Ban all gig work','Make everyone an employee','Paragraf 4: limited protections tanpa menghapus flexibility.']],
+[['Lengkapi (satu kata dari teks): Gig workers’ earnings can ___ dramatically. (naik-turun)','fluctuate','Earnings can <b>fluctuate</b> dramatically.']]);
+R('Reading Panjang SMA: Why Do We Forget?',[
+['Who was Hermann Ebbinghaus?','A German psychologist','A French doctor','An American teacher','Paragraf 1: a German psychologist.'],
+['What did Ebbinghaus memorize in his experiments?','Lists of meaningless syllables','Long stories','Foreign languages','Dia sengaja memakai suku kata tanpa arti.'],
+['Roughly how much new information may be lost within an hour without review?','About half','Almost nothing','All of it','Teks: roughly half of newly learned information.'],
+['What does each review do, according to Ebbinghaus?','It slows the decline of memory.','It erases old memories.','It makes forgetting faster.','Setiap review memperlambat penurunan ingatan.'],
+['“Retained” in paragraph 2 is closest to …','kept','lost','changed','<b>Retained</b> = tetap tersimpan.'],
+['“Massed study” in paragraph 3 refers to …','cramming','reviewing over several days','sleeping early','Teks membandingkan spaced repetition dengan <b>cramming</b>.'],
+['“Nevertheless” in the last paragraph signals …','a limitation or contrast','an example','a result','Setelah temuan, penulis menambahkan batasan.'],
+['Which material is likely forgotten more slowly?','A story you understand','Random numbers','Nonsense syllables','Materi bermakna lebih lama diingat.']],
+[['Lengkapi (satu kata dari teks): Spaced repetition means reviewing at gradually increasing ___ . (jeda waktu)','intervals','Review dilakukan dengan <b>intervals</b> makin lebar.']]);
+R('TOEIC Reading Panjang: Hybrid Work Memo',[
+['When does the new policy take effect?','January 15','December 20','January 8','“Effective January 15.”'],
+['Which form must be submitted to request an exception?','Form HR-12','Form HR-15','Form FN-50','Soal TOEIC sering menanyakan detail kode: Form <b>HR-12</b>.'],
+['Where will the app training sessions be held?','Meeting Room 3','The Finance Department','The cafeteria','“Training sessions… in Meeting Room 3.”'],
+['How must employees reserve a desk?','Through the booking app, one day in advance','By calling HR on the day','By emailing Finance','Reserve lewat booking app minimal sehari sebelumnya.'],
+['How much can remote workers claim for home internet?','Up to $50 per month','Up to $15 per month','The full bill','Teks: up to $50 per month, dengan struk.'],
+['Who sent the memo?','Human Resources','The Finance Department','Customer service','Lihat bagian <b>From</b>.'],
+['“Exempt” in paragraph 2 is closest to …','not required to follow','forced to follow','paid extra','<b>Exempt</b> = dikecualikan.'],
+['What will the company continue to provide?','Laptops to all staff','Free internet','Free lunch','Teks: “continue to provide laptops to all staff.”']],
+[['Lengkapi (satu kata dari teks): Desks will be ___ to make the best use of office space. (dipakai bersama)','shared','Desks will be <b>shared</b>.']]);
+}catch(e){console.warn('v75 gagal',e)}})();
+</script>
+<script id="materi-v76-langkah">
+/* v76: audit langkah belajar: modul paling tipis diberi analogi, contoh, tabel, dan jebakan */
+(function(){try{
+const mod=n=>LEVELS.flatMap(l=>l.mods).find(m=>m.n===n);
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const up=(n,list)=>{const m=mod(n);if(!m||m.steps.some(x=>x._v76))return;const i=m.steps.findIndex(x=>x.map);list.forEach(x=>x._v76=1);m.steps.splice(i<0?m.steps.length:i,0,...list)};
+up('Reading: Pengumuman & Surat',[
+S('Pengumuman itu <b>papan info stasiun</b> 🚉: kamu cuma butuh jam, peron, dan kereta yang relevan. Pakai rumus <b>5 pertanyaan</b>: apa, kapan, di mana, siapa, dan <b>tindakan apa</b>.',['The library will close at 3 p.m. on Friday. → apa: tutup · kapan: Jumat 15.00','Students must return books before Thursday. → tindakan: kembalikan buku']),
+S('Surat/email formal itu <b>sandwich</b> 🥪: roti atas (salam + tujuan), isi (detail), roti bawah (permintaan + penutup). Tujuan biasanya di kalimat pertama.',['I am writing to inform you that the class is cancelled.','Please reply by Monday. Best regards,'],{tip:'Garis bawahi angka, tanggal, dan kata perintah (<b>must, please, should</b>). Awas kata <b>not</b> dan <b>except</b>: keduanya membalik makna.'})]);
+up('Reading: Inference & Vocabulary in Context',[
+S('Inference itu <b>detektif membaca jejak</b> 🕵️: teks tidak menyebut pelakunya, tapi meninggalkan sidik jari. Rumus: <b>petunjuk di teks + akal sehat = kesimpulan</b>. Kesimpulan harus punya bukti, bukan karangan.',['“Her eyes were red and she kept sniffing.” → She had probably been crying.','“Lights off, doors locked, bags packed.” → They are leaving.']),
+S('Kata asing itu <b>tamu tak dikenal</b> 👀: kenali dari <b>teman di sekelilingnya</b>. Cek tanda positif/negatif, kata penghubung (<b>but, although</b>), dan contoh setelahnya.',['Although she was <b>reluctant</b>, she finally agreed. → reluctant = enggan (kontras dengan “agreed”).'],{tip:'Jebakan: pilihan yang benar di dunia nyata tapi <b>tidak ada di teks</b>. Pilih yang didukung teks.'})]);
+up('Reading: Artikel Ilmiah Singkat',[
+S('Artikel ilmiah itu <b>laporan detektif</b>: ada <b>claim</b> (klaim), <b>evidence</b> (bukti), dan <b>conclusion</b>. Klaim utama biasanya di kalimat pertama atau terakhir, bukti di tengah.',[]),
+S('Kata hedging itu <b>rem pengaman</b> 🛑: ilmuwan jarang bilang “pasti”. Hasilnya “mengarah ke”, bukan “membuktikan”.',['Studies <b>suggest</b> that sleep improves memory.','People <b>tend to</b> forget new words quickly.'],{tbl:[['Hedge','Arti','Contoh'],['suggest','mengisyaratkan','Results suggest…'],['may / might','mungkin','It may reduce stress.'],['tend to','cenderung','Students tend to…']],tip:'Pilihan jawaban dengan <b>always</b>, <b>prove</b>, atau <b>all</b> sering salah, karena penelitian jarang bicara mutlak.'})]);
+up('TOEIC Part 5: Kalimat Rumpang',[
+S('Part 5 itu <b>puzzle</b> 🧩: bentuk lubangnya (posisi) menentukan kepingannya (kelas kata). Hafalkan tiga sinyal: <b>the + ___ + of → noun</b>, <b>be + ___ → adjective</b>, <b>___ + adjective → adverb</b>.',['the <b>approval</b> of the budget (noun)','The offer is <b>attractive</b>. (adjective)','a <b>highly</b> skilled engineer (adverb)']),
+S('Akhiran itu <b>seragam kelas kata</b> 👔. Kenali seragamnya, tebak kelasnya.',[],{tbl:[['Akhiran','Kelas kata','Contoh'],['-tion / -ment / -ness','noun','decision, payment'],['-ive / -al / -ful','adjective','active, helpful'],['-ly','adverb (umumnya)','quickly'],['-ize / -ify','verb','organize']],tip:'Jika dua pilihan sama-sama kelas kata benar, baru lihat arti. Jaga tempo sekitar 20–30 detik per soal.'})]);
+up('TOEIC Part 6 & 7: Email, Iklan, Memo',[
+S('Part 6 itu <b>menyambung puzzle yang hilang</b> 🧩 di tengah paragraf: lihat kalimat <b>sebelum dan sesudah</b> rumpang. Kata penghubung seperti <b>however, therefore, in addition</b> adalah penunjuk arah.',[]),
+S('Part 7 itu <b>mencari barang di gudang</b> 📦: baca pertanyaan dulu, cari kata kuncinya di teks, jangan baca semuanya. Soal <b>NOT</b>: tiga opsi ada di teks, satu tidak, jadi coret yang ada.',[],{tip:'Ada soal dengan dua atau tiga dokumen (misalnya email + jadwal). Jawabannya bisa butuh gabungan dua dokumen.'})]);
+up('TOEFL: Error Recognition',[
+S('Anggap kalimat itu <b>mobil</b> 🚗 dan kamu <b>montir</b>: periksa empat bagian bergaris bawah satu per satu. Checklist: <b>subjek–kata kerja</b>, <b>bentuk kata</b>, <b>paralelisme</b>, <b>jumlah (tunggal/jamak)</b>.',['She likes swimming, running, and <u>to cycle</u>. ❌ → <b>cycling</b> ✅','Each of the students <u>have</u> a book. ❌ → <b>has</b> ✅'],{tip:'Format tes TOEFL dapat berubah. Keterampilan mengoreksi kalimat tetap berguna untuk Writing dan Speaking di tes apa pun.'})]);
+up('Kosakata Kantor & Kolokasi Bisnis',[
+S('Kolokasi itu <b>pasangan menu</b> 🍽️: nasi dengan ayam, bukan dengan semen. Latih per <b>kata kerja inti</b>.',['We need to <b>reach an agreement</b> by Friday.','She will <b>give a presentation</b> tomorrow.'],{tbl:[['Kata kerja','Pasangan','Arti'],['submit','a report / a proposal','menyerahkan laporan'],['run','a meeting / a business','menjalankan'],['reach','an agreement','mencapai kesepakatan'],['launch','a product','meluncurkan produk'],['make','a profit','meraih untung']],tip:'Jebakan: “do a presentation” terdengar janggal. Yang baku: <b>give a presentation</b>.'})]);
+up('Meeting & Negosiasi',[
+S('Negosiasi itu <b>tarik tambang yang sopan</b> 🪢: tujuannya bukan menang, tapi menemukan <b>titik tengah</b>. Pola: <b>dengar → akui → tawarkan</b>.',['I understand your concern. <b>How about</b> we split the cost?','Could we <b>meet halfway</b>?']),
+S('Frasa pengatur jalannya rapat:',[],{tbl:[['Fungsi','Frasa'],['Menawar','Would you be able to…?'],['Menunda','Let me get back to you on that.'],['Interupsi sopan','Sorry to interrupt, but…'],['Menyimpulkan','To sum up, we agreed on…']],tip:'Pakai <b>could / would</b> agar sopan. Hindari “You must…” kepada rekan.'})]);
+up('TOEIC Reading: Latihan Dokumen',[
+S('Dokumen kantor itu <b>struk belanja</b> 🧾: sekilas cari total, tanggal, dan nama toko. <b>Notice</b> = aturan, <b>advertisement</b> = tawaran + syarat, <b>schedule</b> = jam + lokasi.',[]),
+S('Tiga pertanyaan yang selalu muncul: <b>siapa yang terdampak? kapan tenggatnya? apa tindakannya?</b> Garis bawahi angka dan kata <b>must, only, except, unless</b>.',[],{tip:'Catatan kaki sering menyimpan jawaban, misalnya “Offer valid until…”. Jangan dilewatkan.'})]);
+up('CV & Cover Letter',[
+S('CV itu <b>iklan dirimu</b> 📣, bukan biografi. Rumus tiap poin: <b>action verb + apa + hasil angka</b>.',['<b>Managed</b> a team of 5 and cut costs by 15%.','<b>Organized</b> 3 school events for 500+ students.'],{tbl:[['Action verb','Arti'],['Managed','mengelola'],['Developed','mengembangkan'],['Improved','meningkatkan'],['Led','memimpin'],['Reduced','menurunkan']]}),
+S('Cover letter itu <b>sandwich tiga lapis</b> 🥪: (1) posisi apa dan tahu dari mana, (2) kenapa kamu cocok + bukti, (3) ajakan wawancara.',['Thank you for considering my application.','I would welcome the opportunity to discuss my application further.'],{tip:'“I am hard-working” tanpa bukti itu kosong. Tunjukkan lewat angka dan contoh.'})]);
+up('English untuk Kampus & Beasiswa',[
+S('Email ke dosen itu <b>surat sopan untuk tamu penting</b> 🎩: subjek jelas, salam hormat, tujuan di kalimat awal, ucapan terima kasih di akhir.',['I am writing to ask about the application deadline.','Thank you for your time and consideration.']),
+S('Wawancara beasiswa: ceritakan pengalaman dengan urutan <b>STAR</b> ⭐ <b>Situation → Task → Action → Result</b>, lalu tutup dengan <b>kontribusi balik</b> untuk Indonesia.',[],{tip:'Sebut detail program atau kampusnya. Jawaban template yang bisa ditempel ke kampus mana pun terasa kosong.'})]);
+up('English untuk Wisata & Ojol',[
+S('Untuk turis, pakai <b>kalimat pendek, jelas, ramah</b> 🌴, seperti <b>papan penunjuk jalan</b>: singkat, tapi arahnya pasti.',['Go straight, then turn left at the traffic light.','It is about ten minutes from here.'],{tbl:[['Situasi ojol','Kalimat'],['Menjemput','I will pick you up at the pin.'],['Menunggu','Please wait, I am almost there.'],['Cek rute','Is this route okay?'],['Bayar','Cash or e-wallet?']],tip:'Selalu konfirmasi: <b>Just to confirm, you are going to…?</b>'})]);
+}catch(e){console.warn('v76 gagal',e)}})();
+</script>
+<script id="materi-v78-pengertian">
+/* v78: blok Pengertian + Analogi untuk modul yang belum punya (modul sisipan) */
+(function(){try{
+const P={
+"Kata Kerja Sehari-hari":["Kata kerja (verb) adalah kata yang menyatakan aksi atau kegiatan, seperti eat, drink, dan sleep.","mesin penggerak kalimat: tanpa kata kerja, kalimat tidak jalan."],
+"Jam, Hari & Bulan":["Kosakata waktu (jam, hari, bulan) dipakai untuk bilang kapan sesuatu terjadi, dengan preposisi at, on, in.","kalender dan jam dinding: AT untuk jam, ON untuk hari, IN untuk bulan."],
+"To Be Lampau: was / were":["Was dan were adalah bentuk lampau dari am/is/are.","foto lama yang menunjukkan keadaan kemarin: I/he/she/it pakai was, you/we/they pakai were."],
+"Imperatives & Let's":["Imperative adalah kalimat perintah atau larangan, dan Let's adalah ajakan.","tombol perintah: ditekan, langsung jalan, tanpa subjek."],
+"Arah & Tempat (Directions)":["Directions adalah kalimat untuk bertanya dan memberi petunjuk arah serta lokasi.","GPS manusia: ada yang bertanya, ada yang memberi petunjuk belok."],
+"Slang & Bahasa Gaul (Gaya Film)":["Slang adalah bahasa santai yang dipakai di obrolan sehari-hari dan film, bukan untuk tulisan formal.","pakaian santai: cocok untuk nongkrong, bukan untuk wawancara kerja."],
+"Umpatan Ringan & Ungkapan Kasar":["Ini ungkapan kasar yang sering terdengar di film. Dipelajari agar paham artinya, bukan untuk dipakai di situasi formal.","rambu peringatan di jalan: kenali artinya supaya paham, dan tahu kapan tidak dipakai."],
+"Cohesion: Linking Words Lanjutan":["Linking words adalah kata penghubung yang membuat gagasan mengalir antar kalimat dan paragraf.","rel kereta yang menyambung gerbong-gerbong gagasan."],
+"Modal Perfect: should have / could have":["Modal perfect (modal + have + V3) membicarakan masa lalu: penyesalan, kemungkinan, dan dugaan.","mesin waktu untuk berkomentar: menilai kejadian kemarin dari sudut pandang hari ini."],
+"Presentasi: Q&A dengan Audiens":["Q&A adalah sesi tanya jawab setelah presentasi.","tuan rumah yang menjawab tamu: tenang, dengarkan dulu, jawab ringkas."],
+"TOEFL: Parallelism & Kontras":["Parallelism menyamakan bentuk item dalam daftar; kontras memakai despite dan although.","barisan upacara: semua harus seragam dan rapi."],
+"TOEIC: Detektif Kelas Kata":["Kelas kata (noun, verb, adjective, adverb) bisa dikenali dari posisi dan akhiran kata.","detektif yang membaca posisi kosong dan seragam kata."],
+"Telepon & Video Call":["Frasa untuk mengangkat, menyambung, dan mengakhiri telepon atau video call dengan sopan.","resepsionis kantor: sopan, jelas, siap menyambungkan."],
+"Customer Service & Komplain":["Frasa untuk menenangkan pelanggan, menawarkan solusi, dan menyampaikan komplain dengan sopan.","dokter untuk masalah pelanggan: dengar keluhan dulu, baru beri obat."],
+"Small Talk & Networking Kantor":["Small talk adalah obrolan ringan untuk mencairkan suasana dan membangun relasi.","pemanasan sebelum olahraga: ringan, tapi membuka jalan ke obrolan inti."],
+"Feedback & Evaluasi Kerja":["Frasa memberi dan menerima masukan kerja dengan sopan dan jelas.","sandwich: pujian, saran, lalu dukungan."],
+"Angka, Tanggal & Grafik Bisnis":["Cara mengucapkan angka, tanggal, persen, dan menjelaskan grafik bisnis.","dasbor mobil: baca angka dan arah naik-turunnya dengan cepat."],
+"TOEIC Listening: Part 1-4":["Listening TOEIC memuat 4 bagian: foto, tanya-jawab, percakapan, dan pidato singkat.","menangkap bola: audio hanya diputar sekali, jadi bersiap sebelum dilempar."],
+"Surat Pengunduran Diri":["Surat resign adalah surat formal yang memberi tahu perusahaan bahwa kamu berhenti bekerja.","pamit dengan baik: tinggalkan kesan sopan dan hubungan yang tetap terjaga."],
+"Onboarding: Hari Pertama Kerja":["Onboarding adalah pengenalan karyawan baru pada tim, aturan, dan sistem kerja.","hari pertama sekolah: kenalan, tahu denah, tahu aturan."],
+"Telepon & Panggilan Kantor":["Frasa panggilan kantor: meminta bicara dengan seseorang, menyambungkan, dan menitip pesan.","operator telepon: tahu siapa harus disambungkan ke siapa."],
+"TOEIC Part 5: Kalimat Rumpang":["Part 5 menguji tata bahasa dan kosakata lewat kalimat yang ada bagian rumpangnya.","puzzle: bentuk lubang menentukan kepingan yang pas."],
+"TOEIC Part 6 & 7: Email, Iklan, Memo":["Part 6 melengkapi teks rumpang; Part 7 menguji pemahaman dokumen kantor.","gudang barang: tahu rak mana yang harus dicari."],
+"English untuk Kampus & Beasiswa":["Bahasa Inggris untuk email ke dosen asing dan wawancara beasiswa.","surat sopan untuk tamu penting."],
+"TOEIC Reading: Latihan Dokumen":["Latihan membaca dokumen kantor seperti notice, advertisement, dan schedule.","struk belanja: cari total, tanggal, dan nama toko."],
+"TOEIC Reading Panjang: Hybrid Work Memo":["Latihan menjawab soal dari memo kantor yang panjang.","memo kantor: tangkap kebijakan inti, tenggat, dan pengecualian."]};
+let n=0;
+LEVELS.forEach(l=>l.mods.forEach(m=>{const d=P[m.n];if(!d||!m.steps[0]||/📘/.test(m.steps[0].s))return;
+ m.steps[0].s='📘 <b>Pengertian</b><br>'+d[0]+'<br><br>🎭 <b>Analogi</b><br>Anggap saja ini '+d[1]+'<br><br>'+m.steps[0].s;n++}));
+window.__v78=n;
+}catch(e){console.warn('v78 gagal',e)}})();
+</script>
+<script id="materi-v79-jebakan">
+/* v79: blok Kesalahan Umum + soal Latihan Jebakan untuk modul sisipan */
+(function(){try{
+const E={
+"A / An":[["a apple","an apple","Bunyi vokal (a, e, i, o, u) pakai an."],["an book","a book","Book diawali bunyi konsonan, jadi pakai a."]],
+"Kata Kerja Sehari-hari":[["She eat rice every day.","She eats rice every day.","He/She/It butuh -s pada kata kerja."],["I am eat breakfast.","I eat breakfast.","Jangan campur am dengan kata kerja biasa."]],
+"Jam, Hari & Bulan":[["I wake up in six o'clock.","I wake up at six o'clock.","Jam pakai at."],["My birthday is on July.","My birthday is in July.","Bulan pakai in."]],
+"To Be Lampau: was / were":[["They was late.","They were late.","They selalu pakai were."],["I were at home.","I was at home.","I pakai was."]],
+"Peta 16 Tenses":[["She has went home.","She has gone home.","Present perfect memakai V3 (gone)."],["I will be study at 8.","I will be studying at 8.","Future continuous butuh V-ing."]],
+"Imperatives & Let's":[["Don't to be late.","Don't be late.","Larangan: Don't + V1, tanpa to."],["Lets we go.","Let's go.","Let's = let us, tidak perlu subjek lagi."]],
+"Arah & Tempat (Directions)":[["Turn to left at the corner.","Turn left at the corner.","Turn left/right tanpa to."],["The bank is in front the school.","The bank is in front of the school.","In front of: jangan lupa of."]],
+"Conditional Type 1":[["If it will rain, I will stay home.","If it rains, I will stay home.","If-clause tipe 1 pakai present, bukan will."],["If you study, you would pass.","If you study, you will pass.","Tipe 1 = if + present, will + V1."]],
+"Slang & Bahasa Gaul (Gaya Film)":[["I gonna go.","I'm gonna go.","Gonna = going to, jadi tetap butuh am/is/are."],["I wanna to go.","I wanna go.","Wanna sudah berarti want to."]],
+"Umpatan Ringan & Ungkapan Kasar":[["Shut up, Mr. Tan.","Excuse me, Mr. Tan.","Ungkapan kasar hanya untuk obrolan akrab. Untuk menyela secara sopan pakai excuse me."],["The report was damn good.","The report was very good.","Di tulisan formal ganti kata kasar dengan very/extremely."]],
+"Cohesion: Linking Words Lanjutan":[["Despite he was tired, he kept working.","Despite being tired, he kept working.","Despite + noun/V-ing; klausa lengkap pakai although."],["Although it was cheap, but I didn't buy it.","Although it was cheap, I didn't buy it.","Although dan but tidak dipakai bersamaan."]],
+"Modal Perfect: should have / could have":[["You should have went earlier.","You should have gone earlier.","Setelah have pakai V3 (gone)."],["It must have rain.","It must have rained.","Pola: must have + V3."]],
+"Presentasi: Q&A dengan Audiens":[["You are wrong.","I see it a little differently.","Hindari menyalahkan audiens secara langsung."],["I don't know. Next question.","That's a good question. I'm not sure, but I can find out.","Jawab sopan walau belum tahu."]],
+"Email & Komunikasi Kantor":[["Send me the file now.","Could you please send me the file?","Pakai could you please agar sopan."],["Hi Mr. Budi, bye.","Dear Mr. Budi, ... Best regards,","Email formal: salam Dear dan penutup Best regards."]],
+"TOEFL: Parallelism & Kontras":[["She likes reading, to write, and cooking.","She likes reading, writing, and cooking.","Semua item dalam daftar harus berbentuk sama."],["Despite it rained, we left.","Although it rained, we left.","Despite + noun; although + klausa."]],
+"Telepon & Video Call":[["Who are you?","Who is calling, please?","Pakai kalimat sopan di telepon."],["Wait.","Please hold.","Tambahkan please hold atau one moment, please."]],
+"Customer Service & Komplain":[["It's not our problem.","I'm sorry for the inconvenience. Let me help.","Mulai dengan empati lalu tawarkan solusi."],["We apologize about the delay.","We apologize for the delay.","Kolokasi: apologize for."]],
+"Small Talk & Networking Kantor":[["How old are you and how much is your salary?","How long have you been working here?","Hindari pertanyaan pribadi seperti usia dan gaji."],["What a terrible weather.","What terrible weather.","Weather tak terhitung, jadi tanpa a."]],
+"Feedback & Evaluasi Kerja":[["Your work is bad.","I think this part could be improved.","Beri saran spesifik, bukan vonis."],["You should to improve the report.","You should improve the report.","Setelah should pakai V1 tanpa to."]],
+"Angka, Tanggal & Grafik Bisnis":[["Sales increased until 20 percents.","Sales increased by 20 percent.","Increase by; percent tidak diberi -s."],["The meeting is in 5 March.","The meeting is on 5 March.","Tanggal pakai on."]],
+"TOEIC Listening: Part 1-4":[["Memilih jawaban yang bunyinya mirip","Memilih jawaban yang maknanya cocok","Part 2 sering menjebak dengan kata berbunyi mirip."],["Membaca soal setelah audio","Membaca soal sebelum audio","Pra-baca soal supaya tahu apa yang dicari."]],
+"Surat Pengunduran Diri":[["I quit.","I am writing to resign from my position.","Surat resign pakai pembuka formal."],["Thank you, bye.","Thank you for the opportunity. I am happy to help with the handover.","Tawarkan serah terima (handover)."]],
+"Onboarding: Hari Pertama Kerja":[["Where I can find the printer?","Where can I find the printer?","Pertanyaan: kata bantu can di depan subjek."],["I know nothing here.","I'm new here, so I'd appreciate any guidance.","Tampil terbuka untuk belajar."]],
+"Telepon & Panggilan Kantor":[["I want speak to Mr. Tan.","I'd like to speak to Mr. Tan.","I'd like to + V1, dan speak to."],["He is not here, call later.","He is out of the office. Could you call back later?","Pakai bahasa yang sopan."]],
+"English untuk Wisata & Ojol":[["Where you want go?","Where do you want to go?","Pertanyaan butuh do dan to."],["It's far, 10 minute.","It's about ten minutes away.","Jamak: minutes."]]};
+let n=0;
+LEVELS.forEach(l=>l.mods.forEach((m,j)=>{const e=E[m.n];if(!e||m.steps.some(s=>/Kesalahan umum/.test(s.s)))return;
+ const k=m.steps.findIndex(s=>s.map);
+ m.steps.splice(k>=0?k:m.steps.length,0,{s:'⚠️ <b>Kesalahan umum</b>: ini jebakan yang paling sering bikin salah di modul ini. Bandingkan yang keliru dengan versi benarnya, lalu baca alasannya.',ex:e.map(([w,r,y])=>`❌ ${w} → ✅ <b>${r}</b> <small>${y}</small>`),tip:'Sebelum menjawab soal, cek dulu: apakah kalimatmu terkena salah satu jebakan di atas?'});
+ e.forEach(([w,r,y],i)=>{const sw=(i+j)%2;m.quiz.push({q:'Latihan jebakan: mana yang benar?',o:sw?[w,r]:[r,w],a:sw?1:0,why:'<b>'+r+'</b>. '+y,lat:1})});n++}));
+window.__v79=n;
+}catch(e){console.warn('v79 gagal',e)}})();
 </script>
 <script id="nb-fix">
 /* NB-FIX: perbaikan bug + navigasi bawah */
