@@ -11,7 +11,24 @@
 <title>Pak Yood · Belajar Bahasa Inggris</title>
 <!-- v31: font sans-serif (Bricolage Grotesque + Figtree), beranda ditata ulang. v29: tipografi baru (Figtree + Newsreader). v26: +fitur-v26 (target harian, backup, latihan ngomong). v25: 3 blok script (data-kurikulum, bank-tambahan, engine); 13 blok lama digabung -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
+<style id="nb-boot-css">
+/* anti-flash: app disembunyikan sampai semua CSS/skrip tema selesai dimuat */
+html{background:#FFFDF7}html[data-theme=dark]{background:#17171D}
+html:not(.nb-ready) #app{visibility:hidden!important}
+#nb-boot{position:fixed;inset:0;z-index:99998;display:grid;place-items:center;align-content:center;gap:16px;background:#FFFDF7;color:#111;font:800 18px "DM Sans","Segoe UI",system-ui,sans-serif;transition:opacity .25s ease,visibility .25s}
+html[data-theme=dark] #nb-boot{background:#17171D;color:#F4F4EE}
+#nb-boot i{width:54px;height:54px;border-radius:16px;border:2px solid currentColor;background:#6EE0B0;box-shadow:4px 4px 0 #FFE27A,4px 4px 0 2px currentColor;animation:nbboot 1s ease-in-out infinite alternate}
+@keyframes nbboot{to{transform:translateY(-8px) rotate(-6deg)}}
+html.nb-ready #nb-boot{opacity:0;visibility:hidden;pointer-events:none}
+@media(prefers-reduced-motion:reduce){#nb-boot i{animation:none}}
+</style>
+<script>
+/* tema gelap dipasang sedini mungkin + jaring pengaman: app tetap tampil walau ada skrip yang gagal */
+try{var _p=JSON.parse(localStorage.getItem('pakhoot2')||'{}');if(_p.dark)document.documentElement.dataset.theme='dark'}catch(e){}
+setTimeout(function(){document.documentElement.classList.add('nb-ready')},8000);
+</script>
+<style id="theme-base">
+/* --- base --- */
 /* ===== Design tokens: Terracotta, Cream, White ===== */
 :root{
   --terra:#C2593F; --terra-d:#9E4430; --terra-l:#F4DDD3;
@@ -211,9 +228,7 @@ header{position:relative;z-index:5;background:color-mix(in srgb,var(--cream) 78%
 @keyframes agrow{0%,100%{transform:none}50%{transform:scale(1.5)}}
 @keyframes aoops{0%,100%{transform:none}20%{transform:rotate(-16deg) translateX(-12px)}40%{transform:rotate(16deg) translateX(12px)}60%{transform:rotate(-9deg)}80%{transform:rotate(6deg) scaleY(.88)}}
 @keyframes cloud{to{transform:translateX(60px)}}
-</style>
-
-<style id="v19css">
+/* --- v19css --- */
 /* ===== v19 PREMIUM+ : tipografi serif, kartu berlapis, tombol kaca, grain kertas, dashboard ===== */
 :root{--serif:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;--gold:#E3A23B;--gold-d:#B97A12;--line:rgba(120,60,40,.13);
  --sh2:0 1px 1px rgba(90,40,25,.05),0 3px 6px rgba(90,40,25,.05),0 16px 30px -18px rgba(90,40,25,.38);
@@ -295,8 +310,7 @@ header{background:color-mix(in srgb,var(--cream) 70%,transparent);border-bottom:
 [data-theme=dark] #app::before{opacity:.18;mix-blend-mode:screen}
 [data-theme=dark] .btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.25),0 16px 28px -14px rgba(0,0,0,.8)}
 [data-theme=dark] .btn.ghost{color:var(--terra-d)}
-</style>
-<style id="v20css">
+/* --- v20css --- */
 /* ===== v20: aurora, kaca, ripple, owl hidup, combo, bintang memantul ===== */
 .aur{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .aur i{position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(64px);opacity:.42;animation:drift 20s ease-in-out infinite alternate}
@@ -346,8 +360,7 @@ header{backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16p
 @keyframes starIn{0%{opacity:0;transform:scale(0) rotate(-140deg)}60%{opacity:1;transform:scale(1.6) rotate(12deg)}100%{opacity:1;transform:none}}
 #au{margin-bottom:10px}#aur .why{text-align:left;font-size:13px;margin-bottom:12px}
 [data-calm] .aur i,[data-calm] .mascot svg{animation:none!important}
-</style>
-<style id="v21css">
+/* --- v21css --- */
 /* ===== v21: Pak Yood jadi pelawak: joget, salto, pusing, pingsan, kabur terbang ===== */
 .mascot{cursor:pointer;-webkit-user-select:none;user-select:none}
 .mascot .wing{transform-origin:50% 12%}
@@ -388,8 +401,7 @@ header{backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16p
 .acc{position:absolute;left:50%;z-index:3;transform:translateX(-50%);pointer-events:none;animation:accIn .5s var(--ease)}
 .acc.hat{top:-16px;font-size:32px}.acc.shade{top:16px;font-size:44px;line-height:1}
 @keyframes accIn{from{opacity:0;transform:translate(-50%,-30px) scale(.3)}}
-</style>
-<style id="v22css">
+/* --- v22css --- */
 #srch{width:38px;height:38px;border-radius:50%;background:var(--white);font-size:16px;border:1px solid var(--line);box-shadow:var(--sh2);transition:transform .25s var(--ease)}
 #srch:active{transform:scale(.88)}
 .sbar{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:13px 16px;border-radius:18px;background:var(--white);border:1px solid var(--line);box-shadow:var(--sh2);color:var(--mute);font-size:15px}
@@ -411,12 +423,10 @@ header{backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16p
 #sres .sn{color:var(--mute);font-size:12.5px;margin-top:2px;line-height:1.4}
 #sres mark{background:color-mix(in srgb,var(--gold) 45%,transparent);color:inherit;border-radius:4px;padding:0 2px}
 .sempty{text-align:center;color:var(--mute);padding:30px 10px;font-size:14px}
-</style>
-<style id="v23css">
+/* --- v23css --- */
 .msaw{align-self:center;display:inline-flex;align-items:center;gap:6px;margin:2px 0 22px;padding:6px 13px;border-radius:99px;font-size:12px;font-weight:700;text-decoration:none;color:#7A4A00;background:linear-gradient(180deg,#FFEBB8,#F6C25B);box-shadow:0 6px 12px -8px rgba(150,90,0,.6);transition:transform .2s var(--ease)}
 .msaw:hover{transform:translateY(-2px)}
-</style>
-<style id="v24css">
+/* --- v24css --- */
 /* ===== v24: kepak lebih heboh (hover, YMCA, roket) + kartu Dukung Creator baru ===== */
 .a-hover{animation:m-hover 1.6s ease-in-out!important}
 .a-ymca{animation:m-ymca 2.2s ease-in-out!important}
@@ -467,8 +477,7 @@ header{backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16p
 .brand svg{width:14px;height:14px}
 .supb a:not(.sup1){padding:11px 10px}
 [data-calm] .dash.sup *,[data-calm] .dash.sup *::after{animation:none!important}
-</style>
-<style id="v27css">
+/* --- v27css --- */
 /* ===== v27: tampilan "buku latihan" ===== */
 :root{--ui:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;--read:"Newsreader",Georgia,"Times New Roman",serif;--serif:var(--read);--paper:#FFFCF5;--rule:#D3E0EE;--margin:#E58B7C;--r1:20px;--r2:14px}
 [data-theme=dark]{--paper:#2B1D17;--rule:rgba(150,185,225,.14);--margin:rgba(240,140,124,.45)}
@@ -528,8 +537,7 @@ body,#app,button,input{font-family:var(--ui);font-optical-sizing:auto;-webkit-fo
 #app .in,#app input{font-size:16px}
 #app .dg b{font-weight:600}
 @media (prefers-reduced-motion:reduce){#app *{animation:none!important;transition:none!important}}
-</style>
-<style id="v30css">
+/* --- v30css --- */
 /* ===== v30: font tanpa serif + beranda ditata ulang ===== */
 /* Figtree = teks isi, soal, bacaan. Bricolage Grotesque = judul & nama kartu (sans yang punya karakter) */
 :root{--ui:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;--disp:"Bricolage Grotesque","Figtree","Segoe UI",system-ui,sans-serif;--read:var(--ui);--serif:var(--disp);
@@ -616,8 +624,10 @@ body,#app,button,input{font-family:var(--ui);font-optical-sizing:auto;-webkit-fo
 .nw{position:fixed;z-index:70;pointer-events:none;font-family:var(--disp);font-weight:800;white-space:nowrap;text-shadow:0 2px 0 rgba(255,255,255,.9),0 4px 10px rgba(90,40,25,.25);animation:v34pop 1.5s ease-out forwards}
 .v34t{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:80;background:var(--ink);color:var(--cream);padding:10px 16px;border-radius:99px;font:600 14px var(--ui);box-shadow:0 8px 20px rgba(0,0,0,.25);white-space:nowrap}
 </style>
+
 </head>
 <body>
+<div id="nb-boot" aria-hidden="true"><i></i><span>Pak Yood</span></div>
 <div id="app">
   <header>
     <button id="back" aria-label="Kembali">‹</button>
@@ -1546,13 +1556,6 @@ g(1,`Have / Has`,`🏠`,`Tur Rumah Baru`,[
 [`👩`,`🚫`,`Dia <b>tidak punya</b> pulpen.|Pilih kalimatnya.`,[`She doesn't has a pen.`,`She doesn't have a pen.`,`She don't has a pen.`],1,`✏️`,`spin`,`Setelah doesn't, kata kerja polos: have.`]]);
 }catch(e){console.warn('v50 gagal',e)}})();
 </script>
-<style id="v50css">
-/* v50: tampilan penjelasan lebih rapi */
-.tip{background:linear-gradient(135deg,#FFF6E0,#fff);border-left-width:5px;box-shadow:0 2px 0 var(--cream-d);line-height:1.55}
-.ex p{padding-left:10px;border-left:3px solid color-mix(in srgb,var(--terra) 35%,transparent);margin:2px 0}
-.bubble{line-height:1.65}
-.bubble b{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--terra) 18%,transparent) 62%);padding:0 1px;border-radius:2px}
-</style>
 <script id="materi-v51">
 /* v51: game skenario di 14 modul yang belum punya + soal kuis tambahan */
 (function(){try{
@@ -2372,6 +2375,262 @@ Q("\"Let's meet halfway\" artinya…",["Cari titik temu","Bertemu di tengah jala
 O("Susun: \"Saya akan sangat menghargai jika Anda bisa mengganti barangnya.\"",["I","would","appreciate","it","if","you","could","replace","the","item"],"I would appreciate it if you could replace the item","Frasa permintaan sopan baku.")
 ],K("KOMPLAIN & NEGOSIASI",["🩺 Komplain","problem with…","caused a delay","I would appreciate…"],["🤝 Negosiasi","If + present, will","provided that","meet halfway"]),1);
 }catch(e){console.warn('materi-v81 gagal',e)}})();
+</script>
+<script id="materi-v85">
+(function(){try{
+const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+const A=(L,n,g,st,qz,mp,fc)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;
+ const m={n,g,steps:[...st,{s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp}],quiz:qz,map:mp,_nw:1};if(fc)m.fc=1;LEVELS[L].mods.push(m)};
+
+A(1,'Too, Enough, So & Such','🔗 Grammar Rules',[
+S("<b>Too</b> = berlebihan (hasilnya negatif), <b>enough</b> = cukup. Posisinya: <b>too + adj</b>, <b>adj + enough</b>, <b>enough + noun</b>.",["It's <b>too</b> hot to play outside.","He is tall <b>enough</b> to reach the shelf.","We have <b>enough</b> chairs."]),
+S("<b>So</b> dan <b>such</b> berarti 'sangat'. <b>So + adj/adv</b>, <b>such + (a/an) + adj + noun</b>. Boleh diikuti <b>that</b> untuk menyebut akibat.",["The test was <b>so</b> hard <b>that</b> I cried.","It was <b>such</b> a hard test <b>that</b> I cried."],{tip:"<b>So</b> tanpa noun, <b>such</b> dengan noun."})
+],[
+Q("The soup is ___ hot to eat.",["too","enough","so"],0,"Terlalu panas sehingga tidak bisa dimakan: <b>too</b>."),
+Q("She is old ___ to drive.",["too","enough","such"],1,"Adjective + <b>enough</b>."),
+Q("It was ___ a funny movie.",["so","such","too"],1,"Ada noun (movie) → <b>such a</b>."),
+T("Ketik: The bag is ___ heavy that I can't lift it.","so","Tanpa noun: <b>so</b>."),
+O("Susun: \"Dia cukup pintar untuk lulus.\"",["She","is","smart","enough","to","pass"],"She is smart enough to pass","Adjective + enough + to.")
+],K("TOO · ENOUGH · SO · SUCH",["Too","too + adj","berlebihan"],["Enough","adj + enough","enough + noun"],["So","so + adj"],["Such","such a + adj + noun"]));
+
+A(1,'Make vs Do','🔗 Grammar Rules',[
+S("<b>Do</b> = melakukan <b>pekerjaan atau aktivitas</b> (prosesnya). <b>Make</b> = <b>menciptakan atau menghasilkan</b> sesuatu (hasilnya).",["I <b>do</b> my homework.","She <b>makes</b> a cake."],{tbl:[["Do","Make"],["do homework","make a cake"],["do the dishes","make a mistake"],["do a favor","make a decision"],["do business","make money"],["do your best","make a call"]]}),
+S("Banyak yang harus dihafal sebagai <b>kolokasi</b>. Pegangan cepat: aktivitas rutin → <b>do</b>; ciptaan atau keputusan → <b>make</b>.",["Can you <b>do</b> me a favor?","I <b>made</b> a mistake."],{tip:"<b>Do the laundry</b> (mencuci), tapi <b>make the bed</b> (merapikan kasur)."})
+],[
+Q("I need to ___ a decision.",["do","make","take"],1,"<b>Make a decision</b>."),
+Q("Please ___ the dishes.",["do","make","create"],0,"<b>Do the dishes</b>."),
+Q("He ___ a lot of money last year.",["did","made","does"],1,"<b>Make money</b>; bentuk lampau <b>made</b>."),
+T("Ketik: Can you ___ me a favor? (do/make)","do","<b>Do a favor</b>."),
+Q("She ___ a mistake in the test.",["did","made","done"],1,"<b>Make a mistake</b>.")
+],K("MAKE vs DO",["🛠️ Do","homework","dishes","a favor","your best"],["✨ Make","a cake","a mistake","a decision","money"]));
+
+A(2,'Modals of Deduction (must / might / can\'t)','🧠 Advanced Grammar',[
+S("<b>Modal of deduction</b> itu ibarat <b>detektif</b> 🕵️: menebak berdasarkan bukti. Tingkat yakinnya berbeda-beda.",["He's yawning. He <b>must</b> be sleepy.","She <b>might</b> be at home.","That <b>can't</b> be true!"],{tbl:[["Modal","Yakin","Arti"],["must","±95%","pasti"],["may / might / could","±50%","mungkin"],["can't","±95% tidak","mustahil"]]}),
+S("Untuk dugaan tentang <b>masa lampau</b>: modal + <b>have + V3</b>.",["He <b>must have</b> forgotten.","They <b>can't have</b> arrived yet.","She <b>might have</b> missed the bus."],{tip:"Lawan <b>must</b> (menebak) adalah <b>can't</b>, bukan mustn't."})
+],[
+Q("He has run 10 km. He ___ be tired.",["must","can't","might not"],0,"Bukti kuat: <b>must</b>."),
+Q("Nobody answers the phone. She ___ be sleeping.",["might","can't","mustn't"],0,"Dugaan lemah: <b>might</b>."),
+Q("\"Dia pasti sudah lupa\" =",["He must have forgotten.","He must forgot.","He must forget have."],0,"must + have + V3."),
+T("Ketik: That can't ___ true! (be)","be","Modal + V1: <b>can't be</b>."),
+Q("\"Mustahil dia sudah sampai\" =",["She can't have arrived.","She mustn't arrive.","She can't arrived."],0,"can't + have + V3.")
+],K("DEDUKSI 🕵️",["must","pasti (95%)"],["might / may / could","mungkin (50%)"],["can't","mustahil"],["Lampau","modal + have + V3"]));
+
+A(2,'Word Formation (Prefix & Suffix)','🧠 Advanced Grammar',[
+S("<b>Prefix</b> (awalan) mengubah makna, <b>suffix</b> (akhiran) mengubah <b>jenis kata</b>. Kata dasar itu <b>batang pohon</b> 🌳, imbuhan adalah cabangnya.",[],{tbl:[["Imbuhan","Fungsi","Contoh"],["un- / dis- / in-","kebalikan","unhappy, dislike, incorrect"],["re-","ulang","rewrite"],["-er / -or","pelaku","teacher, actor"],["-tion / -ment","kata benda","education, movement"],["-ful / -less","penuh / tanpa","useful, useless"],["-ly","kata keterangan","quickly"]]}),
+S("Di soal <b>word form</b>, lihat posisi kosong: setelah <b>the/a</b> butuh noun, sebelum noun butuh adjective, setelah kata kerja butuh adverb.",["She sings <b>beautifully</b>. (adverb)","The <b>education</b> system is good. (noun)"])
+],[
+Q("Kebalikan dari \"happy\":",["unhappy","dishappy","inhappy"],0,"<b>un-</b> + happy."),
+Q("Orang yang mengajar:",["teachment","teacher","teachful"],1,"<b>-er</b> menunjukkan pelaku."),
+Q("She speaks very ___.",["clear","clearly","clearness"],1,"Menerangkan kata kerja: adverb <b>clearly</b>."),
+T("Ketik adverb dari quick:","quickly","adjective + <b>ly</b>."),
+Q("Tanpa guna:",["useless","unuseful","disuseful"],0,"<b>-less</b> = tanpa.")
+],K("WORD FORMATION 🌳",["Prefix","un- dis- in-","re-"],["Suffix","-er pelaku","-tion benda","-ly adverb"],["-ful / -less","penuh / tanpa"]));
+
+A(3,'Menyampaikan Pendapat (Giving Opinions)','💼 Komunikasi Kerja',[
+S("Menyampaikan pendapat itu ibarat <b>menyodorkan kursi</b> 🪑: tawarkan, jangan melempar. Frasa dari yang lembut sampai kuat:",[],{tbl:[["Kekuatan","Frasa"],["Lembut","I tend to think… / It seems to me that…"],["Netral","In my opinion… / I believe that…"],["Kuat","I strongly feel that… / I'm convinced that…"],["Minta pendapat","What's your take on…? / How do you see it?"]]}),
+S("Beri <b>alasan</b> dengan <b>because / since</b>, lalu <b>contoh</b> dengan <b>for example</b>.",["I believe remote work is efficient <b>because</b> it saves time.","<b>For example</b>, I don't spend two hours commuting."],{tip:"Pola kuat: <b>Opini → Alasan → Contoh</b>."})
+],[
+Q("Frasa paling lembut:",["I tend to think…","It is a fact that…","You must agree…"],0,"<b>I tend to think</b> terdengar rendah hati."),
+Q("Meminta pendapat rekan:",["What's your take on this?","Agree now.","Tell me yes."],0,"Sopan dan terbuka."),
+T("Ketik: In my ___, we should start earlier.","opinion","<b>In my opinion</b>."),
+Q("Pola opini yang kuat:",["Opini → Alasan → Contoh","Contoh saja","Alasan tanpa opini"],0,"Mudah diikuti pendengar."),
+O("Susun: \"Menurut saya, ini ide yang bagus.\"",["In","my","opinion","this","is","a","good","idea"],"In my opinion this is a good idea","Frasa opini baku + klausa.")
+],K("OPINI 🪑",["Lembut","I tend to think"],["Netral","In my opinion"],["Kuat","I'm convinced that"],["Pola","Opini → Alasan → Contoh"]),1);
+}catch(e){console.warn('materi-v85 gagal',e)}})();
+</script>
+<script id="materi-v85">
+/* v85: 3 modul baru (SD Angka/Warna/Bentuk, SMA Conditional 2, Kerja Small Talk) */
+(function(){try{
+const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const MS=mp=>({s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+const A=(L,n,g,st,qz,mp,fc)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;const m={n,g,steps:[...st,MS(mp)],quiz:qz,map:mp};if(fc)m.fc=1;LEVELS[L].mods.push(m)};
+
+A(0,'Angka, Warna & Bentuk','📦 Kosakata & Tata Bahasa Dasar',[
+S('Angka, warna, dan bentuk ada <b>di mana-mana</b> 🎨. Hafalkan dulu yang paling sering dipakai.',[],{tbl:[['Kelompok','Isi'],['Angka 1-10','one, two, three, four, five, six, seven, eight, nine, ten'],['Warna','red, blue, green, yellow, black, white'],['Bentuk','circle, square, triangle']]}),
+S('Rumus menyebut benda: <b>It is + warna + benda</b>. Untuk jumlah: <b>angka + benda</b>. Ketuk contoh biar Pak Yood yang bacakan!',['It is a <b>red</b> ball.','I have <b>three</b> pencils.','The sun is <b>yellow</b>.','A <b>circle</b> is round.'],{tip:'Kalau bendanya lebih dari satu, tambah -s: one book, two <b>books</b>.'})
+],[
+Q('Bahasa Inggris untuk "biru":',['blue','green','black'],0,'Biru = <b>blue</b>.'),
+Q('I have ___ eyes.',['two','three','ten'],0,'Mata manusia ada dua = <b>two</b>.'),
+Q('Bentuk bola adalah ___.',['circle','square','triangle'],0,'Bola bulat = <b>circle</b>.'),
+T('Ketik angka 5 dalam bahasa Inggris:','five','5 = <b>five</b>.'),
+O('Susun: "Itu apel merah."',['It','is','a','red','apple'],'It is a red apple','Rumus: It is + a + warna + benda.')
+],K('ANGKA WARNA BENTUK',['🔢 Angka','one','two','three'],['🎨 Warna','red','blue','green'],['🔷 Bentuk','circle','square','triangle']),1);
+
+A(2,'Conditional Type 2: Pengandaian','🧠 Advanced Grammar',[
+S('Conditional 2 itu buat <b>ngebayangin hal yang nggak nyata sekarang</b> 💭. Lo lagi berandai-andai, bukan ngomongin fakta.',[],{tbl:[['Bagian','Rumus','Contoh'],['If-clause','If + <b>V2</b> (were untuk semua subjek)','If I <b>had</b> more time,'],['Main clause','<b>would</b> + V1','I <b>would learn</b> French.']]}),
+S('Pakai <b>were</b> (bukan was) setelah if, apalagi di kalimat formal. Cek bedanya sama Type 1: Type 1 = kemungkinan nyata, Type 2 = khayalan.',['If I <b>were</b> you, I <b>would apply</b> now.','If she <b>won</b> the lottery, she <b>would travel</b> the world.','What <b>would</b> you do if you <b>lost</b> your phone?'],{tip:'Jebakan: jangan pasang would di kedua bagian. ❌ If I would have time ✅ If I had time.'})
+],[
+Q('If I ___ rich, I would buy a house.',['were','will be','am'],0,'Khayalan sekarang: if + <b>were</b>, main clause pakai would.'),
+Q('She ___ help you if she knew the answer.',['would','will','did'],0,'Main clause Type 2: <b>would + V1</b>.'),
+T('Ketik: If I ___ (have) a car, I would drive to work.','had','If-clause Type 2 pakai <b>V2</b>: had.'),
+O('Susun: "Kalau gue jadi lo, gue bakal pergi."',['If','I','were','you','I','would','go'],'If I were you I would go','If + were, subjek + would + V1.')
+],K('CONDITIONAL 2',['💭 If-clause','If + V2','were untuk semua subjek'],['🎯 Main clause','would + V1'],['⚖️ Beda Type 1','Type 1: nyata','Type 2: khayalan']));
+
+A(3,'Small Talk & Networking','💼 Komunikasi Kerja',[
+S('Small talk itu <b>pemanasan sebelum ngobrol serius</b> ☕. Rumusnya: sapa, tanya ringan, tanggapi, lalu tutup dengan sopan.',[],{tbl:[['Tahap','Frasa'],['Sapa','Nice to meet you. / How are you doing?'],['Tanya ringan','How was your weekend? / How long have you been with the company?'],['Tanggapi','That sounds great! / Really? Tell me more.'],['Tutup','It was great talking to you. / Let\'s keep in touch.']]}),
+S('Hindari topik sensitif di small talk kantor: <b>gaji, politik, agama, urusan pribadi</b>. Pilih cuaca, kerjaan, perjalanan, atau acara hari itu.',['<b>How did you find</b> the conference so far?','<b>What do you do</b> at your company?','<b>Here\'s my card.</b> <b>Let\'s connect</b> on LinkedIn.'],{tip:'Pertanyaan terbuka (How/What) bikin lawan bicara cerita, bukan cuma jawab ya/tidak.'})
+],[
+Q('Kalimat penutup small talk yang sopan:',['It was great talking to you.','I don\'t care.','Stop talking.'],0,'Penutup yang ramah: <b>It was great talking to you.</b>'),
+Q('Topik paling aman untuk small talk pertama:',['The conference schedule','Your salary','Your religion'],0,'Pilih topik netral seperti acara atau perjalanan.'),
+T('Ketik: Nice to ___ you. (bertemu)','meet','Salam kenalan: Nice to <b>meet</b> you.'),
+O('Susun: "Mari tetap terhubung."',['Let\'s','keep','in','touch'],'Let\'s keep in touch','Frasa tetap: keep in touch.')
+],K('SMALL TALK',['👋 Sapa','Nice to meet you'],['❓ Tanya ringan','How was your weekend?'],['🤝 Tutup','Let\'s keep in touch']));
+}catch(e){console.warn('materi-v85 gagal',e)}})();
+</script>
+<script id="materi-v86">
+/* v86: pendalaman modul lama (soal + jebakan) dan 2 modul IELTS baru */
+(function(){try{
+const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const MS=mp=>({s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+const A=(L,n,g,st,qz,mp,fc)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;const m={n,g,steps:[...st,MS(mp)],quiz:qz,map:mp,_nw:1};if(fc)m.fc=1;LEVELS[L].mods.push(m)};
+const up=(L,n,st,qz)=>{const M=LEVELS[L]&&LEVELS[L].mods.find(x=>x.n===n);if(!M||M._v86)return;M._v86=1;
+ if(st&&st.length){const i=M.steps.findIndex(s=>s.map);M.steps.splice(i<0?M.steps.length:i,0,...st)}
+ if(qz&&qz.length)M.quiz.push(...qz)};
+up(0,'To Be: am / is / are',[S('<b>Jebakan:</b> jangan campur pelaku dan to be. Aku = <b>am</b>, dia/itu = <b>is</b>, kamu/kami/mereka = <b>are</b>.',['I <b>am</b> happy.','She <b>is</b> kind.','They <b>are</b> friends.'],{tip:'Nggak ada "I is" atau "He are". Cocokkan dulu pelakunya.'})],[
+Q('He ___ my teacher.',['is','am','are'],0,'He pasangannya <b>is</b>.'),
+Q('We ___ in the classroom.',['are','is','am'],0,'We pasangannya <b>are</b>.'),
+T('Ketik: My mother ___ a nurse. (am/is/are)','is','Mother = dia (satu orang) → <b>is</b>.')]);
+up(1,'Simple Present Tense',[S('<b>Jebakan -s/-es:</b> He/She/It wajib ditambah -s. Kalau sudah ada <b>does/doesn\'t</b>, kata kerjanya balik ke bentuk dasar.',['She <b>works</b> here.','He <b>doesn\'t work</b> here. (bukan works)','Does she <b>work</b> here?'],{tip:'Satu kalimat, satu tanda "-s". Sudah ada does? Buang -s di kata kerja.'})],[
+Q('Dia (cowok) nggak suka kopi: He ___ coffee.',['doesn\'t like','don\'t like','doesn\'t likes'],0,'Setelah doesn\'t, kata kerja bentuk dasar: <b>like</b>.'),
+Q('My sister ___ to school by bus.',['goes','go','going'],0,'She/sister + go → <b>goes</b> (-es).'),
+T('Ketik: Does he ___ (play) football?','play','Setelah does, pakai bentuk dasar: <b>play</b>.')]);
+up(1,'Past Tense',[S('<b>Jebakan:</b> setelah <b>did / didn\'t</b>, kata kerja balik ke V1. Jangan dua kali lampau.',['She <b>went</b> home.','She <b>didn\'t go</b> home. ✅','She didn\'t went home. ❌'],{tip:'Lampau cuma ditandai sekali: di did, atau di V2, nggak keduanya.'})],[
+Q('Yesterday I ___ a movie.',['watched','watch','watching'],0,'Kemarin → V2: <b>watched</b>.'),
+Q('Did you ___ the homework?',['do','did','done'],0,'Setelah did, V1: <b>do</b>.'),
+T('Ketik V2 dari "buy":','bought','buy → <b>bought</b> (irregular).')]);
+up(2,'Passive Voice',[S('<b>Rumus cepat:</b> be + V3. Be mengikuti tense-nya: is/are (sekarang), was/were (lampau), will be (nanti). Pelaku asli pakai <b>by</b>, dan boleh dibuang kalau nggak penting.',['English <b>is spoken</b> worldwide.','The window <b>was broken</b> by Rio.','The report <b>will be sent</b> tomorrow.'],{tip:'Cek dua hal: be sesuai tense, kata kerja utama harus V3.'})],[
+Q('The letter ___ yesterday.',['was sent','is sent','sent'],0,'Lampau pasif: <b>was + V3</b>.'),
+Q('Rice ___ in Indonesia.',['is grown','grows','are grown'],0,'Rice tunggal, fakta umum: <b>is grown</b>.'),
+O('Susun: "Pekerjaan itu akan diselesaikan besok."',['The','work','will','be','finished','tomorrow'],'The work will be finished tomorrow','will + be + V3.')]);
+up(3,'Job Interview',[S('<b>Rumus STAR</b> ⭐ untuk jawab pertanyaan pengalaman: <b>S</b>ituation, <b>T</b>ask, <b>A</b>ction, <b>R</b>esult.',['<b>Situation:</b> Our sales dropped last year.','<b>Action:</b> I redesigned the offer.','<b>Result:</b> Sales rose by 20%.'],{tip:'Jawab pakai past tense dan sebut hasil dengan angka kalau ada.'})],[
+Q('Huruf R pada metode STAR berarti:',['Result','Role','Reason'],0,'R = <b>Result</b>, hasil dari tindakanmu.'),
+Q('Pertanyaan "Tell me about yourself" paling baik dijawab dengan:',['ringkasan singkat latar belakang, keahlian, dan tujuan','riwayat hidup dari kecil','"Nothing special."'],0,'Beri ringkasan 1-2 menit yang relevan dengan posisi.')]);
+
+A(4,'IELTS Reading: Sentence & Summary Completion','🎯 IELTS',[
+S('Soal completion itu <b>berburu kata persis di teks</b> 🔍. Aturan emasnya: perhatikan batas kata (<b>NO MORE THAN TWO WORDS</b>) dan salin kata <b>apa adanya</b> dari teks.',[],{tbl:[['Langkah','Cara'],['1. Baca batas kata','NO MORE THAN TWO WORDS = maksimal 2 kata'],['2. Tebak jenis kata','Rumpang butuh noun, verb, atau adjective?'],['3. Cari kata kunci','Pakai sinonim dari kalimat soal untuk cari lokasi di teks'],['4. Salin persis','Ejaan dan bentuk jamak/tunggal ikut teks']]}),
+S('Jawaban muncul <b>berurutan</b> mengikuti alur teks, jadi jangan loncat-loncat. Cek juga <b>grammar</b>: hasil isian harus pas secara tata bahasa dengan kalimat.',['Soal: Plants need ___ to grow. → butuh noun (mis. <b>sunlight</b>).','Soal: The study was ___ . → butuh adjective.','Ejaan salah atau lebih dari batas kata = salah.'],{tip:'Angka dan tanggal juga dihitung kata. Tulis seperti di teks.'})
+],[
+Q('Batas "NO MORE THAN TWO WORDS" artinya jawabanmu boleh:',['1 atau 2 kata','3 kata','kalimat penuh'],0,'Maksimal dua kata, satu kata juga boleh.'),
+Q('Kata yang diisi ke rumpang harus diambil:',['persis dari teks','diparafrase bebas','dari pengetahuan umum'],0,'Salin kata <b>persis</b> dari teks bacaan.'),
+Q('Rumpang: "The bridge was built ___ steel." Jenis kata yang pas:',['preposisi atau kata benda sesuai konteks','kata kerja bentuk -ing saja','kata sambung'],0,'Selalu cek fungsi tata bahasa rumpang dulu.'),
+T('Ketik singkatan batas kata: NO MORE THAN ___ WORDS (satu = 1, dua = ...)','two','Contoh batas paling umum: <b>two</b> words.')
+],K('COMPLETION',['📏 Batas kata','NO MORE THAN TWO WORDS'],['🔍 Cari','kata kunci + sinonim'],['✍️ Salin','persis dari teks'],['🧩 Grammar','jenis kata harus pas']));
+
+A(4,'IELTS Writing Task 1: Process & Map','🎯 IELTS',[
+S('Task 1 tidak selalu grafik. Bisa juga <b>proses</b> (urutan tahap) atau <b>peta</b> (sebelum dan sesudah). Kuncinya: <b>overview</b> singkat, lalu detail terurut.',[],{tbl:[['Jenis','Tense','Alat bahasa'],['Process','Present simple + <b>passive</b>','First, Then, After that, Finally'],['Map (dua tahun)','Past simple / present perfect','was replaced by, was converted into, was built'],['Map (rencana)','Future','will be demolished, will be constructed']]}),
+S('Untuk peta, sebut arah dengan <b>to the north of, in the south-east, next to, opposite</b>. Untuk proses, ubah aksi jadi pasif: air <b>is heated</b>, bukan "they heat the water".',['First, the water <b>is collected</b> in a tank.','Next, it <b>is filtered</b> and then <b>heated</b>.','The farmland <b>was replaced by</b> a shopping centre.','A new road <b>was built</b> to the north of the park.'],{tip:'Tulis overview 1-2 kalimat: berapa tahap, atau perubahan terbesar. Jangan beri opini.'})
+],[
+Q('Tense yang umum untuk menjelaskan proses (process):',['present simple passive','past perfect','future continuous'],0,'Proses umumnya <b>present simple passive</b>.'),
+Q('Peta yang menunjukkan perubahan 1990 ke 2020 sebaiknya memakai:',['past simple','present continuous','will'],0,'Dua tahun lampau → <b>past simple</b>.'),
+Q('The farmland ___ a shopping centre.',['was replaced by','replaced by','is replace'],0,'Pasif lampau: <b>was replaced by</b>.'),
+O('Susun: "Pertama, air dikumpulkan."',['First','the','water','is','collected'],'First the water is collected','Urutan tahap + present simple passive.')
+],K('PROCESS & MAP',['🔄 Process','present passive','First, Then, Finally'],['🗺️ Map','past simple','was replaced by'],['📝 Overview','1-2 kalimat','tanpa opini']));
+}catch(e){console.warn('materi-v86 gagal',e)}})();
+</script>
+<script id="materi-v88">
+/* v88: +8 modul level SD */
+(function(){try{
+const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const MS=mp=>({s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+const G='📦 Kosakata & Tata Bahasa Dasar';
+const A=(n,st,qz,mp,fc)=>{const L=LEVELS[0];if(!L||L.mods.some(m=>m.n===n))return;const m={n,g:G,steps:[...st,MS(mp)],quiz:qz,map:mp,_nw:1};if(fc)m.fc=1;L.mods.push(m)};
+
+A('Perkenalan Diri (Greetings)',[
+S('Kenalan itu seperti <b>mengetuk pintu dengan ramah</b> 🚪. Sapa dulu, sebut nama, lalu tanya balik.',[],{tbl:[['Situasi','Kalimat'],['Menyapa','Hello! / Hi! / Good morning.'],['Tanya nama','What is your name?'],['Menjawab','My name is Rani.'],['Tanya kabar','How are you? — I am fine, thank you.'],['Berpisah','Goodbye! / See you!']]}),
+S('Susun percakapan pendek. Ketuk contoh biar Pak Yood yang bacakan!',['<b>Hello!</b> My name is Dika.','<b>Nice to meet you</b>, Dika.','<b>How are you?</b> I am fine, <b>thank you</b>.'],{tip:'Good morning dipakai pagi hari, Good afternoon siang, Good night saat mau tidur.'})
+],[
+Q('Menyapa di pagi hari:',['Good morning','Good night','Goodbye'],0,'Pagi = <b>Good morning</b>.'),
+Q('"Siapa namamu?" dalam bahasa Inggris:',['What is your name?','How old are you?','Where are you?'],0,'Tanya nama: <b>What is your name?</b>'),
+T('Ketik jawaban: How are you? — I am ___, thank you. (baik)','fine','Jawaban umum: I am <b>fine</b>.'),
+O('Susun: "Namaku Rani."',['My','name','is','Rani'],'My name is Rani','My name is + nama.')
+],K('PERKENALAN',['👋 Sapa','Hello','Good morning'],['🙋 Nama','What is your name?','My name is …'],['😊 Kabar','How are you?','I am fine']),1);
+
+A('Keluarga & Anggota Tubuh',[
+S('Keluarga dan tubuh adalah <b>kosakata yang paling dekat denganmu</b> 👨‍👩‍👧. Hafalkan sebagai dua kelompok.',[],{tbl:[['Kelompok','Isi'],['Keluarga','mother, father, brother, sister, grandmother, grandfather'],['Kepala','head, eye, ear, nose, mouth'],['Badan','hand, arm, leg, foot']]}),
+S('Untuk milik sendiri pakai <b>my</b>: <b>my</b> mother, <b>my</b> eyes. Tubuh yang berpasangan memakai -s: two eyes, two ears, two hands.',['This is <b>my father</b>.','I have two <b>eyes</b>.','She has a <b>big nose</b>.'],{tip:'foot jamaknya feet. one foot, two feet.'})
+],[
+Q('"Ibu" dalam bahasa Inggris:',['mother','father','sister'],0,'Ibu = <b>mother</b>.'),
+Q('Kita mendengar dengan ___.',['ears','eyes','hands'],0,'Mendengar = <b>ears</b> (telinga).'),
+Q('Jamak dari foot:',['feet','foots','feets'],0,'foot → <b>feet</b> (bentuk khusus).'),
+T('Ketik: Saudara laki-laki = ___','brother','Saudara laki-laki = <b>brother</b>.')
+],K('KELUARGA & TUBUH',['👪 Keluarga','mother','father','brother','sister'],['🙂 Kepala','eye','ear','nose','mouth'],['🖐️ Badan','hand','arm','leg','foot']),1);
+
+A('Hewan & Makanan',[
+S('Hewan dan makanan adalah <b>kata yang paling seru dipelajari</b> 🐱🍎.',[],{tbl:[['Hewan','Makanan'],['cat, dog, bird, fish, cow','rice, bread, egg, milk, fruit'],['chicken, duck, horse','apple, banana, orange, water']]}),
+S('Mau bilang suka? Pakai <b>I like + benda</b>. Mau bilang punya? <b>I have + benda</b>.',['I <b>like</b> bananas.','I <b>have</b> a cat.','The cow <b>drinks</b> water.'],{tip:'Satu benda pakai a/an: a cat, an egg. Banyak benda tambah -s: cats, eggs.'})
+],[
+Q('Hewan yang bisa terbang:',['bird','fish','cow'],0,'Burung = <b>bird</b>.'),
+Q('I drink ___ every morning.',['milk','chair','shoe'],0,'Yang diminum: <b>milk</b>.'),
+Q('Telur dalam bahasa Inggris:',['egg','rice','apple'],0,'Telur = <b>egg</b>, jadi a<b>n</b> egg.'),
+O('Susun: "Aku suka pisang."',['I','like','bananas'],'I like bananas','I like + benda.')
+],K('HEWAN & MAKANAN',['🐾 Hewan','cat','dog','bird','fish'],['🍽️ Makanan','rice','egg','milk','apple'],['💬 Pola','I like …','I have …']),1);
+
+A('Benda di Rumah & Sekolah',[
+S('Lihat sekelilingmu 👀. Benda-benda ini muncul setiap hari.',[],{tbl:[['Tempat','Benda'],['Sekolah','book, pencil, pen, bag, ruler, desk, chair'],['Rumah','table, bed, door, window, lamp']]}),
+S('Menunjuk benda pakai <b>This is …</b> (dekat) dan <b>That is …</b> (jauh). Bertanya: <b>What is this?</b>',['<b>This is</b> a book.','<b>That is</b> a window.','<b>What is this?</b> It is a pencil.'],{tip:'Jawab pertanyaan What is this? dengan It is + benda.'})
+],[
+Q('Kita menulis dengan ___.',['a pencil','a lamp','a bed'],0,'Menulis pakai <b>pencil</b>.'),
+Q('Benda untuk tidur:',['bed','door','desk'],0,'Tempat tidur = <b>bed</b>.'),
+T('Ketik: This is ___ book. (a/an)','a','book diawali konsonan → <b>a</b> book.'),
+O('Susun: "Itu sebuah jendela."',['That','is','a','window'],'That is a window','That is + a + benda.')
+],K('BENDA',['🏫 Sekolah','book','pencil','bag','desk'],['🏠 Rumah','table','bed','door','window']),1);
+
+A('Kata Sifat Dasar (Adjectives)',[
+S('Kata sifat itu <b>penjelas benda</b> 🎀. Dia berdiri <b>di depan</b> benda yang dijelaskan.',[],{tbl:[['Sifat','Lawannya'],['big','small'],['happy','sad'],['hot','cold'],['new','old'],['tall','short'],['fast','slow']]}),
+S('Rumus: <b>a / an + sifat + benda</b>. Atau setelah to be: <b>It is + sifat</b>.',['a <b>big</b> house','an <b>old</b> car','The tea is <b>hot</b>.','My bag is <b>new</b>.'],{tip:'Sifat tidak pernah ditambah -s: two big cats, bukan two bigs cats.'})
+],[
+Q('Lawan dari big:',['small','tall','fast'],0,'big ↔ <b>small</b>.'),
+Q('She is a ___ girl. (bahagia)',['happy','sad','hot'],0,'Bahagia = <b>happy</b>.'),
+Q('Pilih yang benar:',['two big cats','two bigs cats','two cats big'],0,'Sifat di depan benda dan <b>tanpa -s</b>.'),
+T('Ketik lawan kata hot:','cold','hot ↔ <b>cold</b>.')
+],K('KATA SIFAT',['📏 Ukuran','big','small','tall','short'],['😊 Perasaan','happy','sad'],['🌡️ Rasa','hot','cold']),1);
+
+A('Jamak (Plural): -s, -es, -ies',[
+S('Satu benda dan banyak benda punya bentuk berbeda. Banyak benda biasanya <b>ditambah -s</b>.',[],{tbl:[['Aturan','Contoh'],['umumnya + s','cat → cats, book → books'],['berakhir s, x, ch, sh → + es','bus → buses, box → boxes, watch → watches'],['konsonan + y → ies','baby → babies, city → cities'],['bentuk khusus','child → children, man → men, foot → feet']]}),
+S('Setelah angka dua atau lebih, benda <b>harus jamak</b>.',['one <b>book</b>, two <b>books</b>','a <b>box</b>, three <b>boxes</b>','one <b>child</b>, four <b>children</b>'],{tip:'Cek akhir katanya dulu, baru pilih -s, -es, atau -ies.'})
+],[
+Q('Jamak dari box:',['boxes','boxs','boxies'],0,'Berakhir x → <b>-es</b>.'),
+Q('Jamak dari baby:',['babies','babys','babyes'],0,'Konsonan + y → <b>-ies</b>.'),
+Q('One child, two ___.',['children','childs','childes'],0,'child → <b>children</b>.'),
+T('Ketik jamak dari bus:','buses','Akhiran s → <b>buses</b>.')
+],K('PLURAL',['➕ + s','cat → cats'],['➕ + es','box → boxes','bus → buses'],['🔁 y → ies','baby → babies'],['⭐ Khusus','child → children','foot → feet']));
+
+A('Can & Can\'t (Kemampuan)',[
+S('<b>Can</b> artinya <b>bisa</b>, <b>can\'t</b> artinya <b>tidak bisa</b> 💪. Setelah can, kata kerja <b>tidak berubah</b>.',['I <b>can swim</b>.','She <b>can\'t drive</b>.','Birds <b>can fly</b>.'],{tip:'Tidak ada -s setelah can: She can swim, bukan She cans swims.'}),
+S('Bertanya: <b>Can you + kata kerja?</b> Jawab: <b>Yes, I can.</b> atau <b>No, I can\'t.</b>',['<b>Can</b> you ride a bike? <b>Yes, I can.</b>','<b>Can</b> he sing? <b>No, he can\'t.</b>'])
+],[
+Q('She ___ swim very well.',['can','cans','is can'],0,'Can tidak berubah untuk semua pelaku.'),
+Q('Ikan tidak bisa terbang: Fish ___ fly.',['can\'t','can','cans'],0,'Tidak bisa = <b>can\'t</b>.'),
+T('Ketik: Can you swim? Yes, I ___.','can','Jawaban pendek: Yes, I <b>can</b>.'),
+O('Susun: "Dia bisa menyanyi."',['She','can','sing'],'She can sing','Pelaku + can + kata kerja.')
+],K('CAN / CAN\'T',['✅ Bisa','I can swim'],['❌ Tidak bisa','I can\'t fly'],['❓ Tanya','Can you …?','Yes, I can.']));
+
+A('Cuaca & Musim',[
+S('Cuaca itu <b>suasana langit hari ini</b> ☀️🌧️. Pakai rumus <b>It is + cuaca</b>.',[],{tbl:[['Cuaca','Arti'],['sunny','cerah'],['rainy','hujan'],['cloudy','berawan'],['windy','berangin'],['hot / cold','panas / dingin']]}),
+S('Indonesia punya dua musim: <b>dry season</b> (kemarau) dan <b>rainy season</b> (hujan). Bertanya: <b>How is the weather?</b>',['<b>How is the weather</b> today? It is <b>sunny</b>.','It is <b>rainy</b>, so I take an umbrella.','The <b>rainy season</b> starts in November.'],{tip:'It di sini hanya penanda, tidak berarti "itu". It is rainy = sedang hujan.'})
+],[
+Q('"Hujan" dalam bahasa Inggris (kata sifat):',['rainy','sunny','windy'],0,'Hujan = <b>rainy</b>.'),
+Q('Musim kemarau disebut:',['dry season','rainy season','cold season'],0,'Kemarau = <b>dry season</b>.'),
+T('Ketik: It is ___ today. (cerah)','sunny','Cerah = <b>sunny</b>.'),
+O('Susun: "Hari ini berangin."',['It','is','windy','today'],'It is windy today','It is + cuaca + waktu.')
+],K('CUACA',['☀️ Cuaca','sunny','rainy','cloudy','windy'],['🗓️ Musim','dry season','rainy season'],['❓ Tanya','How is the weather?']),1);
+}catch(e){console.warn('materi-v88 gagal',e)}})();
+</script>
+<script id="fix-v89-keys">
+/* v89: modul baru (_nw) tidak boleh mewarisi teks Pengertian/Analogi & Kesalahan Umum milik modul lain */
+(function(){var o=window.RK;window.RK=function(i,j,t){var M=LEVELS[i]&&LEVELS[i].mods[j];return(M&&M._nw)?'x':o(i,j,t)}})();
 </script>
 <script id="engine">
 /* ━━━━ BAGIAN 1: inti (state, belajar, kuis, hasil, misi, dialog, materi tambahan) ━━━━ */
@@ -3902,21 +4161,6 @@ window.addEventListener('popstate',()=>{
 upd();
 }catch(e){console.warn('v34 gagal',e)}})();
 </script>
-<style id="glos-css">
-.gl{text-decoration:underline dotted var(--terra);text-underline-offset:3px;cursor:help}
-.gsh{position:absolute;inset:0;z-index:60;display:none;align-items:flex-end;background:rgba(58,42,36,.45)}
-.gsh.on{display:flex}
-.gsh>div{width:100%;background:var(--white);border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;animation:pop .3s var(--ease)}
-.gsh h4{font-size:21px;color:var(--terra-d)}
-.gb{background:var(--terra-l);border-radius:14px;padding:10px 12px;font-size:15px}
-.gc{display:flex;gap:6px;flex-wrap:wrap}
-.gc button{padding:6px 12px;border-radius:99px;background:var(--white);border:1.5px solid var(--terra-l);font-size:13px}
-.gc button.on{background:var(--terra);color:#fff;border-color:var(--terra)}
-details.gd{background:var(--white);border-radius:14px;padding:12px 14px;box-shadow:0 2px 0 var(--cream-d)}
-details.gd summary{cursor:pointer;font-weight:700;list-style:none}
-details.gd summary small{display:block;font-weight:400;color:var(--mute)}
-details.gd .gb{margin:10px 0 6px}
-</style>
 <script id="glosarium-v54">
 /* v54: perluasan glosarium ke semua level (tense, jenis teks, kosakata, kerja & ujian) */
 window.GLC={t:'Jenis Teks & Membaca',u:'Kosakata & Bunyi',j:'Kerja & Ujian'};
@@ -3965,6 +4209,10 @@ window.GLX=[
 [`Cover letter / CV`,`surat lamaran / riwayat hidup`,`CV: daftar data dirimu. Cover letter: surat pengantar yang bilang "kenapa aku cocok".`,`Dear Mr. Rahman,`,'j',`cover letter|CV|resume`]
 ];
 </script>
+<script id="glosarium-def">
+/* v87: pengertian umum tiap istilah (tampil sebelum bahasa bayi) */
+window.GLD={"To be": "Kata kerja penghubung (am, is, are, was, were, be, been) yang menyatakan keadaan, identitas, atau keberadaan.", "Subject-verb agreement": "Aturan bahwa bentuk verb harus sesuai dengan subjeknya, tunggal atau jamak.", "Possessive adjective / pronoun": "Kata yang menyatakan kepemilikan. Possessive adjective (my, your) diikuti nomina; possessive pronoun (mine, yours) berdiri sendiri.", "Subject / Object pronoun": "Pronomina yang berfungsi sebagai subjek (I, he, they) atau objek (me, him, them) dalam kalimat.", "Reflexive pronoun": "Pronomina berakhiran -self/-selves yang merujuk kembali ke subjek kalimat yang sama.", "Relative pronoun": "Pronomina (who, which, that, whom, whose) yang membuka relative clause dan menghubungkannya dengan nomina yang diterangkan.", "Demonstrative": "Kata penunjuk (this, that, these, those) yang menandai benda berdasarkan jarak dan jumlahnya.", "WH-question": "Kalimat tanya yang diawali kata tanya (what, where, when, why, who, how) dan menuntut jawaban berupa informasi.", "Imperative": "Kalimat perintah, permintaan, atau larangan yang diawali verb bentuk dasar tanpa subjek.", "Question tag": "Pertanyaan pendek di akhir pernyataan untuk meminta konfirmasi, dengan pola positif-negatif atau sebaliknya.", "Conjunction (jenis)": "Pembagian kata sambung menjadi coordinating (setara) dan subordinating (menghubungkan klausa bawahan dengan klausa utama).", "Fragment / Run-on": "Kesalahan struktur kalimat: fragment tidak lengkap (kurang subjek atau verb), run-on menggabungkan klausa tanpa penghubung yang benar.", "Adjective order": "Urutan baku beberapa adjective sebelum nomina: opini, ukuran, umur, bentuk, warna, asal, bahan, tujuan.", "Direct speech": "Pengutipan ucapan seseorang persis seperti aslinya, ditulis dalam tanda kutip.", "Backshift": "Pergeseran tense satu langkah ke belakang dalam reported speech ketika verb pelapor berbentuk lampau.", "Time signal": "Kata atau frasa keterangan waktu (every day, now, yesterday, since) yang menjadi petunjuk tense yang dipakai.", "Present Perfect": "Tense (have/has + V3) untuk peristiwa pada waktu tak tertentu di masa lalu atau yang berlanjut sampai sekarang.", "Past Perfect": "Tense (had + V3) untuk peristiwa yang selesai sebelum peristiwa atau waktu lampau lainnya.", "Perfect Continuous": "Kelompok tense (have/had/will have been + V-ing) yang menekankan durasi kegiatan yang berlangsung terus-menerus.", "Past Future (would)": "Bentuk yang memakai would untuk menyatakan masa depan dari sudut pandang waktu lampau.", "Will vs Going to": "Perbedaan dua bentuk masa depan: will untuk keputusan spontan atau prediksi, going to untuk rencana atau prediksi berbukti.", "Narrative": "Jenis teks yang menceritakan peristiwa fiktif atau nyata dengan alur, konflik, dan resolusi.", "Recount": "Jenis teks yang menceritakan kembali peristiwa atau pengalaman lampau secara berurutan.", "Procedure": "Jenis teks yang menjelaskan cara melakukan atau membuat sesuatu melalui langkah-langkah berurutan.", "Descriptive": "Jenis teks yang menggambarkan ciri-ciri orang, benda, tempat, atau hewan tertentu.", "Report": "Jenis teks yang menyajikan informasi faktual tentang suatu kelompok hal secara umum.", "News item": "Jenis teks yang melaporkan peristiwa penting secara ringkas dan faktual.", "Review / Advertisement / Spoof": "Tiga jenis teks: review menilai karya, advertisement membujuk audiens membeli, spoof menceritakan kejadian lucu dengan twist.", "Argumentative text": "Teks yang menyampaikan pendapat dan alasan untuk meyakinkan pembaca, mencakup analytical exposition dan discussion.", "Skimming / Scanning": "Dua teknik membaca cepat: skimming untuk gambaran umum, scanning untuk mencari informasi tertentu.", "Main idea / Topic sentence": "Main idea adalah gagasan pokok paragraf; topic sentence adalah kalimat yang menyatakannya.", "Synonym / Antonym": "Synonym adalah kata dengan makna sama atau mirip; antonym adalah kata dengan makna berlawanan.", "Prefix / Suffix": "Imbuhan yang ditambahkan di depan (prefix) atau di belakang (suffix) kata dasar untuk membentuk kata baru.", "Homophone": "Kata yang bunyinya sama tetapi ejaan dan artinya berbeda.", "Slang": "Ragam bahasa informal yang dipakai dalam percakapan santai kelompok tertentu.", "Intonation / Stress": "Intonation adalah naik-turunnya nada bicara; stress adalah penekanan pada suku kata atau kata tertentu.", "Formal / Informal": "Dua ragam bahasa: formal untuk situasi resmi dan tulisan akademik, informal untuk situasi santai.", "STAR / SBI / LAFS": "Kerangka menyusun jawaban atau respons: STAR (situation, task, action, result), SBI (situation, behavior, impact), dan LAFS untuk menangani keluhan.", "TOEIC / TOEFL": "Tes standar bahasa Inggris: TOEIC untuk konteks kerja, TOEFL untuk konteks akademik.", "IMRaD": "Struktur baku karya ilmiah: Introduction, Methods, Results, and Discussion.", "Plagiarism / Citation": "Plagiarism adalah mengambil karya orang lain tanpa pengakuan; citation adalah mencantumkan sumber yang dipakai.", "Cover letter / CV": "Dokumen lamaran kerja: CV merangkum riwayat dan keahlian, cover letter menjelaskan motivasi dan kecocokan pelamar.", "Noun": "Kelas kata yang menamai orang, benda, tempat, hewan, atau gagasan.", "Verb": "Kelas kata yang menyatakan tindakan, proses, atau keadaan.", "Adjective": "Kelas kata yang menerangkan atau memodifikasi nomina atau pronomina.", "Adverb": "Kelas kata yang menerangkan verb, adjective, adverb lain, atau seluruh kalimat.", "Pronoun": "Kelas kata yang menggantikan nomina agar tidak diulang.", "Preposition": "Kelas kata yang menunjukkan hubungan (tempat, waktu, arah) antara nomina atau pronomina dan kata lain.", "Conjunction": "Kelas kata yang menghubungkan kata, frasa, atau klausa.", "Article": "Kata (a, an, the) yang mendahului nomina untuk menandai tentu atau tidak tentunya benda.", "Determiner": "Kata yang mendahului nomina untuk menjelaskan kepemilikan, jumlah, atau penunjukan, seperti artikel, this, my, some.", "Subject": "Bagian kalimat yang melakukan tindakan atau yang dibicarakan oleh verb.", "Object": "Bagian kalimat yang menerima tindakan verb (direct object) atau menjadi penerima manfaat (indirect object).", "Clause": "Kelompok kata yang memiliki subjek dan predikat; bisa berdiri sendiri (independent) atau bergantung (dependent).", "Phrase": "Kelompok kata yang bekerja bersama sebagai satu unit tanpa pasangan subjek-predikat.", "Relative clause": "Klausa bawahan yang menerangkan nomina dan diawali relative pronoun atau adverb.", "Parallelism": "Penggunaan bentuk gramatikal yang sama pada unsur-unsur sederajat dalam satu kalimat.", "Contraction": "Bentuk singkat dua kata dengan apostrof, misalnya don't, it's, I'm.", "Gerund": "Bentuk verb + -ing yang berfungsi sebagai nomina.", "Infinitive": "Bentuk dasar verb, biasanya dengan to, yang dapat berfungsi sebagai nomina, adjective, atau adverb.", "Participle": "Bentuk verb (V-ing atau V3) yang berfungsi sebagai adjective atau pembentuk tense dan passive.", "V1 / V2 / V3": "Tiga bentuk verb: bentuk dasar, bentuk lampau (past simple), dan past participle.", "Auxiliary verb": "Verb bantu (be, do, have) yang membantu membentuk tense, pertanyaan, negasi, dan passive.", "Modal": "Verb bantu (can, may, must, should, would) yang menyatakan kemampuan, kemungkinan, izin, atau keharusan.", "Transitive / Intransitive": "Transitive verb membutuhkan objek; intransitive verb tidak.", "Stative verb": "Verb yang menyatakan keadaan, bukan tindakan, dan umumnya tidak dipakai dalam bentuk continuous.", "Phrasal verb": "Gabungan verb dan partikel (adverb atau preposisi) yang membentuk makna baru.", "Tense": "Bentuk verb yang menunjukkan waktu terjadinya suatu tindakan atau keadaan.", "Aspect": "Sudut pandang atas suatu kejadian: simple, continuous (berlangsung), perfect (selesai), atau perfect continuous.", "Active / Passive": "Active voice menempatkan pelaku sebagai subjek; passive voice menempatkan penerima tindakan sebagai subjek.", "Conditional": "Kalimat pengandaian yang terdiri dari if-clause (syarat) dan main clause (akibat).", "Reported speech": "Pelaporan ucapan seseorang dengan kata-kata si pelapor, tanpa tanda kutip.", "Countable / Uncountable": "Countable noun dapat dihitung satuannya; uncountable noun tidak dan dianggap sebagai massa.", "Comparative / Superlative": "Bentuk adjective atau adverb untuk membandingkan dua hal (comparative) atau lebih dari dua hal (superlative).", "Quantifier": "Kata yang menyatakan jumlah nomina, seperti some, any, many, much.", "Idiom": "Ungkapan yang maknanya tidak dapat disimpulkan dari arti kata-kata penyusunnya.", "Collocation": "Kombinasi kata yang lazim muncul bersama secara alami.", "Paraphrase": "Menyampaikan ulang makna suatu teks dengan kata dan struktur sendiri tanpa mengubah maknanya.", "Inference": "Kesimpulan yang ditarik dari petunjuk dalam teks, bukan dari pernyataan eksplisit."};
+</script>
 <script id="glosarium-v53">
 /* v53: Glosarium "bahasa bayi" + istilah di materi bisa diketuk */
 (function(){try{
@@ -4012,7 +4260,7 @@ const T=[
 (window.GLX||[]).forEach(x=>T.push(x));Object.assign(C,window.GLC||{});const RX=T.map(t=>new RegExp('\\b('+(t[5]||t[0])+')\\b','i'));
 const app=$('#app'),sh=document.createElement('div');sh.className='gsh';app.appendChild(sh);
 const shut=()=>sh.classList.remove('on');
-const open=i=>{const t=T[i];sh.innerHTML=`<div><h4>${t[0]}</h4><small style="color:var(--mute)">${t[1]}</small><div class="gb">👶 ${t[2]}</div><div class="ex"><p>${t[3]}</p></div><button class="btn" id="gx">Mengerti!</button><button class="btn" id="gg" style="background:var(--terra-l);color:var(--terra-d)">Buka Glosarium 📖</button></div>`;sh.classList.add('on');
+const open=i=>{const t=T[i];sh.innerHTML=`<div><h4>${t[0]}</h4><small style="color:var(--mute)">${t[1]}</small>${(window.GLD&&GLD[t[0]])?`<div class="gdef"><b>📘 Pengertian umum</b><p>${GLD[t[0]]}</p></div>`:''}<div class="gb"><b>👶 Bahasa bayi</b><p>${t[2]}</p></div><div class="ex"><p>${t[3]}</p></div><button class="btn" id="gx">Mengerti!</button><button class="btn" id="gg" style="background:var(--terra-l);color:var(--terra-d)">Buka Glosarium 📖</button></div>`;sh.classList.add('on');
  $('#gx').onclick=shut;$('#gg').onclick=()=>{shut();go('gl',{gf:'',gq:t[0]})}};
 sh.onclick=e=>{if(e.target===sh)shut()};
 view.addEventListener('click',e=>{const u=e.target.closest('.gl');if(u)open(+u.dataset.g)});
@@ -4024,10 +4272,10 @@ const deco=()=>{if(S.view!=='learn')return;const seen=new Set();
 /* halaman Glosarium */
 function vG(){view.className='view';void view.offsetWidth;view.className='view in';back.style.visibility='visible';gear.style.display='none';prog.innerHTML='';
  const s=$('#srch');if(s)s.style.display='none';title.textContent='Glosarium';
- view.innerHTML=guide('Ini <b>kamus istilah</b> 📖. Tiap istilah kujelaskan pakai <b>bahasa bayi</b> 👶 dulu, baru contohnya. Di dalam materi, kata bergaris titik-titik bisa kamu <b>ketuk</b> untuk lihat artinya!')
+ view.innerHTML=guide('Ini <b>kamus istilah</b> 📖. Tiap istilah kujelaskan lewat <b>pengertian umum</b> 📘 dulu, lalu <b>bahasa bayi</b> 👶, baru contohnya. Di dalam materi, kata bergaris titik-titik bisa kamu <b>ketuk</b> untuk lihat artinya!')
   +`<input class="in" id="gq" placeholder="Cari istilah (mis. gerund)…" value="${esc(S.gq||'')}">`
   +`<div class="gc"><button data-c="">Semua</button>${Object.entries(C).map(([k,v])=>`<button data-c="${k}">${v}</button>`).join('')}</div>`
-  +T.map((t,i)=>`<details class="gd" data-c="${t[4]}" data-t="${esc((t[0]+' '+t[1]).toLowerCase())}"><summary>${t[0]}<small>${t[1]}</small></summary><div class="gb">👶 ${t[2]}</div><div class="ex"><p>${t[3]}</p></div></details>`).join('');
+  +T.map((t,i)=>`<details class="gd" data-c="${t[4]}" data-t="${esc((t[0]+' '+t[1]).toLowerCase())}"><summary>${t[0]}<small>${t[1]}</small></summary>${(window.GLD&&GLD[t[0]])?`<div class="gdef"><b>📘 Pengertian umum</b><p>${GLD[t[0]]}</p></div>`:''}<div class="gb"><b>👶 Bahasa bayi</b><p>${t[2]}</p></div><div class="ex"><p>${t[3]}</p></div></details>`).join('');
  const ap=()=>{const q=($('#gq').value||'').toLowerCase().trim();S.gq=q;view.querySelectorAll('details.gd').forEach(d=>{d.hidden=!((!S.gf||d.dataset.c===S.gf)&&(!q||d.dataset.t.includes(q)))});view.querySelectorAll('.gc button').forEach(b=>b.classList.toggle('on',(b.dataset.c||'')===(S.gf||'')))};
  $('#gq').oninput=ap;view.querySelectorAll('.gc button').forEach(b=>b.onclick=()=>{S.gf=b.dataset.c;ap()});ap();
  const f=view.querySelector('details.gd:not([hidden])');if(f&&S.gq&&view.querySelectorAll('details.gd:not([hidden])').length===1)f.open=true}
@@ -4035,103 +4283,6 @@ const _r=window.render;window.render=function(){shut();if(S.view==='gl'){vG();re
 const _vm=window.vMenu;window.vMenu=function(){_vm();const g=$('#tg');if(g&&!$('#tgl')){g.insertAdjacentHTML('beforebegin',`<button class="card" id="tgl"><span class="ico">📖</span><span class="txt"><small>${T.length} istilah</small><b>Glosarium</b><em>Gerund, infinitive, dll. versi bahasa bayi</em></span></button>`);$('#tgl').onclick=()=>go('gl',{gf:'',gq:''})}};
 }catch(e){console.warn('v53 glosarium gagal',e)}})();
 </script>
-<style id="v57css">
-/* v57: tampilan flat (tanpa gradasi) dengan detail halus. Hanya mode terang; mode gelap tidak disentuh. */
-html:not([data-theme=dark]) #app{--ink2:color-mix(in srgb,var(--ink) 18%,transparent)}
-html:not([data-theme=dark]) #app{background:var(--cream)}
-html:not([data-theme=dark]) #app .foot{background:var(--cream);border-top:1.5px dashed var(--ink2)}
-html:not([data-theme=dark]) #app #title{background:none;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:currentColor;color:var(--ink)}
-html:not([data-theme=dark]) #app #prog i{height:7px;border-radius:2px;background:var(--cream-d)}
-html:not([data-theme=dark]) #app #prog i.on{background:var(--terra);box-shadow:none}
-/* kartu: tepi tegas + bayangan keras ala kertas tempel */
-html:not([data-theme=dark]) #app .card,html:not([data-theme=dark]) #app .qcard,html:not([data-theme=dark]) #app .why,html:not([data-theme=dark]) #app .res,html:not([data-theme=dark]) #app details.gd{background:var(--white);border:1.5px solid var(--ink2);box-shadow:0 3px 0 var(--ink2)}
-html:not([data-theme=dark]) #app .card::after{display:none}
-html:not([data-theme=dark]) #app .card:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--ink2)}
-html:not([data-theme=dark]) #app .card:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink2)}
-html:not([data-theme=dark]) #app .path>.card{border-left:6px solid var(--terra)}
-html:not([data-theme=dark]) #app .ico{background:var(--terra-l);border:1.5px solid color-mix(in srgb,var(--terra) 45%,transparent);border-radius:14px;box-shadow:none}
-html:not([data-theme=dark]) #app .grp h3{border-bottom:2px solid var(--ink);padding-bottom:6px;letter-spacing:.2px}
-/* tombol: solid, menekan ke bawah saat disentuh */
-html:not([data-theme=dark]) #app .btn{background:var(--terra);text-shadow:none;border:1.5px solid var(--terra-d);box-shadow:0 4px 0 var(--terra-d)}
-html:not([data-theme=dark]) #app .btn::after{display:none}
-html:not([data-theme=dark]) #app .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--terra-d)}
-/* balon Pak Yood */
-html:not([data-theme=dark]) #app .bubble{background:var(--white);border:1.5px solid var(--ink2);box-shadow:0 3px 0 var(--ink2)}
-html:not([data-theme=dark]) #app .bubble::before{background:var(--white);border-left:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2);border-radius:0 0 0 3px}
-html:not([data-theme=dark]) #app .bubble b{background:none;padding:0 2px;box-shadow:inset 0 -.38em 0 color-mix(in srgb,var(--gold) 38%,transparent)}
-/* contoh kalimat: penanda kotak kecil, garis tipis antar baris */
-html:not([data-theme=dark]) #app .ex{background:var(--terra-l);border:1.5px solid color-mix(in srgb,var(--terra) 30%,transparent);border-left:6px solid var(--terra)}
-html:not([data-theme=dark]) #app .ex p{border-left:0;padding:4px 0 4px 20px;position:relative;border-bottom:1px dotted color-mix(in srgb,var(--terra) 30%,transparent);margin:0}
-html:not([data-theme=dark]) #app .ex p:last-child{border-bottom:0}
-html:not([data-theme=dark]) #app .ex p::before{content:"";position:absolute;left:3px;top:.95em;width:8px;height:8px;background:var(--terra);transform:rotate(45deg)}
-/* tips: kertas kuning dengan selotip */
-html:not([data-theme=dark]) #app .tip{position:relative;background:#FFF4CF;border:1.5px dashed color-mix(in srgb,var(--gold) 70%,var(--ink));border-left-width:1.5px;box-shadow:none;margin-top:8px}
-html:not([data-theme=dark]) #app .tip::before{content:"";position:absolute;top:-9px;left:16px;width:56px;height:16px;background:color-mix(in srgb,var(--terra) 28%,transparent);transform:rotate(-3deg)}
-/* tabel */
-html:not([data-theme=dark]) #app .tbl table{border:1.5px solid var(--ink2);border-radius:12px;overflow:hidden;background:var(--white)}
-html:not([data-theme=dark]) #app .tbl th{background:var(--terra);color:#fff}
-html:not([data-theme=dark]) #app .tbl tr:nth-child(even) td{background:var(--cream)}
-html:not([data-theme=dark]) #app .tbl td{border-bottom:1px solid var(--ink2)}
-/* peta konsep */
-html:not([data-theme=dark]) #app .mm-c{background:var(--terra);box-shadow:0 4px 0 var(--terra-d);border:1.5px solid var(--terra-d)}
-/* kuis: pilihan berhuruf A B C */
-html:not([data-theme=dark]) #app .opts{counter-reset:o}
-html:not([data-theme=dark]) #app .opt{display:flex;align-items:center;gap:12px;background:var(--white);border:2px solid var(--ink2);box-shadow:0 3px 0 var(--ink2)}
-html:not([data-theme=dark]) #app .opt::before{counter-increment:o;content:counter(o,upper-alpha);flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:var(--terra-l);color:var(--terra-d);font-weight:800;font-size:13px}
-html:not([data-theme=dark]) #app .opt:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 var(--ink2)}
-html:not([data-theme=dark]) #app .opt.ok{border-color:var(--ok);box-shadow:0 3px 0 var(--ok)}
-html:not([data-theme=dark]) #app .opt.ok::before{content:"✓";background:var(--ok);color:#fff}
-html:not([data-theme=dark]) #app .opt.bad{box-shadow:0 3px 0 var(--bad)}
-html:not([data-theme=dark]) #app .opt.bad::before{content:"✕";background:var(--bad);color:#fff}
-/* dashboard & kartu bonus: warna solid */
-html:not([data-theme=dark]) #app .dash{background:var(--terra);border:1.5px solid var(--terra-d);box-shadow:0 4px 0 var(--terra-d)}
-html:not([data-theme=dark]) #app .dash::before{display:none}
-html:not([data-theme=dark]) #app .dash.sup{background:var(--terra)}
-html:not([data-theme=dark]) #app .dg{background:var(--white)}
-html:not([data-theme=dark]) #app .dg.done{background:#FFF4CF;border-color:var(--gold)}
-html:not([data-theme=dark]) #app .combo{background:var(--gold);color:var(--ink)}
-html:not([data-theme=dark]) #app .supb a.sup1{background:var(--gold);box-shadow:0 4px 0 color-mix(in srgb,var(--gold) 60%,var(--ink))}
-html:not([data-theme=dark]) #app .supb a.sup1::after{display:none}
-/* istilah glosarium: stabilo datar */
-html:not([data-theme=dark]) #app .gl{text-decoration:none;background:color-mix(in srgb,var(--gold) 32%,transparent);border-bottom:2px solid var(--gold);border-radius:3px;padding:0 3px}
-html:not([data-theme=dark]) #app .gc button{border:1.5px solid var(--ink2)}
-/* detail kecil */
-::selection{background:color-mix(in srgb,var(--gold) 55%,transparent)}
-html:not([data-theme=dark]) #app .view{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--terra) 40%,transparent) transparent}
-html:not([data-theme=dark]) #app input.in{border:2px solid var(--ink2);background:var(--white);border-radius:14px}
-html:not([data-theme=dark]) #app input.in:focus{outline:0;border-color:var(--terra)}
-</style>
-<style id="v58css">
-/* v58: panel "bedah jawaban" tampilan premium, flat */
-html:not([data-theme=dark]) #app .why.full{padding:0;overflow:hidden;border-radius:20px;border:1.5px solid var(--ink2);box-shadow:0 4px 0 var(--ink2);background:var(--white)}
-html:not([data-theme=dark]) #app .why.full h4{display:flex;align-items:center;gap:12px;margin:0;padding:14px 16px;font-size:17px;line-height:1.25;color:#fff;background:var(--terra-d);border-bottom:1.5px solid var(--ink2)}
-html:not([data-theme=dark]) #app .why.full.ok h4{background:var(--ok)}
-html:not([data-theme=dark]) #app .why.full.no h4{background:var(--bad)}
-html:not([data-theme=dark]) #app .wbadge{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fff;font-style:normal;font-weight:800;font-size:18px;color:var(--ink)}
-html:not([data-theme=dark]) #app .why.ok .wbadge{color:var(--ok)}
-html:not([data-theme=dark]) #app .why.no .wbadge{color:var(--bad)}
-html:not([data-theme=dark]) #app .why.full .exp{padding:14px 14px 16px;gap:10px}
-html:not([data-theme=dark]) #app .exp li{padding:12px 14px 12px 56px;background:var(--cream);border:1.5px solid var(--ink2);border-radius:14px;line-height:1.55}
-html:not([data-theme=dark]) #app .exp li::before{content:attr(data-i);left:13px;top:12px;width:32px;height:32px;border-radius:10px;background:var(--white);border:1.5px solid var(--ink2);box-shadow:none;color:var(--ink);font-size:16px}
-html:not([data-theme=dark]) #app .exp li strong{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
-html:not([data-theme=dark]) #app .exp li[data-k=y],html:not([data-theme=dark]) #app .exp li[data-k=a]{background:var(--ok-bg);border-color:var(--ok)}
-html:not([data-theme=dark]) #app .exp li[data-k=y] strong,html:not([data-theme=dark]) #app .exp li[data-k=a] strong{color:var(--ok)}
-html:not([data-theme=dark]) #app .exp li[data-k=y]::before,html:not([data-theme=dark]) #app .exp li[data-k=a]::before{background:var(--ok);border-color:var(--ok);color:#fff}
-html:not([data-theme=dark]) #app .exp li[data-k=a]{font-size:16px}
-html:not([data-theme=dark]) #app .why.no .exp li[data-k=c]{background:var(--bad-bg);border-color:var(--bad)}
-html:not([data-theme=dark]) #app .why.no .exp li[data-k=c] strong{color:var(--bad)}
-html:not([data-theme=dark]) #app .why.no .exp li[data-k=c]::before{background:var(--bad);border-color:var(--bad);color:#fff}
-html:not([data-theme=dark]) #app .exp li[data-k=k]{background:#FFF4CF;border:1.5px dashed color-mix(in srgb,var(--gold) 75%,var(--ink))}
-html:not([data-theme=dark]) #app .exp li[data-k=k] strong{color:#8A5A00}
-html:not([data-theme=dark]) #app .exp li[data-k=t]{background:transparent;border-style:dashed}
-html:not([data-theme=dark]) #app .exp .ex2{position:relative;padding:7px 0 7px 24px;border-top:1px dotted var(--ink2);margin-top:6px;font-size:14px}
-html:not([data-theme=dark]) #app .exp li[data-k=o] .ex2::before,html:not([data-theme=dark]) #app .exp li[data-k=e] .ex2::before{position:absolute;left:2px;top:7px;font-weight:800}
-html:not([data-theme=dark]) #app .exp li[data-k=o] .ex2::before{content:"✕";color:var(--bad)}
-html:not([data-theme=dark]) #app .exp li[data-k=e] .ex2::before{content:"✓";color:var(--ok)}
-html:not([data-theme=dark]) #app .exp li[data-k=r] .ex2{padding-left:0;border-top:1px dotted var(--ink2)}
-html:not([data-theme=dark]) #app .why.ok:not(.full){background:var(--ok-bg);border:1.5px solid var(--ok);border-left:6px solid var(--ok);font-weight:600;border-radius:14px;box-shadow:0 3px 0 color-mix(in srgb,var(--ok) 45%,transparent)}
-html:not([data-theme=dark]) #app .why.no:not(.full){background:var(--bad-bg);border:1.5px solid var(--bad);border-left:6px solid var(--bad);border-radius:14px;box-shadow:0 3px 0 color-mix(in srgb,var(--bad) 45%,transparent)}
-</style>
 <script id="bedah-v58">
 /* v58: menandai panel bedah jawaban (benar/salah) agar bisa ditata */
 (function(){try{
@@ -4145,12 +4296,6 @@ const run=()=>document.querySelectorAll('.why:not([data-e])').forEach(enh);
 new MutationObserver(run).observe(document.getElementById('view'),{childList:true,subtree:true});run();
 }catch(e){console.warn('v58 bedah gagal',e)}})();
 </script>
-<style id="v59css">
-.logo{display:none;width:38px;height:38px;flex:none}
-.logo svg{width:100%;height:100%;display:block}
-body[data-v=menu] .logo{display:block}
-body[data-v=menu] #back{display:none}
-</style>
 <script id="logo-v59">
 (function(){try{
 const OWLS='<svg viewBox="0 0 100 100"> <path d="M20 32 L28 10 L45 24Z M80 32 L72 10 L55 24Z" fill="#9E4430"/><path d="M38 28 v7 q12 6 24 0 v-7" fill="#2A1D19"/><path d="M26 25 L50 13 L74 25 L50 36Z" fill="#3A2A24"/><g><path d="M70 26 q6 5 4 15" stroke="#E8A13A" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="74" cy="43" r="2.6" fill="#E8A13A"/></g> <ellipse cx="50" cy="60" rx="35" ry="35" fill="#C2593F"/> <ellipse cx="50" cy="70" rx="22" ry="21" fill="#F8E8D6"/> <ellipse cx="17" cy="64" rx="7" ry="16" fill="#9E4430" transform="rotate(12 17 64)"/> <ellipse cx="83" cy="64" rx="7" ry="16" fill="#9E4430" transform="rotate(-12 83 64)"/> <circle cx="36" cy="46" r="12" fill="#fff"/><circle cx="64" cy="46" r="12" fill="#fff"/> <g><circle cx="37" cy="47" r="5.5" fill="#3A2A24"/><circle cx="35" cy="45" r="1.8" fill="#fff"/></g> <g><circle cx="63" cy="47" r="5.5" fill="#3A2A24"/><circle cx="61" cy="45" r="1.8" fill="#fff"/></g> <path d="M26 36 L44 30 M74 36 L56 30" stroke="#3A2A24" stroke-width="3" stroke-linecap="round"/> <path d="M45 55 L55 55 L50 64Z" fill="#E8A13A"/> <circle cx="24" cy="58" r="4" fill="#F0B3A0" opacity=".7"/><circle cx="76" cy="58" r="4" fill="#F0B3A0" opacity=".7"/> <path d="M40 94 h8 M52 94 h8" stroke="#E8A13A" stroke-width="4" stroke-linecap="round"/></svg>';
@@ -4224,37 +4369,6 @@ render();
 }catch(e){console.warn('v63 alur gagal',e)}})();
 </script>
 
-<style id="v64css">
-/* v64: konten (tabel, kartu) tidak boleh bocor di bawah/di atas footer tombol */
-.view .tbl,.view .ex,.view .tip,.view .qcard,.view .mm{isolation:isolate}
-.view .foot{z-index:30;background:var(--cream)}
-</style>
-<style id="v65css">
-/* v65: gerak Pak Yood lebih halus & hidup: napas + goyang pelan, kedip alami, sayap bernapas,
-   lompat dengan squash & stretch, geleng lembut saat salah. Aksi a-* lama tetap jalan. */
-.mascot{animation:v65float 4.2s ease-in-out infinite;will-change:transform}
-.mascot svg{transform-origin:50% 92%;animation:v65idle 8.4s ease-in-out infinite}
-.mascot .eye{transform-box:fill-box;transform-origin:center;animation:v65blink 5.6s infinite}
-.mascot .eye circle{transition:translate .28s cubic-bezier(.2,.8,.2,1)}
-.mascot:not([class*="a-"]) .wl{transform-origin:50% 12%;animation:v65wl 4.2s ease-in-out infinite}
-.mascot:not([class*="a-"]) .wr{transform-origin:50% 12%;animation:v65wr 4.2s ease-in-out infinite}
-.mascot.cheer{animation:v65float 4.2s ease-in-out infinite,v65hop .95s cubic-bezier(.3,1.3,.5,1)}
-.mascot.cheer .wl{animation:v65flapl .17s ease-in-out 6}
-.mascot.cheer .wr{animation:v65flapr .17s ease-in-out 6}
-.mascot.oops{animation:v65oops .75s cubic-bezier(.36,.07,.19,.97)}
-.mascot.oops .wl{animation:none;rotate:-14deg}
-.mascot.oops .wr{animation:none;rotate:14deg}
-@keyframes v65float{0%,100%{translate:0 0}50%{translate:0 -5px}}
-@keyframes v65idle{0%,100%{rotate:-1.3deg;scale:1 1}25%{rotate:0deg;scale:1.014 .986}50%{rotate:1.3deg;scale:1 1}75%{rotate:0deg;scale:1.014 .986}}
-@keyframes v65blink{0%,90%,100%{transform:scaleY(1)}92%{transform:scaleY(.08)}94%{transform:scaleY(1)}96%{transform:scaleY(.08)}98%{transform:scaleY(1)}}
-@keyframes v65wl{0%,100%{rotate:0deg}50%{rotate:-7deg}}
-@keyframes v65wr{0%,100%{rotate:0deg}50%{rotate:7deg}}
-@keyframes v65flapl{0%,100%{rotate:0deg}50%{rotate:-48deg}}
-@keyframes v65flapr{0%,100%{rotate:0deg}50%{rotate:48deg}}
-@keyframes v65hop{0%{transform:none}14%{transform:translateY(3px) scale(1.09,.9)}38%{transform:translateY(-26px) scale(.93,1.09) rotate(-5deg)}62%{transform:translateY(0) scale(1.07,.93) rotate(3deg)}78%{transform:translateY(-7px) scale(.98,1.03)}100%{transform:none}}
-@keyframes v65oops{0%{transform:none}15%{transform:translateX(-5px) rotate(-5deg)}35%{transform:translateX(4px) rotate(4deg) scale(.98,1.01)}55%{transform:translateX(-3px) rotate(-2.5deg)}75%{transform:translateX(2px) rotate(1.5deg)}100%{transform:none}}
-@media (prefers-reduced-motion:reduce){.mascot,.mascot svg,.mascot .eye,.mascot .wing{animation:none!important}}
-</style>
 <script id="struktur-v66">
 /* v66: STRUKTUR MATERI. Tiap langkah punya tahap (Pembuka → Konsep → Rumus → Contoh → Jebakan → Naik Level → Peta),
    Jebakan & tips ujian dipindah ke belakang, ada daftar isi di awal dan checklist "kamu sekarang bisa" di akhir. */
@@ -4365,76 +4479,6 @@ render();
 }catch(e){console.warn('v67 materi gagal',e)}})();
 </script>
 
-<style id="v68css">
-/* v68: rapi & premium. Header 2 baris (judul 1 baris + progress penuh), celah bocor footer ditutup,
-   tombol pemanasan terbaca, judul bab rapi, mikro-interaksi halus, fokus keyboard jelas. */
-#app{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-#app header{flex-wrap:wrap;row-gap:8px;padding-bottom:12px}
-#app #title{flex:1 1 0;min-width:0;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;text-wrap:nowrap;font-size:19px;line-height:1.3}
-#app #prog{order:5;flex:0 0 100%;gap:4px;height:5px}
-#app #prog:empty{display:none}
-#app #prog i{flex:1;width:auto!important;height:5px!important;border-radius:99px!important}
-#app .view{padding-bottom:0!important;gap:14px;scroll-behavior:smooth;scroll-padding-bottom:120px}
-#app .view .foot{padding-bottom:calc(16px + env(safe-area-inset-bottom))!important;z-index:30}
-#app .v63br{font-size:.9em;line-height:1.6;padding:12px 14px}
-#app #wu{background:transparent!important;color:var(--terra)!important;border:1.5px solid var(--terra)!important;box-shadow:none!important;animation:none!important;font-size:.86em;font-weight:700;padding:8px 14px;min-height:0;width:auto;border-radius:99px}
-#app .v66chip span:first-child{border:1px solid var(--line,rgba(0,0,0,.08))}
-#app details>summary{list-style:none}#app details>summary::-webkit-details-marker{display:none}
-#app .grp h3{display:flex;align-items:center;justify-content:space-between;gap:10px}
-#app .grp h3 span{flex:1;min-width:0;line-height:1.25}
-#app .grp h3 small{flex:none;white-space:nowrap;padding:4px 10px;font-size:.75rem}
-#app .card,#app .btn{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,background .18s}
-@media (hover:hover){#app .path .card:hover{transform:translateY(-2px)}}
-#app .card:active,#app .btn:active{transform:translateY(1px) scale(.992)}
-#app :is(button,summary,input,a):focus-visible{outline:2.5px solid color-mix(in srgb,var(--terra) 70%,white);outline-offset:3px}
-#app .stats .pill,#app .stars,#app small{font-variant-numeric:tabular-nums}
-#app ::selection{background:color-mix(in srgb,var(--gold) 45%,transparent)}
-#app .path .card{animation:v68in .5s cubic-bezier(.2,.8,.2,1) backwards}
-#app .path .card:nth-child(2){animation-delay:.04s}#app .path .card:nth-child(3){animation-delay:.08s}#app .path .card:nth-child(4){animation-delay:.12s}#app .path .card:nth-child(5){animation-delay:.16s}#app .path .card:nth-child(n+6){animation-delay:.2s}
-@keyframes v68in{from{opacity:0;transform:translateY(12px)}}
-@media (prefers-reduced-motion:reduce){#app .path .card{animation:none}#app .view{scroll-behavior:auto}}
-/* halaman soal: gutter buku tulis diperkecil (58px → 40px) supaya jawaban lebih lega di HP */
-#app .qcard:has(>.q){padding:14px 16px 18px 40px;background:linear-gradient(90deg,transparent 26px,var(--margin) 26px 27.5px,transparent 27.5px),var(--paper)}
-#app .qcard>.q{margin:0 -16px 0 -40px;padding:0 16px 0 40px;background:linear-gradient(90deg,transparent 26px,var(--margin) 26px 27.5px,transparent 27.5px),linear-gradient(transparent 31px,var(--rule) 31px) 0 0/100% 32px repeat-y}
-</style>
-<style id="v69css">
-/* v69: navigasi (Beranda / Sebelumnya / Isi modul), cek paham, lanjutkan belajar, poles tampilan */
-#app>header{position:relative;z-index:40;background:color-mix(in srgb,var(--cream) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1.5px solid color-mix(in srgb,var(--ink) 8%,transparent)}
-#app #home69{width:40px;height:40px;border-radius:50%;background:var(--white);border:1.5px solid color-mix(in srgb,var(--ink) 12%,transparent);font-size:18px;line-height:1;display:none;box-shadow:0 2px 0 color-mix(in srgb,var(--ink) 10%,transparent);flex:none}
-#app #home69:active{transform:translateY(1px)}
-#prog i{cursor:pointer;position:relative;transition:transform .15s,background .2s}
-#prog i::after{content:"";position:absolute;inset:-12px -3px}
-#prog i:hover{transform:scaleY(1.5)}
-.v66chip+*{margin-top:2px}
-#app .path .card{box-shadow:0 1px 0 rgba(0,0,0,.04),0 12px 24px -16px rgba(120,60,40,.45);transition:transform .15s var(--ease),box-shadow .2s}
-#app .path .card:active{transform:scale(.985)}
-#app .v69res{width:100%;margin:0 0 14px;background:linear-gradient(135deg,var(--terra-l),var(--white));border:1.5px solid var(--terra);text-align:left}
-#app .v69res b{display:block}
-.v69nav{display:flex;gap:8px}
-.v69nav button,.v69cek button,.v69j{min-height:46px;border-radius:14px;background:var(--white);border:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent);font-weight:700;font-size:15px;padding:0 14px;box-shadow:0 3px 0 color-mix(in srgb,var(--ink) 10%,transparent);transition:transform .12s,box-shadow .12s}
-.v69nav button:active,.v69cek button:active{transform:translateY(2px);box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 10%,transparent)}
-.v69nav #v69p{flex:1}
-.v69cek{display:flex;gap:8px;margin:10px 0 4px}
-.v69cek button{flex:1;min-height:42px;font-size:14px}
-.v69cek button.on.y{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
-.v69cek button.on.n{background:var(--terra-l);border-color:var(--terra);color:var(--terra-d)}
-.v69box{margin:10px 0;padding:12px 14px;border-radius:16px;background:var(--cream-d);line-height:1.65}
-.v69box ul{margin:6px 0 0;padding-left:18px}
-.v69box .v69j{min-height:36px;margin:4px 6px 0 0;font-size:13px}
-.v66chip~details li{cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
-#v69sheet{position:absolute;inset:0;z-index:90;display:none}
-#v69sheet.on{display:block}
-#v69sheet .bd{position:absolute;inset:0;background:rgba(40,20,12,.45)}
-#v69sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:82%;overflow:auto;background:var(--cream);border-radius:24px 24px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px rgba(0,0,0,.3);animation:v69up .28s var(--ease)}
-#v69sheet .pn>b{display:block;margin-bottom:10px;font-size:15px}
-#v69sheet ol{list-style:none;display:flex;flex-direction:column;gap:6px}
-#v69sheet li button{width:100%;display:flex;gap:10px;align-items:center;text-align:left;padding:11px 12px;border-radius:14px;background:var(--white);border:1.5px solid transparent;font-size:14px;font-weight:600}
-#v69sheet li button.cur{border-color:var(--terra);background:var(--terra-l)}
-#v69sheet li button span:nth-child(2){flex:1}
-#v69sheet .row{display:flex;gap:8px;margin-top:12px}
-#v69sheet .row button{flex:1;min-height:44px;border-radius:14px;background:var(--white);border:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent);font-weight:700}
-@keyframes v69up{from{transform:translateY(40px);opacity:0}}
-</style>
 <script id="upgrade-v69">
 (function(){try{
 const IC={intro:'🧲',konsep:'🧠',rumus:'📐',contoh:'🔎',ucap:'🔊',jebakan:'⚠️',ujian:'🏆',map:'🗺️',praktik:'🎤'};
@@ -4489,38 +4533,6 @@ view.addEventListener('touchend',e=>{if(e.target.closest('.tbl,.mm,input,textare
 render();
 }catch(e){console.warn('v69 gagal',e)}})();
 </script>
-<style id="v70css">
-/* v70: lapisan tampilan premium + burung interaktif */
-:root{--sh:0 1px 2px rgba(80,40,25,.06),0 10px 26px -14px rgba(80,40,25,.32);--hair:color-mix(in srgb,var(--ink) 9%,transparent)}
-html:not([data-theme=dark]) body{background:radial-gradient(900px 520px at 15% -8%,#F7E4D4,transparent 60%),radial-gradient(800px 480px at 100% 100%,#EEDAC6,transparent 55%),#EADCC8}
-@media(min-width:560px){body{align-items:center}#app{height:min(100%,920px);border-radius:34px;box-shadow:0 36px 90px -24px rgba(80,40,25,.5),0 0 0 1px rgba(80,40,25,.08)}}
-#app .view{scrollbar-width:none}#app .view::-webkit-scrollbar{display:none}
-#app #title{letter-spacing:-.02em}
-#app #back,#app #gear{width:40px;height:40px;border-radius:50%;background:var(--white);border:1px solid var(--hair);box-shadow:var(--sh);display:inline-flex;align-items:center;justify-content:center;flex:none}
-#app #home69{border:1px solid var(--hair);box-shadow:var(--sh)}
-#app .stats .pill{border-radius:99px;background:var(--white);border:1px solid var(--hair);box-shadow:var(--sh);font-weight:700}
-#app .path .card{border:1px solid var(--hair);border-radius:22px;background:var(--white);box-shadow:var(--sh)}
-#app .path .card:hover{transform:translateY(-2px);box-shadow:0 2px 3px rgba(80,40,25,.06),0 18px 34px -16px rgba(80,40,25,.4)}
-#app .card .ico{border-radius:16px;background:linear-gradient(145deg,var(--terra-l),color-mix(in srgb,var(--white) 80%,transparent))}
-#app .grp h3{letter-spacing:-.01em}
-#app .bubble{border-radius:22px;border:1px solid var(--hair);box-shadow:var(--sh)}
-#app .ex,#app .tbl,#app .qcard,#app .res{border-radius:20px;box-shadow:var(--sh)}
-#app .tip{border-radius:18px;border:1px solid color-mix(in srgb,var(--terra) 24%,transparent);background:linear-gradient(180deg,var(--white),color-mix(in srgb,var(--terra-l) 75%,var(--white)))}
-#app .v66chip span:first-child{background:var(--terra-l)!important;color:var(--terra-d);padding:4px 12px!important}
-#app .btn:not(.ghost){background:linear-gradient(180deg,#DB6D4D,#BB5035);border-radius:18px;letter-spacing:.2px;box-shadow:0 12px 26px -12px rgba(194,89,63,.85),inset 0 1px 0 rgba(255,255,255,.35)!important}
-#app .btn:not(.ghost):active{transform:translateY(1px) scale(.99)}
-#app .btn.ghost{background:var(--white);border:1.5px solid var(--hair);box-shadow:var(--sh)!important}
-html:not([data-theme=dark]) #app .foot{background:color-mix(in srgb,var(--cream) 90%,transparent);border-top:1px solid var(--hair);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.v69nav button,.v69cek button{box-shadow:var(--sh);border:1px solid var(--hair)}
-#app .mascot,#fo{cursor:pointer;-webkit-user-select:none;user-select:none}
-.mascot .eye circle{transition:translate .18s cubic-bezier(.2,.8,.2,1)}
-.mascot.v70sleep .eye{animation:none!important;transform:scaleY(.1)}
-.mascot.v70tilt svg{animation:v70tilt .9s cubic-bezier(.3,1.4,.5,1)}
-@keyframes v70tilt{0%{rotate:0deg}30%{rotate:-16deg}60%{rotate:11deg}100%{rotate:0deg}}
-.v70say{position:fixed;z-index:95;max-width:240px;padding:9px 14px;border-radius:16px;background:var(--white);color:var(--ink);border:1px solid var(--hair);box-shadow:0 12px 28px -10px rgba(80,40,25,.5);font:700 13px/1.35 var(--ui);pointer-events:none;animation:v70in .25s cubic-bezier(.3,1.5,.5,1)}
-.v70say::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:inherit;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);transform:translateX(-50%) rotate(45deg)}
-@keyframes v70in{from{opacity:0;transform:translateY(8px) scale(.85)}}
-</style>
 <script id="fun-v70">
 (function(){try{
 const RM=matchMedia('(prefers-reduced-motion:reduce)');
@@ -4551,27 +4563,6 @@ setInterval(()=>{if(asleep||document.hidden||RM.matches||Date.now()-idle<16000)r
  asleep=true;m.classList.add('v70sleep');pop(m,['💤','z','Z'],3,40);bub(m,'Zzz… 💤')},3000);
 }catch(e){console.warn('v70 gagal',e)}})();
 </script>
-<style id="v71css">
-@keyframes v71f{from{opacity:0;transform:translateX(34px)}}
-@keyframes v71b{from{opacity:0;transform:translateX(-34px)}}
-#app .view.in.v71f{animation:v71f .3s cubic-bezier(.2,.8,.2,1)}
-#app .view.in.v71b{animation:v71b .3s cubic-bezier(.2,.8,.2,1)}
-.cefr{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;background:var(--terra);color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;vertical-align:1px}
-.v71chip{margin:0 0 12px;padding:10px 14px;border-radius:16px;background:var(--cream-d);font-size:13.5px;line-height:1.55}
-.v71m{margin:10px 0;padding:12px 14px;border-radius:18px;background:var(--white);border:1px solid var(--hair,#0001);box-shadow:var(--sh,none);line-height:1.6}
-.v71m .w{color:var(--bad);font-weight:700}.v71m .r{color:var(--ok);font-weight:700}.v71m p{margin-top:6px;font-size:14px;opacity:.9}
-.v71h{margin:14px 0 6px;font-weight:800;font-size:15px}
-.v71who{display:flex;gap:10px;align-items:flex-start;margin:6px 0 14px}
-.v71who i{font-style:normal;font-size:30px;line-height:1}
-.v71who div{padding:12px 14px;border-radius:4px 18px 18px 18px;background:var(--white);border:1px solid var(--hair,#0001);box-shadow:var(--sh,none);font-weight:700}
-.v71who small{display:block;margin-top:4px;font-weight:500;opacity:.7}
-.v71o{display:block;width:100%;text-align:left;margin:8px 0;padding:13px 14px;border-radius:16px;background:var(--white);border:1.5px solid var(--hair,#0002);font-weight:600;box-shadow:var(--sh,none)}
-.v71o.g{border-color:var(--ok);background:var(--ok-bg)}.v71o.m{border-color:#E3A23B}.v71o.x{border-color:var(--bad);background:var(--bad-bg)}
-.v71fb{margin:10px 0;padding:12px 14px;border-radius:16px;background:var(--cream-d);line-height:1.6}
-.v71fc{margin:8px 0 16px;min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px 18px;border-radius:26px;background:linear-gradient(160deg,var(--white),var(--terra-l));border:1px solid var(--hair,#0001);box-shadow:var(--sh,none);text-align:center;width:100%}
-.v71fc b{font:800 34px var(--disp)}.v71fc em{font-style:normal;opacity:.75;font-size:14px}
-.v71row{display:flex;gap:8px;margin:6px 0}.v71row .btn{flex:1}
-</style>
 <script id="fitur-v71">
 (function(){try{
 /* ---- 1. transisi arah + haptic ---- */
@@ -4720,202 +4711,6 @@ const _b=back.onclick;back.onclick=()=>{if(MY[S.view]&&S.k!=null){go(S.view,{k:n
 render();
 }catch(e){console.warn('v71 gagal',e)}})();
 </script>
-<style id="nb-theme">
-/* ===== NB: tema Neo-Brutalist (outline tebal, bayangan keras, warna permen) ===== */
-:root{
-  --ui:"DM Sans","Segoe UI",system-ui,-apple-system,sans-serif;--disp:var(--ui);--read:var(--ui);--serif:var(--ui);
-  --bd:#111;--g:#6EE0B0;--g-d:#0C7A57;--y:#FFE27A;--p:#FFB9B9;--b:#A8DDF6;--on-g:#111;
-  --terra:#6EE0B0;--terra-d:#0C7A57;--terra-l:#E3F8EE;
-  --cream:#FFFDF7;--cream-d:#F1EEE6;--white:#FFFFFF;--paper:#FFFFFF;
-  --ink:#111111;--mute:#5E5E70;--line:#111;--rule:#E4E4EE;--margin:#F7A3A3;
-  --ok:#0C7A57;--ok-bg:#D8F6E8;--bad:#B3261E;--bad-bg:#FFE1E1;--gold:#FFD84D;
-  --c0:#6EE0B0;--c1:#FFE27A;--c2:#FFB9B9;--c3:#A8DDF6;
-  --stk:4px 4px 0 var(--y),4px 4px 0 2px var(--bd);
-  --r:20px;--r1:22px;--r2:16px}
-[data-theme=dark]{--bd:#F4F4EE;--g:#2BD6A0;--g-d:#7CEFC8;--terra:#2BD6A0;--terra-d:#7CEFC8;--terra-l:#173A30;
-  --cream:#17171D;--cream-d:#0D0D11;--white:#22222B;--paper:#22222B;--ink:#F4F4EE;--mute:#A7A7B8;--line:#F4F4EE;--rule:#33333F;
-  --ok:#7CEFC8;--ok-bg:#16382D;--bad:#FF9A93;--bad-bg:#3C1E1E;--c0:#2BD6A0;--c1:#E9C43E;--c2:#E58E8E;--c3:#6FB9E0}
-html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
-body,html:root #app,button,input{font-family:var(--ui)!important;letter-spacing:0}
-body{background:var(--cream-d)!important}
-html:root #app{background:var(--cream)!important}
-@media(min-width:520px){html:root #app{border:2px solid var(--bd)!important;border-radius:36px!important;box-shadow:8px 8px 0 var(--y),8px 8px 0 2px var(--bd)!important}}
-html:root #app::before{opacity:1!important;mix-blend-mode:normal!important;background:
-  radial-gradient(circle,var(--y) 0 5px,transparent 6px) 88% 12%/60px 60px no-repeat,
-  radial-gradient(circle,var(--p) 0 4px,transparent 5px) 8% 38%/60px 60px no-repeat,
-  radial-gradient(circle,var(--b) 0 5px,transparent 6px) 94% 62%/60px 60px no-repeat,
-  radial-gradient(circle,var(--g) 0 4px,transparent 5px) 4% 88%/60px 60px no-repeat!important}
-html:root #app .aur,html:root #app .grain{display:none!important}
-/* header */
-html:root #app header{background:var(--cream)!important;backdrop-filter:none!important;border-bottom:2px solid var(--bd)!important}
-html:root #app #title{font-weight:800!important;font-size:20px!important;color:var(--ink)!important}
-html:root #app #back,html:root #app #gear,html:root #app #srch{width:40px;height:40px;border-radius:12px!important;border:2px solid var(--bd)!important;box-shadow:2px 3px 0 var(--bd)!important;color:var(--on-g)!important;font-weight:800;transition:transform .12s,box-shadow .12s}
-html:root #app #back{background:var(--g)!important}html:root #app #gear{background:var(--y)!important}
-html:root #app #back:active,html:root #app #gear:active{transform:translate(2px,3px)!important;box-shadow:0 0 0 var(--bd)!important}
-html:root #app #prog i{height:8px;border:2px solid var(--bd);background:var(--white)!important;border-radius:8px}
-html:root #app #prog i.on{background:var(--g)!important}
-/* kartu */
-html:root #app .card{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:4px 4px 0 var(--c,var(--g)),4px 4px 0 2px var(--bd)!important;transition:transform .12s,box-shadow .12s!important}
-html:root #app .card:hover{transform:translate(-1px,-1px)!important;box-shadow:5px 5px 0 var(--c,var(--g)),5px 5px 0 2px var(--bd)!important;border-color:var(--bd)!important}
-html:root #app .card:active{transform:translate(3px,3px)!important;box-shadow:1px 1px 0 var(--c,var(--g)),1px 1px 0 2px var(--bd)!important}
-html:root #app .card .ico,html:root #app .path.lv .ico,html:root #app .path.tools .ico{background:var(--c,var(--y))!important;border:2px solid var(--bd)!important;border-radius:14px!important;box-shadow:none!important;color:#111}
-html:root #app .card .txt b,html:root #app .path.lv .txt b{font-weight:800!important;color:var(--ink)}
-html:root #app .card .txt small,html:root #app .path.lv .txt small,html:root #app .path.tools .txt small{color:var(--mute)!important;font-weight:700!important}
-html:root #app .path.lv .card,html:root #app .path.tools .card{border:2px solid var(--bd)!important;border-radius:var(--r1)!important}
-html:root #app .path.lv .card:nth-child(odd){transform:rotate(-.5deg)}html:root #app .path.lv .card:nth-child(even){transform:rotate(.5deg)}
-html:root #app .path.lv .card:hover,html:root #app .path.lv .card:active{transform:none}
-html:root #app .path::before{border-left:2px dashed var(--bd)!important;opacity:.35}
-html:root #app .path.lv .go{background:var(--bd)!important;color:var(--y)!important;border-radius:8px!important}
-html:root #app .lp{height:10px!important;border:2px solid var(--bd);background:var(--white)!important;border-radius:10px!important}
-html:root #app .lp u{background:var(--g)!important;border-radius:0!important}
-html:root #app .stars{color:#111!important;-webkit-text-stroke:0}html[data-theme=dark] html:root #app .stars{color:var(--y)!important}
-html:root #app .sec{font-weight:900!important;font-size:20px!important}
-html:root #app .sec::after{height:0!important;border-top:2px dashed var(--bd);background:none!important;opacity:.4}
-html:root #app .grp h3 small{background:var(--y)!important;color:#111!important;border:2px solid var(--bd);border-radius:10px!important}
-/* pill & dashboard */
-html:root #app .pill{border:2px solid var(--bd)!important;box-shadow:2px 2px 0 var(--bd)!important;background:var(--y)!important;color:#111!important;font-weight:800}
-html:root #app .pill:nth-child(2){background:var(--b)!important}html:root #app .pill:nth-child(n+3){background:var(--p)!important}
-html:root #app .dg{background:var(--y)!important;border:2px solid var(--bd)!important;border-radius:24px!important;box-shadow:4px 4px 0 var(--g),4px 4px 0 2px var(--bd)!important;color:#111}
-html:root #app .dg.done{background:var(--g)!important}html:root #app .dg small,html:root #app .dg .dgt small{color:#111!important;opacity:.75}html:root #app .dg b,html:root #app .dg text{color:#111!important;fill:#111}
-html:root #app .dg svg circle:first-child{stroke:#fff!important}html:root #app .dg svg circle+circle{stroke:#111!important}
-html:root #app .wk i{background:#fff!important;border:2px solid #111;border-radius:6px!important}html:root #app .wk i.on{background:#111!important}
-html:root #app .sbar{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:var(--r2)!important;box-shadow:var(--stk)!important;font-weight:700}
-/* bubble maskot */
-html:root #app .bubble{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:20px!important;box-shadow:var(--stk)!important;color:var(--ink);font-weight:500}
-html:root #app .bubble::before{background:var(--white)!important;border:0;border-left:2px solid var(--bd);border-bottom:2px solid var(--bd);border-radius:0 0 0 4px;left:-9px}
-html:root #app .bubble b{color:var(--ink)!important;background:var(--y);padding:0 4px;border-radius:5px}
-
-.mascot svg ellipse,.mascot svg circle,.mascot svg path[fill],#fo svg ellipse,#fo svg circle,#fo svg path[fill]{stroke:#111;stroke-width:2;stroke-linejoin:round}
-.mascot svg{filter:none!important}
-/* kuis */
-html:root #app .qcard,html:root #app .qcard:has(>.q){background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:4px 4px 0 var(--p),4px 4px 0 2px var(--bd)!important;padding:18px!important;gap:16px}
-html:root #app .qcard>.q{margin:0!important;padding:0!important;background:none!important;font-weight:800!important;font-size:19px!important;line-height:1.4!important}
-html:root #app .qcard .pas{background:var(--cream-d)!important;border:2px dashed var(--bd);border-radius:14px;padding:12px 14px!important;font-size:15.5px;line-height:1.65}
-html:root #app .opt{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:14px!important;box-shadow:3px 3px 0 var(--bd)!important;font-weight:600;color:var(--ink)!important;transition:transform .1s,box-shadow .1s,background .15s!important}
-html:root #app .opt:hover:not(:disabled){background:var(--y)!important;color:#111!important;border-color:var(--bd)!important}
-html:root #app .opt:active:not(:disabled){transform:translate(3px,3px)!important;box-shadow:0 0 0 var(--bd)!important}
-html:root #app .opt.ok{background:var(--g)!important;color:#111!important;box-shadow:3px 3px 0 var(--bd)!important;font-weight:800}
-html:root #app .opt.bad{background:var(--p)!important;color:#111!important;border-color:var(--bd)!important}
-html:root #app .opt:disabled{opacity:1}
-html:root #app .in,html:root #app input.in{background:#F1F1F6!important;color:#111!important;border:2px solid var(--bd)!important;border-radius:14px!important;font-weight:600}
-html:root #app .in:focus{background:#fff!important;box-shadow:3px 3px 0 var(--y)!important}
-html:root #app .chip{background:var(--y)!important;color:#111!important;border:2px solid var(--bd)!important;border-radius:12px!important;box-shadow:2px 2px 0 var(--bd);font-weight:700}
-html:root #app .slot{border-bottom:2px dashed var(--bd)!important}
-html:root #app .why:not(.full){background:var(--ok-bg)!important;border:2px solid var(--bd)!important;border-left:2px solid var(--bd)!important;border-radius:16px!important;color:var(--ink)!important;box-shadow:3px 3px 0 var(--bd)}
-html:root #app .why h4,html:root #app .why.full h4{color:var(--ink)!important}
-html:root #app .res{background:var(--y)!important;border:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:4px 4px 0 var(--g),4px 4px 0 2px var(--bd)!important;color:#111}
-html:root #app .res .big{color:#111!important}
-/* materi */
-html:root #app .ex{background:repeating-linear-gradient(90deg,#FFD84D 0 44px,#FFDF68 44px 88px)!important;color:#111!important;border:2px solid var(--bd)!important;border-left:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:3px 3px 0 var(--bd)}
-html:root #app .ex b,html:root #app .ex2 b{color:#111!important}html:root #app .ex2{background:rgba(255,255,255,.7)!important;border:2px solid var(--bd);color:#111}
-html:root #app .tip{background:var(--p)!important;color:#111!important;border:2px solid var(--bd)!important;border-left:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--bd)}
-html:root #app .tbl{border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--bd)!important;background:var(--white)!important}
-html:root #app .tbl th{background:var(--g)!important;color:#111!important;border-bottom:2px solid var(--bd);font-weight:800}
-html:root #app .tbl td{border-top:1.5px solid var(--bd)!important;color:var(--ink)}
-html:root #app .mm-c{background:var(--g)!important;color:#111!important;border:2px solid var(--bd);box-shadow:3px 3px 0 var(--bd)!important;font-weight:800}
-html:root #app .mm-b{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--b),3px 3px 0 2px var(--bd)!important}
-html:root #app .mm-b b{color:var(--ink)!important}html:root #app .mm-b span{background:var(--y)!important;color:#111!important;border:1.5px solid var(--bd);font-weight:600}
-html:root #app .mm::before,html:root #app .mm-b::before{border-color:var(--bd)!important}
-html:root #app .exp li::before{background:var(--y)!important;color:#111!important;border:2px solid var(--bd);font-weight:800}
-/* tombol */
-html:root #app .btn{background:var(--g)!important;color:var(--on-g)!important;border:2px solid var(--bd)!important;border-radius:16px!important;text-shadow:none!important;font-weight:800!important;box-shadow:4px 5px 0 var(--bd)!important;transition:transform .1s,box-shadow .1s!important}
-html:root #app .btn:active{transform:translate(4px,5px)!important;box-shadow:0 0 0 var(--bd)!important}
-html:root #app .btn.ghost{background:var(--white)!important;color:var(--ink)!important}
-html:root #app .btn.ghost:hover{background:var(--y)!important;color:#111!important}
-html:root #app .btn:disabled{opacity:.5}
-html:root #app .foot{background:linear-gradient(transparent,var(--cream) 30%)!important}
-html:root #app .set{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--bd)!important}
-html:root #app .sw{background:var(--white)!important;border:2px solid var(--bd)}html:root #app .sw::after{background:var(--bd)!important;top:2px;left:2px}html:root #app .sw.on{background:var(--g)!important}
-#mov{background:var(--cream)!important}#mov .msent{background:var(--white)!important;border:2px solid var(--bd);box-shadow:4px 4px 0 var(--y),4px 4px 0 2px var(--bd)}
-/* bar navigasi bawah */
-#nbnav{display:flex;justify-content:space-around;gap:6px;margin:6px 16px calc(12px + env(safe-area-inset-bottom));padding:7px 10px;background:var(--g);border:2px solid var(--bd);border-radius:20px;box-shadow:4px 4px 0 var(--bd);position:relative;z-index:5;flex:none}
-#nbnav button{width:48px;height:44px;border-radius:13px;font-size:21px;border:2px solid transparent;display:grid;place-items:center;transition:transform .1s;color:#111}
-#nbnav button.on{background:var(--y);border-color:var(--bd);box-shadow:2px 2px 0 var(--bd)}
-#nbnav button:active{transform:scale(.9)}
-#nbnav button:focus-visible{outline:3px solid #111;outline-offset:2px}
-@media(max-width:380px){#nbnav{margin-inline:10px}}
-
-/* panel penjelasan jawaban */
-html:root #app{--ink2:var(--bd)}
-html:root #app .foot{border-top:2px dashed var(--bd)!important}
-html:root #app .why.full{padding:0!important;overflow:hidden;border:2px solid var(--bd)!important;border-radius:20px!important;box-shadow:4px 4px 0 var(--bd)!important;background:var(--white)!important}
-html:root #app .why.full h4{background:var(--y)!important;color:#111!important;border-bottom:2px solid var(--bd)!important;font-weight:800}
-html:root #app .why.full.ok h4{background:var(--g)!important}html:root #app .why.full.no h4{background:var(--p)!important}
-html:root #app .wbadge{border:2px solid var(--bd);color:#111!important}
-html:root #app .exp li{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:14px!important;color:var(--ink)}
-html:root #app .exp li::before{background:var(--y)!important;border:2px solid var(--bd)!important;color:#111!important;border-radius:10px!important}
-html:root #app .exp li strong{color:var(--mute)!important}
-html:root #app .exp li[data-k=y],html:root #app .exp li[data-k=a]{background:var(--ok-bg)!important}
-html:root #app .exp li[data-k=y]::before,html:root #app .exp li[data-k=a]::before{background:var(--g)!important}
-html:root #app .why.no .exp li[data-k=c]{background:var(--bad-bg)!important}
-html:root #app .why.no .exp li[data-k=c]::before{background:var(--p)!important}
-html:root #app .exp li[data-k=k]{background:#FFF4CF!important;border-style:dashed!important;color:#111}
-html:root #app .exp li[data-k=k] strong{color:#111!important}
-html:root #app .exp li[data-k=t]{background:transparent!important}
-html:root #app .exp .ex2{border-top:1.5px dashed var(--bd)!important;background:none!important;border-left:0;border-right:0;border-bottom:0;border-radius:0!important}
-html:root #app .opt::before{background:var(--y)!important;border:2px solid var(--bd);color:#111!important}
-html:root #app .opt.ok::before,html:root #app .opt.bad::before{background:#fff!important;color:#111!important}
-html:root #app .path>.card{border-left:2px solid var(--bd)!important}
-html:root #app .tbl table{border:0!important}html:root #app .tbl th{color:#111!important}
-
-html:root #app .view{background:var(--cream)!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-html:root #app main,html:root #app{background:var(--cream)!important}
-#nbnav{background:var(--white)!important}
-#nbnav button.on{background:var(--g)!important}
-/* ===== detail lucu: grid titik, confetti melayang, titik di kartu ===== */
-html:root #app{background:var(--cream) radial-gradient(color-mix(in srgb,var(--bd) 13%,transparent) 1.1px,transparent 1.5px) 0 0/18px 18px!important}
-html:root #app .view{background:transparent!important}
-html:root #app::before{display:block!important;content:"";position:absolute;inset:0;pointer-events:none;z-index:3;opacity:1!important;mix-blend-mode:normal!important;animation:nbdrift 7s ease-in-out infinite;background:
- radial-gradient(circle,var(--y) 0 4px,var(--bd) 4px 5.5px,transparent 6px) 99% 14%/20px 20px no-repeat,
- radial-gradient(circle,var(--p) 0 3px,var(--bd) 3px 4.5px,transparent 5px) 0% 33%/16px 16px no-repeat,
- radial-gradient(circle,var(--b) 0 5px,var(--bd) 5px 6.5px,transparent 7px) 100% 52%/22px 22px no-repeat,
- radial-gradient(circle,var(--g) 0 3px,var(--bd) 3px 4.5px,transparent 5px) 0% 66%/16px 16px no-repeat,
- radial-gradient(circle,var(--y) 0 3px,var(--bd) 3px 4.5px,transparent 5px) 99% 80%/16px 16px no-repeat,
- radial-gradient(circle,var(--p) 0 4px,var(--bd) 4px 5.5px,transparent 6px) 1% 92%/20px 20px no-repeat!important}
-@keyframes nbdrift{50%{transform:translateY(-7px)}}
-html:root #app .sec::after{border-top:3px dotted var(--bd)!important;opacity:.45}
-html:root #app .foot{border-top:3px dotted var(--bd)!important}
-html:root #app .path.lv .card::after,html:root #app .path.tools .card::after{display:block!important;content:"";position:absolute;width:36px;height:14px;pointer-events:none;opacity:.55;background:radial-gradient(circle,var(--bd) 1.5px,transparent 2px) 0 0/9px 7px}
-html:root #app .path.lv .card::after{right:14px;bottom:10px}
-html:root #app .path.tools .card::after{right:12px;top:12px}
-html:root #app .bubble::after{content:"✦";position:absolute;right:12px;top:-12px;font-size:16px;color:var(--bd);background:var(--y);border:2px solid var(--bd);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;line-height:1}
-html:root #app .res::after{content:"✦  ·  ✦  ·  ✦";display:block;margin-top:8px;letter-spacing:4px;opacity:.5}
-html:root #app{background:var(--cream) radial-gradient(color-mix(in srgb,var(--bd) 6%,transparent) 1px,transparent 1.4px) 0 0/20px 20px!important}
-html:root #app::before{opacity:.5!important;background:radial-gradient(circle,var(--y) 0 3px,transparent 3.5px) 99% 14%/14px 14px no-repeat,radial-gradient(circle,var(--p) 0 2.5px,transparent 3.0px) 0% 33%/12px 12px no-repeat,radial-gradient(circle,var(--b) 0 3px,transparent 3.5px) 100% 52%/14px 14px no-repeat,radial-gradient(circle,var(--g) 0 2.5px,transparent 3.0px) 0% 66%/12px 12px no-repeat!important}
-html:root #app .path.lv .card::after,html:root #app .path.tools .card::after{display:none!important}
-html:root #app .res::after{opacity:.25}
-html:root #app .card .ico,html:root #app .path.lv .ico,html:root #app .path.tools .ico{background:color-mix(in srgb,var(--c,var(--g)) 60%,#fff)!important;border:0!important;border-radius:50%!important;box-shadow:none!important;width:50px!important;height:50px!important}
-html:root[data-theme=dark] #app .card .ico{background:color-mix(in srgb,var(--c,var(--g)) 35%,var(--white))!important}
-/* ===== kartu Dukung Creator ===== */
-html:root #app .dash.sup{background:#E6E0FF!important;border:2px solid var(--bd)!important;border-radius:24px!important;box-shadow:4px 4px 0 var(--bd)!important;color:var(--ink)!important;overflow:visible!important}
-html:root #app .dash.sup *{text-shadow:none!important}
-html:root #app .dash.sup .dt,html:root #app .dash.sup .tx,html:root #app .dash.sup p,html:root #app .dash.sup .tx *{color:var(--ink)!important}
-html:root #app .dash.sup .tx p,html:root #app .dash.sup .tx small{opacity:.8}
-html:root #app .dash.sup .mowl{filter:none!important}
-html:root #app .dash.sup .mowl::after,html:root #app .dash.sup .mowl i{display:none!important}
-html:root #app .supb a.sup1{background:var(--y)!important;color:#111!important;border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 4px 0 var(--bd)!important;font-weight:800!important;backdrop-filter:none!important}
-html:root #app .supb a.sup1:active{transform:translate(3px,4px);box-shadow:0 0 0 var(--bd)!important}
-html:root #app .supb a:not(.sup1){background:var(--white)!important;color:var(--ink)!important;border:2px solid var(--bd)!important;border-radius:14px!important;box-shadow:3px 3px 0 var(--bd)!important;font-weight:700!important;backdrop-filter:none!important}
-html:root #app .supb a .cup .nbi{width:22px;height:22px;display:inline-block;vertical-align:-5px}
-html:root #app .brand{box-shadow:none!important;border:2px solid var(--bd)}
-/* ===== kalem: bayangan hitam polos, kartu pastel, tanpa dekor ramai ===== */
-html:root{--stk:4px 4px 0 var(--bd)}
-html:root body{background:var(--cream-d)!important}
-html:root #app .card,html:root #app .bubble,html:root #app .sbar,html:root #app .qcard,html:root #app .qcard:has(>.q),html:root #app .res,html:root #app .dg,html:root #app .mm-b,html:root #app .path.lv .card{box-shadow:4px 4px 0 var(--bd)!important}
-html:root #app .card:hover{box-shadow:5px 5px 0 var(--bd)!important}
-html:root #app .card:active{box-shadow:1px 1px 0 var(--bd)!important}
-html:root #app .path.lv .card,html:root #app .path.tools .card{background:color-mix(in srgb,var(--c) 28%,#fff)!important}
-html:root #app .path.lv .card:nth-child(n){transform:none}
-html:root #app .path.lv .ico,html:root #app .path.tools .ico{background:#fff!important}
-html:root #app .ex{background:#FFF1B8!important}
-html:root #app .tip{background:#FFE3E3!important}
-html:root #app .bubble b{background:none!important;box-shadow:inset 0 -.4em 0 var(--y)}
-html:root #app .pill,html:root #app .pill:nth-child(2),html:root #app .pill:nth-child(n+3){background:#fff!important}
-html:root #app .dg{background:#FFF1B8!important}html:root #app .dg.done{background:var(--g)!important}
-html:root #app .res{background:#FFF1B8!important}
-@media(min-width:520px){html:root #app{box-shadow:8px 8px 0 var(--bd)!important}}
-html:root[data-theme=dark] #app .card,html:root[data-theme=dark] #app .path.lv .card{background:var(--white)!important}
-</style>
 <script id="nb-materi">
 /* NB-MATERI: perluasan bank soal modul yang masih tipis (<10 soal) */
 (function(){try{
@@ -5525,15 +5320,22 @@ css.textContent=`
 .tn-e.on{opacity:1}
 .tn-e.pop{transform-box:fill-box;transform-origin:center bottom;transform:scale(.3);transition:opacity .4s ease,transform .55s cubic-bezier(.34,1.56,.64,1)}
 .tn-e.pop.on{transform:none}
-.tn-e .gr{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform var(--du,1.6s) linear}
+.tn-e .gr{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform calc(var(--du,1.6s)*var(--k,1)) linear}
 .tn-e.on .gr{transform:scaleX(1)}
-.tn-e .hd{transform:translateX(var(--dx,0));transition:transform var(--du,1.6s) linear}
+.tn-e .hd{transform:translateX(var(--dx,0));transition:transform calc(var(--du,1.6s)*var(--k,1)) linear}
 .tn-e.on .hd{transform:none}
-.tn-e .dr{stroke-dasharray:1 2;stroke-dashoffset:1;transition:stroke-dashoffset var(--du,1.2s) ease}
+.tn-e .dr{stroke-dasharray:1 2;stroke-dashoffset:1;transition:stroke-dashoffset calc(var(--du,1.2s)*var(--k,1)) ease}
 .tn-e.on .dr{stroke-dashoffset:0}
 .tn.nt .tn-e,.tn.nt .tn-e *{transition:none!important}
 .tn-live{animation:tnb 1s ease-in-out infinite}
 @keyframes tnb{50%{opacity:.25}}
+.tn-p{display:flex;align-items:center;gap:10px;margin-top:10px}
+.tn-pb{position:relative;flex:1;height:14px;border:2px solid var(--bd);border-radius:99px;background:var(--white);cursor:pointer;touch-action:manipulation}
+.tn-pb i{display:block;height:100%;width:0;background:var(--g);border-radius:99px}
+.tn-pb b{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid var(--bd);background:var(--y);box-sizing:border-box}
+.tn-sp{font-size:13px;font-weight:800;min-width:54px;padding:6px 10px;border-radius:99px;border:2px solid var(--bd);background:var(--white);color:var(--ink)}
+.tn-e.fresh{animation:tnf .9s ease-out}
+@keyframes tnf{0%{filter:drop-shadow(0 0 0 transparent)}30%{filter:drop-shadow(0 0 9px #FFD84D)}100%{filter:drop-shadow(0 0 0 transparent)}}
 `;
 document.head.appendChild(css);
 
@@ -5542,18 +5344,24 @@ const widget=k=>{const sp=SPECS[k];
  return `<div class="tn" data-k="${k}"><div class="tn-h"><span class="tn-b">🎬 Animasi · ${X(sp.n)}</span><span class="tn-an">${sp.ana}</span></div>`
  +`<button type="button" class="tn-s" aria-label="Dengarkan kalimat contoh"><span>🔊</span><span>${sp.sent}</span></button>`
  +`<svg class="tn-v" viewBox="${sp.vb||'0 0 360 170'}" role="img" aria-label="Animasi garis waktu: ${X(sp.n)}">${sp.raw?'':base()}${sp.els()}</svg>`
- +`<div class="tn-c" aria-live="polite"></div>`
+ +`<div class="tn-p"><div class="tn-pb" role="slider" aria-label="Garis waktu animasi, ketuk untuk loncat"><i></i>${sp.caps.map(c=>`<b style="left:${Math.round(c[0]/sp.end*100)}%" data-t="${c[0]}"></b>`).join('')}</div><button type="button" class="tn-sp" aria-label="Kecepatan animasi">1×</button></div>`+`<div class="tn-c" aria-live="polite"></div>`
  +`<div class="tn-f" hidden><div><b>📐 Rumus:</b> ${sp.frm}</div><div><b>🔑 Kata kunci:</b> ${sp.sig}</div></div>`
  +`<div class="tn-r"><button type="button" class="tn-rp">▶ Putar ulang</button></div></div>`};
 
-const play=w=>{(w._t||[]).forEach(clearTimeout);w._t=[];
- const sp=SPECS[w.dataset.k],els=[...w.querySelectorAll('.tn-e')],cap=w.querySelector('.tn-c'),fm=w.querySelector('.tn-f'),btn=w.querySelector('.tn-rp');
- w.classList.add('nt');els.forEach(e=>e.classList.remove('on'));void w.offsetWidth;w.classList.remove('nt');
- fm.hidden=true;cap.innerHTML='';btn.disabled=true;
- if((RM&&RM.matches)||(window.P&&P.calm)){els.forEach(e=>e.classList.add('on'));cap.innerHTML=sp.caps.map(c=>c[1]).join('<br>');fm.hidden=false;btn.disabled=false;return}
- els.forEach(e=>w._t.push(setTimeout(()=>e.classList.add('on'),+e.dataset.t)));
- sp.caps.forEach(c=>w._t.push(setTimeout(()=>{cap.innerHTML=c[1];cap.classList.remove('pp');void cap.offsetWidth;cap.classList.add('pp')},c[0])));
- w._t.push(setTimeout(()=>{fm.hidden=false;btn.disabled=false;btn.textContent='🔁 Putar ulang'},sp.end))};
+const play=(w,from)=>{from=+from||0;(w._t||[]).forEach(clearTimeout);w._t=[];
+ const sp=SPECS[w.dataset.k],k=w._k||1,els=[...w.querySelectorAll('.tn-e')],cap=w.querySelector('.tn-c'),fm=w.querySelector('.tn-f'),btn=w.querySelector('.tn-rp'),bar=w.querySelector('.tn-pb i');
+ w.style.setProperty('--k',k);
+ w.classList.add('nt');els.forEach(e=>e.classList.remove('on','fresh'));
+ bar.style.transition='none';bar.style.width=(from/sp.end*100)+'%';
+ els.forEach(e=>{if(+e.dataset.t<from)e.classList.add('on')});
+ const done=sp.caps.filter(c=>c[0]<=from).pop();cap.innerHTML=done?done[1]:'';
+ void w.offsetWidth;w.classList.remove('nt');
+ fm.hidden=true;btn.disabled=true;
+ if((RM&&RM.matches)||(window.P&&P.calm)){els.forEach(e=>e.classList.add('on'));cap.innerHTML=sp.caps.map(c=>c[1]).join('<br>');fm.hidden=false;btn.disabled=false;bar.style.width='100%';return}
+ requestAnimationFrame(()=>{bar.style.transition='width '+((sp.end-from)*k)+'ms linear';bar.style.width='100%'});
+ els.forEach(e=>{const t=+e.dataset.t;if(t>=from)w._t.push(setTimeout(()=>{e.classList.add('on','fresh');setTimeout(()=>e.classList.remove('fresh'),900)},(t-from)*k))});
+ sp.caps.forEach(c=>{if(c[0]>from)w._t.push(setTimeout(()=>{cap.innerHTML=c[1];cap.classList.remove('pp');void cap.offsetWidth;cap.classList.add('pp')},(c[0]-from)*k))});
+ w._t.push(setTimeout(()=>{fm.hidden=false;btn.disabled=false;btn.textContent='🔁 Putar ulang'},(sp.end-from)*k))};
 
 LEVELS.forEach(L=>L.mods.forEach(M=>{const k=NAMES[M.n];if(!k||M._tn)return;M._tn=1;
  M.steps.splice(Math.min(1,M.steps.length),0,{s:SPECS[k].intro,ex:[],tn:k,_st:'contoh'})}));
@@ -5565,6 +5373,9 @@ window.vLearn=function(){_vl();
   g.insertAdjacentHTML('afterend',widget(st.tn));
   const w=view.querySelector('.tn');if(!w)return;
   w.querySelector('.tn-rp').onclick=()=>play(w);
+   const pb=w.querySelector('.tn-pb'),spb=w.querySelector('.tn-sp'),SPD=[[1,'1×'],[2,'0.5×'],[.5,'2×']];let si=0;
+   pb.onclick=ev=>{const r=pb.getBoundingClientRect(),m=ev.target.closest('b');play(w,m?+m.dataset.t:Math.max(0,Math.min(1,(ev.clientX-r.left)/r.width))*SPECS[st.tn].end)};
+   spb.onclick=()=>{si=(si+1)%SPD.length;w._k=SPD[si][0];spb.textContent=SPD[si][1];play(w)};
   w.querySelector('.tn-s').onclick=()=>speak(SPECS[st.tn].say,1);
   setTimeout(()=>play(w),350)}catch(e){console.warn('animasi tenses gagal',e)}};
 window.TNX={SPECS,widget,NAMES};
@@ -5657,36 +5468,35 @@ window.PVX={widget,SC,BEAR,sceneSvg,bearSvg};
 (function(){try{
 const SAW='https://saweria.co/yudprt',BCA='2521220599',MDR='700010458250',KEY='pyd_kopi',GAP=100000;
 const APPS={mybca:{a:'com.bca.mybca.omni.android',i:'https://apps.apple.com/id/app/mybca-new-bca-banking-apps/id1440241902'},bcam:{a:'com.bca',i:'https://apps.apple.com/mx/app/bca-mobile/id551587254'},livin:{a:'id.bmri.livin',i:'https://apps.apple.com/id/app/livin-by-mandiri/id1555414743'}};
-const st=document.createElement('style');st.textContent=`
-#kopi-ov{position:fixed;inset:0;z-index:99999;background:rgba(30,22,60,.6);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:14px;animation:kfd .25s ease}
-#kopi-box{position:relative;background:#e4deff;color:#111;border:3px solid #111;border-radius:28px;box-shadow:7px 7px 0 #111;max-width:430px;width:100%;max-height:94vh;overflow:auto;padding:20px 18px 14px;font-family:inherit;animation:kpop .35s cubic-bezier(.2,1.5,.4,1)}
+const st=document.createElement('style');st.textContent=`#kopi-ov{position:fixed;inset:0;z-index:99999;background:rgba(17,17,17,.6);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:14px;animation:kfd .25s ease}
+#kopi-box{position:relative;background:var(--cream);color:var(--ink);border:3px solid var(--bd);border-radius:28px;box-shadow:7px 7px 0 var(--y),7px 7px 0 3px var(--bd);max-width:430px;width:100%;max-height:94vh;overflow:auto;padding:0 18px 12px;font-family:var(--ui,inherit);animation:kpop .35s cubic-bezier(.2,1.5,.4,1)}
 #kopi-box *{box-sizing:border-box}
-#kopi-box .kh1{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-#kopi-box .kcup{flex:none;width:68px;height:68px;border-radius:50%;background:#ffe07a;border:3px solid #111;box-shadow:3px 3px 0 #111;display:flex;align-items:center;justify-content:center;font-size:34px;animation:kwig 2.4s ease-in-out infinite}
-#kopi-box h3{margin:0;font-size:23px;line-height:1.15;font-weight:900}
-#kopi-box .kp{margin:0 0 14px;font-size:14.5px;line-height:1.55;color:#2d2850}
-#kopi-box a.ks{display:flex;align-items:center;justify-content:center;gap:8px;background:#ffe07a;color:#111;border:3px solid #111;border-radius:18px;padding:14px;font-size:17px;font-weight:900;text-decoration:none;box-shadow:0 5px 0 #111;transition:transform .1s,box-shadow .1s}
-#kopi-box a.ks:active{transform:translateY(4px);box-shadow:0 1px 0 #111}
-#kopi-box .kor{display:flex;align-items:center;gap:10px;margin:14px 2px 10px;font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#4a4478}
-#kopi-box .kor:before,#kopi-box .kor:after{content:"";flex:1;height:2px;background:#111;opacity:.25;border-radius:2px}
-#kopi-box .kr{background:#fff;border:3px solid #111;border-radius:20px;box-shadow:3px 3px 0 #111;padding:12px;margin-bottom:12px}
+#kopi-box .kh1{display:flex;align-items:center;gap:14px;margin:0 -18px 14px;padding:16px 18px;background:var(--g);border-bottom:3px solid var(--bd);color:#111}
+#kopi-box .kcup{flex:none;width:64px;height:64px;border-radius:50%;background:var(--y);border:3px solid var(--bd);box-shadow:3px 3px 0 var(--bd);display:flex;align-items:center;justify-content:center;font-size:32px;animation:kwig 2.4s ease-in-out infinite}
+#kopi-box h3{margin:0;font-size:22px;line-height:1.18;font-weight:800;color:#111}
+#kopi-box .kp{margin:0 0 14px;font-size:14.5px;line-height:1.55;color:var(--ink);opacity:.88}
+#kopi-box a.ks{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--y);color:#111;border:3px solid var(--bd);border-radius:18px;padding:14px;font-size:17px;font-weight:800;text-decoration:none;box-shadow:0 5px 0 var(--bd);transition:transform .1s,box-shadow .1s}
+#kopi-box a.ks:active{transform:translateY(4px);box-shadow:0 1px 0 var(--bd)}
+#kopi-box .kor{display:flex;align-items:center;gap:10px;margin:16px 2px 12px;font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--mute)}
+#kopi-box .kor:before,#kopi-box .kor:after{content:"";flex:1;height:2px;background:var(--bd);opacity:.25;border-radius:2px}
+#kopi-box .kr{--sh:var(--b);background:var(--white);border:3px solid var(--bd);border-radius:20px;box-shadow:4px 4px 0 var(--sh),4px 4px 0 3px var(--bd);padding:12px;margin:0 4px 16px 0}
+#kopi-box .kr:has(.kb.mdr){--sh:var(--p)}
 #kopi-box .kt{display:flex;align-items:center;gap:10px}
-#kopi-box .kb{flex:none;min-width:46px;height:34px;padding:0 8px;border-radius:10px;border:2px solid #111;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff}
+#kopi-box .kb{flex:none;min-width:46px;height:34px;padding:0 8px;border-radius:10px;border:2px solid var(--bd);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff}
 #kopi-box .kb.bca{background:#0a66c2}#kopi-box .kb.mdr{background:#003a70;color:#ffc72c}
-#kopi-box .kn{flex:1;min-width:0}#kopi-box .kn small{display:block;font-size:12px;font-weight:700;color:#4a4478}
-#kopi-box .kn b{display:block;font-size:20px;letter-spacing:.8px;font-variant-numeric:tabular-nums;font-weight:900;word-break:break-all}
-#kopi-box button{font:inherit;cursor:pointer;color:#111}
-#kopi-box .kcp{flex:none;background:#ffe07a;border:3px solid #111;border-radius:14px;padding:8px 13px;font-weight:900;font-size:14px;box-shadow:0 3px 0 #111;transition:transform .1s,box-shadow .1s}
-#kopi-box .kcp:active{transform:translateY(2px);box-shadow:0 1px 0 #111}
-#kopi-box .kcp.ok{background:#8ff0c0}
+#kopi-box .kn{flex:1;min-width:0}#kopi-box .kn small{display:block;font-size:12px;font-weight:700;color:var(--mute)}
+#kopi-box .kn b{display:block;font-size:20px;letter-spacing:.8px;font-variant-numeric:tabular-nums;font-weight:800;word-break:break-all;color:var(--ink)}
+#kopi-box button{font:inherit;cursor:pointer;color:var(--ink)}
+#kopi-box .kcp{flex:none;background:var(--g);color:#111;border:3px solid var(--bd);border-radius:14px;padding:8px 13px;font-weight:800;font-size:14px;box-shadow:0 3px 0 var(--bd);transition:transform .1s,box-shadow .1s}
+#kopi-box .kcp:active{transform:translateY(2px);box-shadow:0 1px 0 var(--bd)}
+#kopi-box .kcp.ok{background:var(--y)}
 #kopi-box .ko{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-#kopi-box .kop{flex:1;min-width:120px;background:#f4f1ff;border:2.5px solid #111;border-radius:12px;padding:8px 10px;font-weight:800;font-size:13px;transition:background .15s}
-#kopi-box .kop:hover{background:#e4deff}
-#kopi-box .khn{margin:2px 4px 6px;font-size:12.5px;line-height:1.5;text-align:center;color:#4a4478}
-#kopi-box .kx{display:block;margin:0 auto;background:transparent;border:0;padding:8px 14px;font-weight:800;font-size:14px;color:#4a4478;text-decoration:underline;text-underline-offset:3px}
-#kopi-box .kx2{display:block;margin:0 auto;background:transparent;border:0;padding:4px 10px 6px;font-size:11.5px;font-weight:700;color:#6d678f;opacity:.85}
-#kopi-fab{position:fixed;right:12px;bottom:12px;z-index:9000;width:50px;height:50px;border-radius:50%;border:3px solid #111;font-size:23px;background:#ffe07a;box-shadow:3px 3px 0 #111;cursor:pointer}
-#kopi-fab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+#kopi-box .kop{flex:1;min-width:120px;background:var(--cream);border:2.5px solid var(--bd);border-radius:12px;padding:8px 10px;font-weight:700;font-size:13px;transition:background .15s}
+#kopi-box .kop:hover{background:var(--terra-l)}
+#kopi-box .khn{margin:0 4px 6px;font-size:12.5px;line-height:1.5;text-align:center;color:var(--mute)}
+#kopi-box .kx{display:block;margin:0 auto;background:transparent;border:0;padding:8px 14px;font-weight:800;font-size:14px;color:var(--mute);text-decoration:underline;text-underline-offset:3px}
+#kopi-box .kx2{display:block;margin:0 auto;background:transparent;border:0;padding:4px 10px 6px;font-size:11.5px;font-weight:700;color:var(--mute);opacity:.85}
+#kopi-fab{position:fixed;right:12px;bottom:12px;z-index:9000;width:50px;height:50px;border-radius:50%;border:3px solid var(--bd);font-size:23px;background:var(--y);box-shadow:3px 3px 0 var(--bd);cursor:pointer}
 @keyframes kfd{from{opacity:0}to{opacity:1}}
 @keyframes kpop{from{transform:scale(.85) translateY(24px);opacity:0}to{transform:none;opacity:1}}
 @keyframes kwig{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) translateY(-2px)}}
@@ -5735,11 +5545,8 @@ const $=s=>document.querySelector(s);
 const st=document.createElement('style');st.textContent=`
 html{scroll-behavior:smooth}.view{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 button,a,.card{touch-action:manipulation}
-a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--terra,#c2593f);outline-offset:2px}
 .view{zoom:var(--zs,1)}
-#zs-btn,#kopi-hdr{flex:none;min-width:38px;height:38px;border-radius:50%;font-size:17px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-#kopi-hdr{background:#ffe07a;border:2.5px solid #111;box-shadow:2px 2px 0 #111}
-#kopi-hdr:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #111}
+#zs-btn,#kopi-hdr{flex:none;font-size:17px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 #kopi-hdr.ping{animation:kping 1.2s ease 2}
 @keyframes kping{0%,100%{transform:none}30%{transform:rotate(-14deg) scale(1.12)}60%{transform:rotate(12deg) scale(1.12)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}`;
@@ -5753,7 +5560,7 @@ const Z=[1,1.12,1.25],ZK='pyd_zoom';let zi=0;try{zi=Math.min(2,+localStorage.get
 const applyZ=()=>document.documentElement.style.setProperty('--zs',Z[zi]);applyZ();
 if(typeof gear!=='undefined'&&gear){
  const zb=document.createElement('button');zb.id='zs-btn';zb.setAttribute('aria-label','Ukuran teks');zb.textContent='Aa';
- zb.className=(($('#srch')||{}).className||'');zb.style.cssText='background:var(--white,#fff);border:2.5px solid #111;box-shadow:2px 2px 0 #111';
+ zb.className=(($('#srch')||{}).className||'');
  zb.onclick=()=>{zi=(zi+1)%3;applyZ();try{localStorage.setItem(ZK,zi)}catch(e){};zb.title='Teks '+Math.round(Z[zi]*100)+'%'};
  gear.insertAdjacentElement('beforebegin',zb);
  const kb=document.createElement('button');kb.id='kopi-hdr';kb.setAttribute('aria-label','Traktir kopi');kb.textContent='☕';
@@ -5769,6 +5576,591 @@ document.addEventListener('touchstart',e=>{const t=e.touches[0];x0=t.clientX;y0=
 document.addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clientX-x0,dy=Math.abs(t.clientY-y0);
  if(x0<28&&dx>90&&dy<50&&Date.now()-t0<600&&!document.getElementById('kopi-ov')){const b=$('#back');if(b&&b.offsetParent!==null&&!b.disabled)b.click()}},{passive:true});
 }catch(e){console.warn('ux-v82 gagal',e)}})();
+</script>
+<script id="ux-v83">
+/* Polesan UX sistem: token kontras, layout desktop, tabel geser, auto-scroll penjelasan, pintasan keyboard */
+(function(){try{
+const st=document.createElement('style');st.textContent=`
+#back{width:44px;height:44px}
+.bubble{line-height:1.65}
+.view{padding-bottom:calc(22px + env(safe-area-inset-bottom))}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;max-width:100%;scrollbar-width:thin}
+.tw>table{min-width:100%}
+button,.card,.opt{user-select:none;-webkit-user-select:none}
+.view{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.25) transparent}
+@media(hover:hover){.card:not(:disabled),.opt:not(:disabled){transition:transform .16s,filter .16s}
+ .card:not(:disabled):hover,.opt:not(:disabled):hover{filter:brightness(1.03)}}
+@media(max-width:380px){.view{padding-left:14px;padding-right:14px}.bubble{font-size:14.5px}}`;
+document.head.appendChild(st);
+const V=()=>document.querySelector('#app .view');
+let raf=0;const tick=()=>{raf=0;const v=V();if(!v)return;
+ v.querySelectorAll('table').forEach(t=>{const p=t.parentElement;if(p&&!p.classList.contains('tw')){const w=document.createElement('div');w.className='tw';p.insertBefore(w,t);w.appendChild(t)}});
+ const e=v.querySelector('.exp:not([data-sv])');if(e){e.dataset.sv=1;setTimeout(()=>{try{e.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(x){}},140)}};
+const mo=new MutationObserver(()=>{if(!raf)raf=requestAnimationFrame(tick)});
+const hook=()=>{const v=V();if(v){mo.observe(v,{childList:true,subtree:true});tick()}};hook();
+/* view baru (class "in") selalu mulai dari atas */
+const mc=new MutationObserver(ms=>{for(const m of ms){if(m.attributeName==='class'&&m.target.classList.contains('in')&&m.target.classList.contains('view'))m.target.scrollTop=0}});
+const v0=V();if(v0)mc.observe(v0,{attributes:true,attributeFilter:['class']});
+/* pintasan keyboard: 1-9 pilih jawaban, Enter lanjut bila hanya ada satu tombol utama */
+document.addEventListener('keydown',e=>{
+ if(e.ctrlKey||e.metaKey||e.altKey||document.getElementById('kopi-ov')||document.getElementById('sov'))return;
+ const a=document.activeElement,tag=a&&a.tagName;if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+ const v=V();if(!v)return;
+ if(/^[1-9]$/.test(e.key)){const o=[...v.querySelectorAll('.opt:not(:disabled)')];if(o[+e.key-1]){e.preventDefault();o[+e.key-1].click()}}
+ else if(e.key==='Enter'&&tag!=='BUTTON'&&tag!=='A'){const b=[...v.querySelectorAll('.btn:not(:disabled)')].filter(x=>x.offsetParent!==null);if(b.length===1){e.preventDefault();b[0].click()}}
+});
+}catch(e){console.warn('ux-v83 gagal',e)}})();
+</script>
+<script id="ux-v84">
+/* Polesan visual tema Neo-Brutalist: masuk bertahap, animasi jawaban, tombol header senada */
+(function(){try{
+const st=document.createElement('style');st.textContent=`
+@keyframes nbup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes nbpop{0%,100%{transform:scale(1)}40%{transform:scale(1.035)}}
+@keyframes nbshk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+#app .card.nbin{animation:nbup .45s cubic-bezier(.2,.8,.2,1) both}
+#app .opt.ok{animation:nbpop .4s ease}
+#app .opt.no{animation:nbshk .35s ease}
+#app :focus-visible{outline:3px solid var(--g-d);outline-offset:3px}
+#app #zs-btn,#app #kopi-hdr{width:40px;height:40px;min-width:40px;border-radius:12px;border:2px solid var(--bd);box-shadow:2px 3px 0 var(--bd);color:#111;font-weight:800;transition:transform .12s,box-shadow .12s}
+#app #zs-btn{background:var(--b)}#app #kopi-hdr{background:var(--p)}
+#app #zs-btn:active,#app #kopi-hdr:active{transform:translate(2px,3px);box-shadow:0 0 0 var(--bd)}
+@media(prefers-reduced-motion:reduce){#app .card.nbin{animation:none}}`;
+document.head.appendChild(st);
+let raf=0;const tick=()=>{raf=0;const v=document.querySelector('#app .view');if(!v)return;let i=0;
+ v.querySelectorAll('.card:not(.nbin)').forEach(c=>{c.classList.add('nbin');c.style.animationDelay=Math.min(i++,8)*40+'ms'})};
+const mo=new MutationObserver(()=>{if(!raf)raf=requestAnimationFrame(tick)});
+const v=document.querySelector('#app .view');if(v){mo.observe(v,{childList:true,subtree:true});tick()}
+}catch(e){console.warn('ux-v84 gagal',e)}})();
+</script>
+<style id="theme-final">
+/* --- v50css --- */
+/* v50: tampilan penjelasan lebih rapi */
+.tip{background:linear-gradient(135deg,#FFF6E0,#fff);border-left-width:5px;box-shadow:0 2px 0 var(--cream-d);line-height:1.55}
+.ex p{padding-left:10px;border-left:3px solid color-mix(in srgb,var(--terra) 35%,transparent);margin:2px 0}
+.bubble{line-height:1.65}
+.bubble b{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--terra) 18%,transparent) 62%);padding:0 1px;border-radius:2px}
+/* --- glos-css --- */
+.gl{text-decoration:underline dotted var(--terra);text-underline-offset:3px;cursor:help}
+.gsh{position:absolute;inset:0;z-index:60;display:none;align-items:flex-end;background:rgba(58,42,36,.45)}
+.gsh.on{display:flex}
+.gsh>div{width:100%;background:var(--white);border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;animation:pop .3s var(--ease)}
+.gsh h4{font-size:21px;color:var(--terra-d)}
+.gb{background:var(--terra-l);border-radius:14px;padding:10px 12px;font-size:15px}
+.gc{display:flex;gap:6px;flex-wrap:wrap}
+.gc button{padding:6px 12px;border-radius:99px;background:var(--white);border:1.5px solid var(--terra-l);font-size:13px}
+.gc button.on{background:var(--terra);color:#fff;border-color:var(--terra)}
+details.gd{background:var(--white);border-radius:14px;padding:12px 14px;box-shadow:0 2px 0 var(--cream-d)}
+details.gd summary{cursor:pointer;font-weight:700;list-style:none}
+details.gd summary small{display:block;font-weight:400;color:var(--mute)}
+details.gd .gb{margin:10px 0 6px}
+/* --- v57css --- */
+/* v57: tampilan flat (tanpa gradasi) dengan detail halus. Hanya mode terang; mode gelap tidak disentuh. */
+html:not([data-theme=dark]) #app{--ink2:color-mix(in srgb,var(--ink) 18%,transparent)}
+html:not([data-theme=dark]) #app{background:var(--cream)}
+html:not([data-theme=dark]) #app .foot{background:var(--cream);border-top:1.5px dashed var(--ink2)}
+html:not([data-theme=dark]) #app #title{background:none;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:currentColor;color:var(--ink)}
+html:not([data-theme=dark]) #app #prog i{height:7px;border-radius:2px;background:var(--cream-d)}
+html:not([data-theme=dark]) #app #prog i.on{background:var(--terra);box-shadow:none}
+/* kartu: tepi tegas + bayangan keras ala kertas tempel */
+html:not([data-theme=dark]) #app .card,html:not([data-theme=dark]) #app .qcard,html:not([data-theme=dark]) #app .why,html:not([data-theme=dark]) #app .res,html:not([data-theme=dark]) #app details.gd{background:var(--white);border:1.5px solid var(--ink2);box-shadow:0 3px 0 var(--ink2)}
+html:not([data-theme=dark]) #app .card::after{display:none}
+html:not([data-theme=dark]) #app .card:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--ink2)}
+html:not([data-theme=dark]) #app .card:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink2)}
+html:not([data-theme=dark]) #app .path>.card{border-left:6px solid var(--terra)}
+html:not([data-theme=dark]) #app .ico{background:var(--terra-l);border:1.5px solid color-mix(in srgb,var(--terra) 45%,transparent);border-radius:14px;box-shadow:none}
+html:not([data-theme=dark]) #app .grp h3{border-bottom:2px solid var(--ink);padding-bottom:6px;letter-spacing:.2px}
+/* tombol: solid, menekan ke bawah saat disentuh */
+html:not([data-theme=dark]) #app .btn{background:var(--terra);text-shadow:none;border:1.5px solid var(--terra-d);box-shadow:0 4px 0 var(--terra-d)}
+html:not([data-theme=dark]) #app .btn::after{display:none}
+html:not([data-theme=dark]) #app .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--terra-d)}
+/* balon Pak Yood */
+html:not([data-theme=dark]) #app .bubble{background:var(--white);border:1.5px solid var(--ink2);box-shadow:0 3px 0 var(--ink2)}
+html:not([data-theme=dark]) #app .bubble::before{background:var(--white);border-left:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2);border-radius:0 0 0 3px}
+html:not([data-theme=dark]) #app .bubble b{background:none;padding:0 2px;box-shadow:inset 0 -.38em 0 color-mix(in srgb,var(--gold) 38%,transparent)}
+/* contoh kalimat: penanda kotak kecil, garis tipis antar baris */
+html:not([data-theme=dark]) #app .ex{background:var(--terra-l);border:1.5px solid color-mix(in srgb,var(--terra) 30%,transparent);border-left:6px solid var(--terra)}
+html:not([data-theme=dark]) #app .ex p{border-left:0;padding:4px 0 4px 20px;position:relative;border-bottom:1px dotted color-mix(in srgb,var(--terra) 30%,transparent);margin:0}
+html:not([data-theme=dark]) #app .ex p:last-child{border-bottom:0}
+html:not([data-theme=dark]) #app .ex p::before{content:"";position:absolute;left:3px;top:.95em;width:8px;height:8px;background:var(--terra);transform:rotate(45deg)}
+/* tips: kertas kuning dengan selotip */
+html:not([data-theme=dark]) #app .tip{position:relative;background:#FFF4CF;border:1.5px dashed color-mix(in srgb,var(--gold) 70%,var(--ink));border-left-width:1.5px;box-shadow:none;margin-top:8px}
+html:not([data-theme=dark]) #app .tip::before{content:"";position:absolute;top:-9px;left:16px;width:56px;height:16px;background:color-mix(in srgb,var(--terra) 28%,transparent);transform:rotate(-3deg)}
+/* tabel */
+html:not([data-theme=dark]) #app .tbl table{border:1.5px solid var(--ink2);border-radius:12px;overflow:hidden;background:var(--white)}
+html:not([data-theme=dark]) #app .tbl th{background:var(--terra);color:#fff}
+html:not([data-theme=dark]) #app .tbl tr:nth-child(even) td{background:var(--cream)}
+html:not([data-theme=dark]) #app .tbl td{border-bottom:1px solid var(--ink2)}
+/* peta konsep */
+html:not([data-theme=dark]) #app .mm-c{background:var(--terra);box-shadow:0 4px 0 var(--terra-d);border:1.5px solid var(--terra-d)}
+/* kuis: pilihan berhuruf A B C */
+html:not([data-theme=dark]) #app .opts{counter-reset:o}
+html:not([data-theme=dark]) #app .opt{display:flex;align-items:center;gap:12px;background:var(--white);border:2px solid var(--ink2);box-shadow:0 3px 0 var(--ink2)}
+html:not([data-theme=dark]) #app .opt::before{counter-increment:o;content:counter(o,upper-alpha);flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:var(--terra-l);color:var(--terra-d);font-weight:800;font-size:13px}
+html:not([data-theme=dark]) #app .opt:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 var(--ink2)}
+html:not([data-theme=dark]) #app .opt.ok{border-color:var(--ok);box-shadow:0 3px 0 var(--ok)}
+html:not([data-theme=dark]) #app .opt.ok::before{content:"✓";background:var(--ok);color:#fff}
+html:not([data-theme=dark]) #app .opt.bad{box-shadow:0 3px 0 var(--bad)}
+html:not([data-theme=dark]) #app .opt.bad::before{content:"✕";background:var(--bad);color:#fff}
+/* dashboard & kartu bonus: warna solid */
+html:not([data-theme=dark]) #app .dash{background:var(--terra);border:1.5px solid var(--terra-d);box-shadow:0 4px 0 var(--terra-d)}
+html:not([data-theme=dark]) #app .dash::before{display:none}
+html:not([data-theme=dark]) #app .dash.sup{background:var(--terra)}
+html:not([data-theme=dark]) #app .dg{background:var(--white)}
+html:not([data-theme=dark]) #app .dg.done{background:#FFF4CF;border-color:var(--gold)}
+html:not([data-theme=dark]) #app .combo{background:var(--gold);color:var(--ink)}
+html:not([data-theme=dark]) #app .supb a.sup1{background:var(--gold);box-shadow:0 4px 0 color-mix(in srgb,var(--gold) 60%,var(--ink))}
+html:not([data-theme=dark]) #app .supb a.sup1::after{display:none}
+/* istilah glosarium: stabilo datar */
+html:not([data-theme=dark]) #app .gl{text-decoration:none;background:color-mix(in srgb,var(--gold) 32%,transparent);border-bottom:2px solid var(--gold);border-radius:3px;padding:0 3px}
+html:not([data-theme=dark]) #app .gc button{border:1.5px solid var(--ink2)}
+/* detail kecil */
+::selection{background:color-mix(in srgb,var(--gold) 55%,transparent)}
+html:not([data-theme=dark]) #app .view{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--terra) 40%,transparent) transparent}
+html:not([data-theme=dark]) #app input.in{border:2px solid var(--ink2);background:var(--white);border-radius:14px}
+html:not([data-theme=dark]) #app input.in:focus{outline:0;border-color:var(--terra)}
+/* --- v58css --- */
+/* v58: panel "bedah jawaban" tampilan premium, flat */
+html:not([data-theme=dark]) #app .why.full{padding:0;overflow:hidden;border-radius:20px;border:1.5px solid var(--ink2);box-shadow:0 4px 0 var(--ink2);background:var(--white)}
+html:not([data-theme=dark]) #app .why.full h4{display:flex;align-items:center;gap:12px;margin:0;padding:14px 16px;font-size:17px;line-height:1.25;color:#fff;background:var(--terra-d);border-bottom:1.5px solid var(--ink2)}
+html:not([data-theme=dark]) #app .why.full.ok h4{background:var(--ok)}
+html:not([data-theme=dark]) #app .why.full.no h4{background:var(--bad)}
+html:not([data-theme=dark]) #app .wbadge{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fff;font-style:normal;font-weight:800;font-size:18px;color:var(--ink)}
+html:not([data-theme=dark]) #app .why.ok .wbadge{color:var(--ok)}
+html:not([data-theme=dark]) #app .why.no .wbadge{color:var(--bad)}
+html:not([data-theme=dark]) #app .why.full .exp{padding:14px 14px 16px;gap:10px}
+html:not([data-theme=dark]) #app .exp li{padding:12px 14px 12px 56px;background:var(--cream);border:1.5px solid var(--ink2);border-radius:14px;line-height:1.55}
+html:not([data-theme=dark]) #app .exp li::before{content:attr(data-i);left:13px;top:12px;width:32px;height:32px;border-radius:10px;background:var(--white);border:1.5px solid var(--ink2);box-shadow:none;color:var(--ink);font-size:16px}
+html:not([data-theme=dark]) #app .exp li strong{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
+html:not([data-theme=dark]) #app .exp li[data-k=y],html:not([data-theme=dark]) #app .exp li[data-k=a]{background:var(--ok-bg);border-color:var(--ok)}
+html:not([data-theme=dark]) #app .exp li[data-k=y] strong,html:not([data-theme=dark]) #app .exp li[data-k=a] strong{color:var(--ok)}
+html:not([data-theme=dark]) #app .exp li[data-k=y]::before,html:not([data-theme=dark]) #app .exp li[data-k=a]::before{background:var(--ok);border-color:var(--ok);color:#fff}
+html:not([data-theme=dark]) #app .exp li[data-k=a]{font-size:16px}
+html:not([data-theme=dark]) #app .why.no .exp li[data-k=c]{background:var(--bad-bg);border-color:var(--bad)}
+html:not([data-theme=dark]) #app .why.no .exp li[data-k=c] strong{color:var(--bad)}
+html:not([data-theme=dark]) #app .why.no .exp li[data-k=c]::before{background:var(--bad);border-color:var(--bad);color:#fff}
+html:not([data-theme=dark]) #app .exp li[data-k=k]{background:#FFF4CF;border:1.5px dashed color-mix(in srgb,var(--gold) 75%,var(--ink))}
+html:not([data-theme=dark]) #app .exp li[data-k=k] strong{color:#8A5A00}
+html:not([data-theme=dark]) #app .exp li[data-k=t]{background:transparent;border-style:dashed}
+html:not([data-theme=dark]) #app .exp .ex2{position:relative;padding:7px 0 7px 24px;border-top:1px dotted var(--ink2);margin-top:6px;font-size:14px}
+html:not([data-theme=dark]) #app .exp li[data-k=o] .ex2::before,html:not([data-theme=dark]) #app .exp li[data-k=e] .ex2::before{position:absolute;left:2px;top:7px;font-weight:800}
+html:not([data-theme=dark]) #app .exp li[data-k=o] .ex2::before{content:"✕";color:var(--bad)}
+html:not([data-theme=dark]) #app .exp li[data-k=e] .ex2::before{content:"✓";color:var(--ok)}
+html:not([data-theme=dark]) #app .exp li[data-k=r] .ex2{padding-left:0;border-top:1px dotted var(--ink2)}
+html:not([data-theme=dark]) #app .why.ok:not(.full){background:var(--ok-bg);border:1.5px solid var(--ok);border-left:6px solid var(--ok);font-weight:600;border-radius:14px;box-shadow:0 3px 0 color-mix(in srgb,var(--ok) 45%,transparent)}
+html:not([data-theme=dark]) #app .why.no:not(.full){background:var(--bad-bg);border:1.5px solid var(--bad);border-left:6px solid var(--bad);border-radius:14px;box-shadow:0 3px 0 color-mix(in srgb,var(--bad) 45%,transparent)}
+/* --- v59css --- */
+.logo{display:none;width:38px;height:38px;flex:none}
+.logo svg{width:100%;height:100%;display:block}
+body[data-v=menu] .logo{display:block}
+body[data-v=menu] #back{display:none}
+/* --- v64css --- */
+/* v64: konten (tabel, kartu) tidak boleh bocor di bawah/di atas footer tombol */
+.view .tbl,.view .ex,.view .tip,.view .qcard,.view .mm{isolation:isolate}
+.view .foot{z-index:30;background:var(--cream)}
+/* --- v65css --- */
+/* v65: gerak Pak Yood lebih halus & hidup: napas + goyang pelan, kedip alami, sayap bernapas,
+   lompat dengan squash & stretch, geleng lembut saat salah. Aksi a-* lama tetap jalan. */
+.mascot{animation:v65float 4.2s ease-in-out infinite;will-change:transform}
+.mascot svg{transform-origin:50% 92%;animation:v65idle 8.4s ease-in-out infinite}
+.mascot .eye{transform-box:fill-box;transform-origin:center;animation:v65blink 5.6s infinite}
+.mascot .eye circle{transition:translate .28s cubic-bezier(.2,.8,.2,1)}
+.mascot:not([class*="a-"]) .wl{transform-origin:50% 12%;animation:v65wl 4.2s ease-in-out infinite}
+.mascot:not([class*="a-"]) .wr{transform-origin:50% 12%;animation:v65wr 4.2s ease-in-out infinite}
+.mascot.cheer{animation:v65float 4.2s ease-in-out infinite,v65hop .95s cubic-bezier(.3,1.3,.5,1)}
+.mascot.cheer .wl{animation:v65flapl .17s ease-in-out 6}
+.mascot.cheer .wr{animation:v65flapr .17s ease-in-out 6}
+.mascot.oops{animation:v65oops .75s cubic-bezier(.36,.07,.19,.97)}
+.mascot.oops .wl{animation:none;rotate:-14deg}
+.mascot.oops .wr{animation:none;rotate:14deg}
+@keyframes v65float{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes v65idle{0%,100%{rotate:-1.3deg;scale:1 1}25%{rotate:0deg;scale:1.014 .986}50%{rotate:1.3deg;scale:1 1}75%{rotate:0deg;scale:1.014 .986}}
+@keyframes v65blink{0%,90%,100%{transform:scaleY(1)}92%{transform:scaleY(.08)}94%{transform:scaleY(1)}96%{transform:scaleY(.08)}98%{transform:scaleY(1)}}
+@keyframes v65wl{0%,100%{rotate:0deg}50%{rotate:-7deg}}
+@keyframes v65wr{0%,100%{rotate:0deg}50%{rotate:7deg}}
+@keyframes v65flapl{0%,100%{rotate:0deg}50%{rotate:-48deg}}
+@keyframes v65flapr{0%,100%{rotate:0deg}50%{rotate:48deg}}
+@keyframes v65hop{0%{transform:none}14%{transform:translateY(3px) scale(1.09,.9)}38%{transform:translateY(-26px) scale(.93,1.09) rotate(-5deg)}62%{transform:translateY(0) scale(1.07,.93) rotate(3deg)}78%{transform:translateY(-7px) scale(.98,1.03)}100%{transform:none}}
+@keyframes v65oops{0%{transform:none}15%{transform:translateX(-5px) rotate(-5deg)}35%{transform:translateX(4px) rotate(4deg) scale(.98,1.01)}55%{transform:translateX(-3px) rotate(-2.5deg)}75%{transform:translateX(2px) rotate(1.5deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.mascot,.mascot svg,.mascot .eye,.mascot .wing{animation:none!important}}
+/* --- v68css --- */
+/* v68: rapi & premium. Header 2 baris (judul 1 baris + progress penuh), celah bocor footer ditutup,
+   tombol pemanasan terbaca, judul bab rapi, mikro-interaksi halus, fokus keyboard jelas. */
+#app{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+#app header{flex-wrap:wrap;row-gap:8px;padding-bottom:12px}
+#app #title{flex:1 1 0;min-width:0;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;text-wrap:nowrap;font-size:19px;line-height:1.3}
+#app #prog{order:5;flex:0 0 100%;gap:4px;height:5px}
+#app #prog:empty{display:none}
+#app #prog i{flex:1;width:auto!important;height:5px!important;border-radius:99px!important}
+#app .view{padding-bottom:0!important;gap:14px;scroll-behavior:smooth;scroll-padding-bottom:120px}
+#app .view .foot{padding-bottom:calc(16px + env(safe-area-inset-bottom))!important;z-index:30}
+#app .v63br{font-size:.9em;line-height:1.6;padding:12px 14px}
+#app #wu{background:transparent!important;color:var(--terra)!important;border:1.5px solid var(--terra)!important;box-shadow:none!important;animation:none!important;font-size:.86em;font-weight:700;padding:8px 14px;min-height:0;width:auto;border-radius:99px}
+#app .v66chip span:first-child{border:1px solid var(--line,rgba(0,0,0,.08))}
+#app details>summary{list-style:none}#app details>summary::-webkit-details-marker{display:none}
+#app .grp h3{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#app .grp h3 span{flex:1;min-width:0;line-height:1.25}
+#app .grp h3 small{flex:none;white-space:nowrap;padding:4px 10px;font-size:.75rem}
+#app .card,#app .btn{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,background .18s}
+@media (hover:hover){#app .path .card:hover{transform:translateY(-2px)}}
+#app .card:active,#app .btn:active{transform:translateY(1px) scale(.992)}
+#app :is(button,summary,input,a):focus-visible{outline:2.5px solid color-mix(in srgb,var(--terra) 70%,white);outline-offset:3px}
+#app .stats .pill,#app .stars,#app small{font-variant-numeric:tabular-nums}
+#app ::selection{background:color-mix(in srgb,var(--gold) 45%,transparent)}
+#app .path .card{animation:v68in .5s cubic-bezier(.2,.8,.2,1) backwards}
+#app .path .card:nth-child(2){animation-delay:.04s}#app .path .card:nth-child(3){animation-delay:.08s}#app .path .card:nth-child(4){animation-delay:.12s}#app .path .card:nth-child(5){animation-delay:.16s}#app .path .card:nth-child(n+6){animation-delay:.2s}
+@keyframes v68in{from{opacity:0;transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){#app .path .card{animation:none}#app .view{scroll-behavior:auto}}
+/* halaman soal: gutter buku tulis diperkecil (58px → 40px) supaya jawaban lebih lega di HP */
+#app .qcard:has(>.q){padding:14px 16px 18px 40px;background:linear-gradient(90deg,transparent 26px,var(--margin) 26px 27.5px,transparent 27.5px),var(--paper)}
+#app .qcard>.q{margin:0 -16px 0 -40px;padding:0 16px 0 40px;background:linear-gradient(90deg,transparent 26px,var(--margin) 26px 27.5px,transparent 27.5px),linear-gradient(transparent 31px,var(--rule) 31px) 0 0/100% 32px repeat-y}
+/* --- v69css --- */
+/* v69: navigasi (Beranda / Sebelumnya / Isi modul), cek paham, lanjutkan belajar, poles tampilan */
+#app>header{position:relative;z-index:40;background:color-mix(in srgb,var(--cream) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1.5px solid color-mix(in srgb,var(--ink) 8%,transparent)}
+#app #home69{width:40px;height:40px;border-radius:50%;background:var(--white);border:1.5px solid color-mix(in srgb,var(--ink) 12%,transparent);font-size:18px;line-height:1;display:none;box-shadow:0 2px 0 color-mix(in srgb,var(--ink) 10%,transparent);flex:none}
+#app #home69:active{transform:translateY(1px)}
+#prog i{cursor:pointer;position:relative;transition:transform .15s,background .2s}
+#prog i::after{content:"";position:absolute;inset:-12px -3px}
+#prog i:hover{transform:scaleY(1.5)}
+.v66chip+*{margin-top:2px}
+#app .path .card{box-shadow:0 1px 0 rgba(0,0,0,.04),0 12px 24px -16px rgba(120,60,40,.45);transition:transform .15s var(--ease),box-shadow .2s}
+#app .path .card:active{transform:scale(.985)}
+#app .v69res{width:100%;margin:0 0 14px;background:linear-gradient(135deg,var(--terra-l),var(--white));border:1.5px solid var(--terra);text-align:left}
+#app .v69res b{display:block}
+.v69nav{display:flex;gap:8px}
+.v69nav button,.v69cek button,.v69j{min-height:46px;border-radius:14px;background:var(--white);border:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent);font-weight:700;font-size:15px;padding:0 14px;box-shadow:0 3px 0 color-mix(in srgb,var(--ink) 10%,transparent);transition:transform .12s,box-shadow .12s}
+.v69nav button:active,.v69cek button:active{transform:translateY(2px);box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 10%,transparent)}
+.v69nav #v69p{flex:1}
+.v69cek{display:flex;gap:8px;margin:10px 0 4px}
+.v69cek button{flex:1;min-height:42px;font-size:14px}
+.v69cek button.on.y{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.v69cek button.on.n{background:var(--terra-l);border-color:var(--terra);color:var(--terra-d)}
+.v69box{margin:10px 0;padding:12px 14px;border-radius:16px;background:var(--cream-d);line-height:1.65}
+.v69box ul{margin:6px 0 0;padding-left:18px}
+.v69box .v69j{min-height:36px;margin:4px 6px 0 0;font-size:13px}
+.v66chip~details li{cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+#v69sheet{position:absolute;inset:0;z-index:90;display:none}
+#v69sheet.on{display:block}
+#v69sheet .bd{position:absolute;inset:0;background:rgba(40,20,12,.45)}
+#v69sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:82%;overflow:auto;background:var(--cream);border-radius:24px 24px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px rgba(0,0,0,.3);animation:v69up .28s var(--ease)}
+#v69sheet .pn>b{display:block;margin-bottom:10px;font-size:15px}
+#v69sheet ol{list-style:none;display:flex;flex-direction:column;gap:6px}
+#v69sheet li button{width:100%;display:flex;gap:10px;align-items:center;text-align:left;padding:11px 12px;border-radius:14px;background:var(--white);border:1.5px solid transparent;font-size:14px;font-weight:600}
+#v69sheet li button.cur{border-color:var(--terra);background:var(--terra-l)}
+#v69sheet li button span:nth-child(2){flex:1}
+#v69sheet .row{display:flex;gap:8px;margin-top:12px}
+#v69sheet .row button{flex:1;min-height:44px;border-radius:14px;background:var(--white);border:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent);font-weight:700}
+@keyframes v69up{from{transform:translateY(40px);opacity:0}}
+/* --- v70css --- */
+/* v70: lapisan tampilan premium + burung interaktif */
+:root{--sh:0 1px 2px rgba(80,40,25,.06),0 10px 26px -14px rgba(80,40,25,.32);--hair:color-mix(in srgb,var(--ink) 9%,transparent)}
+html:not([data-theme=dark]) body{background:radial-gradient(900px 520px at 15% -8%,#F7E4D4,transparent 60%),radial-gradient(800px 480px at 100% 100%,#EEDAC6,transparent 55%),#EADCC8}
+@media(min-width:560px){body{align-items:center}#app{height:min(100%,920px);border-radius:34px;box-shadow:0 36px 90px -24px rgba(80,40,25,.5),0 0 0 1px rgba(80,40,25,.08)}}
+#app .view{scrollbar-width:none}#app .view::-webkit-scrollbar{display:none}
+#app #title{letter-spacing:-.02em}
+#app #back,#app #gear{width:40px;height:40px;border-radius:50%;background:var(--white);border:1px solid var(--hair);box-shadow:var(--sh);display:inline-flex;align-items:center;justify-content:center;flex:none}
+#app #home69{border:1px solid var(--hair);box-shadow:var(--sh)}
+#app .stats .pill{border-radius:99px;background:var(--white);border:1px solid var(--hair);box-shadow:var(--sh);font-weight:700}
+#app .path .card{border:1px solid var(--hair);border-radius:22px;background:var(--white);box-shadow:var(--sh)}
+#app .path .card:hover{transform:translateY(-2px);box-shadow:0 2px 3px rgba(80,40,25,.06),0 18px 34px -16px rgba(80,40,25,.4)}
+#app .card .ico{border-radius:16px;background:linear-gradient(145deg,var(--terra-l),color-mix(in srgb,var(--white) 80%,transparent))}
+#app .grp h3{letter-spacing:-.01em}
+#app .bubble{border-radius:22px;border:1px solid var(--hair);box-shadow:var(--sh)}
+#app .ex,#app .tbl,#app .qcard,#app .res{border-radius:20px;box-shadow:var(--sh)}
+#app .tip{border-radius:18px;border:1px solid color-mix(in srgb,var(--terra) 24%,transparent);background:linear-gradient(180deg,var(--white),color-mix(in srgb,var(--terra-l) 75%,var(--white)))}
+#app .v66chip span:first-child{background:var(--terra-l)!important;color:var(--terra-d);padding:4px 12px!important}
+#app .btn:not(.ghost){background:linear-gradient(180deg,#DB6D4D,#BB5035);border-radius:18px;letter-spacing:.2px;box-shadow:0 12px 26px -12px rgba(194,89,63,.85),inset 0 1px 0 rgba(255,255,255,.35)!important}
+#app .btn:not(.ghost):active{transform:translateY(1px) scale(.99)}
+#app .btn.ghost{background:var(--white);border:1.5px solid var(--hair);box-shadow:var(--sh)!important}
+html:not([data-theme=dark]) #app .foot{background:color-mix(in srgb,var(--cream) 90%,transparent);border-top:1px solid var(--hair);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.v69nav button,.v69cek button{box-shadow:var(--sh);border:1px solid var(--hair)}
+#app .mascot,#fo{cursor:pointer;-webkit-user-select:none;user-select:none}
+.mascot .eye circle{transition:translate .18s cubic-bezier(.2,.8,.2,1)}
+.mascot.v70sleep .eye{animation:none!important;transform:scaleY(.1)}
+.mascot.v70tilt svg{animation:v70tilt .9s cubic-bezier(.3,1.4,.5,1)}
+@keyframes v70tilt{0%{rotate:0deg}30%{rotate:-16deg}60%{rotate:11deg}100%{rotate:0deg}}
+.v70say{position:fixed;z-index:95;max-width:240px;padding:9px 14px;border-radius:16px;background:var(--white);color:var(--ink);border:1px solid var(--hair);box-shadow:0 12px 28px -10px rgba(80,40,25,.5);font:700 13px/1.35 var(--ui);pointer-events:none;animation:v70in .25s cubic-bezier(.3,1.5,.5,1)}
+.v70say::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:inherit;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);transform:translateX(-50%) rotate(45deg)}
+@keyframes v70in{from{opacity:0;transform:translateY(8px) scale(.85)}}
+/* --- v71css --- */
+@keyframes v71f{from{opacity:0;transform:translateX(34px)}}
+@keyframes v71b{from{opacity:0;transform:translateX(-34px)}}
+#app .view.in.v71f{animation:v71f .3s cubic-bezier(.2,.8,.2,1)}
+#app .view.in.v71b{animation:v71b .3s cubic-bezier(.2,.8,.2,1)}
+.cefr{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;background:var(--terra);color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;vertical-align:1px}
+.v71chip{margin:0 0 12px;padding:10px 14px;border-radius:16px;background:var(--cream-d);font-size:13.5px;line-height:1.55}
+.v71m{margin:10px 0;padding:12px 14px;border-radius:18px;background:var(--white);border:1px solid var(--hair,#0001);box-shadow:var(--sh,none);line-height:1.6}
+.v71m .w{color:var(--bad);font-weight:700}.v71m .r{color:var(--ok);font-weight:700}.v71m p{margin-top:6px;font-size:14px;opacity:.9}
+.v71h{margin:14px 0 6px;font-weight:800;font-size:15px}
+.v71who{display:flex;gap:10px;align-items:flex-start;margin:6px 0 14px}
+.v71who i{font-style:normal;font-size:30px;line-height:1}
+.v71who div{padding:12px 14px;border-radius:4px 18px 18px 18px;background:var(--white);border:1px solid var(--hair,#0001);box-shadow:var(--sh,none);font-weight:700}
+.v71who small{display:block;margin-top:4px;font-weight:500;opacity:.7}
+.v71o{display:block;width:100%;text-align:left;margin:8px 0;padding:13px 14px;border-radius:16px;background:var(--white);border:1.5px solid var(--hair,#0002);font-weight:600;box-shadow:var(--sh,none)}
+.v71o.g{border-color:var(--ok);background:var(--ok-bg)}.v71o.m{border-color:#E3A23B}.v71o.x{border-color:var(--bad);background:var(--bad-bg)}
+.v71fb{margin:10px 0;padding:12px 14px;border-radius:16px;background:var(--cream-d);line-height:1.6}
+.v71fc{margin:8px 0 16px;min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px 18px;border-radius:26px;background:linear-gradient(160deg,var(--white),var(--terra-l));border:1px solid var(--hair,#0001);box-shadow:var(--sh,none);text-align:center;width:100%}
+.v71fc b{font:800 34px var(--disp)}.v71fc em{font-style:normal;opacity:.75;font-size:14px}
+.v71row{display:flex;gap:8px;margin:6px 0}.v71row .btn{flex:1}
+/* --- nb-theme --- */
+/* ===== NB: tema Neo-Brutalist (outline tebal, bayangan keras, warna permen) ===== */
+:root{
+  --ui:"DM Sans","Segoe UI",system-ui,-apple-system,sans-serif;--disp:var(--ui);--read:var(--ui);--serif:var(--ui);
+  --bd:#111;--g:#6EE0B0;--g-d:#0C7A57;--y:#FFE27A;--p:#FFB9B9;--b:#A8DDF6;--on-g:#111;
+  --terra:#6EE0B0;--terra-d:#0C7A57;--terra-l:#E3F8EE;
+  --cream:#FFFDF7;--cream-d:#F1EEE6;--white:#FFFFFF;--paper:#FFFFFF;
+  --ink:#111111;--mute:#5E5E70;--line:#111;--rule:#E4E4EE;--margin:#F7A3A3;
+  --ok:#0C7A57;--ok-bg:#D8F6E8;--bad:#B3261E;--bad-bg:#FFE1E1;--gold:#FFD84D;
+  --c0:#6EE0B0;--c1:#FFE27A;--c2:#FFB9B9;--c3:#A8DDF6;
+  --stk:4px 4px 0 var(--y),4px 4px 0 2px var(--bd);
+  --r:20px;--r1:22px;--r2:16px}
+[data-theme=dark]{--bd:#F4F4EE;--g:#2BD6A0;--g-d:#7CEFC8;--terra:#2BD6A0;--terra-d:#7CEFC8;--terra-l:#173A30;
+  --cream:#17171D;--cream-d:#0D0D11;--white:#22222B;--paper:#22222B;--ink:#F4F4EE;--mute:#A7A7B8;--line:#F4F4EE;--rule:#33333F;
+  --ok:#7CEFC8;--ok-bg:#16382D;--bad:#FF9A93;--bad-bg:#3C1E1E;--c0:#2BD6A0;--c1:#E9C43E;--c2:#E58E8E;--c3:#6FB9E0}
+html{color-scheme:light}[data-theme=dark]{color-scheme:dark}
+body,html:root #app,button,input{font-family:var(--ui)!important;letter-spacing:0}
+body{background:var(--cream-d)!important}
+html:root #app{background:var(--cream)!important}
+@media(min-width:520px){html:root #app{border:2px solid var(--bd)!important;border-radius:36px!important;box-shadow:8px 8px 0 var(--y),8px 8px 0 2px var(--bd)!important}}
+html:root #app::before{opacity:1!important;mix-blend-mode:normal!important;background:
+  radial-gradient(circle,var(--y) 0 5px,transparent 6px) 88% 12%/60px 60px no-repeat,
+  radial-gradient(circle,var(--p) 0 4px,transparent 5px) 8% 38%/60px 60px no-repeat,
+  radial-gradient(circle,var(--b) 0 5px,transparent 6px) 94% 62%/60px 60px no-repeat,
+  radial-gradient(circle,var(--g) 0 4px,transparent 5px) 4% 88%/60px 60px no-repeat!important}
+html:root #app .aur,html:root #app .grain{display:none!important}
+/* header */
+html:root #app header{background:var(--cream)!important;backdrop-filter:none!important;border-bottom:2px solid var(--bd)!important}
+html:root #app #title{font-weight:800!important;font-size:20px!important;color:var(--ink)!important}
+html:root #app #back,html:root #app #gear,html:root #app #srch{width:40px;height:40px;border-radius:12px!important;border:2px solid var(--bd)!important;box-shadow:2px 3px 0 var(--bd)!important;color:var(--on-g)!important;font-weight:800;transition:transform .12s,box-shadow .12s}
+html:root #app #back{background:var(--g)!important}html:root #app #gear{background:var(--y)!important}
+html:root #app #back:active,html:root #app #gear:active{transform:translate(2px,3px)!important;box-shadow:0 0 0 var(--bd)!important}
+html:root #app #prog i{height:8px;border:2px solid var(--bd);background:var(--white)!important;border-radius:8px}
+html:root #app #prog i.on{background:var(--g)!important}
+/* kartu */
+html:root #app .card{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:4px 4px 0 var(--c,var(--g)),4px 4px 0 2px var(--bd)!important;transition:transform .12s,box-shadow .12s!important}
+html:root #app .card:hover{transform:translate(-1px,-1px)!important;box-shadow:5px 5px 0 var(--c,var(--g)),5px 5px 0 2px var(--bd)!important;border-color:var(--bd)!important}
+html:root #app .card:active{transform:translate(3px,3px)!important;box-shadow:1px 1px 0 var(--c,var(--g)),1px 1px 0 2px var(--bd)!important}
+html:root #app .card .ico,html:root #app .path.lv .ico,html:root #app .path.tools .ico{background:var(--c,var(--y))!important;border:2px solid var(--bd)!important;border-radius:14px!important;box-shadow:none!important;color:#111}
+html:root #app .card .txt b,html:root #app .path.lv .txt b{font-weight:800!important;color:var(--ink)}
+html:root #app .card .txt small,html:root #app .path.lv .txt small,html:root #app .path.tools .txt small{color:var(--mute)!important;font-weight:700!important}
+html:root #app .path.lv .card,html:root #app .path.tools .card{border:2px solid var(--bd)!important;border-radius:var(--r1)!important}
+html:root #app .path.lv .card:nth-child(odd){transform:rotate(-.5deg)}html:root #app .path.lv .card:nth-child(even){transform:rotate(.5deg)}
+html:root #app .path.lv .card:hover,html:root #app .path.lv .card:active{transform:none}
+html:root #app .path::before{border-left:2px dashed var(--bd)!important;opacity:.35}
+html:root #app .path.lv .go{background:var(--bd)!important;color:var(--y)!important;border-radius:8px!important}
+html:root #app .lp{height:10px!important;border:2px solid var(--bd);background:var(--white)!important;border-radius:10px!important}
+html:root #app .lp u{background:var(--g)!important;border-radius:0!important}
+html:root #app .stars{color:#111!important;-webkit-text-stroke:0}html[data-theme=dark] html:root #app .stars{color:var(--y)!important}
+html:root #app .sec{font-weight:900!important;font-size:20px!important}
+html:root #app .sec::after{height:0!important;border-top:2px dashed var(--bd);background:none!important;opacity:.4}
+html:root #app .grp h3 small{background:var(--y)!important;color:#111!important;border:2px solid var(--bd);border-radius:10px!important}
+/* pill & dashboard */
+html:root #app .pill{border:2px solid var(--bd)!important;box-shadow:2px 2px 0 var(--bd)!important;background:var(--y)!important;color:#111!important;font-weight:800}
+html:root #app .pill:nth-child(2){background:var(--b)!important}html:root #app .pill:nth-child(n+3){background:var(--p)!important}
+html:root #app .dg{background:var(--y)!important;border:2px solid var(--bd)!important;border-radius:24px!important;box-shadow:4px 4px 0 var(--g),4px 4px 0 2px var(--bd)!important;color:#111}
+html:root #app .dg.done{background:var(--g)!important}html:root #app .dg small,html:root #app .dg .dgt small{color:#111!important;opacity:.75}html:root #app .dg b,html:root #app .dg text{color:#111!important;fill:#111}
+html:root #app .dg svg circle:first-child{stroke:#fff!important}html:root #app .dg svg circle+circle{stroke:#111!important}
+html:root #app .wk i{background:#fff!important;border:2px solid #111;border-radius:6px!important}html:root #app .wk i.on{background:#111!important}
+html:root #app .sbar{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:var(--r2)!important;box-shadow:var(--stk)!important;font-weight:700}
+/* bubble maskot */
+html:root #app .bubble{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:20px!important;box-shadow:var(--stk)!important;color:var(--ink);font-weight:500}
+html:root #app .bubble::before{background:var(--white)!important;border:0;border-left:2px solid var(--bd);border-bottom:2px solid var(--bd);border-radius:0 0 0 4px;left:-9px}
+html:root #app .bubble b{color:var(--ink)!important;background:var(--y);padding:0 4px;border-radius:5px}
+
+.mascot svg ellipse,.mascot svg circle,.mascot svg path[fill],#fo svg ellipse,#fo svg circle,#fo svg path[fill]{stroke:#111;stroke-width:2;stroke-linejoin:round}
+.mascot svg{filter:none!important}
+/* kuis */
+html:root #app .qcard,html:root #app .qcard:has(>.q){background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:4px 4px 0 var(--p),4px 4px 0 2px var(--bd)!important;padding:18px!important;gap:16px}
+html:root #app .qcard>.q{margin:0!important;padding:0!important;background:none!important;font-weight:800!important;font-size:19px!important;line-height:1.4!important}
+html:root #app .qcard .pas{background:var(--cream-d)!important;border:2px dashed var(--bd);border-radius:14px;padding:12px 14px!important;font-size:15.5px;line-height:1.65}
+html:root #app .opt{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:14px!important;box-shadow:3px 3px 0 var(--bd)!important;font-weight:600;color:var(--ink)!important;transition:transform .1s,box-shadow .1s,background .15s!important}
+html:root #app .opt:hover:not(:disabled){background:var(--y)!important;color:#111!important;border-color:var(--bd)!important}
+html:root #app .opt:active:not(:disabled){transform:translate(3px,3px)!important;box-shadow:0 0 0 var(--bd)!important}
+html:root #app .opt.ok{background:var(--g)!important;color:#111!important;box-shadow:3px 3px 0 var(--bd)!important;font-weight:800}
+html:root #app .opt.bad{background:var(--p)!important;color:#111!important;border-color:var(--bd)!important}
+html:root #app .opt:disabled{opacity:1}
+html:root #app .in,html:root #app input.in{background:#F1F1F6!important;color:#111!important;border:2px solid var(--bd)!important;border-radius:14px!important;font-weight:600}
+html:root #app .in:focus{background:#fff!important;box-shadow:3px 3px 0 var(--y)!important}
+html:root #app .chip{background:var(--y)!important;color:#111!important;border:2px solid var(--bd)!important;border-radius:12px!important;box-shadow:2px 2px 0 var(--bd);font-weight:700}
+html:root #app .slot{border-bottom:2px dashed var(--bd)!important}
+html:root #app .why:not(.full){background:var(--ok-bg)!important;border:2px solid var(--bd)!important;border-left:2px solid var(--bd)!important;border-radius:16px!important;color:var(--ink)!important;box-shadow:3px 3px 0 var(--bd)}
+html:root #app .why h4,html:root #app .why.full h4{color:var(--ink)!important}
+html:root #app .res{background:var(--y)!important;border:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:4px 4px 0 var(--g),4px 4px 0 2px var(--bd)!important;color:#111}
+html:root #app .res .big{color:#111!important}
+/* materi */
+html:root #app .ex{background:repeating-linear-gradient(90deg,#FFD84D 0 44px,#FFDF68 44px 88px)!important;color:#111!important;border:2px solid var(--bd)!important;border-left:2px solid var(--bd)!important;border-radius:var(--r1)!important;box-shadow:3px 3px 0 var(--bd)}
+html:root #app .ex b,html:root #app .ex2 b{color:#111!important}html:root #app .ex2{background:rgba(255,255,255,.7)!important;border:2px solid var(--bd);color:#111}
+html:root #app .tip{background:var(--p)!important;color:#111!important;border:2px solid var(--bd)!important;border-left:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--bd)}
+html:root #app .tbl{border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--bd)!important;background:var(--white)!important}
+html:root #app .tbl th{background:var(--g)!important;color:#111!important;border-bottom:2px solid var(--bd);font-weight:800}
+html:root #app .tbl td{border-top:1.5px solid var(--bd)!important;color:var(--ink)}
+html:root #app .mm-c{background:var(--g)!important;color:#111!important;border:2px solid var(--bd);box-shadow:3px 3px 0 var(--bd)!important;font-weight:800}
+html:root #app .mm-b{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--b),3px 3px 0 2px var(--bd)!important}
+html:root #app .mm-b b{color:var(--ink)!important}html:root #app .mm-b span{background:var(--y)!important;color:#111!important;border:1.5px solid var(--bd);font-weight:600}
+html:root #app .mm::before,html:root #app .mm-b::before{border-color:var(--bd)!important}
+html:root #app .exp li::before{background:var(--y)!important;color:#111!important;border:2px solid var(--bd);font-weight:800}
+/* tombol */
+html:root #app .btn{background:var(--g)!important;color:var(--on-g)!important;border:2px solid var(--bd)!important;border-radius:16px!important;text-shadow:none!important;font-weight:800!important;box-shadow:4px 5px 0 var(--bd)!important;transition:transform .1s,box-shadow .1s!important}
+html:root #app .btn:active{transform:translate(4px,5px)!important;box-shadow:0 0 0 var(--bd)!important}
+html:root #app .btn.ghost{background:var(--white)!important;color:var(--ink)!important}
+html:root #app .btn.ghost:hover{background:var(--y)!important;color:#111!important}
+html:root #app .btn:disabled{opacity:.5}
+html:root #app .foot{background:linear-gradient(transparent,var(--cream) 30%)!important}
+html:root #app .set{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 3px 0 var(--bd)!important}
+html:root #app .sw{background:var(--white)!important;border:2px solid var(--bd)}html:root #app .sw::after{background:var(--bd)!important;top:2px;left:2px}html:root #app .sw.on{background:var(--g)!important}
+#mov{background:var(--cream)!important}#mov .msent{background:var(--white)!important;border:2px solid var(--bd);box-shadow:4px 4px 0 var(--y),4px 4px 0 2px var(--bd)}
+/* bar navigasi bawah */
+#nbnav{display:flex;justify-content:space-around;gap:6px;margin:6px 16px calc(12px + env(safe-area-inset-bottom));padding:7px 10px;background:var(--g);border:2px solid var(--bd);border-radius:20px;box-shadow:4px 4px 0 var(--bd);position:relative;z-index:5;flex:none}
+#nbnav button{width:48px;height:44px;border-radius:13px;font-size:21px;border:2px solid transparent;display:grid;place-items:center;transition:transform .1s;color:#111}
+#nbnav button.on{background:var(--y);border-color:var(--bd);box-shadow:2px 2px 0 var(--bd)}
+#nbnav button:active{transform:scale(.9)}
+#nbnav button:focus-visible{outline:3px solid #111;outline-offset:2px}
+@media(max-width:380px){#nbnav{margin-inline:10px}}
+
+/* panel penjelasan jawaban */
+html:root #app{--ink2:var(--bd)}
+html:root #app .foot{border-top:2px dashed var(--bd)!important}
+html:root #app .why.full{padding:0!important;overflow:hidden;border:2px solid var(--bd)!important;border-radius:20px!important;box-shadow:4px 4px 0 var(--bd)!important;background:var(--white)!important}
+html:root #app .why.full h4{background:var(--y)!important;color:#111!important;border-bottom:2px solid var(--bd)!important;font-weight:800}
+html:root #app .why.full.ok h4{background:var(--g)!important}html:root #app .why.full.no h4{background:var(--p)!important}
+html:root #app .wbadge{border:2px solid var(--bd);color:#111!important}
+html:root #app .exp li{background:var(--white)!important;border:2px solid var(--bd)!important;border-radius:14px!important;color:var(--ink)}
+html:root #app .exp li::before{background:var(--y)!important;border:2px solid var(--bd)!important;color:#111!important;border-radius:10px!important}
+html:root #app .exp li strong{color:var(--mute)!important}
+html:root #app .exp li[data-k=y],html:root #app .exp li[data-k=a]{background:var(--ok-bg)!important}
+html:root #app .exp li[data-k=y]::before,html:root #app .exp li[data-k=a]::before{background:var(--g)!important}
+html:root #app .why.no .exp li[data-k=c]{background:var(--bad-bg)!important}
+html:root #app .why.no .exp li[data-k=c]::before{background:var(--p)!important}
+html:root #app .exp li[data-k=k]{background:#FFF4CF!important;border-style:dashed!important;color:#111}
+html:root #app .exp li[data-k=k] strong{color:#111!important}
+html:root #app .exp li[data-k=t]{background:transparent!important}
+html:root #app .exp .ex2{border-top:1.5px dashed var(--bd)!important;background:none!important;border-left:0;border-right:0;border-bottom:0;border-radius:0!important}
+html:root #app .opt::before{background:var(--y)!important;border:2px solid var(--bd);color:#111!important}
+html:root #app .opt.ok::before,html:root #app .opt.bad::before{background:#fff!important;color:#111!important}
+html:root #app .path>.card{border-left:2px solid var(--bd)!important}
+html:root #app .tbl table{border:0!important}html:root #app .tbl th{color:#111!important}
+
+html:root #app .view{background:var(--cream)!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html:root #app main,html:root #app{background:var(--cream)!important}
+#nbnav{background:var(--white)!important}
+#nbnav button.on{background:var(--g)!important}
+/* ===== detail lucu: grid titik, confetti melayang, titik di kartu ===== */
+html:root #app{background:var(--cream) radial-gradient(color-mix(in srgb,var(--bd) 13%,transparent) 1.1px,transparent 1.5px) 0 0/18px 18px!important}
+html:root #app .view{background:transparent!important}
+html:root #app::before{display:block!important;content:"";position:absolute;inset:0;pointer-events:none;z-index:3;opacity:1!important;mix-blend-mode:normal!important;animation:nbdrift 7s ease-in-out infinite;background:
+ radial-gradient(circle,var(--y) 0 4px,var(--bd) 4px 5.5px,transparent 6px) 99% 14%/20px 20px no-repeat,
+ radial-gradient(circle,var(--p) 0 3px,var(--bd) 3px 4.5px,transparent 5px) 0% 33%/16px 16px no-repeat,
+ radial-gradient(circle,var(--b) 0 5px,var(--bd) 5px 6.5px,transparent 7px) 100% 52%/22px 22px no-repeat,
+ radial-gradient(circle,var(--g) 0 3px,var(--bd) 3px 4.5px,transparent 5px) 0% 66%/16px 16px no-repeat,
+ radial-gradient(circle,var(--y) 0 3px,var(--bd) 3px 4.5px,transparent 5px) 99% 80%/16px 16px no-repeat,
+ radial-gradient(circle,var(--p) 0 4px,var(--bd) 4px 5.5px,transparent 6px) 1% 92%/20px 20px no-repeat!important}
+@keyframes nbdrift{50%{transform:translateY(-7px)}}
+html:root #app .sec::after{border-top:3px dotted var(--bd)!important;opacity:.45}
+html:root #app .foot{border-top:3px dotted var(--bd)!important}
+html:root #app .path.lv .card::after,html:root #app .path.tools .card::after{display:block!important;content:"";position:absolute;width:36px;height:14px;pointer-events:none;opacity:.55;background:radial-gradient(circle,var(--bd) 1.5px,transparent 2px) 0 0/9px 7px}
+html:root #app .path.lv .card::after{right:14px;bottom:10px}
+html:root #app .path.tools .card::after{right:12px;top:12px}
+html:root #app .bubble::after{content:"✦";position:absolute;right:12px;top:-12px;font-size:16px;color:var(--bd);background:var(--y);border:2px solid var(--bd);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;line-height:1}
+html:root #app .res::after{content:"✦  ·  ✦  ·  ✦";display:block;margin-top:8px;letter-spacing:4px;opacity:.5}
+html:root #app{background:var(--cream) radial-gradient(color-mix(in srgb,var(--bd) 6%,transparent) 1px,transparent 1.4px) 0 0/20px 20px!important}
+html:root #app::before{opacity:.5!important;background:radial-gradient(circle,var(--y) 0 3px,transparent 3.5px) 99% 14%/14px 14px no-repeat,radial-gradient(circle,var(--p) 0 2.5px,transparent 3.0px) 0% 33%/12px 12px no-repeat,radial-gradient(circle,var(--b) 0 3px,transparent 3.5px) 100% 52%/14px 14px no-repeat,radial-gradient(circle,var(--g) 0 2.5px,transparent 3.0px) 0% 66%/12px 12px no-repeat!important}
+html:root #app .path.lv .card::after,html:root #app .path.tools .card::after{display:none!important}
+html:root #app .res::after{opacity:.25}
+html:root #app .card .ico,html:root #app .path.lv .ico,html:root #app .path.tools .ico{background:color-mix(in srgb,var(--c,var(--g)) 60%,#fff)!important;border:0!important;border-radius:50%!important;box-shadow:none!important;width:50px!important;height:50px!important}
+html:root[data-theme=dark] #app .card .ico{background:color-mix(in srgb,var(--c,var(--g)) 35%,var(--white))!important}
+/* ===== kartu Dukung Creator ===== */
+html:root #app .dash.sup{background:#E6E0FF!important;border:2px solid var(--bd)!important;border-radius:24px!important;box-shadow:4px 4px 0 var(--bd)!important;color:var(--ink)!important;overflow:visible!important}
+html:root #app .dash.sup *{text-shadow:none!important}
+html:root #app .dash.sup .dt,html:root #app .dash.sup .tx,html:root #app .dash.sup p,html:root #app .dash.sup .tx *{color:var(--ink)!important}
+html:root #app .dash.sup .tx p,html:root #app .dash.sup .tx small{opacity:.8}
+html:root #app .dash.sup .mowl{filter:none!important}
+html:root #app .dash.sup .mowl::after,html:root #app .dash.sup .mowl i{display:none!important}
+html:root #app .supb a.sup1{background:var(--y)!important;color:#111!important;border:2px solid var(--bd)!important;border-radius:16px!important;box-shadow:3px 4px 0 var(--bd)!important;font-weight:800!important;backdrop-filter:none!important}
+html:root #app .supb a.sup1:active{transform:translate(3px,4px);box-shadow:0 0 0 var(--bd)!important}
+html:root #app .supb a:not(.sup1){background:var(--white)!important;color:var(--ink)!important;border:2px solid var(--bd)!important;border-radius:14px!important;box-shadow:3px 3px 0 var(--bd)!important;font-weight:700!important;backdrop-filter:none!important}
+html:root #app .supb a .cup .nbi{width:22px;height:22px;display:inline-block;vertical-align:-5px}
+html:root #app .brand{box-shadow:none!important;border:2px solid var(--bd)}
+/* ===== kalem: bayangan hitam polos, kartu pastel, tanpa dekor ramai ===== */
+html:root{--stk:4px 4px 0 var(--bd)}
+html:root body{background:var(--cream-d)!important}
+html:root #app .card,html:root #app .bubble,html:root #app .sbar,html:root #app .qcard,html:root #app .qcard:has(>.q),html:root #app .res,html:root #app .dg,html:root #app .mm-b,html:root #app .path.lv .card{box-shadow:4px 4px 0 var(--bd)!important}
+html:root #app .card:hover{box-shadow:5px 5px 0 var(--bd)!important}
+html:root #app .card:active{box-shadow:1px 1px 0 var(--bd)!important}
+html:root #app .path.lv .card,html:root #app .path.tools .card{background:color-mix(in srgb,var(--c) 28%,#fff)!important}
+html:root #app .path.lv .card:nth-child(n){transform:none}
+html:root #app .path.lv .ico,html:root #app .path.tools .ico{background:#fff!important}
+html:root #app .ex{background:#FFF1B8!important}
+html:root #app .tip{background:#FFE3E3!important}
+html:root #app .bubble b{background:none!important;box-shadow:inset 0 -.4em 0 var(--y)}
+html:root #app .pill,html:root #app .pill:nth-child(2),html:root #app .pill:nth-child(n+3){background:#fff!important}
+html:root #app .dg{background:#FFF1B8!important}html:root #app .dg.done{background:var(--g)!important}
+html:root #app .res{background:#FFF1B8!important}
+@media(min-width:520px){html:root #app{box-shadow:8px 8px 0 var(--bd)!important}}
+html:root[data-theme=dark] #app .card,html:root[data-theme=dark] #app .path.lv .card{background:var(--white)!important}
+/* --- ds-v85 --- */
+/* ===== v85: design system. Token + komponen dasar (menimpa tumpukan v19-v84 secara konsisten) ===== */
+html:root{--sp1:4px;--sp2:8px;--sp3:12px;--sp4:16px;--sp5:24px;--sp6:32px;
+ --fs-xs:12px;--fs-sm:14px;--fs-md:16px;--fs-lg:20px;--fs-xl:26px;--lh:1.55;
+ --tap:48px;--bw:2px;--ease-out:cubic-bezier(.2,.8,.2,1)}
+html:root #app{font-size:var(--fs-md);line-height:var(--lh);-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+html:root #app .view{padding-left:var(--sp4);padding-right:var(--sp4);scroll-padding-top:var(--sp5)}
+/* komponen: tombol */
+html:root #app .btn{min-height:var(--tap);padding:var(--sp3) var(--sp5);font-weight:800;border-radius:16px;touch-action:manipulation}
+html:root #app .btn:disabled{opacity:.5;cursor:not-allowed}
+/* komponen: pilihan jawaban */
+html:root #app .opt{min-height:var(--tap);padding:var(--sp3) var(--sp4);line-height:1.4;touch-action:manipulation}
+/* tombol ikon header minimal 44px */
+html:root #app #back,html:root #app #gear,html:root #app #srch,html:root #app #zs-btn,html:root #app #kopi-hdr{min-width:44px;min-height:44px}
+/* tipografi: jenjang jelas, baris nyaman dibaca */
+html:root #app .view p,html:root #app .view li{line-height:var(--lh)}
+html:root #app .view h1,html:root #app .view h2{line-height:1.2;text-wrap:balance}
+html:root #app .view p{text-wrap:pretty;max-width:68ch}
+/* fokus keyboard konsisten, tidak hilang di tema gelap */
+html:root #app :focus-visible{outline:3px solid var(--g-d);outline-offset:3px;border-radius:12px}
+html[data-theme=dark] #app :focus-visible{outline-color:var(--g-d)}
+/* tabel & kode tidak pernah melebar keluar layar */
+html:root #app .view table{width:100%;border-collapse:collapse}
+html:root #app .view img,html:root #app .view svg{max-width:100%}
+/* kontras teks sekunder di tema gelap */
+html[data-theme=dark] #app small,html[data-theme=dark] #app .mute{color:#BDBDCC}
+/* area aman HP (notch & bar bawah) */
+html:root #app header{padding-top:max(var(--sp2),env(safe-area-inset-top))}
+html:root #app #nbnav{padding-bottom:max(var(--sp2),env(safe-area-inset-bottom))}
+/* gerak: hormati preferensi pengguna */
+@media(prefers-reduced-motion:reduce){html:root #app *,html:root #app *::before,html:root #app *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media(max-width:380px){html:root #app .view{padding-left:var(--sp3);padding-right:var(--sp3)}}
+/* ===== keterbacaan: ukuran, jarak baris, bobot ===== */
+html:root #app{font-size:17px;font-weight:500;font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
+html:root #app .view p,html:root #app .view li,html:root #app .bubble,html:root #app .exp,html:root #app .tip,html:root #app .nudge,html:root #app .why{font-size:17px;line-height:1.7;letter-spacing:.005em;font-weight:500}
+html:root #app .view b,html:root #app .view strong{font-weight:700}
+html:root #app .opt{font-size:16.5px;font-weight:600;line-height:1.45}
+html:root #app .view td,html:root #app .view th{font-size:15.5px;line-height:1.55;padding:10px 12px}
+html:root #app .view th{font-weight:700}
+html:root #app small,html:root #app .card .txt small{font-size:13.5px;line-height:1.5;font-weight:600}
+html:root #app .view h1{font-size:28px;font-weight:800;letter-spacing:-.01em}
+html:root #app .view h2{font-size:22px;font-weight:800;letter-spacing:-.005em}
+html:root #app .view p+p,html:root #app .view p+ul,html:root #app .view ul+p{margin-top:.85em}
+@media(max-width:380px){html:root #app,html:root #app .view p,html:root #app .view li,html:root #app .bubble{font-size:16px}}
+/* --- glosarium v87: pengertian umum + bahasa bayi --- */
+html:root #app .gdef{margin:var(--sp3) 0;padding:var(--sp3) var(--sp4);border:2px solid var(--bd);border-radius:16px;background:var(--white)}
+html:root #app .gdef b,html:root #app .gb b{display:block;font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;color:var(--g-d)}
+html:root #app .gdef p,html:root #app .gb p{margin:0;font-size:16.5px;line-height:1.65}
+html:root #app .gdef+.gb{margin-top:var(--sp2)}
+/* --- fix v90: hasil pencarian tidak boleh gepeng (flex-shrink pada kartu) --- */
+html:root #app #sres{display:flex;flex-direction:column;gap:14px;min-height:0;padding:4px 6px 24px 2px;-webkit-overflow-scrolling:touch}
+html:root #app #sres>*{flex:0 0 auto}
+html:root #app #sres .card{height:auto;min-height:64px;overflow:visible;align-items:center}
+html:root #app #sres .card .txt{min-width:0;display:block}
+html:root #app #sres .card .txt b{display:block;line-height:1.3;overflow-wrap:anywhere}
+html:root #app #sres .card .txt small{display:block;line-height:1.35}
+html:root #app #sres .sn{font-size:13px;line-height:1.45;margin-top:4px;font-weight:500}
+html:root #app #sres .card:nth-child(odd),html:root #app #sres .card:nth-child(even){transform:none}
+</style>
+<script id="nb-ready">
+/* buka tirai setelah semua CSS tema, render pertama, dan ikon SVG selesai dipasang */
+(function(){var d=document.documentElement,done=false;
+function go(){if(done)return;done=true;requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('nb-ready');setTimeout(function(){var b=document.getElementById('nb-boot');if(b)b.remove()},500)})})}
+try{if(document.fonts&&document.fonts.ready){Promise.race([document.fonts.ready,new Promise(function(r){setTimeout(r,1200)})]).then(go,go)}else go()}catch(e){go()}})();
 </script>
 </body>
 </html>
