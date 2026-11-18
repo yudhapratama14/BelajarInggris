@@ -2273,6 +2273,106 @@ else if(i===3){
  else{if(j===2)return X;if(j===3)return k(2);if(j===5)return k(4);if(j===15)return k(5);if(j===16)return k(6);if(j>=17&&j<=21)return k(j-10);if(j===23||j===24)return k(j-10);if([4,6,7,8,9,10,11,12,13,14,22].includes(j))return X}}
 return k(j)};
 </script>
+<script id="materi-v80">
+(function(){try{
+const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+const A=(L,n,g,st,qz,mp,fc)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;
+ const m={n,g,steps:[...st,{s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp}],quiz:qz,map:mp};if(fc)m.fc=1;LEVELS[L].mods.push(m)};
+
+A(1,'Question Tags','🔗 Grammar Rules',[
+S("<b>Question tag</b> itu ibarat <b>ekor pertanyaan</b> 🐕 di ujung kalimat: kamu minta lawan bicara membenarkan. Aturan emas: <b>kalimat positif → tag negatif</b>, <b>kalimat negatif → tag positif</b>.",["You are tired, <b>aren't you</b>?","She doesn't like fish, <b>does she</b>?"]),
+S("Tag memakai <b>kata bantu yang sama</b> dengan kalimat utama, lalu kata ganti. Kalau tidak ada kata bantu (Simple Present/Past biasa), pinjam satpam <b>do/does/did</b>.",[],{tbl:[["Kalimat","Tag"],["She is kind","isn't she?"],["They play football","don't they?"],["He went home","didn't he?"],["You can swim","can't you?"],["I am late","aren't I? (khusus)"]],tip:"Jebakan: <b>I am</b> → <b>aren't I?</b>, bukan amn't I."})
+],[
+Q("She is a teacher, ___?",["isn't she","is she","doesn't she"],0,"Positif dengan is → tag negatif: <b>isn't she</b>."),
+Q("They don't like tea, ___?",["do they","don't they","are they"],0,"Negatif → tag positif: <b>do they</b>."),
+T("Ketik tag: He went home, ___ he?","didn't","Past biasa pinjam satpam: <b>didn't</b>."),
+Q("I am late, ___?",["aren't I","amn't I","am I not"],0,"Bentuk khusus: <b>aren't I</b>."),
+O("Susun: \"Kamu bisa berenang, kan?\"",["You","can","swim","can't","you"],"You can swim can't you","Kalimat positif dengan can → tag <b>can't you</b>.")
+],K("QUESTION TAG",["🐕 Aturan","positif → tag negatif","negatif → tag positif"],["🛡️ Kata bantu","sama dengan kalimat","do/does/did bila tak ada"],["⚠️ Khusus","I am → aren't I?"]));
+
+A(2,'Conditional Type 3 & Mixed','🧠 Advanced Grammar',[
+S("<b>Conditional Type 3</b> itu ibarat <b>menonton ulang rekaman pertandingan</b> ⏪ lalu berandai-andai: kejadian sudah lewat dan tak bisa diubah, jadi yang tersisa <b>penyesalan</b>. Rumus: <b>If + had + V3, would have + V3</b>.",["If I <b>had studied</b>, I <b>would have passed</b>. (nyatanya tidak belajar, tidak lulus)","If she <b>had left</b> earlier, she <b>wouldn't have missed</b> the bus."]),
+S("Ini <b>tangga empat tipe</b> conditional. Makin tinggi tipenya, waktu makin mundur satu langkah.",[],{tbl:[["Tipe","If-clause","Main clause","Makna"],["0","present","present","fakta"],["1","present","will + V1","mungkin"],["2","past","would + V1","khayalan sekarang"],["3","had + V3","would have + V3","penyesalan lampau"]],tip:"Jangan pasang <b>would</b> di sisi if: If I would have known ❌ → If I <b>had known</b> ✅."}),
+S("<b>Mixed conditional</b>: sebab di masa lalu, akibat di masa sekarang. Rumus: <b>If + had + V3, would + V1</b>.",["If I <b>had taken</b> that job, I <b>would be</b> rich now."])
+],[
+Q("If I ___ harder, I would have passed.",["studied","had studied","would study"],1,"Sisi if Type 3: <b>had + V3</b>."),
+Q("If she had known, she ___ you.",["would have told","would tell","told"],0,"Hasil Type 3: <b>would have + V3</b>."),
+T("Ketik V3: If he had ___ (go), he would have seen it.","gone","go, went, <b>gone</b>."),
+Q("Pilih yang benar:",["If I would have known, I would have come.","If I had known, I would have come.","If I knew, I would have come."],1,"Would tidak boleh di sisi if."),
+Q("Mixed: If I had saved money, I ___ a car now.",["would have","would own","had owned"],1,"Akibatnya sekarang: <b>would + V1</b>."),
+O("Susun: \"Andai aku tahu, aku sudah datang.\"",["If","I","had","known","I","would","have","come"],"If I had known I would have come","If + had + V3, would have + V3.")
+],K("CONDITIONAL 3 & MIXED",["⏪ Type 3","If + had + V3","would have + V3"],["🔀 Mixed","If + had + V3","would + V1 (sekarang)"],["⚠️ Awas","tidak ada would di sisi if"]));
+
+A(3,'Rapat: Setuju, Tidak Setuju, Klarifikasi','💼 Komunikasi Kerja',[
+S("Rapat itu seperti <b>pertandingan voli</b> 🏐: ide di-<i>pass</i>, di-<i>smash</i>, atau di-<i>block</i>. Tiap aksi punya frasa sopan.",[],{tbl:[["Aksi","Frasa"],["Setuju","I completely agree. / That makes sense."],["Setuju sebagian","I see your point, but…"],["Tidak setuju (sopan)","I'm afraid I see it differently."],["Minta klarifikasi","Could you clarify what you mean by…?"],["Memotong sopan","Sorry to interrupt, but…"],["Lanjut topik","Shall we move on?"]]}),
+S("Untuk <b>mengusulkan</b> tanpa terdengar memerintah, pakai <b>How about…?</b>, <b>Why don't we…?</b>, atau <b>I suggest that we…</b>. Untuk menutup: <b>Let's recap</b> lalu sebut <b>action items</b>.",["<b>How about</b> moving the deadline to Friday?","<b>Let's recap</b>: Rina sends the draft by Monday."],{tip:"Tutup rapat dengan <b>action items</b>: siapa mengerjakan apa, kapan."})
+],[
+Q("Kamu kurang sepakat, tapi ingin sopan:",["You are wrong.","I'm afraid I see it differently.","No way."],1,"Nada lembut: <b>I'm afraid…</b>"),
+Q("Memotong pembicaraan dengan sopan:",["Shut up.","Sorry to interrupt, but…","Stop talking."],1,"Awali dengan <b>Sorry to interrupt</b>."),
+T("Ketik: Could you ___ what you mean? (menjelaskan)","clarify","<b>Clarify</b> = menjernihkan maksud."),
+Q("Menutup rapat dengan ringkasan:",["Let's recap the action items.","Bye everyone.","I am bored."],0,"<b>Recap</b> + action items."),
+O("Susun: \"Bagaimana kalau kita pindahkan tenggatnya?\"",["How","about","moving","the","deadline"],"How about moving the deadline","How about + V-ing.")
+],K("RAPAT",["🏐 Setuju","I completely agree","That makes sense"],["🙅 Beda pendapat","I'm afraid I see it differently"],["❓ Klarifikasi","Could you clarify…?"],["✅ Tutup","Let's recap","action items"]),1);
+}catch(e){console.warn('materi-v80 gagal',e)}})();
+</script>
+<script id="materi-v81">
+(function(){try{
+const Q=(q,o,a,why)=>({q,o,a,why}),T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+const A=(L,n,g,st,qz,mp,fc)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;
+ const m={n,g,steps:[...st,{s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map:mp}],quiz:qz,map:mp};if(fc)m.fc=1;LEVELS[L].mods.push(m)};
+
+A(1,'Used to & Would (Kebiasaan Lampau)','⏰ Tenses',[
+S("<b>Used to</b> itu ibarat <b>album kenangan</b> 📔: kebiasaan atau keadaan di masa lalu yang <b>sekarang sudah tidak berlaku</b>. Rumus: <b>used to + V1</b>.",["I <b>used to</b> play marbles. (dulu iya, sekarang tidak)","She <b>used to</b> live in Bandung."]),
+S("Negatif dan tanya memakai satpam <b>did</b>, jadi bentuknya <b>use to</b> (tanpa d). <b>Would</b> boleh menggantikan used to untuk <b>kebiasaan</b>, tapi tidak untuk <b>keadaan</b> (be, have, know, like).",["I <b>didn't use to</b> like coffee.","<b>Did</b> you <b>use to</b> walk to school?","We <b>would</b> visit Grandma every Sunday. (kebiasaan)","I <b>used to</b> be shy. (keadaan, bukan would be)"],{tip:"Jangan tertukar: <b>used to + V1</b> (dulu) ≠ <b>be used to + V-ing</b> (terbiasa)."})
+],[
+Q("When I was a child, I ___ climb trees.",["use to","used to","am used to"],1,"Kebiasaan lampau: <b>used to + V1</b>."),
+Q("She ___ like spicy food. (dulu tidak suka)",["didn't used to","didn't use to","not used to"],1,"Setelah didn't, bentuknya <b>use to</b>."),
+Q("I ___ shy, but now I'm confident. (keadaan)",["would be","used to be","am used to be"],1,"Keadaan tidak memakai would."),
+T("Ketik: Did you ___ to live here? (use/used)","use","Setelah did: <b>use to</b>."),
+Q("I am used to ___ up early. (terbiasa)",["wake","waking","woke"],1,"<b>be used to + V-ing</b> = terbiasa.")
+],K("USED TO",["📔 Dulu","used to + V1"],["🛡️ Negatif/tanya","didn't use to","Did … use to?"],["⚠️ Beda","be used to + V-ing = terbiasa"],["would","kebiasaan saja, bukan keadaan"]));
+
+A(1,'Artikel: a / an / the / tanpa artikel','🔗 Grammar Rules',[
+S("Artikel itu ibarat <b>senter</b> 🔦. <b>A/an</b> menyorot benda yang <b>belum spesifik</b> (salah satu dari banyak). <b>The</b> menyorot benda yang <b>sudah jelas</b> bagi pembicara dan pendengar.",["I saw <b>a</b> cat. <b>The</b> cat was black. (sudah disebut)","Please close <b>the</b> door. (pintu yang kita tahu)"]),
+S("Kapan pakai <b>the</b>? Tabel kilat:",[],{tbl:[["Pakai the","Contoh"],["Sudah disebut / jelas","the book on the table"],["Satu-satunya","the sun, the president"],["Superlatif","the best, the tallest"],["Sungai, samudra, negara jamak","the Nile, the Pacific, the Philippines"]]}),
+S("Kapan <b>tanpa artikel</b>? Untuk hal umum: bahasa, olahraga, makanan umum, nama orang dan kota.",["I like <b>music</b>.","She plays <b>tennis</b>.","He speaks <b>English</b>."],{tip:"<b>go to school</b> (untuk belajar) vs <b>go to the school</b> (mendatangi gedungnya)."})
+],[
+Q("I bought ___ umbrella. ___ umbrella is red.",["a, The","the, A","an, The"],2,"Pertama disebut: <b>an</b> (bunyi vokal). Kedua kalinya sudah jelas: <b>The</b>."),
+Q("___ sun rises in the east.",["A","The","(tanpa artikel)"],1,"Satu-satunya di langit kita: <b>the</b>."),
+Q("She plays ___ tennis every Sunday.",["the","a","(tanpa artikel)"],2,"Olahraga tanpa artikel."),
+T("Ketik: He is ___ tallest boy in class.","the","Superlatif selalu pakai <b>the</b>."),
+Q("Pilih yang benar:",["I go to the school every day to study.","I go to school every day.","I go to a school every day."],1,"Untuk fungsi belajar: <b>go to school</b>.")
+],K("ARTIKEL 🔦",["a / an","belum spesifik"],["the","sudah jelas","satu-satunya","superlatif"],["tanpa artikel","bahasa","olahraga","go to school"]));
+
+A(2,'Indirect & Embedded Questions','🧠 Advanced Grammar',[
+S("<b>Indirect question</b> itu ibarat <b>menitipkan pertanyaan lewat kurir sopan</b> 📨: nadanya lebih halus, dan susunan kalimatnya <b>kembali normal (S + V)</b>, tanpa do/does/did.",["Direct: Where <b>is</b> the station?","Indirect: Could you tell me where the station <b>is</b>?","Direct: What time <b>does</b> it open?","Indirect: Do you know what time it <b>opens</b>?"]),
+S("Pembukanya: <b>Could you tell me…, Do you know…, I wonder…, Can you explain…</b>. Untuk yes/no, pakai <b>if / whether</b>.",["Do you know <b>if</b> he is here?","I wonder <b>whether</b> she will come."],{tip:"<b>I wonder…</b> tanpa tanda tanya. <b>Do you know…?</b> pakai tanda tanya."})
+],[
+Q("Could you tell me where ___?",["is the bank","the bank is","does the bank is"],1,"Urutan kembali normal: <b>the bank is</b>."),
+Q("Do you know what time ___?",["does the shop close","the shop closes","the shop close"],1,"Tanpa does, kata kerja kembali ke -s: <b>closes</b>."),
+T("Ketik: Can you tell me ___ he is home? (apakah)",["if","whether"],"Yes/no → <b>if</b> atau <b>whether</b>."),
+Q("I wonder ___ she will come.",["if","do","does"],0,"<b>If</b> untuk yes/no."),
+O("Susun: \"Tahukah kamu di mana dia tinggal?\"",["Do","you","know","where","she","lives"],"Do you know where she lives","Urutan normal setelah where.")
+],K("INDIRECT QUESTION",["📨 Pembuka","Could you tell me…","Do you know…","I wonder…"],["📐 Urutan","S + V (tanpa do/does/did)"],["Yes/No","if","whether"]));
+
+A(3,'Komplain & Negosiasi','💼 Komunikasi Kerja',[
+S("Komplain profesional itu seperti <b>dokter</b> 🩺: sebut gejala dengan tenang, jangan menyalahkan orang. Alurnya: <b>Masalah → Dampak → Permintaan → Penutup</b>.",["I'm writing about <b>an issue with</b> my order.","The item <b>arrived damaged</b>.","Could you <b>replace it or refund</b> me, please?"],{tbl:[["Tahap","Frasa"],["Masalah","There seems to be a problem with…"],["Dampak","This has caused a delay in…"],["Permintaan","I would appreciate it if you could…"],["Menutup","I look forward to your reply."]]}),
+S("<b>Negosiasi</b> itu ibarat <b>tawar-menawar elegan</b> 🤝: cari titik temu. Pakai kalimat <b>jika-maka</b> untuk menukar syarat.",["<b>If</b> you can deliver by Monday, we <b>will</b> order more.","We could offer 10% off <b>provided that</b> you pay upfront.","Let's <b>meet halfway</b>."],{tip:"Hindari tuduhan (You made a mistake). Pakai <b>There seems to be…</b> agar tetap bersahabat."})
+],[
+Q("Cara paling profesional membuka komplain:",["There seems to be a problem with my order.","Your service is terrible.","Fix it now."],0,"Tenang dan tidak menuduh."),
+Q("If you ___ by Monday, we will order more.",["deliver","will deliver","delivered"],0,"Conditional 1: If + Present."),
+T("Ketik: We offer a discount ___ that you pay upfront. (asalkan)","provided","<b>Provided that</b> = asalkan."),
+Q("\"Let's meet halfway\" artinya…",["Cari titik temu","Bertemu di tengah jalan","Menunda rapat"],0,"Idiom negosiasi: saling mengalah."),
+O("Susun: \"Saya akan sangat menghargai jika Anda bisa mengganti barangnya.\"",["I","would","appreciate","it","if","you","could","replace","the","item"],"I would appreciate it if you could replace the item","Frasa permintaan sopan baku.")
+],K("KOMPLAIN & NEGOSIASI",["🩺 Komplain","problem with…","caused a delay","I would appreciate…"],["🤝 Negosiasi","If + present, will","provided that","meet halfway"]),1);
+}catch(e){console.warn('materi-v81 gagal',e)}})();
+</script>
 <script id="engine">
 /* ━━━━ BAGIAN 1: inti (state, belajar, kuis, hasil, misi, dialog, materi tambahan) ━━━━ */
 /* =====================================================
@@ -3651,7 +3751,7 @@ gear.insertAdjacentHTML('beforebegin','<button id="srch" aria-label="Cari materi
 const _vm=window.vMenu;window.vMenu=function(){_vm();const d=view.querySelector('.dash');if(!d)return;
  d.insertAdjacentHTML('beforebegin','<button class="sbar" id="sb2">🔍 Cari materi atau bab…</button>');$('#sb2').onclick=open;
  d.className='dash sup';
- d.innerHTML=`<div class="dcol"><div class="dt">💛 Dukung Creator</div><div class="ds">Aplikasi ini dibuat dengan sepenuh hati oleh Yudha. Kalau terasa membantu, boleh traktir kopi ☕</div></div><div class="supb"><a class="sup1" href="${LINKS.saw}" target="_blank" rel="noopener noreferrer">☕ Dukung di Saweria</a><a href="${LINKS.li}" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a><a href="${LINKS.ig}" target="_blank" rel="noopener noreferrer">📸 Instagram</a></div>`};
+ d.innerHTML=`<div class="dcol"><div class="dt">💛 Dukung Creator</div><div class="ds">Aplikasi ini dibuat dengan sepenuh hati oleh Yudha. Kalau terasa membantu, boleh traktir kopi ☕</div></div><div class="supb"><a class="sup1" href="${LINKS.saw}" target="_blank" rel="noopener noreferrer">☕ Traktir Kopi</a><a href="${LINKS.li}" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a><a href="${LINKS.ig}" target="_blank" rel="noopener noreferrer">📸 Instagram</a></div>`};
 /* header: tombol cari hanya di beranda dan daftar modul */
 const _r=window.render;window.render=function(){_r();const b=$('#srch');if(b)b.style.display=(S.view==='menu'||S.view==='mods')?'':'none';close()};
 }catch(e){console.warn('v22 gagal',e)}})();
@@ -3659,7 +3759,7 @@ const _r=window.render;window.render=function(){_r();const b=$('#srch');if(b)b.s
 /* ━━━━ BAGIAN 12: v23: hapus pill hari/XP, Saweria kecil di tiap modul ━━━━ */
 /* ===== v23: hapus pill hari/XP, Saweria kecil di tiap modul ===== */
 (function(){try{
-const A='<a class="msaw" href="https://saweria.co/yudprt" target="_blank" rel="noopener noreferrer">☕ Dukung creator</a>';
+const A='<a class="msaw" href="https://saweria.co/yudprt" target="_blank" rel="noopener noreferrer">☕ Traktir Kopi</a>';
 
 const _vl=window.vLearn;window.vLearn=function(){_vl();const M=mod();if(S.step===M.steps.length-1)view.insertAdjacentHTML('beforeend',A)};
 const _vr=window.vResult;window.vResult=function(){_vr();if(!S.kind)view.insertAdjacentHTML('beforeend',A)};
@@ -3672,7 +3772,7 @@ render();
 const L={saw:'https://saweria.co/yudprt',li:'https://www.linkedin.com/in/muhammad-yudha-pratama-b217742b7/',ig:'https://www.instagram.com/yud.prt/'};
 const _vm=window.vMenu;window.vMenu=function(){_vm();const d=view.querySelector('.dash.sup');if(!d)return;
  d.innerHTML=`<div class="top"><div class="tx"><div class="dt">Dukung Creator 💛</div><div class="ds">Aplikasi ini dibuat sepenuh hati oleh Yudha. Kalau terasa membantu, traktir kopi buat Pak Yood ya!</div></div><div class="mowl">${OWL}<i>💛</i><i>🧡</i><i>💖</i></div></div>
- <div class="supb"><a class="sup1" href="${L.saw}" target="_blank" rel="noopener noreferrer"><span class="cup">☕</span> Traktir di Saweria</a>
+ <div class="supb"><a class="sup1" href="${L.saw}" target="_blank" rel="noopener noreferrer"><span class="cup">☕</span> Traktir Kopi</a>
  <a href="${L.li}" target="_blank" rel="noopener noreferrer"><span class="brand li">in</span> LinkedIn</a>
  <a href="${L.ig}" target="_blank" rel="noopener noreferrer"><span class="brand ig"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="#fff" stroke="none"/></svg></span> Instagram</a></div>`};
 /* gerakan kepak baru */
@@ -4536,7 +4636,32 @@ const SC=[["☕","Pesan Kopi","Di kafe, dari memesan sampai bayar",[
 ["Hi! You look lost. Can I help you?","Hai! Kamu kelihatan tersesat. Perlu bantuan?",[["Yes, please. Excuse me, how do I get to the train station?","Sopan + pola tanya arah standar.",2],["Where is train station?","Dimengerti, tapi tidak lengkap. Pakai ‘Where is the…’.",1],["Hey you! Station where?","Kasar dan tidak gramatikal.",0]]],
 ["Go straight for two blocks, then turn left at the bank.","Lurus dua blok, lalu belok kiri di bank.",[["Sorry, could you say that again more slowly?","Minta diulang dengan sopan itu normal.",2],["Oh, I see. Straight, then left?","Mengonfirmasi dengan merangkum. Cerdas.",2],["What?","Terkesan kasar. Pakai ‘Sorry?’ atau ‘Pardon?’.",0]]],
 ["It is next to the post office. You cannot miss it!","Di sebelah kantor pos. Pasti ketemu!",[["Is it far from here?","Pertanyaan lanjutan yang natural.",2],["How long take?","Kurang tepat: How long does it take?",1],["Far or not?","Terjemahan harfiah ‘jauh atau tidak’.",0]]],
-["About ten minutes on foot.","Sekitar sepuluh menit jalan kaki.",[["Great, thank you so much for your help!","Penutup hangat.",2],["Okay, thanks.","Cukup baik dan sopan.",1],["Okay. Bye.","Terlalu pendek, tanpa terima kasih.",0]]]]]];
+["About ten minutes on foot.","Sekitar sepuluh menit jalan kaki.",[["Great, thank you so much for your help!","Penutup hangat.",2],["Okay, thanks.","Cukup baik dan sopan.",1],["Okay. Bye.","Terlalu pendek, tanpa terima kasih.",0]]]]],
+["🏨","Check-in Hotel","Tiba di hotel, urus kamar dan sarapan",[
+["Good evening! Welcome. Do you have a reservation?","Selamat malam! Ada reservasi?",[["Yes, under the name Yudha. I booked a room for two nights.","Jelas: nama + lama menginap.",2],["Yes, I booked.","Dipahami, tapi sebut nama dan lama menginap.",1],["I sleep here.","Tidak natural. Pakai ‘I have a reservation’.",0]]],
+["May I see your ID, please? Would you like a room with a view?","Boleh lihat KTP? Mau kamar dengan pemandangan?",[["Sure, here you are. A room with a view would be great, thanks.","Sopan dan menerima tawaran.",2],["Okay, view, ID.","Kata-kata terputus, kurang sopan.",1],["Yes. Take it.","Terdengar ketus.",0]]],
+["Breakfast is served from six to ten in the restaurant.","Sarapan jam 6 sampai 10 di restoran.",[["Great. Could I have a wake-up call at six thirty, please?","Permintaan tambahan yang sopan.",2],["Breakfast is good.","Tidak menanggapi informasinya.",1],["Why six?","Terdengar protes.",0]]],
+["Here is your key. Your room is on the third floor. Enjoy your stay!","Ini kuncinya. Kamar di lantai tiga. Selamat menginap!",[["Thank you very much. Where is the elevator?","Terima kasih + tanya arah.",2],["Okay.","Terlalu singkat.",1],["Give me the room.","Memerintah.",0]]]
+]],
+["📊","Rapat Tim","Setuju, tidak setuju, minta klarifikasi",[
+["We need to finish the report by Thursday. Any thoughts?","Laporan harus selesai Kamis. Ada pendapat?",[["I see your point, but Thursday looks tight. How about Friday?","Menghargai lalu mengusulkan alternatif.",2],["No. Too early.","Terlalu ketus.",0],["Maybe.","Tidak memberi kontribusi.",1]]],
+["Rina, can you send the draft by Monday?","Rina, bisa kirim draf Senin?",[["Sure, I will send it by Monday morning.","Komitmen yang jelas.",2],["I try.","Kurang yakin dan tata bahasa kurang tepat.",0],["Monday is okay, I think.","Terdengar ragu.",1]]],
+["We should reduce the budget by twenty percent.","Anggaran harus dipotong 20 persen.",[["Could you clarify which items you mean?","Meminta klarifikasi dengan sopan.",2],["That is wrong.","Menyerang tanpa alasan.",0],["Why?","Terlalu pendek.",1]]],
+["Okay, let us wrap up.","Baik, kita tutup.",[["Let's recap the action items before we finish.","Penutup rapat yang profesional.",2],["Bye.","Terlalu singkat untuk menutup rapat.",1],["I am hungry.","Tidak relevan.",0]]]
+]],
+["🛍️","Belanja di Toko","Cari ukuran, tanya harga, tawar, bayar",[
+["Hello! Can I help you find something?","Halo! Ada yang bisa dibantu?",[["Yes, please. I am looking for a blue jacket in medium.","Jelas: barang, warna, ukuran.",2],["I want jacket.","Dimengerti, tapi kurang sopan dan tidak lengkap.",1],["No, I just stare.","Tidak natural. Pakai ‘I am just looking, thanks’.",0]]],
+["This one is forty dollars. Would you like to try it on?","Yang ini 40 dolar. Mau dicoba?",[["Sure. Where is the fitting room?","Menerima dan bertanya tempat.",2],["Forty? Too expensive!","Terlalu ketus.",0],["Okay.","Singkat, tidak menjawab tawaran mencoba.",1]]],
+["How does it fit?","Bagaimana ukurannya?",[["It fits well, but do you have a bigger size?","Jujur dan sopan, minta alternatif.",2],["Fit.","Terlalu singkat.",1],["I am big.","Tidak natural.",0]]],
+["Yes, here is a large. Cash or card?","Ini ukuran besar. Tunai atau kartu?",[["I will take it. Can I pay by card?","Memutuskan membeli + bertanya cara bayar.",2],["Card.","Dipahami, tapi lengkapi dengan ‘please’.",1],["Give discount.","Memerintah.",0]]]
+]],
+["🏥","Di Dokter","Menjelaskan keluhan dan memahami saran",[
+["Good morning. What seems to be the problem?","Selamat pagi. Apa keluhannya?",[["I have had a headache and a fever since yesterday.","Present perfect + since: tepat untuk keluhan.",2],["I am sick.","Benar tapi terlalu umum.",1],["My head is angry.","Tidak natural.",0]]],
+["Do you have any allergies? Are you taking any medicine?","Ada alergi? Sedang minum obat?",[["No allergies, and I am not taking any medicine.","Jawaban lengkap dan jelas.",2],["No.","Tidak menjawab pertanyaan kedua.",1],["Maybe medicine.","Terlalu samar untuk dokter.",0]]],
+["You should rest and drink plenty of water. I will prescribe some medicine.","Istirahat dan banyak minum. Saya resepkan obat.",[["Thank you, doctor. How often should I take it?","Berterima kasih + tanya aturan minum.",2],["Okay.","Terlalu singkat.",1],["Why medicine?","Terdengar membantah.",0]]],
+["Three times a day after meals. Come back if you do not feel better.","Tiga kali sehari setelah makan. Kembali bila belum membaik.",[["Understood. I will come back if the fever continues.","Menunjukkan paham dan siap bertindak.",2],["Fine.","Kurang menunjukkan pemahaman.",1],["No come back.","Tidak gramatikal.",0]]]
+]]
+];
 /* ---- 6. kosakata tema ---- */
 const VK=[["🍜","Makanan",["breakfast|sarapan|I have breakfast at seven.","hungry|lapar|I am hungry.","delicious|enak|This soup is delicious.","spicy|pedas|I like spicy food.","vegetable|sayuran|Eat more vegetables.","bill|tagihan|Can I have the bill, please?","order|memesan|I want to order now.","recipe|resep|This recipe is easy.","leftovers|sisa makanan|We ate the leftovers.","thirsty|haus|I am thirsty."]],
 ["✈️","Perjalanan",["ticket|tiket|I bought two tickets.","luggage|bagasi|My luggage is heavy.","passport|paspor|Show your passport.","departure|keberangkatan|The departure is at nine.","delay|keterlambatan|There is a delay.","destination|tujuan|What is your destination?","reservation|reservasi|I have a reservation.","journey|perjalanan|It was a long journey.","sightseeing|wisata|We went sightseeing.","souvenir|oleh-oleh|I bought a souvenir."]],
@@ -5526,6 +5651,78 @@ window.vLearn=function(){_vl();
   setTimeout(()=>setBear(wrap,'in'),250)}catch(e){console.warn('simulasi preposisi gagal',e)}};
 window.PVX={widget,SC,BEAR,sceneSvg,bearSvg};
 }catch(e){console.warn('simulasi-preposisi gagal',e)}})();
+</script>
+<script id="kopi-v80">
+/* Pop-up Traktir Kopi: Saweria, BCA mobile / myBCA, Livin' Mandiri. Muncul berkala. */
+(function(){try{
+const SAW='https://saweria.co/yudprt',BCA='2521220599',MDR='700010458250',KEY='pyd_kopi',GAP=100000;
+const APPS={mybca:{a:'com.bca.mybca.omni.android',i:'https://apps.apple.com/id/app/mybca-new-bca-banking-apps/id1440241902'},bcam:{a:'com.bca',i:'https://apps.apple.com/mx/app/bca-mobile/id551587254'},livin:{a:'id.bmri.livin',i:'https://apps.apple.com/id/app/livin-by-mandiri/id1555414743'}};
+const st=document.createElement('style');st.textContent=`
+#kopi-ov{position:fixed;inset:0;z-index:99999;background:rgba(30,22,60,.6);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:14px;animation:kfd .25s ease}
+#kopi-box{position:relative;background:#e4deff;color:#111;border:3px solid #111;border-radius:28px;box-shadow:7px 7px 0 #111;max-width:430px;width:100%;max-height:94vh;overflow:auto;padding:20px 18px 14px;font-family:inherit;animation:kpop .35s cubic-bezier(.2,1.5,.4,1)}
+#kopi-box *{box-sizing:border-box}
+#kopi-box .kh1{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+#kopi-box .kcup{flex:none;width:68px;height:68px;border-radius:50%;background:#ffe07a;border:3px solid #111;box-shadow:3px 3px 0 #111;display:flex;align-items:center;justify-content:center;font-size:34px;animation:kwig 2.4s ease-in-out infinite}
+#kopi-box h3{margin:0;font-size:23px;line-height:1.15;font-weight:900}
+#kopi-box .kp{margin:0 0 14px;font-size:14.5px;line-height:1.55;color:#2d2850}
+#kopi-box a.ks{display:flex;align-items:center;justify-content:center;gap:8px;background:#ffe07a;color:#111;border:3px solid #111;border-radius:18px;padding:14px;font-size:17px;font-weight:900;text-decoration:none;box-shadow:0 5px 0 #111;transition:transform .1s,box-shadow .1s}
+#kopi-box a.ks:active{transform:translateY(4px);box-shadow:0 1px 0 #111}
+#kopi-box .kor{display:flex;align-items:center;gap:10px;margin:14px 2px 10px;font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#4a4478}
+#kopi-box .kor:before,#kopi-box .kor:after{content:"";flex:1;height:2px;background:#111;opacity:.25;border-radius:2px}
+#kopi-box .kr{background:#fff;border:3px solid #111;border-radius:20px;box-shadow:3px 3px 0 #111;padding:12px;margin-bottom:12px}
+#kopi-box .kt{display:flex;align-items:center;gap:10px}
+#kopi-box .kb{flex:none;min-width:46px;height:34px;padding:0 8px;border-radius:10px;border:2px solid #111;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff}
+#kopi-box .kb.bca{background:#0a66c2}#kopi-box .kb.mdr{background:#003a70;color:#ffc72c}
+#kopi-box .kn{flex:1;min-width:0}#kopi-box .kn small{display:block;font-size:12px;font-weight:700;color:#4a4478}
+#kopi-box .kn b{display:block;font-size:20px;letter-spacing:.8px;font-variant-numeric:tabular-nums;font-weight:900;word-break:break-all}
+#kopi-box button{font:inherit;cursor:pointer;color:#111}
+#kopi-box .kcp{flex:none;background:#ffe07a;border:3px solid #111;border-radius:14px;padding:8px 13px;font-weight:900;font-size:14px;box-shadow:0 3px 0 #111;transition:transform .1s,box-shadow .1s}
+#kopi-box .kcp:active{transform:translateY(2px);box-shadow:0 1px 0 #111}
+#kopi-box .kcp.ok{background:#8ff0c0}
+#kopi-box .ko{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+#kopi-box .kop{flex:1;min-width:120px;background:#f4f1ff;border:2.5px solid #111;border-radius:12px;padding:8px 10px;font-weight:800;font-size:13px;transition:background .15s}
+#kopi-box .kop:hover{background:#e4deff}
+#kopi-box .khn{margin:2px 4px 6px;font-size:12.5px;line-height:1.5;text-align:center;color:#4a4478}
+#kopi-box .kx{display:block;margin:0 auto;background:transparent;border:0;padding:8px 14px;font-weight:800;font-size:14px;color:#4a4478;text-decoration:underline;text-underline-offset:3px}
+#kopi-fab{position:fixed;right:12px;bottom:12px;z-index:9000;width:50px;height:50px;border-radius:50%;border:3px solid #111;font-size:23px;background:#ffe07a;box-shadow:3px 3px 0 #111;cursor:pointer}
+#kopi-fab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+@keyframes kfd{from{opacity:0}to{opacity:1}}
+@keyframes kpop{from{transform:scale(.85) translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@keyframes kwig{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){#kopi-box,#kopi-box .kcup,#kopi-ov{animation:none}}`;
+document.head.appendChild(st);
+let last=0,n=0;try{last=+localStorage.getItem(KEY)||0}catch(e){}
+const copy=(t,b)=>{const ok=()=>{const o=b.dataset.o||b.textContent;b.dataset.o=o;b.textContent='✅ Tersalin';b.classList.add('ok');setTimeout(()=>{b.textContent=o;b.classList.remove('ok')},1600)};
+ const fb=()=>{const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()};
+const close=()=>{const o=document.getElementById('kopi-ov');if(o)o.remove()};
+const show=force=>{if(document.getElementById('kopi-ov'))return;if(!force&&Date.now()-last<GAP)return;
+ last=Date.now();try{localStorage.setItem(KEY,String(last))}catch(e){}
+ document.body.insertAdjacentHTML('beforeend',`<div id="kopi-ov"><div id="kopi-box" role="dialog" aria-label="Traktir kopi">
+<div class="kh1"><div class="kcup">☕</div><h3>Traktir Pak Yood kopi yuk! 💛</h3></div>
+<p class="kp">Aplikasi ini dibuat sepenuh hati oleh Yudha supaya belajar Inggris terasa ringan. Satu cangkir kopi bikin semangat nambah materi baru!</p>
+<a class="ks" href="${SAW}" target="_blank" rel="noopener noreferrer">☕ Traktir Kopi via Saweria</a>
+<div class="kor">atau transfer langsung</div>
+<div class="kr"><div class="kt"><div class="kb bca">BCA</div><div class="kn"><small>BCA mobile / myBCA</small><b>${BCA}</b></div><button class="kcp" data-n="${BCA}">Salin</button></div>
+<div class="ko"><button class="kop" data-app="mybca">Buka myBCA</button><button class="kop" data-app="bcam">Buka BCA mobile</button></div></div>
+<div class="kr"><div class="kt"><div class="kb mdr">M</div><div class="kn"><small>Livin' by Mandiri</small><b>${MDR}</b></div><button class="kcp" data-n="${MDR}">Salin</button></div>
+<div class="ko"><button class="kop" data-app="livin">Buka Livin'</button></div></div>
+<div class="khn">Nomor otomatis tersalin saat kamu tekan <b>Buka</b>. Tinggal tempel di menu transfer.</div>
+<button class="kx" id="kopi-x">Nanti dulu ya</button></div></div>`);
+ const ov=document.getElementById('kopi-ov');ov.querySelectorAll('.kcp').forEach(b=>b.onclick=()=>copy(b.dataset.n,b));
+ document.getElementById('kopi-x').onclick=close;
+ ov.querySelectorAll('.kop').forEach(b=>b.onclick=()=>{const ap=APPS[b.dataset.app],cb=b.closest('.kr').querySelector('.kcp');copy(cb.dataset.n,cb);
+  setTimeout(()=>{const ua=navigator.userAgent;if(/Android/i.test(ua))location.href='intent://#Intent;package='+ap.a+';end';else if(/iPhone|iPad|iPod/i.test(ua))window.open(ap.i,'_blank');else b.textContent='Buka dari HP ya'},450)});
+ ov.addEventListener('click',e=>{if(e.target===ov)close()})};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+document.body.insertAdjacentHTML('beforeend','<button id="kopi-fab" aria-label="Traktir kopi">☕</button>');
+document.getElementById('kopi-fab').onclick=()=>show(true);
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="saweria.co"]');if(a&&!a.closest('#kopi-ov')){e.preventDefault();show(true)}},true);
+setTimeout(()=>show(),12000);
+setInterval(()=>{if(!document.hidden)show()},180000);
+const _vr=window.vResult;if(typeof _vr==='function')window.vResult=function(){const r=_vr.apply(this,arguments);let mod=false;try{mod=!S.kind}catch(e){}
+ if(mod)setTimeout(()=>show(true),1800);else if(++n%2===0)setTimeout(()=>show(),1200);return r};
+}catch(e){console.warn('kopi-v80 gagal',e)}})();
 </script>
 </body>
 </html>
