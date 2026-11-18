@@ -5684,6 +5684,7 @@ const st=document.createElement('style');st.textContent=`
 #kopi-box .kop:hover{background:#e4deff}
 #kopi-box .khn{margin:2px 4px 6px;font-size:12.5px;line-height:1.5;text-align:center;color:#4a4478}
 #kopi-box .kx{display:block;margin:0 auto;background:transparent;border:0;padding:8px 14px;font-weight:800;font-size:14px;color:#4a4478;text-decoration:underline;text-underline-offset:3px}
+#kopi-box .kx2{display:block;margin:0 auto;background:transparent;border:0;padding:4px 10px 6px;font-size:11.5px;font-weight:700;color:#6d678f;opacity:.85}
 #kopi-fab{position:fixed;right:12px;bottom:12px;z-index:9000;width:50px;height:50px;border-radius:50%;border:3px solid #111;font-size:23px;background:#ffe07a;box-shadow:3px 3px 0 #111;cursor:pointer}
 #kopi-fab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
 @keyframes kfd{from{opacity:0}to{opacity:1}}
@@ -5696,7 +5697,8 @@ const copy=(t,b)=>{const ok=()=>{const o=b.dataset.o||b.textContent;b.dataset.o=
  const fb=()=>{const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()};
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()};
 const close=()=>{const o=document.getElementById('kopi-ov');if(o)o.remove()};
-const show=force=>{if(document.getElementById('kopi-ov'))return;if(!force&&Date.now()-last<GAP)return;
+let snz=0;try{snz=+localStorage.getItem('pyd_kopi_snz')||0}catch(e){}
+const show=(force,click)=>{if(document.getElementById('kopi-ov'))return;if(!click&&Date.now()<snz)return;if(!force&&Date.now()-last<GAP)return;
  last=Date.now();try{localStorage.setItem(KEY,String(last))}catch(e){}
  document.body.insertAdjacentHTML('beforeend',`<div id="kopi-ov"><div id="kopi-box" role="dialog" aria-label="Traktir kopi">
 <div class="kh1"><div class="kcup">☕</div><h3>Traktir Pak Yood kopi yuk! 💛</h3></div>
@@ -5708,21 +5710,65 @@ const show=force=>{if(document.getElementById('kopi-ov'))return;if(!force&&Date.
 <div class="kr"><div class="kt"><div class="kb mdr">M</div><div class="kn"><small>Livin' by Mandiri</small><b>${MDR}</b></div><button class="kcp" data-n="${MDR}">Salin</button></div>
 <div class="ko"><button class="kop" data-app="livin">Buka Livin'</button></div></div>
 <div class="khn">Nomor otomatis tersalin saat kamu tekan <b>Buka</b>. Tinggal tempel di menu transfer.</div>
-<button class="kx" id="kopi-x">Nanti dulu ya</button></div></div>`);
+<button class="kx" id="kopi-x">Nanti dulu ya</button>
+<button class="kx2" id="kopi-s">Sudah traktir, makasih! Sembunyikan 3 hari</button></div></div>`);
  const ov=document.getElementById('kopi-ov');ov.querySelectorAll('.kcp').forEach(b=>b.onclick=()=>copy(b.dataset.n,b));
  document.getElementById('kopi-x').onclick=close;
+ document.getElementById('kopi-s').onclick=()=>{snz=Date.now()+259200000;try{localStorage.setItem('pyd_kopi_snz',String(snz))}catch(e){};close()};
+ const bx=document.getElementById('kopi-box');bx.setAttribute('aria-modal','true');setTimeout(()=>{try{ov.querySelector('.ks').focus()}catch(e){}},60);
  ov.querySelectorAll('.kop').forEach(b=>b.onclick=()=>{const ap=APPS[b.dataset.app],cb=b.closest('.kr').querySelector('.kcp');copy(cb.dataset.n,cb);
   setTimeout(()=>{const ua=navigator.userAgent;if(/Android/i.test(ua))location.href='intent://#Intent;package='+ap.a+';end';else if(/iPhone|iPad|iPod/i.test(ua))window.open(ap.i,'_blank');else b.textContent='Buka dari HP ya'},450)});
  ov.addEventListener('click',e=>{if(e.target===ov)close()})};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-document.body.insertAdjacentHTML('beforeend','<button id="kopi-fab" aria-label="Traktir kopi">☕</button>');
-document.getElementById('kopi-fab').onclick=()=>show(true);
-document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="saweria.co"]');if(a&&!a.closest('#kopi-ov')){e.preventDefault();show(true)}},true);
+window.__kopi=show;
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="saweria.co"]');if(a&&!a.closest('#kopi-ov')){e.preventDefault();show(true,true)}},true);
 setTimeout(()=>show(),12000);
 setInterval(()=>{if(!document.hidden)show()},180000);
 const _vr=window.vResult;if(typeof _vr==='function')window.vResult=function(){const r=_vr.apply(this,arguments);let mod=false;try{mod=!S.kind}catch(e){}
  if(mod)setTimeout(()=>show(true),1800);else if(++n%2===0)setTimeout(()=>show(),1200);return r};
 }catch(e){console.warn('kopi-v80 gagal',e)}})();
+</script>
+<script id="ux-v82">
+/* Lapisan UX: ukuran teks, getar halus, geser-kembali, meta mobile, tombol kopi di header, gerak dikurangi */
+(function(){try{
+const $=s=>document.querySelector(s);
+const st=document.createElement('style');st.textContent=`
+html{scroll-behavior:smooth}.view{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+button,a,.card{touch-action:manipulation}
+a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--terra,#c2593f);outline-offset:2px}
+.view{zoom:var(--zs,1)}
+#zs-btn,#kopi-hdr{flex:none;min-width:38px;height:38px;border-radius:50%;font-size:17px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+#kopi-hdr{background:#ffe07a;border:2.5px solid #111;box-shadow:2px 2px 0 #111}
+#kopi-hdr:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #111}
+#kopi-hdr.ping{animation:kping 1.2s ease 2}
+@keyframes kping{0%,100%{transform:none}30%{transform:rotate(-14deg) scale(1.12)}60%{transform:rotate(12deg) scale(1.12)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}`;
+document.head.appendChild(st);
+/* meta mobile */
+const mt=(n,c)=>{if(!document.querySelector('meta[name="'+n+'"]')){const m=document.createElement('meta');m.name=n;m.content=c;document.head.appendChild(m)}};
+let bg='#FBF4E9';try{bg=getComputedStyle($('#app')).backgroundColor||bg}catch(e){}
+mt('theme-color',bg);mt('mobile-web-app-capable','yes');mt('apple-mobile-web-app-capable','yes');mt('apple-mobile-web-app-status-bar-style','default');
+/* ukuran teks */
+const Z=[1,1.12,1.25],ZK='pyd_zoom';let zi=0;try{zi=Math.min(2,+localStorage.getItem(ZK)||0)}catch(e){}
+const applyZ=()=>document.documentElement.style.setProperty('--zs',Z[zi]);applyZ();
+if(typeof gear!=='undefined'&&gear){
+ const zb=document.createElement('button');zb.id='zs-btn';zb.setAttribute('aria-label','Ukuran teks');zb.textContent='Aa';
+ zb.className=(($('#srch')||{}).className||'');zb.style.cssText='background:var(--white,#fff);border:2.5px solid #111;box-shadow:2px 2px 0 #111';
+ zb.onclick=()=>{zi=(zi+1)%3;applyZ();try{localStorage.setItem(ZK,zi)}catch(e){};zb.title='Teks '+Math.round(Z[zi]*100)+'%'};
+ gear.insertAdjacentElement('beforebegin',zb);
+ const kb=document.createElement('button');kb.id='kopi-hdr';kb.setAttribute('aria-label','Traktir kopi');kb.textContent='☕';
+ kb.onclick=()=>window.__kopi&&window.__kopi(true,true);gear.insertAdjacentElement('beforebegin',kb);
+ setTimeout(()=>kb.classList.add('ping'),4000);
+}
+/* getar halus saat benar / salah */
+const vib=p=>{try{if(navigator.vibrate&&!(window.P&&P.calm))navigator.vibrate(p)}catch(e){}};
+const _re=window.react;if(typeof _re==='function')window.react=function(c){const r=_re.apply(this,arguments);if(c==='cheer')vib(14);else if(c==='oops')vib([24,40,24]);return r};
+/* geser dari tepi kiri = kembali */
+let x0=0,y0=0,t0=0;
+document.addEventListener('touchstart',e=>{const t=e.touches[0];x0=t.clientX;y0=t.clientY;t0=Date.now()},{passive:true});
+document.addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clientX-x0,dy=Math.abs(t.clientY-y0);
+ if(x0<28&&dx>90&&dy<50&&Date.now()-t0<600&&!document.getElementById('kopi-ov')){const b=$('#back');if(b&&b.offsetParent!==null&&!b.disabled)b.click()}},{passive:true});
+}catch(e){console.warn('ux-v82 gagal',e)}})();
 </script>
 </body>
 </html>
