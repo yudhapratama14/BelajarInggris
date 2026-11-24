@@ -2813,17 +2813,17 @@ function vResult(){
 }
 
 /* ===== v4: Tes Penempatan, Ujian Akhir, Flashcard ===== */
-const TOOLS=`<div class="path" style="padding-bottom:24px"><button class="card" id="tp"><span class="ico">🧭</span><span class="txt"><small>10 soal</small><b>Tes Penempatan</b><em>Cari level yang pas untukmu</em></span></button><button class="card" id="tg"><span class="ico">🎮</span><span class="txt"><small>Game interaktif</small><b>Misi Pak Yood</b><em>Beri perintah ke tokoh</em></span></button><button class="card" id="td"><span class="ico">💬</span><span class="txt"><small>Percakapan animasi</small><b>Ngobrol Seru</b><em>Balas obrolan, dapat penjelasan</em></span></button><button class="card" id="tf"><span class="ico">🃏</span><span class="txt"><small>Hafalan</small><b>Flashcard</b><em>Kosakata & frasa penting</em></span></button></div>`;
+const TOOLS=`<div class="path" style="padding-bottom:24px"><button class="card" id="tp"><span class="ico">🧭</span><span class="txt"><small>20 soal</small><b>Tes Penempatan</b><em>Cari level yang pas untukmu</em></span></button><button class="card" id="tg"><span class="ico">🎮</span><span class="txt"><small>Game interaktif</small><b>Misi Pak Yood</b><em>Beri perintah ke tokoh</em></span></button><button class="card" id="td"><span class="ico">💬</span><span class="txt"><small>Percakapan animasi</small><b>Ngobrol Seru</b><em>Balas obrolan, dapat penjelasan</em></span></button><button class="card" id="tf"><span class="ico">🃏</span><span class="txt"><small>Hafalan</small><b>Flashcard</b><em>Kosakata & frasa penting</em></span></button></div>`;
 const pickQ=(l,n)=>{const z=new Set();return shuffle(LEVELS[l].mods.flatMap(M=>M.quiz)).filter(q=>{const k=JSON.stringify([q.q,q.o,q.a,q.say,q.pairs]);if(z.has(k))return false;z.add(k);return true}).slice(0,n)};
 function startQuiz(qs,kind,name){go('quiz',{ex:{n:name,quiz:qs},kind,q:0,score:0,list:qs.map((_,i)=>i),wrong:[],retry:false})}
-function startPlace(){startQuiz([...pickQ(0,2),...pickQ(1,3),...pickQ(2,3),...pickQ(3,2)],'place','Tes Penempatan')}
-function startExam(){startQuiz(pickQ(S.lv,12),'exam','Ujian Akhir '+lv().name)}
+function startPlace(){startQuiz([...pickQ(0,5),...pickQ(1,5),...pickQ(2,5),...pickQ(3,5)],'place','Tes Penempatan')}
+function startExam(){startQuiz(pickQ(S.lv,20),'exam','Ujian Akhir '+lv().name)}
 function kindResult(tot,n){
   const pct=n/tot;let msg,box;
   if(S.kind==='exam'){const ok=pct>=.7;if(ok){P.pass[lv().id]=1;P.xp+=50;save()}
     msg=ok?'Lulus! Level berikutnya terbuka 🎓':'Belum lulus, butuh minimal 70%. Ulangi materinya lalu coba lagi 💪';
     box=`<div class="big">${ok?'🎓':'🌱'}</div><p>Skor <b>${n}/${tot}</b> (${Math.round(pct*100)}%)${ok?' · +50 XP':''}</p>`}
-  else{const st=n<=3?0:n<=5?1:n<=8?2:3;for(let i=0;i<st;i++)P.pass[LEVELS[i].id]=1;save();
+  else{const pc=n/tot,st=pc<=.3?0:pc<=.5?1:pc<=.8?2:3;for(let i=0;i<st;i++)P.pass[LEVELS[i].id]=1;save();
     msg=`Hasil tes: mulai dari <b>${LEVELS[st].name}</b>!`+(st?' Level-level sebelumnya sudah kubuka untukmu.':'');
     box=`<p>Skor <b>${n}/${tot}</b></p><p>Level awalmu: <b>${LEVELS[st].emoji} ${LEVELS[st].name}</b></p>`}
   view.innerHTML=guide(msg)+`<div class="res">${box}</div><div class="foot"><button class="btn" id="mn">Kembali ke peta</button></div>`;
@@ -5528,10 +5528,15 @@ const show=(force,click)=>{if(document.getElementById('kopi-ov'))return;if(!clic
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 window.__kopi=show;
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="saweria.co"]');if(a&&!a.closest('#kopi-ov')){e.preventDefault();show(true,true)}},true);
-setTimeout(()=>show(),12000);
-setInterval(()=>{if(!document.hidden)show()},180000);
+/* pop up kopi: tiap 5 menit WAKTU BELAJAR AKTIF (tab terlihat, ada interaksi <60 dtk, sedang di materi/kuis/latihan), dan setelah materi/soal selesai */
+let act=Date.now(),studied=0;
+['pointerdown','keydown','touchstart','scroll'].forEach(ev=>document.addEventListener(ev,()=>{act=Date.now()},{passive:true,capture:true}));
+setInterval(()=>{if(document.hidden||Date.now()-act>60000)return;
+ if(!['learn','quiz','fc','gm','dl'].includes(S.view))return;
+ if(document.getElementById('kopi-ov'))return;
+ studied++;if(studied>=300){studied=0;show(true)}},1000);
 const _vr=window.vResult;if(typeof _vr==='function')window.vResult=function(){const r=_vr.apply(this,arguments);let mod=false;try{mod=!S.kind}catch(e){}
- if(mod)setTimeout(()=>show(true),1800);else if(++n%2===0)setTimeout(()=>show(),1200);return r};
+ setTimeout(()=>{if(S.view==='result'){studied=0;show(true)}},1800);return r};
 }catch(e){console.warn('kopi-v80 gagal',e)}})();
 </script>
 <script id="ux-v82">
@@ -6498,5 +6503,405 @@ setInterval(()=>{
 },4800);
 }catch(e){console.warn('py-owl gagal',e)}})();
 </script>
+<style id="fix-footdock-v1">
+/* FIX 1: footer tombol (Beranda / Daftar modul / Isi / Lanjut) mengambang di tengah konten.
+   Penyebab: di layar >=900px .view tetap punya padding-bawah 48px, padahal footer sticky (bottom:0)
+   menempel di batas padding itu, jadi 48px konten tampak di bawah footer. Mode fokus harus 0 di semua lebar. */
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view{padding-bottom:0!important}
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot{bottom:0!important}
+/* Layar pendek (HP landscape / jendela kecil): jangan makan 1/3 layar. Nav + Lanjut jadi satu baris. */
+@media(max-height:560px){
+ html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot:has(>.v69nav){flex-direction:row!important;align-items:center!important;gap:8px!important;padding:8px 0 10px!important}
+ html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot:has(>.v69nav)>.v69nav{flex:1 1 auto;min-width:0}
+ html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot:has(>.v69nav)>.btn{flex:0 0 auto;width:auto!important;min-width:150px;min-height:46px;padding:0 24px}
+}
+</style>
+<script id="fix-quiz-back-v1">
+/* FIX 2: Tes Penempatan / kuis / ujian: tombol back (di header, tombol back HP, geser dari tepi kiri)
+   dulu langsung KELUAR dari tes. Sekarang: mundur ke soal sebelumnya (mode lihat, jawaban terkunci,
+   skor tidak berubah). Dari soal 1 baru keluar seperti biasa. Keluar kapan saja: tombol Beranda (ada konfirmasi). */
+(function(){try{
+const R=()=>{if(!S.rec||S.rec.l!==S.list)S.rec={l:S.list,r:{}};return S.rec.r};
+const _fin=window.finish;
+if(typeof _fin==='function')window.finish=function(ok,ans,wr,given){try{R()[S.q]={ok,ans,wr,given}}catch(e){}return _fin.apply(this,arguments)};
+const _vq=window.vQuiz;
+if(typeof _vq==='function')window.vQuiz=function(){
+  _vq.apply(this,arguments);
+  try{
+    const rec=R()[S.q];if(!rec)return;
+    const M=mod(),Q=M.quiz[S.list[S.q]],t=Q.t||'mc',mcl=t==='mc'||(t==='listen'&&!!Q.o);
+    S.locked=true;
+    try{window.speechSynthesis&&setTimeout(()=>speechSynthesis.cancel(),450)}catch(e){}
+    if(mcl)view.querySelectorAll('.opt').forEach(o=>{o.disabled=true;const i=+o.dataset.i;if(i===Q.a)o.classList.add('ok');else if(Q.o[i]===rec.given)o.classList.add('bad')});
+    else if(t==='order'){const b=document.getElementById('bank'),a=document.getElementById('ans'),c=document.getElementById('ck');if(b)b.remove();if(c)c.remove();if(a)a.textContent=rec.given}
+    else{const inp=document.getElementById('inp'),c=document.getElementById('ck');if(inp){inp.value=rec.given||'';inp.disabled=true}if(c)c.remove()}
+    const why=document.getElementById('why');if(why)why.outerHTML=explain(rec.ok,Q,M,rec.ans,rec.wr,rec.given);
+    const last=S.q===S.list.length-1,ft=document.getElementById('ft');
+    if(ft){ft.innerHTML=`<button class="btn" id="nq">${last?'Lihat hasil':'Soal berikutnya'}</button>`;
+      document.getElementById('nq').onclick=()=>last?go('result'):go('quiz',{q:S.q+1})}
+    const g=view.querySelector('.guide .bubble');if(g)g.innerHTML=`Soal ${S.q+1} dari ${S.list.length} · <b>sudah dijawab</b> ${rec.ok?'✅':'❌'}. Kamu sedang melihat kembali; jawaban tidak bisa diubah.`;
+  }catch(e){console.warn('fix-quiz-back',e)}
+};
+const _bk=back.onclick;
+back.onclick=function(){
+  if(S.view==='quiz'&&S.q>0){go('quiz',{q:S.q-1});return}
+  return _bk.apply(this,arguments)};
+}catch(e){console.warn('fix-quiz-back gagal',e)}})();
+</script>
+<style id="polish-ux-v1">
+/* ===== POLESAN UI/UX v1: konsistensi, kedalaman halus, state interaksi, keterbacaan ===== */
+html[data-mn][data-mn][data-mn]:root{
+ --pl-line:rgba(34,36,42,.10);--pl-line2:rgba(34,36,42,.16);
+ --pl-sh1:0 1px 2px rgba(34,36,42,.06),0 6px 16px -10px rgba(34,36,42,.28);
+ --pl-sh2:0 2px 4px rgba(34,36,42,.06),0 16px 32px -16px rgba(34,36,42,.38);
+ --pl-ring:0 0 0 3px #fff,0 0 0 6px color-mix(in srgb,var(--mn-orange,#EF8A5C) 70%,transparent);
+ --pl-ease:cubic-bezier(.22,1,.36,1)}
+
+/* 1. Fokus keyboard yang jelas untuk semua kontrol */
+html[data-mn][data-mn][data-mn]:root #app :is(button,a,input,summary,[tabindex]):focus-visible,
+html[data-mn][data-mn][data-mn]:root #kopi-box :is(button,a):focus-visible{outline:0;box-shadow:var(--pl-ring)!important}
+html[data-mn][data-mn][data-mn]:root #app :is(button,a,.card,.opt,.chip){-webkit-tap-highlight-color:transparent}
+
+/* 2. Progres langkah: tipis, membulat, berwarna aksen, ada transisi */
+html[data-mn][data-mn][data-mn]:root #app #prog{gap:6px!important}
+html[data-mn][data-mn][data-mn]:root #app #prog i{height:6px!important;border:0!important;border-radius:99px!important;background:var(--mn-line,#E7E9EC)!important;transition:background .35s var(--pl-ease),transform .2s var(--pl-ease)}
+html[data-mn][data-mn][data-mn]:root #app #prog i.on{background:linear-gradient(90deg,var(--mn-orange,#EF8A5C),var(--mn-orange-d,#B9582F))!important}
+html[data-mn][data-mn][data-mn]:root #app #prog i:hover{transform:scaleY(1.6)}
+
+/* 3. Chip "Langkah n dari N": hilangkan kotak putih di belakang teks, rapikan */
+html[data-mn][data-mn][data-mn]:root #app .v66chip{border:1px solid var(--pl-line);background:var(--mn-soft,#F5F6F6)!important;padding:8px 10px!important;opacity:1!important}
+html[data-mn][data-mn][data-mn]:root #app .v66chip span{background:transparent!important;box-shadow:none!important}
+html[data-mn][data-mn][data-mn]:root #app .v66chip span:first-child{background:#fff!important;border:1px solid var(--pl-line);box-shadow:var(--pl-sh1)!important;color:var(--mn-orange-d,#B9582F)}
+html[data-mn][data-mn][data-mn]:root #app .v66chip span:last-child{color:var(--mn-ink2,#555963);font-weight:600}
+
+/* 4. Kartu contoh: ganti bayangan keras 3px hitam jadi kartu lembut berlapis */
+html[data-mn][data-mn][data-mn]:root #app .ex{box-shadow:var(--pl-sh2)!important;border:1px solid var(--pl-line)!important;border-radius:22px!important}
+html[data-mn][data-mn][data-mn]:root #app .ex li,html[data-mn][data-mn][data-mn]:root #app .ex>*{transition:background .2s}
+
+/* 5. Kartu penjelasan jawaban: garis tipis berwarna, bukan kotak hitam 2px; muncul berurutan */
+html[data-mn][data-mn][data-mn]:root #app .exp>li{border-width:1px!important;border-color:var(--pl-line2)!important;border-radius:18px!important;box-shadow:var(--pl-sh1);animation:plrise .5s var(--pl-ease) backwards}
+html[data-mn][data-mn][data-mn]:root #app .exp>li[style*="dashed"],html[data-mn][data-mn][data-mn]:root #app .exp>li:nth-child(3){border-style:dashed!important;border-width:1.5px!important;border-color:color-mix(in srgb,var(--mn-orange-d,#B9582F) 45%,transparent)!important}
+html[data-mn][data-mn][data-mn]:root #app .exp>li:nth-child(1){animation-delay:.02s}
+html[data-mn][data-mn][data-mn]:root #app .exp>li:nth-child(2){animation-delay:.08s}
+html[data-mn][data-mn][data-mn]:root #app .exp>li:nth-child(3){animation-delay:.14s}
+html[data-mn][data-mn][data-mn]:root #app .exp>li:nth-child(4){animation-delay:.2s}
+html[data-mn][data-mn][data-mn]:root #app .exp>li:nth-child(n+5){animation-delay:.26s}
+html[data-mn][data-mn][data-mn]:root #app .wbadge{border-width:1.5px!important;box-shadow:var(--pl-sh1)}
+html[data-mn][data-mn][data-mn]:root #app .ex2{border-top-color:var(--pl-line2)!important}
+@keyframes plrise{from{opacity:0;transform:translateY(10px)}}
+
+/* 6. Pilihan jawaban: hover/tekan halus + ikon status benar/salah */
+html[data-mn][data-mn][data-mn]:root #app .opt{position:relative;transition:transform .18s var(--pl-ease),box-shadow .2s,background .2s,border-color .2s}
+@media(hover:hover){html[data-mn][data-mn][data-mn]:root #app .opt:not(:disabled):hover{transform:translateY(-2px);box-shadow:var(--pl-sh2);border-color:var(--pl-line2)}}
+html[data-mn][data-mn][data-mn]:root #app .opt:not(:disabled):active{transform:scale(.985)}
+html[data-mn][data-mn][data-mn]:root #app .opt.ok,html[data-mn][data-mn][data-mn]:root #app .opt.bad{padding-right:52px}
+html[data-mn][data-mn][data-mn]:root #app .opt.ok::after,html[data-mn][data-mn][data-mn]:root #app .opt.bad::after{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:800;color:#fff;animation:plpop .35s var(--pl-ease)}
+html[data-mn][data-mn][data-mn]:root #app .opt.ok::after{content:"✓";background:#3F8F69}
+html[data-mn][data-mn][data-mn]:root #app .opt.bad::after{content:"✕";background:#C2544A}
+@keyframes plpop{from{transform:translateY(-50%) scale(.3);opacity:0}}
+
+/* 7. Tombol utama dan navigasi: kedalaman, tekan, hover */
+html[data-mn][data-mn][data-mn]:root #app .btn:not(.ghost){box-shadow:0 1px 0 rgba(255,255,255,.14) inset,0 12px 24px -12px rgba(34,36,42,.7);transition:transform .18s var(--pl-ease),box-shadow .2s,filter .2s;letter-spacing:.01em}
+@media(hover:hover){html[data-mn][data-mn][data-mn]:root #app .btn:not(.ghost):hover{transform:translateY(-1px);filter:brightness(1.12)}}
+html[data-mn][data-mn][data-mn]:root #app .btn:active{transform:translateY(1px) scale(.992)!important;box-shadow:0 4px 10px -6px rgba(34,36,42,.6)}
+html[data-mn][data-mn][data-mn]:root #app .btn:disabled{opacity:.5;filter:grayscale(.4)}
+html[data-mn][data-mn][data-mn]:root #app .v69nav button{transition:transform .16s var(--pl-ease),background .2s,box-shadow .2s,border-color .2s;box-shadow:var(--pl-sh1)}
+@media(hover:hover){html[data-mn][data-mn][data-mn]:root #app .v69nav button:hover{background:var(--mn-soft,#F5F6F6);border-color:var(--pl-line2);transform:translateY(-1px)}}
+html[data-mn][data-mn][data-mn]:root #app .v69nav button:active{transform:scale(.97)}
+
+/* 8. Footer: bayangan atas yang lembut (bukan garis keras) */
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot{clip-path:inset(-28px -100vmax 0 -100vmax)!important;box-shadow:0 0 0 100vmax var(--mn-surface),0 -14px 26px -18px rgba(34,36,42,.32)!important}
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot::before{background:var(--pl-line)!important}
+
+/* 9. Maskot melayang: jangan menutupi isi/footer di layar kecil */
+@media(max-width:600px){html[data-mn][data-mn][data-mn]:root body:has(#app[data-mnfocus="1"]) #fo{right:12px!important;bottom:calc(168px + env(safe-area-inset-bottom))!important;width:50px!important}}
+
+/* 10. Ganti garis samping qcard di desktop jadi satu kartu bersih */
+html[data-mn][data-mn][data-mn]:root #app .qcard{box-shadow:var(--pl-sh1)}
+
+/* 11. Pop up traktir kopi: tombol sekunder terbaca & mudah ditekan, tampil lebih rapi */
+#kopi-box{border-radius:28px;box-shadow:0 30px 80px -10px rgba(0,0,0,.45);padding:24px 20px 16px}
+#kopi-box h3{letter-spacing:-.01em}
+#kopi-box .kq{box-shadow:var(--pl-sh1,0 6px 16px -10px rgba(0,0,0,.28))}
+#kopi-box a.ks{box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 22px -12px rgba(0,0,0,.45)}
+#kopi-box a.ks:hover{transform:translateY(-1px)}
+#kopi-box .kft{gap:8px;margin-top:12px}
+#kopi-box .kx,#kopi-box .kx2{flex:1;min-height:42px;border-radius:12px;padding:8px 10px;font-size:12.5px;color:#555963;transition:background .15s,color .15s}
+#kopi-box .kx:hover,#kopi-box .kx2:hover{background:rgba(0,0,0,.05)}
+#kopi-box .kclose{width:36px;height:36px;background:rgba(0,0,0,.07)}
+#kopi-box :is(button,a):focus-visible{outline:0;box-shadow:0 0 0 3px #fff,0 0 0 6px rgba(239,138,92,.75)}
+
+/* 12. Kartu level di beranda: tombol "Mulai di sini" tidak menimpa bilah progres */
+html[data-mn][data-mn][data-mn]:root #app .card[data-i]{transition:transform .25s var(--pl-ease),box-shadow .25s}
+@media(hover:hover){html[data-mn][data-mn][data-mn]:root #app .card[data-i]:hover{transform:translateY(-3px);box-shadow:var(--pl-sh2)}}
+html[data-mn][data-mn][data-mn]:root #app .card[data-i]:active{transform:scale(.99)}
+
+/* 13. Seleksi teks & gulir halus */
+html[data-mn][data-mn][data-mn]:root #app ::selection{background:rgba(239,138,92,.28)}
+@media(prefers-reduced-motion:reduce){html[data-mn][data-mn][data-mn]:root #app .exp>li,html[data-mn][data-mn][data-mn]:root #app .opt::after{animation:none!important}}
+/* 14. Ikon kotak di kartu penjelasan: garis tipis, bukan kotak hitam tebal */
+html[data-mn][data-mn][data-mn]:root #app .exp>li::before{border-width:1.5px!important;border-color:var(--pl-line2)!important;box-shadow:var(--pl-sh1)}
+/* 15. Pop up kopi: tombol sekunder tidak membungkus teks; ring fokus awal lebih halus */
+#kopi-box .kft{flex-wrap:nowrap}
+#kopi-box .kx{flex:0 0 auto;padding:8px 14px}
+#kopi-box .kx2{flex:1 1 auto;white-space:nowrap;padding:8px 6px;font-size:12px}
+#kopi-box a.ks:focus-visible{box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(239,138,92,.55),0 10px 22px -12px rgba(0,0,0,.45)}
+</style>
+<style id="fix-drag-v1">
+/* Soal susun kata: bubble bisa digeser (drag) & diurutkan ulang seperti Duolingo */
+html[data-mn][data-mn][data-mn]:root #app :is(#ans,#bank)>.chip{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;transition:box-shadow .15s}
+html[data-mn][data-mn][data-mn]:root #app #ans{min-height:64px!important;align-content:flex-start;transition:background .2s,box-shadow .2s;border-radius:14px}
+html[data-mn][data-mn][data-mn]:root #app #ans.pl-over,html[data-mn][data-mn][data-mn]:root #app #bank.pl-over{background:color-mix(in srgb,var(--mn-orange,#EF8A5C) 9%,transparent);box-shadow:0 0 0 2px color-mix(in srgb,var(--mn-orange,#EF8A5C) 35%,transparent) inset}
+html[data-mn][data-mn][data-mn]:root #app #ans:empty::before{content:"Tap atau geser kata ke sini";color:var(--mn-mute,#8A8E98);font-size:13px;font-weight:600;align-self:center;padding:0 4px;pointer-events:none}
+html[data-mn][data-mn][data-mn]:root #app .chip.pl-ph{opacity:.28;border-style:dashed}
+.chip.pl-ghost{cursor:grabbing;box-shadow:0 18px 30px -12px rgba(34,36,42,.5)!important;opacity:.97;transition:none!important;background:#fff;will-change:transform}
+body.pl-dragging,body.pl-dragging *{cursor:grabbing!important;user-select:none!important}
+</style>
+<script id="fix-drag-v1-js">
+(function(){try{
+const flip=(ans,bank,fn)=>{const els=[...ans.children,...bank.children];const first=new Map(els.map(e=>[e,e.getBoundingClientRect()]));fn();
+  els.forEach(e=>{const a=first.get(e),b=e.getBoundingClientRect(),dx=a.left-b.left,dy=a.top-b.top;
+    if((dx||dy)&&e.animate)e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:180,easing:'cubic-bezier(.22,1,.36,1)'})})};
+function enable(){
+  const ans=document.getElementById('ans'),bank=document.getElementById('bank');
+  if(!ans||!bank)return;
+  [ans,bank].forEach(box=>box.addEventListener('pointerdown',e=>{
+    const chip=e.target.closest('.chip');if(!chip||S.locked||(e.pointerType==='mouse'&&e.button!==0))return;
+    const sx=e.clientX,sy=e.clientY,r=chip.getBoundingClientRect(),ox=sx-r.left,oy=sy-r.top;
+    let drag=false,ghost=null;
+    const move=ev=>{
+      if(!drag){if(Math.hypot(ev.clientX-sx,ev.clientY-sy)<6)return;
+        drag=true;ghost=chip.cloneNode(true);ghost.className='chip pl-ghost';
+        ghost.style.cssText=`position:fixed;left:0;top:0;width:${r.width}px;height:${r.height}px;margin:0;z-index:99999;pointer-events:none`;
+        document.body.appendChild(ghost);document.body.classList.add('pl-dragging');chip.classList.add('pl-ph')}
+      ghost.style.transform=`translate(${ev.clientX-ox}px,${ev.clientY-oy}px) scale(1.07) rotate(-2deg)`;
+      const near=b=>{const q=b.getBoundingClientRect();return ev.clientX>=q.left-10&&ev.clientX<=q.right+10&&ev.clientY>=q.top-10&&ev.clientY<=q.bottom+10};
+      const hit=[ans,bank].find(near);
+      ans.classList.toggle('pl-over',hit===ans);bank.classList.toggle('pl-over',hit===bank);
+      if(!hit)return;
+      let before=null;
+      for(const s of [...hit.children].filter(c=>c!==chip)){const q=s.getBoundingClientRect();
+        if(ev.clientY<q.top-2||(ev.clientY<=q.bottom+2&&ev.clientX<q.left+q.width/2)){before=s;break}}
+      const same=chip.parentNode===hit&&(before?chip.nextElementSibling===before:chip===hit.lastElementChild);
+      if(!same)flip(ans,bank,()=>hit.insertBefore(chip,before));
+    };
+    const up=()=>{removeEventListener('pointermove',move);removeEventListener('pointerup',up);removeEventListener('pointercancel',up);
+      if(drag){ghost.remove();chip.classList.remove('pl-ph');document.body.classList.remove('pl-dragging');ans.classList.remove('pl-over');bank.classList.remove('pl-over');S.__pldrag=Date.now()}};
+    addEventListener('pointermove',move);addEventListener('pointerup',up);addEventListener('pointercancel',up);
+  }));
+}
+/* cegah klik "ketuk-pindah" bawaan terpicu tepat setelah drag */
+view.addEventListener('click',e=>{if(S.__pldrag&&Date.now()-S.__pldrag<120&&e.target.closest('.chip')){e.stopImmediatePropagation();e.preventDefault();S.__pldrag=0}},true);
+const _vq2=window.vQuiz;
+window.vQuiz=function(){_vq2.apply(this,arguments);try{if(!S.locked)enable()}catch(e){console.warn('fix-drag',e)}};
+}catch(e){console.warn('fix-drag gagal',e)}})();
+</script>
+<style id="fix-rating-v1">
+/* Penilaian bintang 5 + kata pujian di hasil Tes Penempatan / Ujian Akhir */
+.pl-rate{display:flex;flex-direction:column;align-items:center;gap:6px;margin:2px 0 14px;text-align:center}
+.pl-stars{display:flex;gap:6px;font-size:34px;line-height:1}
+.pl-stars span{color:#D9DCE1;transform:scale(.4);opacity:0;display:inline-block;filter:drop-shadow(0 2px 0 rgba(34,36,42,.08))}
+.pl-stars span.on{color:#F5B73B;animation:plstar .55s cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:calc(var(--k)*140ms + 250ms);filter:drop-shadow(0 3px 4px rgba(210,140,20,.45))}
+.pl-stars span.off{animation:plstar0 .4s ease forwards;animation-delay:calc(var(--k)*140ms + 250ms)}
+@keyframes plstar{0%{transform:scale(.3) rotate(-40deg);opacity:0}70%{transform:scale(1.25) rotate(8deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes plstar0{to{transform:scale(1);opacity:1}}
+.pl-word{font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--mn-ink,#22242A);animation:plword .6s cubic-bezier(.22,1,.36,1) .9s backwards}
+.pl-word.top{background:linear-gradient(90deg,#E8962B,#EF8A5C,#C0507A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pl-sub{font-size:13.5px;font-weight:600;color:var(--mn-ink2,#555963);animation:plword .6s cubic-bezier(.22,1,.36,1) 1.05s backwards}
+@keyframes plword{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){.pl-stars span,.pl-word,.pl-sub{animation:none!important;opacity:1;transform:none}}
+</style>
+<script id="fix-rating-v1-js">
+(function(){try{
+const T=[[.95,5,'Excellent! 🏆','Sempurna! Kamu benar-benar menguasai ini.'],[.8,4,'Great job! 👏','Hebat! Sedikit lagi sempurna.'],[.6,3,'Good! 👍','Bagus! Dasarmu sudah kuat.'],[.4,2,'Nice try! 💪','Lumayan! Terus berlatih ya.'],[0,1,'Good start! 🌱','Awal yang bagus. Pelan-pelan, pasti bisa.']];
+const _kr=window.kindResult;
+if(typeof _kr==='function')window.kindResult=function(tot,n){
+  const r=_kr.apply(this,arguments);
+  try{
+    if(S.kind!=='place'&&S.kind!=='exam')return r;
+    const res=view.querySelector('.res');if(!res||res.querySelector('.pl-rate'))return r;
+    const pct=n/tot,t=T.find(x=>pct>=x[0]),st=t[1];
+    res.insertAdjacentHTML('afterbegin',`<div class="pl-rate" role="img" aria-label="Penilaian ${st} dari 5 bintang: ${t[2]}"><div class="pl-stars">${[0,1,2,3,4].map(i=>`<span class="${i<st?'on':'off'}" style="--k:${i}">★</span>`).join('')}</div><div class="pl-word${st===5?' top':''}">${t[2]}</div><div class="pl-sub">${t[3]} · ${Math.round(pct*100)}% benar</div></div>`);
+    if(st>=4)setTimeout(()=>{try{confetti(st===5?60:36)}catch(e){}},900);
+  }catch(e){console.warn('fix-rating',e)}
+  return r};
+}catch(e){console.warn('fix-rating gagal',e)}})();
+</script>
+<script id="fix-retry-v1-js">
+/* Soal salah: beri kesempatan mengulang soal itu. Percobaan ulang TIDAK mengubah skor (agar penentuan level & ujian tetap adil), murni untuk belajar. */
+(function(){try{
+const R=()=>{if(!S.rec||S.rec.l!==S.list){S.rec={l:S.list,r:{}};S.__retryQ=null}return S.rec.r};
+const addBtn=()=>{const ft=document.getElementById('ft');if(!ft||document.getElementById('pl-retry'))return;
+  ft.insertAdjacentHTML('afterbegin','<button class="btn ghost" id="pl-retry">↻ Coba lagi soal ini</button>');
+  document.getElementById('pl-retry').onclick=()=>{delete R()[S.q];S.__retryQ=S.q;go('quiz',{q:S.q})}};
+const _fin=window.finish;
+if(typeof _fin==='function')window.finish=function(ok){
+  const retrying=S.__retryQ===S.q,pre=retrying?{s:S.score,w:S.wrong.slice()}:null;
+  const r=_fin.apply(this,arguments);
+  if(retrying){S.score=pre.s;S.wrong=pre.w;S.__retryQ=null}
+  if(!ok)addBtn();
+  return r};
+const _vq=window.vQuiz;
+if(typeof _vq==='function')window.vQuiz=function(){
+  _vq.apply(this,arguments);
+  try{const rec=R()[S.q];
+    if(rec&&!rec.ok)addBtn();
+    if(S.__retryQ===S.q&&!rec){const g=view.querySelector('.guide .bubble');if(g)g.innerHTML='🔁 <b>Coba lagi!</b> Percobaan ulang tidak mengubah skor, tapi bagus buat belajar.'}
+    else if(S.__retryQ!=null&&S.__retryQ!==S.q)S.__retryQ=null;
+  }catch(e){console.warn('fix-retry',e)}};
+}catch(e){console.warn('fix-retry gagal',e)}})();
+</script>
+<style id="fix-feedback-v2-css">
+/* Bintang kecil: terisi = emas, belum = garis tipis abu-abu */
+.stars .sv{width:11px;height:11px;display:inline-block;vertical-align:-1px;margin-left:1.5px;flex:none}
+.stars .sv.f path{fill:var(--gold,#E8A13A);stroke:none}
+.stars .sv.e path{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;opacity:.38}
+.mn-levels .stars .sv.f path{fill:currentColor}
+.card.st-done .stars{opacity:1}
+</style>
+<script id="fix-feedback-v2-js">
+/* v2: perbaikan teks penjelasan (duplikat, "Kuncinya", he/she), arti kalimat di level SD, bintang kecil */
+(function(){try{
+const strip=s=>String(s==null?'':s).replace(/<br\s*\/?>/gi,' ').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
+const nk=s=>strip(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/'/g,'').replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ---------- A. Bersihkan data soal ---------- */
+const PFX=/^\s*(Versi yang benar|Terjemahannya|Kalimatnya)\s*:\s*<b>[\s\S]*?<\/b>\s*(?:<br\s*\/?>\s*)?/i;
+const GENDER_NOUN=/perempuan|laki-laki|wanita|pria|cewek|cowok|ibu|ayah|bapak|kakak|adik|nenek|kakek|guru/i;
+const swapG=a=>String(a).replace(/\b(he's|she's|himself|herself|he|she|his|him)\b/gi,m=>{
+  const t={"he's":"she's","she's":"he's",himself:'herself',herself:'himself',he:'she',she:'he',his:'her',him:'her'}[m.toLowerCase()];
+  return m[0]===m[0].toUpperCase()?t[0].toUpperCase()+t.slice(1):t});
+LEVELS.forEach(L=>L.mods.forEach(M=>(M.quiz||[]).forEach(Q=>{
+  if(typeof Q.why==='string'){
+    const c=Q.why.replace(PFX,'');
+    if(c!==Q.why){Q.why=strip(c)?c:((Q.t==='listen')?'Dengarkan per kata. Huruf besar dan tanda baca tidak dihitung.':Q.why)}
+  }
+  /* "dia" tidak menunjuk gender: terima he maupun she */
+  if(Array.isArray(Q.a)&&!Array.isArray(Q.o)&&(Q.t==='type'||Q.t==='listen')&&/\bdia\b/i.test(strip(Q.q))&&!GENDER_NOUN.test(strip(Q.q))){
+    const extra=Q.a.map(swapG).filter(v=>!Q.a.some(x=>nk(x)===nk(v)));
+    if(extra.length)Q.a=Q.a.concat(extra)}
+})));
+
+/* ---------- B. Kamus arti kalimat (level SD) ---------- */
+const RAW={
+"I am a student":"Aku seorang murid.","She is my sister":"Dia (perempuan) adalah saudara perempuanku.","We are best friends":"Kami sahabat baik.",
+"Are they your friends":"Apakah mereka teman-temanmu?","Is he a doctor":"Apakah dia seorang dokter?","Is she a doctor":"Apakah dia seorang dokter?","She is a teacher":"Dia (perempuan) adalah seorang guru.",
+"Are they at school":"Apakah mereka ada di sekolah?","He isn't a teacher":"Dia (laki-laki) bukan seorang guru.","Is she your friend? Yes, she is":"Apakah dia temanmu? Ya, benar.",
+"He is my teacher":"Dia (laki-laki) adalah guruku.","We are in the classroom":"Kami ada di dalam kelas.","My mother is a nurse":"Ibuku seorang perawat.",
+"I am happy":"Aku senang.","They are friends":"Mereka berteman.","My brother is a student":"Saudara laki-lakiku seorang murid.","I agree with you":"Aku setuju denganmu.",
+"Why are you late? Because I woke up late":"Kenapa kamu terlambat? Karena aku bangun kesiangan.","She has an umbrella":"Dia punya sebuah payung.",
+"Tomorrow, I will visit my grandmother":"Besok aku akan mengunjungi nenekku.","Yesterday she ate rice":"Kemarin dia makan nasi.","I will study tomorrow":"Aku akan belajar besok.",
+"I will eat rice tomorrow":"Aku akan makan nasi besok.","Yesterday I played football":"Kemarin aku bermain sepak bola.","I will go home":"Aku akan pulang.",
+"Yesterday, I went to school":"Kemarin aku pergi ke sekolah.","Tomorrow, she will visit her aunt":"Besok dia akan mengunjungi bibinya.",
+"Who is your teacher":"Siapa gurumu?","Where do you live":"Kamu tinggal di mana?","Why are you late":"Kenapa kamu terlambat?","Where does she live":"Dia tinggal di mana?",
+"What do you want":"Kamu mau apa?","Whose pen is this? It is Rina's":"Ini pulpen siapa? Ini milik Rina.",
+"I have three books":"Aku punya tiga buku.","My father is a teacher":"Ayahku seorang guru.","I have three cats":"Aku punya tiga ekor kucing.","She is my aunt":"Dia adalah bibiku.",
+"an umbrella":"sebuah payung","an elephant":"seekor gajah","a university":"sebuah universitas","an hour":"satu jam","an apple":"sebuah apel","a book":"sebuah buku","a cat":"seekor kucing",
+"It is an old book":"Itu sebuah buku tua.","I have a cat":"Aku punya seekor kucing.",
+"This is my book":"Ini bukuku.","Please give her the key":"Tolong berikan kuncinya kepada dia (perempuan).","This pen is mine":"Pulpen ini milikku.","They love their dog":"Mereka sayang anjing mereka.",
+"The cat licks its paw":"Kucing itu menjilat cakarnya.","This bag is hers":"Tas ini miliknya (perempuan).","Dina is my friend. I like her":"Dina temanku. Aku menyukainya.",
+"This is my bag":"Ini tasku.","This is my pen":"Ini pulpenku.","Those are my shoes over there":"Itu sepatuku di sana.","These books here are new":"Buku-buku di sini baru.",
+"This is my friend":"Ini temanku.","That is my house":"Itu rumahku.","Those are my shoes":"Itu sepatu-sepatuku.","These are my shoes here":"Ini sepatu-sepatuku di sini.","That is a bird over there":"Itu seekor burung di sana.",
+"The cat is in the box":"Kucing itu ada di dalam kotak.","The book is on the table":"Buku itu ada di atas meja.","I wake up at 6 o'clock":"Aku bangun jam 6.",
+"My birthday is on Monday":"Ulang tahunku hari Senin.","The ball is under the chair":"Bola itu ada di bawah kursi.",
+"My name is Budi":"Namaku Budi.","Dina puts her books in the bag":"Dina memasukkan buku-bukunya ke dalam tas.","My name is Dina":"Namaku Dina.","She likes apples":"Dia suka apel.","I like apples":"Aku suka apel.",
+"She studies English every day":"Dia belajar bahasa Inggris setiap hari.","I wash my hands":"Aku mencuci tanganku.","She eats rice every day":"Dia makan nasi setiap hari.",
+"They study English at school":"Mereka belajar bahasa Inggris di sekolah.","He washes his hands every day":"Dia mencuci tangannya setiap hari.","My brother plays football":"Saudara laki-lakiku bermain sepak bola.","I eat breakfast":"Aku sarapan.",
+"I go to school on Monday":"Aku pergi ke sekolah hari Senin.","We have lunch at twelve o'clock":"Kami makan siang jam dua belas.","The meeting is on Monday":"Rapatnya hari Senin.",
+"I wake up at six o'clock":"Aku bangun jam enam.","My birthday is in July":"Ulang tahunku di bulan Juli.",
+"I have two eyes":"Aku punya dua mata.","It is a red apple":"Itu apel merah.","My name is Rani":"Namaku Rani.","How are you? I am fine, thank you":"Apa kabar? Aku baik, terima kasih.",
+"I drink milk every morning":"Aku minum susu setiap pagi.","I like bananas":"Aku suka pisang.","This is a book":"Ini sebuah buku.","That is a window":"Itu sebuah jendela.",
+"She is a happy girl":"Dia seorang gadis yang bahagia.","two big cats":"dua ekor kucing besar","One child, two children":"Satu anak, dua anak.",
+"She can swim very well":"Dia bisa berenang dengan sangat baik.","Fish can't fly":"Ikan tidak bisa terbang.","Can you swim? Yes, I can":"Bisakah kamu berenang? Ya, aku bisa.","She can sing":"Dia bisa menyanyi.",
+"It is sunny today":"Hari ini cerah.","It is windy today":"Hari ini berangin.","He never eats meat":"Dia tidak pernah makan daging.","He has a red car":"Dia punya mobil merah.",
+"I was at home yesterday":"Aku ada di rumah kemarin.","They were tired last night":"Mereka lelah tadi malam.","She was a teacher two years ago":"Dia dulu seorang guru dua tahun lalu.",
+"You were late yesterday":"Kamu terlambat kemarin.","We were in Bali last week":"Kami ada di Bali minggu lalu.","She wasn't at home":"Dia tidak ada di rumah.",
+"Were they at school yesterday":"Apakah mereka ada di sekolah kemarin?","She wasn't happy":"Dia tidak senang.","Were you at home":"Apakah kamu ada di rumah?",
+"They were at the park yesterday":"Mereka ada di taman kemarin.","They were late":"Mereka terlambat.","I was at home":"Aku ada di rumah."};
+const ID={};Object.keys(RAW).forEach(k=>ID[nk(k)]=RAW[k]);
+const candidates=Q=>{
+  const t=Q.t||'mc';
+  const ans=strip(Array.isArray(Q.o)&&typeof Q.a==='number'?Q.o[Q.a]:(Array.isArray(Q.a)?Q.a[0]:Q.a));
+  const c=[];
+  if(Q.say)c.push(Q.say);
+  let q=strip(Q.q);
+  if(q.indexOf('___')>-1){q=q.replace(/^[^:_]{0,60}:\s*/,'').replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();c.push(q.replace('___',ans))}
+  c.push(ans);return c};
+const artiOf=Q=>{for(const c of candidates(Q)){const v=ID[nk(c)];if(v)return v}return ''};
+
+/* arti kata untuk angka (sering tertukar dengan urutan) */
+try{window.addArti&&window.addArti({one:'satu',first:'pertama',two:'dua',second:'kedua',three:'tiga',third:'ketiga',four:'empat',fourth:'keempat',five:'lima (angka 5)',fifth:'kelima (urutan ke-5)',six:'enam',sixth:'keenam',seven:'tujuh',seventh:'ketujuh',eight:'delapan',eighth:'kedelapan',nine:'sembilan',ninth:'kesembilan',ten:'sepuluh',tenth:'kesepuluh'})}catch(e){}
+
+/* ---------- C. Rapikan penjelasan ---------- */
+const GENERIC=/\s*<b>([^<]+)<\/b> memang kata yang valid, tapi arti atau fungsinya bukan yang ditanyakan\.(?: Soal ini mengarah ke <b>[^<]+<\/b>\.)?/g;
+const levelOf=M=>LEVELS.findIndex(L=>L.mods.includes(M));
+const tidy=(html,ok,Q,M,ans,given)=>{
+  if(typeof html!=='string'||html.indexOf('class="why full"')<0)return html;
+  const tpl=document.createElement('template');tpl.innerHTML=html.trim();
+  const root=tpl.content.firstElementChild;if(!root)return html;
+  const lis=[...root.querySelectorAll('ol.exp > li')];
+  const head=li=>((li.querySelector('strong')||{}).textContent||'');
+  const body=li=>li.innerHTML.replace(/^\s*<strong>[\s\S]*?<\/strong>/,'');
+  const setBody=(li,b)=>{li.innerHTML='<strong>'+head(li)+'</strong>'+b};
+  const t=(Q&&Q.t)||'mc';
+  /* 1. Cek jawabanmu */
+  const cek=lis.find(li=>/cek jawabanmu/i.test(head(li)));
+  if(cek&&!ok){
+    let b=body(cek).replace(/\s*Kuncinya:[\s\S]*$/,'');
+    const typed=(t==='type'||(t==='listen'&&!Array.isArray(Q.o)))&&given!=null&&String(given).trim()!=='';
+    if(typed){
+      const g=strip(given),a=strip(ans);
+      const single=nk(g).split(' ').length===1&&nk(a).split(' ').length===1;
+      let detail='';
+      if(single){
+        const A=window.ARTI||{},ga=A[nk(g)],aa=A[nk(a)];
+        detail=(ga&&aa)?` <b>${esc(g)}</b> = ${ga}, sedangkan <b>${esc(a)}</b> = ${aa}.`:'';
+      }else{
+        detail=b.replace(/^[\s\S]*?<\/b>\.\s*/,' ').replace(GENERIC,'');
+        if(!/\S/.test(strip(detail)))detail='';
+      }
+      b=`Kamu menjawab <b>${esc(g)}</b>. Jawaban yang benar: <b>${esc(a)}</b>.${detail}`;
+    }else{b=b.replace(GENERIC,' Arti atau fungsinya beda dari yang diminta soal.')}
+    setBody(cek,b);
+  }
+  /* 2. Pilihan lain keliru: buang pengulangan "Kuncinya" dan kalimat generik */
+  const lain=lis.find(li=>/pilihan lain/i.test(head(li)));
+  if(lain){let b=body(lain).replace(/\s*Kuncinya:[^<]*/g,'').replace(GENERIC,' Arti atau fungsinya beda dari yang diminta soal.');setBody(lain,b)}
+  /* 3. Jawaban benar yang cocok (mis. she/he) tampil sesuai ketikan pengguna */
+  if(ok&&Array.isArray(Q.a)&&!Array.isArray(Q.o)&&given!=null){
+    const v=Q.a.find(x=>nk(x)===nk(given));
+    const full=lis.find(li=>/jawaban (lengkap|yang benar)/i.test(head(li)));
+    if(v&&full&&nk(v)!==nk(ans))full.innerHTML=full.innerHTML.replace(/<b>[\s\S]*?<\/b>/,'<b>'+esc(v)+'</b>')}
+  /* 4. Contoh benar: buang yang dobel */
+  const cx=lis.find(li=>/contoh benar/i.test(head(li)));
+  if(cx){const seen=new Set();cx.querySelectorAll('.ex2').forEach(d=>{const k=strip(d.innerHTML);if(seen.has(k))d.remove();else seen.add(k)})}
+  /* 5. Arti kalimat (level SD), ditaruh di bagian cek jawaban */
+  if(M&&levelOf(M)===0&&Q){
+    const ar=artiOf(Q);
+    if(ar){
+      const tgt=cek||lis.find(li=>/jawabanmu tepat/i.test(head(li)))||lis[0];
+      if(tgt)tgt.insertAdjacentHTML('beforeend',`<div class="ex2">🇮🇩 ${ok?'Artinya':'Artinya kalimat yang benar'}: <i>${esc(ar)}</i></div>`);
+    }
+  }
+  return root.outerHTML;
+};
+const _expl=window.explain;
+if(typeof _expl==='function')window.explain=function(ok,Q,M,ans,wr,given){
+  const h=_expl.apply(this,arguments);
+  try{return tidy(h,ok,Q,M,ans,given)}catch(e){console.warn('tidy gagal',e);return h}};
+
+/* ---------- D. Bintang kecil (terisi vs belum) ---------- */
+const SV=f=>`<svg class="sv ${f?'f':'e'}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6.1 6.7.9-4.9 4.6 1.2 6.6L12 17.6 6.1 20.8l1.2-6.6L2.4 9.6l6.7-.9z"/></svg>`;
+const fixStar=el=>{if(el.dataset.sv)return;const t=el.textContent.trim();if(!/^[★☆]{3}$/.test(t))return;
+  el.dataset.sv='1';const n=(t.match(/★/g)||[]).length;
+  el.innerHTML=[0,1,2].map(i=>SV(i<n)).join('');el.setAttribute('role','img');
+  el.setAttribute('aria-label',n?`${n} dari 3 bintang`:'Belum dikerjakan');el.title=n?`${n} dari 3 bintang`:'Belum dikerjakan';
+  const c=el.closest('.card');if(c)c.classList.toggle('st-done',n>0)};
+const sweep=()=>document.querySelectorAll('.stars:not([data-sv])').forEach(fixStar);
+let raf=0;new MutationObserver(()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;sweep()})}).observe(document.body,{childList:true,subtree:true});sweep();
+}catch(e){console.warn('fix-feedback-v2 gagal',e)}})();
+</script>
+
 </body>
 </html>
