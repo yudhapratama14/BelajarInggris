@@ -6877,7 +6877,7 @@ if(typeof _kr==='function')window.kindResult=function(tot,n){
 (function(){try{
 const R=()=>{if(!S.rec||S.rec.l!==S.list){S.rec={l:S.list,r:{}};S.__retryQ=null}return S.rec.r};
 const addBtn=()=>{const ft=document.getElementById('ft');if(!ft||document.getElementById('pl-retry'))return;
-  ft.insertAdjacentHTML('afterbegin','<button class="btn ghost" id="pl-retry">↻ Coba lagi soal ini</button>');
+  ft.insertAdjacentHTML('afterbegin','<button class="btn ghost" id="pl-retry">↻ Coba lagi</button>');
   document.getElementById('pl-retry').onclick=()=>{delete R()[S.q];S.__retryQ=S.q;go('quiz',{q:S.q})}};
 const _fin=window.finish;
 if(typeof _fin==='function')window.finish=function(ok){
@@ -7069,7 +7069,7 @@ function apply(){document.querySelectorAll('.grp .path').forEach(p=>{
  cs.forEach((c,i)=>{const dx=DX[i%8],pv=DX[(i+7)%8];c.style.setProperty('--dx',dx+'px');
   const d=dx-pv;c.style.setProperty('--pdx',(-d)+'px');c.style.setProperty('--rot',(Math.atan2(d,44)*-180/Math.PI)+'deg');
   const t=(c.textContent||'').toLowerCase(),al=(c.querySelector('.stars')||{}).getAttribute?c.querySelector('.stars').getAttribute('aria-label')||'':'';
-  if(/giliranmu/.test(t)&&!cur){c.classList.add('pn-cur');cur=true}
+  if(/giliran\s*(mu|lo)/.test(t)&&!cur){c.classList.add('pn-cur');cur=true}
   else if(al&&!/belum/i.test(al))c.classList.add('pn-done')})})}
 new MutationObserver(()=>{apply();requestAnimationFrame(lines);setTimeout(lines,700)}).observe(document.getElementById('app'),{childList:true,subtree:true});apply();[400,900,1600].forEach(t=>setTimeout(lines,t));addEventListener('resize',lines);
 }catch(e){console.warn('ux-v93 gagal',e)}})();
@@ -7111,6 +7111,13 @@ html:root[data-mn][data-mn][data-mn] #app #ft.fb-bad .btn#nq{background:#D9534A 
 @keyframes celin{from{opacity:0}to{opacity:1}}@keyframes celpop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}@keyframes celbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media (prefers-reduced-motion:reduce){#cel .owl,.pn-go{animation:none}#ft.fb-ok,#ft.fb-bad,.fbs .fi{animation:none}}
 </style>
+<style id="fb-compact-v1">
+/* Panel setelah menjawab: ringkas, tanpa blok warna besar */
+#ft.fb-ok,#ft.fb-bad{background:transparent !important;border-radius:0 !important;margin:0 !important;padding:8px 0 calc(8px + env(safe-area-inset-bottom)) !important;gap:8px !important;flex-direction:row !important;align-items:center !important;animation:none !important}
+#ft.fb-ok .btn,#ft.fb-bad .btn{padding:12px 16px !important;font-size:15px !important;min-height:0 !important}
+#ft.fb-bad #nq,#ft.fb-ok #nq{flex:1 1 auto !important}
+#ft.fb-bad #pl-retry{flex:0 0 auto !important;width:auto !important;padding:12px 14px !important;font-size:14px !important;font-weight:700 !important;box-shadow:none !important;white-space:nowrap}
+</style>
 <script id="ux-v94-js">
 (function(){try{
 const NS='http://www.w3.org/2000/svg',$=s=>document.querySelector(s);
@@ -7123,11 +7130,11 @@ function draw(){document.querySelectorAll('.grp .path').forEach(p=>{const cs=[..
  const cur=p.querySelector('.card.pn-cur');if(cur&&!cur.querySelector('.pn-go'))cur.insertAdjacentHTML('afterbegin','<span class="pn-go">MULAI</span>')})}
 function buzz(a){try{navigator.vibrate&&navigator.vibrate(a)}catch(e){}}
 function sheet(){const ft=document.getElementById('ft'),w=document.getElementById('why');
- if(!ft||!w||!w.classList.contains('full')||!ft.querySelector('#nq')||ft.querySelector('.fbs'))return;
+ if(!ft||!w||!w.classList.contains('full')||!ft.querySelector('#nq')||ft.classList.contains('fb-ok')||ft.classList.contains('fb-bad'))return;
  const bad=w.classList.contains('no'),li=k=>{const l=w.querySelector('li[data-k="'+k+'"]');if(!l)return'';const c=l.cloneNode(true);c.querySelectorAll('strong').forEach(x=>x.remove());return c.textContent.trim()};
  let msg=bad?li('a'):li('k');if(msg.length>120)msg=msg.slice(0,117)+'…';
  ft.classList.remove('fb-ok','fb-bad');ft.classList.add(bad?'fb-bad':'fb-ok');
- ft.insertAdjacentHTML('afterbegin','<div class="fbs" role="status" aria-live="assertive"><div class="fi">'+(bad?'✕':'✓')+'</div><div><b>'+(bad?'Jawaban yang benar:':'Benar!')+'</b><span>'+msg.replace(/</g,'&lt;')+'</span></div>'+(bad?'':'<div class="xp">+10 XP</div>')+'</div>');
+ /* panel .fbs dihapus: duplikat penjelasan di atas. Cukup getar + warna tombol. */
  buzz(bad?[40,30,40]:[15])}
 let lastRes='';
 function celebrate(){const v=$('.view');if(!v||$('#cel'))return;const t=v.innerText||'';if(/Hasil tes/i.test(t))return;const m=t.match(/Skor\s*(\d+)\s*\/\s*(\d+)/);if(!m)return;
@@ -7240,5 +7247,349 @@ html[data-mn][data-mn][data-mn]:not([data-theme=dark]):root{--mn-mute:#666A75!im
 /* 7. Tekan = ada respons */
 #app .card:active,#app .opt:active,#app .btn:active{transform:scale(.98)}
 </style>
+<style id="path-redesign-v95">
+/* Peta belajar v95: node bersatus + label di samping + jalur solid dengan progres */
+.pn-line{display:none!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path{padding:10px 0 26px!important;align-items:stretch!important;position:relative}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>svg.pn2{position:absolute;left:0;top:0;pointer-events:none;z-index:0;overflow:visible}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card{position:relative!important;z-index:1;width:100%!important;flex-direction:row!important;justify-content:center!important;align-items:center!important;transform:none!important;padding:15px 0!important;min-height:104px;gap:0!important;-webkit-tap-highlight-color:transparent}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur{padding-top:48px!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico{color:#8A7F76;flex:none;width:72px!important;height:72px!important;border-radius:50%!important;display:grid!important;place-items:center;transform:translateX(var(--dx,0px));color:var(--mute);background:var(--cream-d,#F1E6DA)!important;border:4px solid var(--cream,#FFF8F0)!important;box-shadow:0 5px 0 rgba(120,80,50,.16)!important;transition:transform .2s var(--ease)}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card:active .ico{transform:translateX(var(--dx,0px)) scale(.94)}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico svg.nbi{width:32px;height:32px}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico svg.nbi path{fill:none!important;stroke:currentColor!important;stroke-width:1.9;stroke-linejoin:round;opacity:1!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .ico{background:#58A55C!important;color:#fff;box-shadow:0 5px 0 #3F7F44!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .ico svg.nbi path{fill:#fff!important;stroke:#fff!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico{background:var(--terra)!important;color:#fff;box-shadow:0 6px 0 var(--terra-d)!important;animation:pnpulse 1.8s ease-in-out infinite}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico svg.nbi path{fill:#fff!important;stroke:#fff!important}
+/* label di samping node, tidak ditimpa jalur */
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info{position:absolute;top:50%;display:flex;flex-direction:column;gap:3px;min-width:0;width:max-content;pointer-events:none}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .pn-info{top:calc(50% + 17px)}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-L .pn-info{right:calc(50% - var(--dx,0px) + 48px);max-width:calc(50% + var(--dx,0px) - 54px);align-items:flex-end;text-align:right;transform:translateY(-50%)}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-R .pn-info{left:calc(50% + var(--dx,0px) + 48px);max-width:calc(50% - var(--dx,0px) - 54px);align-items:flex-start;text-align:left;transform:translateY(-50%)}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .txt{display:flex;flex-direction:column;gap:2px;width:auto!important;text-align:inherit!important;align-items:inherit!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .txt small{font-size:12px!important;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)!important;line-height:1.2}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .txt b{font-size:16.5px!important;line-height:1.2!important;font-weight:800;color:var(--ink);overflow-wrap:anywhere}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .pn-info .txt b{color:var(--terra-d)}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .stars{display:none!important;gap:2px}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .pn-info .stars{display:inline-flex!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .stars svg{width:17px!important;height:17px!important}
+.pn-go{left:calc(50% + var(--dx,0px))!important;top:6px!important}
+html[data-theme=dark] #app .grp .path>svg.pn2 .tr{stroke:rgba(255,255,255,.1)}
+@media (prefers-reduced-motion:reduce){html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico{animation:none!important}}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico svg.nbi{color:#9A8F86!important}
+html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .ico svg.nbi,html:root[data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico svg.nbi{color:#fff!important}
+</style>
+<script id="path-redesign-v95-js">
+(function(){try{
+const NS='http://www.w3.org/2000/svg',DX=[0,46,70,46,0,-46,-70,-46];
+function build(){document.querySelectorAll('.grp .path').forEach(p=>{
+ const cs=[...p.children].filter(c=>c.classList&&c.classList.contains('card'));if(!cs.length)return;
+ if(!p.querySelector('.card.pn-cur')&&!document.querySelector('.grp .path .card.pn-cur')){const c=cs.find(c=>/giliran\s*(mu|lo)/i.test(c.textContent));if(c)c.classList.add('pn-cur')}
+ cs.forEach((c,i)=>{
+  const dx=DX[i%8];c.style.setProperty('--dx',dx+'px');
+  const al=(c.querySelector('.stars')||{getAttribute:()=>''}).getAttribute('aria-label')||'';
+  if(!c.classList.contains('pn-cur')&&(c.classList.contains('st-done')||(al&&!/belum/i.test(al))))c.classList.add('pn-done');
+  if(c.dataset.pn2)return;c.dataset.pn2=1;
+  c.classList.add(dx>0||(dx===0&&i%8===0)?'pn-L':'pn-R');
+  const t=c.querySelector('.txt'),s=c.querySelector('.stars'),sm=t&&t.querySelector('small');
+  if(sm)sm.textContent=sm.textContent.replace(/\s*·?\s*▶.*$/,'').trim();
+  const inf=document.createElement('div');inf.className='pn-info';if(t)inf.appendChild(t);if(s)inf.appendChild(s);c.appendChild(inf)})})}
+function draw(){document.querySelectorAll('.grp .path').forEach(p=>{
+ const cs=[...p.children].filter(c=>c.classList&&c.classList.contains('card'));if(cs.length<2)return;
+ let svg=p.querySelector(':scope>svg.pn2');if(!svg){svg=document.createElementNS(NS,'svg');svg.setAttribute('class','pn2');p.prepend(svg)}
+ const W=p.clientWidth,H=p.scrollHeight;svg.setAttribute('width',W);svg.setAttribute('height',H);svg.setAttribute('viewBox','0 0 '+W+' '+H);
+ const pt=cs.map(c=>{const ic=c.querySelector('.ico');return[c.offsetLeft+c.offsetWidth/2+(parseFloat(c.style.getPropertyValue('--dx'))||0),c.offsetTop+ic.offsetTop+ic.offsetHeight/2]});
+ const seg=(a,b)=>{const m=(a[1]+b[1])/2;return' C'+a[0]+' '+m+' '+b[0]+' '+m+' '+b[0]+' '+b[1]};
+ let all='M'+pt[0][0]+' '+pt[0][1];for(let i=1;i<pt.length;i++)all+=seg(pt[i-1],pt[i]);
+ let reach=cs.findIndex(c=>c.classList.contains('pn-cur'));if(reach<0){reach=-1;cs.forEach((c,i)=>{if(c.classList.contains('pn-done'))reach=i})}
+ let pr='';if(reach>0){pr='M'+pt[0][0]+' '+pt[0][1];for(let i=1;i<=reach;i++)pr+=seg(pt[i-1],pt[i])}
+ const k=all+'|'+pr;if(svg.dataset.k===k)return;svg.dataset.k=k;
+ svg.innerHTML='<path class="tr" d="'+all+'" fill="none" stroke="rgba(194,89,63,.16)" stroke-width="10" stroke-linecap="round" stroke-dasharray="1 17"/>'+(pr?'<path d="'+pr+'" fill="none" stroke="var(--terra,#C2593F)" stroke-width="8" stroke-linecap="round" opacity=".9"/>':'')})}
+const run=()=>{build();requestAnimationFrame(draw)};
+new MutationObserver(run).observe(document.getElementById('app'),{childList:true,subtree:true});
+run();[300,800,1600].forEach(t=>setTimeout(()=>{build();draw()},t));addEventListener('resize',draw);
+}catch(e){console.warn('path-redesign-v95 gagal',e)}})();
+</script>
+<style id="path-premium-v96">
+/* ===== Peta belajar v97: flat, minimal, modern ===== */
+:root{--pp-ac:#E8743B;--pp-ink:var(--mn-ink,#22242A);--pp-mute:var(--mn-mute,#6B6F7A);--pp-line:var(--mn-line,#E4E6EA)}
+/* Header bab */
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp.pn-hd{margin-top:8px}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp.pn-hd>h3{display:flex!important;align-items:flex-end!important;gap:12px!important;margin:0!important;padding:4px 2px 0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp.pn-hd>h3 .pn-eb{display:block;font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.14em;color:var(--pp-ac);margin-bottom:4px}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp.pn-hd>h3 .pn-tt{display:block;font-size:24px;font-weight:750;letter-spacing:-.03em;line-height:1.12;color:var(--pp-ink)}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp.pn-hd>h3 small{background:none!important;border:0!important;padding:0 0 4px!important;color:var(--pp-mute)!important;font-weight:600!important;font-size:13px!important;box-shadow:none!important;font-variant-numeric:tabular-nums}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp.pn-hd>p{margin:8px 2px 0!important;padding:0 0 18px!important;background:none!important;border:0;border-bottom:1px solid var(--pp-line);border-radius:0;font-size:14px!important;line-height:1.5;color:var(--pp-mute);opacity:1!important}
+.pn-prog{display:block;height:3px;border-radius:2px;background:var(--pp-line);margin-top:14px;overflow:hidden}
+.pn-prog i{display:block;height:100%;width:var(--w,0%);background:var(--pp-ink);border-radius:inherit;animation:pnbar .7s ease-out both .1s}
+@keyframes pnbar{from{width:0}}
+/* Jalur */
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path{padding:16px 0 24px!important}
+#app .grp .path>svg.pn2 .tr{stroke:var(--pp-line)!important;stroke-dasharray:none!important;stroke-width:2!important}
+#app .grp .path>svg.pn2 path:not(.tr){stroke:var(--pp-ink)!important;stroke-width:2!important;opacity:1!important;filter:none!important}
+/* Node: flat */
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card{min-height:96px;overflow:visible!important;contain:none!important;clip-path:none!important;animation:pnin .4s ease-out both;animation-delay:calc(var(--i,0)*45ms)}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico{position:relative;width:58px!important;height:58px!important;border:1.5px solid var(--pp-line)!important;background:var(--mn-surface,#fff)!important;box-shadow:none!important;color:var(--pp-mute)}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico::before,html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico::after{content:none!important}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .ico svg.nbi{width:24px;height:24px;filter:none;color:var(--pp-mute)!important}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .ico{background:var(--pp-ink)!important;border-color:var(--pp-ink)!important;box-shadow:none!important}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico{background:var(--pp-ac)!important;border-color:var(--pp-ac)!important;box-shadow:0 0 0 4px var(--mn-surface,#fff),0 0 0 5.5px var(--pp-ac)!important;animation:none!important}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .ico svg.nbi,html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico svg.nbi{color:#fff!important}
+@keyframes pnin{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
+/* Label: teks polos, tanpa kotak */
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info{box-sizing:border-box;background:none;border:0;border-radius:0;padding:0;box-shadow:none}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-L .pn-info{right:calc(50% - var(--dx,0px) + 44px);max-width:calc(50% + var(--dx,0px) - 52px)}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-R .pn-info{left:calc(50% + var(--dx,0px) + 44px);max-width:calc(50% - var(--dx,0px) - 52px)}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .txt small{display:flex;gap:6px;align-items:center;letter-spacing:0}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-L .pn-info .txt small{justify-content:flex-end}
+.pn-n,.pn-m{font-style:normal;background:none;padding:0;border-radius:0;white-space:nowrap}
+.pn-n{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--pp-mute)}
+.pn-m{font-size:11px;opacity:.55;filter:grayscale(1)}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .pn-n{color:var(--pp-ac)}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .txt b{font-size:15.5px!important;font-weight:650!important;letter-spacing:-.01em;color:var(--pp-ink)!important;display:block!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;-webkit-line-clamp:unset!important;overflow-wrap:break-word!important}
+html:root[data-mn][data-mn][data-mn][data-mn][data-mn] #app .grp .path>.card .pn-info .stars svg{width:13px!important;height:13px!important}
+/* MULAI */
+.pn-go{background:var(--pp-ac)!important;color:#fff!important;border:0!important;border-radius:6px!important;padding:6px 10px!important;font-size:11px!important;letter-spacing:.14em!important;box-shadow:none!important}
+.pn-go::after{background:var(--pp-ac)!important;border:0!important;box-shadow:none!important}
+/* Penutup */
+.pn-end{position:relative;z-index:1;align-self:center;margin-top:4px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 4px;text-align:center}
+.pn-end span{font-size:20px;line-height:1;filter:grayscale(1);opacity:.7}.pn-end b{font-size:14px;font-weight:650;color:var(--pp-ink)}.pn-end small{color:var(--pp-mute)}
+html[data-theme=dark] #app .grp .path>.card.pn-done .ico{background:#fff!important;border-color:#fff!important}
+html[data-theme=dark] #app .grp .path>.card.pn-done .ico svg.nbi{color:#22242A!important}
+html[data-theme=dark] #app .grp .path>svg.pn2 path:not(.tr){stroke:#fff!important}
+html[data-theme=dark] .pn-prog i{background:#fff}
+@media (prefers-reduced-motion:reduce){#app .grp .path>.card,.pn-end,.pn-prog i{animation:none!important}}
+</style>
+<script id="path-premium-v96-js">
+(function(){try{
+const app=document.getElementById('app');
+function head(){document.querySelectorAll('#app .grp').forEach(g=>{
+ const h=g.querySelector(':scope>h3'),p=g.querySelector(':scope>p');if(!h||!p||h.dataset.pn3)return;
+ const sp=h.querySelector('span'),sm=h.querySelector('small');if(!sp)return;
+ const m=(sp.textContent||'').match(/^\s*Bab\s*(\d+)\s*·\s*(.+)$/i);if(!m)return;
+ h.dataset.pn3=1;g.classList.add('pn-hd');
+ const eb=document.createElement('em');eb.className='pn-eb';eb.textContent='BAB '+m[1];
+ const tt=document.createElement('span');tt.className='pn-tt';tt.textContent=m[2].trim();
+ sp.textContent='';sp.append(eb,tt);
+ const n=sm&&sm.textContent.match(/(\d+)\s*\/\s*(\d+)/);
+ if(n&&!p.querySelector('.pn-prog')){const pr=document.createElement('span');pr.className='pn-prog';pr.setAttribute('role','progressbar');
+  const pc=+n[2]?Math.round(100*n[1]/n[2]):0;pr.setAttribute('aria-valuenow',pc);pr.setAttribute('aria-valuemin',0);pr.setAttribute('aria-valuemax',100);
+  const i=document.createElement('i');i.style.setProperty('--w',pc+'%');pr.appendChild(i);p.appendChild(pr)}})}
+function nodes(){document.querySelectorAll('#app .grp .path').forEach(path=>{
+ const cs=[...path.children].filter(c=>c.classList&&c.classList.contains('card'));
+ cs.forEach((c,i)=>{c.style.setProperty('--i',i);
+  const sm=c.querySelector('.pn-info .txt small');if(!sm||sm.dataset.pn3)return;sm.dataset.pn3=1;
+  const parts=sm.textContent.split('·').map(s=>s.trim()).filter(Boolean);sm.textContent='';
+  parts.forEach((t,k)=>{const e=document.createElement('i');e.className=k?'pn-m':'pn-n';e.textContent=k?(t.replace(/misi/i,'').trim()||t):t;if(k){e.title='Misi';e.setAttribute('aria-label','Misi')}sm.appendChild(e)})});
+ if(cs.length&&!path.querySelector(':scope>.pn-end')&&cs.every(c=>c.querySelector('.pn-info'))){
+  const done=cs.filter(c=>c.classList.contains('pn-done')).length,left=cs.length-done;
+  const e=document.createElement('div');e.className='pn-end';
+  const ic=document.createElement('span'),b=document.createElement('b'),s=document.createElement('small');
+  ic.textContent=left?'🏆':'🎉';b.textContent=left?'Tamatkan bab ini':'Bab selesai!';
+  s.textContent=left?left+' modul lagi menuju garis akhir':'Semua modul sudah kamu taklukkan';
+  e.append(ic,b,s);path.appendChild(e)}})}
+let t=0;const run=()=>{cancelAnimationFrame(t);t=requestAnimationFrame(()=>{head();nodes()})};
+new MutationObserver(run).observe(app,{childList:true,subtree:true});run();[300,900,1700].forEach(x=>setTimeout(run,x));
+}catch(e){console.warn('path-premium-v96 gagal',e)}})();
+</script>
+<script id="deepen-v1-js">
+/* Pendalaman materi: tambah langkah "Perdalam" + soal lebih sulit berkosakata jarang untuk modul tipis */
+(function(){try{
+const mc=(q,o,why,p)=>({t:'mc',q,o,why,p}),ty=(q,a,why)=>({t:'type',q,a,why});
+const st=(s,ex,tip,tbl)=>({s,ex:ex||[],tip,tbl});
+const D={
+sd:{
+'Perkenalan Diri (Greetings)':[st('Naik kelas: perkenalan punya <b>tingkat kesopanan</b> 🎩. Santai untuk teman, resmi untuk orang yang baru kamu temui atau lebih tua.',['<b>What\'s up?</b> / <b>Long time no see!</b> (teman akrab)','<b>How do you do?</b> → dijawab <b>How do you do?</b> (sangat formal)','<b>Pleased to meet you.</b> / <b>Allow me to introduce myself.</b>','<b>See you around.</b> / <b>Take care.</b> (perpisahan santai)'],'<b>How do you do?</b> bukan menanyakan kabar. Jangan jawab "I\'m fine", ulangi saja kalimatnya.'),
+ [mc('Kamu bertemu teman lama setelah bertahun-tahun. Ucapan paling pas:',['Long time no see!','How do you do?','Allow me to introduce myself.'],'<b>Long time no see</b> = lama tak jumpa, santai untuk teman.'),
+  mc('"How do you do?" dijawab dengan…',['How do you do?','I\'m fine, thanks.','Yes, I do.'],'Ungkapan formal ini dibalas dengan kalimat yang sama.'),
+  mc('Memperkenalkan diri dengan sangat sopan:',['Allow me to introduce myself.','Yo, I\'m Budi.','What\'s up, I\'m Budi.'],'<b>Allow me to…</b> = izinkan saya…, nada resmi.'),
+  mc('Perpisahan santai sambil berharap dia menjaga diri:',['Take care!','How do you do?','Nice to meet you.'],'<b>Take care</b> = jaga diri.'),
+  ty('Ketik: A: Nice to meet you. B: Nice to meet you, ___.',['too'],'Dibalas <b>too</b> = juga.')]],
+'Keluarga & Anggota Tubuh':[st('Kosakata yang lebih jarang terdengar, tapi sering muncul di bacaan:',[],'Pasangan yang sering tertukar: <b>nephew</b> (laki-laki) dan <b>niece</b> (perempuan).',[['Kata','Arti'],['cousin','sepupu'],['nephew / niece','keponakan laki-laki / perempuan'],['twins','anak kembar'],['elbow','siku'],['shoulder','bahu'],['ankle / wrist','pergelangan kaki / tangan'],['eyebrow, forehead, chin','alis, dahi, dagu']]),
+ [mc('Anak laki-laki dari kakakmu disebut…',['nephew','niece','cousin'],'Keponakan laki-laki = <b>nephew</b>.'),
+  mc('Anak dari paman atau bibimu:',['cousin','nephew','twin'],'Sepupu = <b>cousin</b>.'),
+  mc('Bagian tubuh yang menghubungkan lengan atas dan bawah:',['elbow','ankle','chin'],'<b>Elbow</b> = siku.'),
+  mc('Dua saudara yang lahir bersamaan:',['twins','cousins','nieces'],'Kembar = <b>twins</b>.'),
+  ty('Ketik bahasa Inggris dari dahi (awalan f):',['forehead'],'Dahi = <b>forehead</b>.')]],
+'Hewan & Makanan':[st('Beberapa kata yang jarang kamu dengar, tapi berguna:',[],'<b>Pumpkin</b> itu labu, bukan semangka.',[['Hewan','Makanan'],['squirrel = tupai','cucumber = timun'],['hedgehog = landak kecil','pumpkin = labu'],['parrot = beo / nuri','pineapple = nanas'],['dolphin = lumba-lumba','peanut = kacang tanah'],['butterfly = kupu-kupu','oatmeal = bubur gandum']]),
+ [mc('Hewan kecil berekor lebat yang suka memanjat pohon dan makan kacang:',['squirrel','dolphin','parrot'],'<b>Squirrel</b> = tupai.'),
+  mc('Sayur hijau panjang untuk lalapan atau salad:',['cucumber','pumpkin','pineapple'],'<b>Cucumber</b> = timun.'),
+  mc('Buah tropis berkulit kasar dengan mahkota daun di atasnya:',['pineapple','cucumber','peanut'],'<b>Pineapple</b> = nanas.'),
+  mc('Pumpkin adalah…',['labu','timun','nanas'],'<b>Pumpkin</b> = labu.'),
+  ty('Ketik: kupu-kupu (awalan b)',['butterfly'],'Kupu-kupu = <b>butterfly</b>.')]],
+'Benda di Rumah & Sekolah':[st('Benda yang sering ada di sekitarmu, tapi namanya jarang diajarkan:',[],'Pasangan di kamar tidur: <b>pillow</b> di bawah kepala, <b>blanket</b> menutupi badan.',[['Rumah','Sekolah'],['wardrobe = lemari baju','ruler = penggaris'],['curtain = tirai','eraser = penghapus'],['pillow = bantal','stapler = stapler'],['blanket = selimut','bookshelf = rak buku']]),
+ [mc('Alat untuk menggaris lurus:',['ruler','eraser','stapler'],'<b>Ruler</b> = penggaris.'),
+  mc('Lemari tempat menyimpan baju:',['wardrobe','curtain','pillow'],'<b>Wardrobe</b> = lemari pakaian.'),
+  mc('Kain penutup jendela:',['curtain','blanket','wardrobe'],'<b>Curtain</b> = tirai.'),
+  mc('Kamu tidur dengan ___ di bawah kepala dan ___ di atas badan.',['pillow, blanket','blanket, pillow','curtain, ruler'],'<b>Pillow</b> bantal, <b>blanket</b> selimut.'),
+  ty('Ketik: penghapus (awalan e)',['eraser'],'Penghapus = <b>eraser</b>.')]],
+'Kata Sifat Dasar (Adjectives)':[st('Perkaya kata sifatmu dengan pasangan lawan yang jarang dipakai:',['<b>generous</b> (dermawan) ↔ <b>stingy</b> (pelit)','<b>brave</b> (berani) ↔ <b>cowardly</b> (pengecut)','<b>tiny</b> (mungil) ↔ <b>enormous</b> (raksasa)','<b>fragile</b> (mudah pecah) ↔ <b>sturdy</b> (kokoh)'],'Kata sifat berdiri <b>sebelum</b> benda: a <b>brave</b> boy, bukan a boy brave.'),
+ [mc('Lawan kata dari tiny:',['enormous','fragile','stubborn'],'tiny ↔ <b>enormous</b>.'),
+  mc('Orang yang suka berbagi dan memberi:',['generous','stubborn','fragile'],'<b>Generous</b> = dermawan.'),
+  mc('Gelas kaca itu mudah pecah. Gelasnya ___.',['fragile','enormous','generous'],'<b>Fragile</b> = rapuh.'),
+  mc('Pilih yang benar:',['She is a generous girl.','She is a girl generous.','She is generous a girl.'],'Adjective sebelum noun.'),
+  ty('Ketik lawan kata brave (awalan c):',['cowardly'],'brave ↔ <b>cowardly</b>.')]],
+'Jamak (Plural): -s, -es, -ies':[st('Jamak yang tidak mengikuti aturan, hafalkan sebagai "murid bandel":',[],'<b>sheep</b> dan <b>fish</b> sama saja di bentuk tunggal dan jamak.',[['Tunggal','Jamak'],['knife','knives'],['wolf','wolves'],['tooth','teeth'],['mouse','mice'],['person','people'],['sheep','sheep'],['baby','babies'],['potato','potatoes']]),
+ [mc('Jamak dari knife:',['knives','knifes','knive'],'f/fe → <b>ves</b>: knives.'),
+  mc('Jamak dari mouse (tikus):',['mice','mouses','mices'],'<b>Mouse → mice</b>.'),
+  mc('One sheep, two ___.',['sheep','sheeps','sheepes'],'<b>Sheep</b> tidak berubah.'),
+  mc('Jamak dari baby:',['babies','babys','babyes'],'Konsonan + y → <b>ies</b>.'),
+  mc('Pilih kalimat yang benar:',['The wolves are hungry.','The wolfs are hungry.','The wolve are hungry.'],'wolf → <b>wolves</b>.'),
+  ty('Ketik jamak dari tooth:',['teeth'],'tooth → <b>teeth</b>.')]],
+'Can & Can\'t (Kemampuan)':[st('<b>Can</b> punya tiga tugas: kemampuan, izin, dan kemungkinan. Ada juga saudara yang lebih sopan.',['Kemampuan: She <b>can</b> swim.','Izin: <b>Can</b> I borrow your pen?','Lebih sopan: <b>Could</b> I borrow your pen?','Variasi: She is <b>able to</b> swim. (sama maknanya)'],'<b>Can</b> tidak pernah pakai -s dan setelahnya kata kerja polos: He can swim.'),
+ [mc('Pilih kalimat benar:',['He can swim.','He cans swim.','He can swims.'],'can tanpa -s, lalu V1.'),
+  mc('Meminta izin dengan lebih sopan:',['Could I borrow your pen?','Can you borrow pen?','I borrow pen can?'],'<b>Could I…?</b> lebih santun.'),
+  mc('"She is able to swim" bermakna sama dengan…',['She can swim.','She must swim.','She will swim.'],'<b>be able to</b> = can.'),
+  mc('Penguin ___ fly, but it ___ swim.',['can\'t / can','can / can\'t','cans / can\'t'],'Penguin tidak bisa terbang, tapi bisa berenang.'),
+  ty('Ketik bentuk panjang satu kata: Fish ___ walk. (tidak bisa)',['cannot'],'<b>Cannot</b> ditulis satu kata.')]],
+'Cuaca & Musim':[st('Cuaca punya banyak kata halus yang sering dipakai penutur asli:',[],'Di Indonesia ada <b>dry season</b> dan <b>rainy season</b>.',[['Kata','Arti'],['drizzle','gerimis'],['thunderstorm','badai petir'],['humid','lembap, gerah'],['breeze','angin sepoi'],['fog','kabut'],['freezing','dingin membeku'],['autumn / fall','musim gugur']]),
+ [mc('Hujan sangat ringan, gerimis:',['drizzle','thunderstorm','fog'],'<b>Drizzle</b> = gerimis.'),
+  mc('Udara terasa lembap dan gerah:',['humid','freezing','breezy'],'<b>Humid</b> = lembap.'),
+  mc('Dua kata untuk musim gugur:',['autumn / fall','spring / summer','winter / rainy'],'Autumn (Inggris) = fall (Amerika).'),
+  mc('Di Indonesia ada dry season dan ___ season.',['rainy','snowy','autumn'],'Musim hujan = <b>rainy season</b>.'),
+  ty('Ketik: kabut (awalan f)',['fog'],'Kabut = <b>fog</b>.')]],
+'Memesan Makanan & Minuman':[st('Di restoran, kesopanan menentukan kesan. Hafalkan pola ini:',['<b>I\'d like</b> a glass of iced tea, please. (= I would like)','<b>Could I have</b> the menu, please?','Pelayan: <b>Anything else?</b> (ada lagi?)','<b>Could I have the bill, please?</b> (minta tagihan)','<b>I\'m allergic to</b> peanuts. / I\'m <b>vegetarian</b>.'],'<b>Takeaway</b> atau <b>to go</b> = dibungkus. <b>Leftovers</b> = sisa makanan.'),
+ [mc('Cara sopan memesan:',['I\'d like a glass of iced tea, please.','Give me tea.','I want tea now.'],'<b>I\'d like…, please</b> sopan.'),
+  mc('Pelayan bilang "Anything else?" Artinya…',['Ada lagi?','Siapa kamu?','Mau pulang?'],'= ada tambahan lain?'),
+  mc('Meminta tagihan:',['Could I have the bill, please?','Could I have the menu back?','I\'m full the bill.'],'<b>The bill</b> = tagihan.'),
+  mc('Makanan dibungkus dibawa pulang:',['takeaway / to go','dine in','on the table'],'<b>Takeaway</b> = bungkus.'),
+  ty('Ketik: I am ___ to peanuts. (alergi, awalan a)',['allergic'],'<b>Allergic to</b> = alergi terhadap.')]]
+},
+smp:{
+'Too, Enough, So & Such':[st('Empat kata ini sering tertukar. Lihat <b>pola</b>-nya, bukan artinya:',['<b>too</b> + adj (+ to V): The bag is <b>too heavy to lift</b>. (berlebihan)','adj + <b>enough</b> (+ to V): He is <b>tall enough to reach</b> it.','<b>so</b> + adj/adv + <b>that</b>: She was <b>so exhausted that</b> she fell asleep.','<b>such</b> + a/an + adj + noun: It was <b>such a gripping novel</b> that I read it overnight.'],'Aturan cepat: <b>so</b> untuk kata sifat, <b>such</b> untuk kata benda. Dan <b>enough</b> berdiri <b>setelah</b> kata sifat.'),
+ [mc('The suitcase is ___ heavy for me to lift.',['too','enough','such'],'Berlebihan → <b>too</b>.'),
+  mc('Cukup tinggi untuk menjangkau rak:',['tall enough','enough tall','too tall'],'Enough setelah adjective.'),
+  mc('It was ___ a gripping novel that I read it overnight.',['such','so','too'],'such + a + adj + noun.'),
+  mc('She was ___ exhausted that she fell asleep at her desk.',['so','such','too'],'so + adjective.'),
+  mc('Pilih yang benar:',['He isn\'t old enough to drive.','He isn\'t enough old to drive.','He isn\'t too old to drive enough.'],'adj + enough.'),
+  ty('Ketik: The soup is ___ salty to eat. (terlalu)',['too'],'Terlalu → <b>too</b>.')]],
+'Make vs Do':[st('Pasangan kata ini tidak bisa diterka, harus dihafal. Sebagian yang jarang terdengar:',[],'<b>Do</b> untuk aktivitas dan pekerjaan, <b>make</b> untuk menghasilkan sesuatu. Tapi kolokasi tetap tidak bisa dipaksa.',[['make','do'],['a fortune (kaya raya)','harm / damage (merugikan)'],['progress (kemajuan)','research (penelitian)'],['an effort (berupaya)','a favour (membantu)'],['a decision (memutuskan)','business (berbisnis)'],['a mistake (salah)','the dishes (cuci piring)']]),
+ [mc('She decided to ___ a fortune from selling coffee.',['make','do','take'],'<b>make a fortune</b>.'),
+  mc('Smoking can ___ serious harm.',['do','make','take'],'<b>do harm</b>.'),
+  mc('Could you ___ me a favour?',['do','make','give'],'<b>do a favour</b>.'),
+  mc('Pilih yang natural:',['We made good progress today.','We did good progress today.','We did a progress today.'],'<b>make progress</b>.'),
+  ty('Ketik make/do: Scientists ___ research on coral reefs.',['do'],'<b>do research</b>.')]],
+'Kosakata Tema: Makanan & Kesehatan':[st('Kosakata kesehatan yang jarang diajarkan, tapi muncul di artikel dan ujian:',[],'<b>Balanced diet</b> = pola makan seimbang.',[['Kata','Arti'],['nutrition','gizi'],['appetite','nafsu makan'],['nourishing','bergizi'],['nauseous','mual'],['bloated','kembung'],['dehydrated','kekurangan cairan'],['symptom','gejala'],['remedy','obat / penawar']]),
+ [mc('Merasa mual, ingin muntah:',['nauseous','bloated','dehydrated'],'<b>Nauseous</b> = mual.'),
+  mc('Kekurangan cairan tubuh:',['dehydrated','nourishing','appetite'],'<b>Dehydrated</b>.'),
+  mc('Makanan yang bergizi:',['nourishing','nauseous','bloated'],'<b>Nourishing</b>.'),
+  mc('A ___ diet contains protein, vitamins, and fibre in good amounts.',['balanced','bloated','nauseous'],'<b>Balanced diet</b>.'),
+  ty('Ketik: nafsu makan (awalan a)',['appetite'],'<b>Appetite</b>.')]],
+'Kosakata Tema: Travel':[st('Kata-kata perjalanan yang sering muncul di bandara dan tiket:',[],'<b>Fare</b> untuk transportasi, <b>fee</b> untuk jasa, <b>price</b> untuk barang.',[['Kata','Arti'],['itinerary','rencana perjalanan'],['layover','transit di bandara'],['accommodation','penginapan'],['customs','bea cukai'],['boarding pass','kartu naik pesawat'],['fare','tarif'],['sightseeing','wisata melihat-lihat'],['souvenir','oleh-oleh']]),
+ [mc('Daftar jadwal rencana perjalanan:',['itinerary','souvenir','fare'],'<b>Itinerary</b>.'),
+  mc('Berhenti sebentar di bandara antara dua penerbangan:',['layover','boarding','customs'],'<b>Layover</b>.'),
+  mc('Tempat menginap saat bepergian:',['accommodation','itinerary','fare'],'<b>Accommodation</b>.'),
+  mc('Biaya naik bus atau kereta disebut…',['fare','souvenir','layover'],'<b>Fare</b>.'),
+  ty('Ketik: bea cukai (awalan c)',['customs'],'<b>Customs</b>.')]],
+'Possessive \'s & Imperatives':[st('Dua jebakan lanjut: kepemilikan jamak dan imperatif yang menekankan.',['Jamak biasa: the <b>students\'</b> books (apostrof di belakang s)','Jamak khusus: the <b>children\'s</b> toys, the <b>people\'s</b> choice','Benda mati: the leg <b>of</b> the table (bukan table\'s leg)','Imperatif menekankan: <b>Do</b> sit down. / <b>Do not</b> touch.','Ajakan negatif: <b>Let\'s not</b> be late.'],'Kata jamak yang tidak berakhiran -s (children, people) memakai <b>\'s</b>.'),
+ [mc('Buku milik para siswa (banyak):',['the students\' books','the students\'s books','the student\'s\' books'],'Jamak -s → apostrof saja.'),
+  mc('Mainan anak-anak:',['the children\'s toys','the childrens\' toys','the childrens toys'],'children tidak berakhiran -s → \'s.'),
+  mc('Kaki meja:',['the leg of the table','the table\'s of leg','the table leg\'s'],'Benda mati → of.'),
+  mc('Imperatif sopan dan menekankan:',['Do sit down, please.','Sitting down do.','Do sits down.'],'Do + V1.'),
+  ty('Ajakan negatif: Let\'s ___ be late.',['not'],'<b>Let\'s not</b>.')]],
+'Subject-Verb Agreement':[st('Kasus sulit kesesuaian subjek-kata kerja:',['<b>Each of</b> the students <b>has</b> a laptop. (each = tunggal)','<b>The number of</b> applicants <b>has</b> increased. / <b>A number of</b> applicants <b>have</b>…','<b>The news is</b> shocking. <b>Mathematics is</b> hard. (tampak jamak, tapi tunggal)','<b>My scissors are</b> on the desk. (selalu jamak)','<b>Neither</b> the manager <b>nor</b> the employees <b>were</b> ready. (ikuti subjek terdekat)'],'<b>The number of</b> = tunggal. <b>A number of</b> = jamak.'),
+ [mc('Each of the students ___ a laptop.',['has','have','having'],'each → tunggal.'),
+  mc('The news ___ shocking.',['is','are','were'],'news tunggal.'),
+  mc('Neither the manager nor the employees ___ ready.',['were','was','is'],'Ikuti subjek terdekat (employees).'),
+  mc('The number of applicants ___ increased.',['has','have','are'],'the number of → tunggal.'),
+  mc('My scissors ___ on the desk.',['are','is','was'],'scissors jamak.'),
+  ty('Ketik: Mathematics ___ my favourite subject.',['is'],'Mathematics tunggal.')]],
+'Reading: Bank Bacaan SMP':[st('Strategi <b>vocabulary in context</b>: kata asing bisa ditebak dari petunjuk di sekitarnya.',['Kontras: <b>however, but</b> → maknanya berlawanan dengan bagian sebelumnya.','Definisi: <b>which means, or</b>.','Contoh: <b>such as, like</b>.','Konteks emosi: kalimat sebelum-sesudah menunjukkan positif atau negatif.'],'Jangan berhenti di kata sulit. Baca kalimat sebelum dan sesudahnya dulu.'),
+ [mc('Apa arti "serene"?',['calm and peaceful','noisy','dangerous'],'Desa pagi hari itu tenang: <b>serene</b> = tenteram.','The village was serene in the morning. Fishermen, who were frugal and rarely wasted anything, repaired their nets before dawn. However, the tourists were extravagant, spending money on trinkets they did not need.'),
+  mc('Apa arti "frugal"?',['careful with money','lazy','very rich'],'Nelayan jarang menyia-nyiakan apa pun: <b>frugal</b> = hemat.','The village was serene in the morning. Fishermen, who were frugal and rarely wasted anything, repaired their nets before dawn. However, the tourists were extravagant, spending money on trinkets they did not need.'),
+  mc('Kata "extravagant" dikontraskan dengan…',['frugal','serene','nets'],'Ada <b>however</b>: extravagant lawan frugal.','The village was serene in the morning. Fishermen, who were frugal and rarely wasted anything, repaired their nets before dawn. However, the tourists were extravagant, spending money on trinkets they did not need.'),
+  mc('"Trinkets" paling dekat dengan…',['small cheap ornaments','fishing boats','fresh fish'],'Barang yang tidak mereka butuhkan: <b>trinkets</b> = pernak-pernik murah.','The village was serene in the morning. Fishermen, who were frugal and rarely wasted anything, repaired their nets before dawn. However, the tourists were extravagant, spending money on trinkets they did not need.')]]
+},
+sma:{
+'Modals of Deduction (must / might / can\'t)':[st('Level lanjut: deduksi tentang <b>masa lalu</b> memakai <b>modal + have + V3</b>.',['Yakin benar: She <b>must have left</b> early.','Yakin salah: He <b>can\'t have studied</b>. (mustahil)','Mungkin: They <b>might have missed</b> the train.'],'Untuk menyatakan yakin bahwa sesuatu <b>tidak</b> benar, pakai <b>can\'t</b>, bukan mustn\'t.'),
+ [mc('The lights are off and nobody answers. They ___ be asleep.',['must','can\'t','needn\'t'],'Hampir pasti → <b>must</b>.'),
+  mc('He failed again? He ___ have studied. (yakin tidak)',['can\'t','must','should'],'<b>can\'t have + V3</b>.'),
+  mc('I\'m not sure, but she ___ be at the library.',['might','must','can\'t'],'Kemungkinan → <b>might</b>.'),
+  mc('Pilih yang benar:',['She must have left early.','She must left early.','She must has left early.'],'must have + V3.'),
+  ty('Ketik: The ground is wet. It ___ have rained. (pasti)',['must'],'<b>must have rained</b>.')]],
+'Word Formation (Prefix & Suffix)':[st('Awalan dan akhiran membentuk kata-kata akademik yang jarang terdengar.',[],'Awalan negatif tergantung huruf awal: <b>im</b>- (p,m,b), <b>il</b>- (l), <b>ir</b>- (r).',[['Pola','Contoh'],['un- / dis- / mis-','unprecedented, disagree, misinterpret'],['in- im- il- ir-','inevitable, impossible, illegal, irreversible'],['-ness / -ment / -ity','awareness, development, availability'],['-able / -ible / -ous','reliable, flexible, dangerous'],['-ize / -ify','analyze, simplify']]),
+ [mc('Bentuk "tidak bertanggung jawab" dari responsible:',['irresponsible','unresponsible','disresponsible'],'r → <b>ir-</b>.'),
+  mc('Lawan dari legal:',['illegal','unlegal','dislegal'],'l → <b>il-</b>.'),
+  mc('Kata sifat dari danger:',['dangerous','dangerful','dangerly'],'-ous.'),
+  mc('Kata benda dari available:',['availability','availableness','availing'],'-ity.'),
+  mc('The decision was ___. (tidak bisa dibatalkan)',['irreversible','unreversible','disreversible'],'<b>irreversible</b>.')]],
+'Menulis Paragraf & Koreksi Kalimat':[st('Rumus paragraf akademik <b>TEEL</b>: <b>T</b>opic sentence, <b>E</b>xplanation, <b>E</b>vidence, <b>L</b>ink. Hindari <b>comma splice</b> (dua klausa utama disambung koma saja).',['Salah: I was tired<b>,</b> I finished the report.','Benar: I was tired<b>; however,</b> I finished the report.','Benar: I was tired<b>, but</b> I finished the report.'],'Dua klausa lengkap butuh titik koma, kata sambung, atau titik.'),
+ [mc('Mana yang bebas dari comma splice?',['I was tired; however, I finished the report.','I was tired, I finished the report.','I was tired I finished the report.'],'Titik koma + penghubung.'),
+  mc('Huruf T pertama pada TEEL adalah…',['Topic sentence','Thesis','Title'],'<b>Topic sentence</b>.'),
+  mc('Perbaiki: "Their going to announce the results."',['They\'re going to announce the results.','There going to announce the results.','Theirs going to announce the results.'],'They\'re = they are.'),
+  mc('___ been a long day.',['It\'s','Its','Its\''],'It\'s = it has.')]],
+'Word Families & False Friends':[st('<b>Word family</b>: satu akar, banyak bentuk. <b>False friends</b>: mirip Indonesia, maknanya beda.',['analyze → analysis → <b>analyst</b> → analytical','<b>eventually</b> = akhirnya (bukan "eventual")','<b>actually</b> = sebenarnya (bukan aktual)','<b>sensible</b> = masuk akal (bukan sensitif; itu <b>sensitive</b>)'],'Salah kaprah paling umum: <b>sensible</b> ≠ sensitif.'),
+ [mc('"Eventually" artinya…',['akhirnya','kadang-kadang','mungkin'],'<b>Eventually</b> = pada akhirnya.'),
+  mc('"Actually" artinya…',['sebenarnya','aktual saat ini','sekarang'],'<b>Actually</b> = sebenarnya.'),
+  mc('"Sensible" paling dekat dengan…',['masuk akal','peka','sensitif'],'<b>Sensitive</b> = peka.'),
+  mc('Orang yang melakukan analisis:',['analyst','analysis','analytic'],'<b>Analyst</b>.'),
+  ty('Ketik kata benda dari analyze (awalan a, 8 huruf):',['analysis'],'<b>Analysis</b>.')]],
+'Kosakata Tema: Teknologi & Lingkungan':[st('Kosakata akademik untuk topik teknologi dan lingkungan:',[],'Banyak yang berakar Latin: <b>emit</b> → emission, <b>sustain</b> → sustainable.',[['Kata','Arti'],['emissions','emisi gas buang'],['biodegradable','dapat terurai alami'],['deforestation','penggundulan hutan'],['renewable','terbarukan'],['encryption','enkripsi'],['obsolete','usang'],['breakthrough','terobosan'],['bandwidth','lebar pita']]),
+ [mc('Zat yang bisa terurai secara alami:',['biodegradable','obsolete','encrypted'],'<b>Biodegradable</b>.'),
+  mc('Gas buang dari pabrik:',['emissions','algorithms','bandwidth'],'<b>Emissions</b>.'),
+  mc('Teknologi yang sudah ketinggalan zaman:',['obsolete','renewable','sustainable'],'<b>Obsolete</b>.'),
+  mc('Pengacakan data agar tidak terbaca pihak lain:',['encryption','deforestation','emission'],'<b>Encryption</b>.'),
+  ty('Ketik: penggundulan hutan (awalan d)',['deforestation'],'<b>Deforestation</b>.')]],
+'Inversion & Cleft Sentences':[st('Pola formal: kata bernuansa negatif di depan membalik urutan subjek dan kata bantu.',['<b>No sooner had</b> she entered <b>than</b> the phone rang.','<b>Hardly had</b> he sat down <b>when</b> the bell rang.','<b>Seldom do</b> we see such talent.','<b>Only after</b> the meeting <b>did she learn</b> the truth.','Cleft: <b>It was John who</b> broke the vase.'],'<b>No sooner… than</b>, tapi <b>hardly… when</b>. Jangan tertukar.'),
+ [mc('___ had she entered than the phone rang.',['No sooner','Hardly','Not until'],'No sooner… than.'),
+  mc('Seldom ___ such talent.',['do we see','we see','we do see'],'Inversi setelah seldom.'),
+  mc('Pilih cleft yang benar untuk menekankan John:',['It was John who broke the vase.','It was John which broke the vase.','What was John broke the vase.'],'Orang → who.'),
+  mc('Only after the meeting ___ the truth.',['did she learn','she learned','she did learned'],'Inversi setelah only after.'),
+  ty('Ketik: Not only ___ he late, but he also forgot the files. (to be lampau)',['was'],'Not only was he…')]],
+'Subjunctive & Reduced Clauses':[st('Subjunctive: kata kerja <b>polos</b> setelah kata permintaan atau keharusan formal.',['I suggest that he <b>see</b> a doctor.','It is essential that every student <b>be</b> on time.','<b>If it were not for</b> your help, I would have failed.','Reduced: The man <b>who is standing</b> there → The man <b>standing</b> there.','Reduced: <b>Because she was tired</b>, she slept. → <b>Being tired</b>, she slept.'],'Subjunctive tidak pakai -s: that he <b>see</b>, bukan sees.'),
+ [mc('I suggest that he ___ the doctor.',['see','sees','saw'],'Bentuk polos.'),
+  mc('If it ___ not for your help, I would have failed.',['were','was','is'],'were formal.'),
+  mc('Reduced clause: "The man who is standing there" →',['The man standing there','The man stand there','The man to standing there'],'Hilangkan who is.'),
+  mc('"Because she was tired, she slept." →',['Being tired, she slept.','Be tired, she slept.','Tired being she slept.'],'Being + adj.'),
+  ty('Ketik: It is essential that every student ___ on time.',['be'],'Subjunctive: <b>be</b>.')]]
+},
+kerja:{
+'Menyampaikan Pendapat (Giving Opinions)':[st('Di rapat, kekuatan pendapat diatur lewat <b>nada</b>: tegas, lunak, atau berhati-hati.',['Tegas: <b>In my view</b>, we should delay the launch.','Lunak: <b>It seems to me that</b> the plan is risky.','Condong: <b>I\'m inclined to think</b> we need more data.','Setuju sebagian: <b>I see where you\'re coming from, but</b> I\'d argue otherwise.'],'Hindari "You\'re wrong." Pakai <b>I\'d argue that…</b> agar tetap profesional.'),
+ [mc('Paling lunak (hedged):',['It seems to me that the plan is risky.','The plan is risky.','Obviously the plan is risky.'],'Seems to me melunakkan klaim.'),
+  mc('Kalimat sopan tidak setuju:',['I see where you\'re coming from, but I\'d argue otherwise.','You\'re wrong.','That\'s nonsense.'],'Mengakui dulu, lalu berbeda.'),
+  mc('"As far as I\'m concerned" artinya…',['menurutku','sejauh jarak','aku khawatir'],'= menurut pandanganku.'),
+  mc('Frasa menyatakan kecenderungan:',['I\'m inclined to think…','I\'m declined to think…','I\'m include to think…'],'<b>Inclined</b> = condong.'),
+  ty('Ketik: In my ___, we should delay the launch. (awalan v)',['view'],'<b>In my view</b>.')]]
+},
+ielts:{
+'IELTS Reading: Matching Headings':[st('Strategi inti: <b>heading hampir tidak pernah memakai kata yang sama</b> dengan paragraf. Cari <b>parafrase</b>.',['Baca kalimat <b>pertama dan terakhir</b> tiap paragraf.','Coret heading yang sudah terpakai.','Waspadai <b>distractor</b>: kata mirip tapi cakupan beda.'],'Heading mewakili <b>ide utama</b> paragraf, bukan satu detail.'),
+ [mc('Heading yang cocok untuk paragraf tadi:',['Unintended side effects of expansion','The history of city planning','Benefits of public transport'],'Naiknya sewa = efek samping.','Rapid urban growth brought jobs to the city, but it also pushed rents so high that many long-term residents were forced to move out.'),
+  mc('Heading yang cocok:',['A shift towards greener farming','The rising cost of fertiliser','Why rivers are drying up'],'Beralih ke kompos = pertanian lebih hijau.','Many farmers have abandoned chemical fertilisers in favour of compost, which restores soil health without polluting nearby rivers.'),
+  mc('Strategi terbaik untuk matching headings:',['Baca kalimat pertama dan terakhir tiap paragraf','Cari angka saja','Baca tiap kata pelan-pelan'],'Ide utama sering di awal atau akhir.'),
+  mc('Heading yang memakai kata persis sama dengan paragraf biasanya…',['sering jebakan (distractor)','pasti jawaban','tidak pernah dipakai'],'Jawaban benar umumnya parafrase.')]],
+'IELTS Kalimat Kompleks: Jalan ke Band 7':[st('Band 7 butuh <b>variasi struktur</b>: klausa relatif, konsesi, dan nominalisasi.',['Relative: The policy, <b>which was introduced in 2019</b>, was unpopular.','Konsesi: <b>Although</b> the scheme is costly, it yields long-term benefits.','Nominalisasi: <b>The loss of jobs</b> worries economists.'],'Gunakan <b>despite / in spite of</b> + noun, <b>although</b> + klausa.'),
+ [mc('Gabungkan: "The policy was unpopular. It was introduced in 2019."',['The policy, which was introduced in 2019, was unpopular.','The policy which, introduced 2019 was unpopular.','The policy that, was introduced 2019 unpopular.'],'Non-defining dengan koma.'),
+  mc('Nominalisasi paling akademik:',['The loss of many jobs worries economists.','Many loss jobs worries economists.','Economists worry loss many jobs.'],'Kata kerja jadi kata benda.'),
+  mc('Kalimat konsesi yang benar:',['Although the scheme is costly, it yields long-term benefits.','The scheme is costly but although yields.','Although but the scheme costly.'],'Although + klausa lengkap.'),
+  mc('Pilih yang lebih akademik:',['The government should take measures to curb emissions.','The government should do things to make less smoke.','The government must stop smoke stuff.'],'<b>Curb emissions</b>.'),
+  ty('Ketik: ___ the heavy rain, the match went ahead. (satu kata, awalan d)',['despite'],'<b>Despite</b> + noun.')]],
+'IELTS Reading: Sentence & Summary Completion':[st('Aturan <b>batas kata</b> adalah sumber skor hilang terbesar di soal ini.',['<b>NO MORE THAN TWO WORDS</b> → maksimal dua kata.','<b>well-known</b> (pakai tanda hubung) dihitung <b>satu</b> kata.','Salin <b>persis</b> dari teks, jangan diubah bentuknya.','Cek tata bahasa: apakah slot butuh noun, adjective, atau verb?'],'Jawaban benar secara makna tapi melebihi batas kata tetap salah.'),
+ [mc('Instruksi NO MORE THAN TWO WORDS. Jawaban "the ancient harbour" salah karena…',['melebihi batas kata','tidak ada artikel','terlalu pendek'],'Tiga kata.'),
+  mc('"well-known" dihitung…',['satu kata','dua kata','tiga kata'],'Kata bertanda hubung = satu.'),
+  mc('"The experiment took place in a ___ environment." Slot ini butuh…',['adjective','verb lampau','preposition'],'Setelah <b>a</b>, sebelum noun → adjective.'),
+  ty('Ketik: Jawaban harus diambil ___ dari teks. (awalan e, satu kata)',['exactly'],'Salin <b>exactly</b>.')]],
+'IELTS Writing Task 1: Process & Map':[st('<b>Process</b> memakai kalimat pasif dan penanda urutan. <b>Map</b> memakai kata perubahan dan arah.',['Urutan: <b>Firstly, Subsequently, Following this, Finally</b>.','Pasif: The grapes <b>are harvested</b> and then <b>crushed</b>.','Map: The old factory <b>was demolished</b> and <b>replaced</b> by a car park.','Arah: <b>to the north-east of</b> the lake.'],'Proses = pasif. Perubahan peta = past passive: was converted, was relocated.'),
+ [mc('Menjelaskan sebuah proses sebaiknya memakai…',['passive voice','future perfect','imperative'],'Fokus pada proses, bukan pelaku.'),
+  mc('Penanda urutan terakhir:',['Finally','Meanwhile','Nevertheless'],'<b>Finally</b>.'),
+  mc('Bangunan lama dirobohkan:',['The old factory was demolished.','The old factory demolished was.','They demolish old factory yesterday.'],'Past passive.'),
+  ty('Ketik: The farmland was ___ into a housing estate. (diubah, awalan c)',['converted'],'<b>converted into</b>.')]]
+}};
+const sh=(a,seed)=>{a=a.slice();let h=0;for(const c of seed)h=(h*31+c.charCodeAt(0))>>>0;for(let i=a.length-1;i>0;i--){h=(h*1103515245+12345)>>>0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+let added=0;
+LEVELS.forEach(L=>{const d=D[L.id];if(!d)return;
+ L.mods.forEach(M=>{const e=d[M.n];if(!e||M.__deep)return;M.__deep=1;
+  const [step,qs]=e;
+  M.steps=M.steps||[];const k=M.steps.findIndex(x=>x.map);
+  const sv={s:step.s,ex:step.ex};if(step.tip)sv.tip=step.tip;if(step.tbl)sv.tbl=step.tbl;
+  if(k>=0)M.steps.splice(k,0,sv);else M.steps.push(sv);
+  M.quiz=M.quiz||[];
+  qs.forEach(q=>{const o={t:q.t,q:q.q,why:q.why};
+   if(q.t==='mc'){const right=q.o[0];const arr=sh(q.o,q.q);o.o=arr;o.a=arr.indexOf(right);if(q.p)o.p=q.p}
+   else o.a=q.a;
+   M.quiz.push(o);added++})})});
+window.__deepAdded=added;
+}catch(e){console.warn('deepen-v1 gagal',e)}})();
+</script>
 </body>
 </html>
