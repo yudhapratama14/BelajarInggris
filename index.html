@@ -2649,6 +2649,151 @@ O('Susun: "Hari ini berangin."',['It','is','windy','today'],'It is windy today',
 /* v89: modul baru (_nw) tidak boleh mewarisi teks Pengertian/Analogi & Kesalahan Umum milik modul lain */
 (function(){var o=window.RK;window.RK=function(i,j,t){var M=LEVELS[i]&&LEVELS[i].mods[j];return(M&&M._nw)?'x':o(i,j,t)}})();
 </script>
+<script id="materi-v90">
+/* v90: Indonglish, False Friends, Pelafalan, Negosiasi Gaji — modul khusus pembelajar Indonesia */
+(function(){try{
+const MS=mp=>({s:`Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!`,ex:[],map:mp});
+const A=(L,n,g,st,qz,mp,fc,game)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;const m={n,g,steps:[...st,MS(mp)],quiz:qz,map:mp};if(fc)m.fc=1;if(game)m.game=game;LEVELS[L].mods.push(m)};
+const Q=(q,c,w,why,i)=>{const o=w.slice();o.splice(i%(w.length+1),0,c);return{t:'mc',q,o,a:i%(w.length+1),why}};
+const T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const L=(say,q,a,why)=>({t:'listen',say,q:q||`Dengarkan, lalu ketik kalimat yang kamu dengar:`,a:[a],why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+
+A(2,`Indonglish: 10 Kesalahan Khas Orang Indonesia`,`🧠 Advanced Grammar`,[
+S(`<b>Indonglish</b> = bahasa Indonesia yang "dipindah paksa" ke bahasa Inggris 📦➡️🇬🇧. Kita menerjemahkan kata per kata, padahal Inggris punya <b>kebiasaan sendiri</b>. Kenali 10 jebakan ini dan tulisanmu langsung naik kelas.`,[],{tbl:[[`❌ Indonglish`,`✅ Natural`,`Kenapa?`],[`I am agree`,`I agree`,`agree = kata kerja, tak butuh am`],[`discuss about it`,`discuss it`,`discuss sudah berarti "membahas"`],[`more better`,`better`,`better sudah comparative`],[`I am boring`,`I am bored`,`-ed = perasaanku, -ing = penyebabnya`],[`Where you go?`,`Where are you going?`,`tanya wajib punya lem / satpam`],[`He have a car`,`He has a car`,`He/She/It → has`],[`I have 20 years old`,`I am 20 years old`,`umur pakai to be, bukan have`],[`Can you borrow me a pen?`,`Can you lend me a pen?`,`borrow = pinjam DARI, lend = pinjamkan KE`],[`I am married with Dina`,`I am married to Dina`,`married to + orang`],[`Open the light`,`Turn on the light`,`lampu = turn on / off`]]}),
+S(`Tes cepat <b>-ed vs -ing</b> 🎭: <b>-ed</b> = perasaan di dalam dirimu, <b>-ing</b> = sifat penyebabnya.`,[`The film is <b>boring</b>. I am <b>bored</b>.`,`The news is <b>surprising</b>. We are <b>surprised</b>.`],{tip:`Tanya diri: <b>"siapa yang merasakan?"</b> Manusia yang merasa → -ed. Benda / kejadian penyebab → -ing.`})],
+[Q(`Kalimat natural:`,`I agree with you.`,[`I am agree with you.`,`I agree to with you.`],`Agree itu kata kerja, tanpa <b>am</b>.`,1),
+Q(`The lesson was very ___ , so I fell asleep.`,`boring`,[`bored`,`bore`],`Pelajarannya yang membosankan → <b>boring</b>.`,2),
+Q(`Pilih yang benar:`,`I am 17 years old.`,[`I have 17 years old.`,`My age is have 17.`],`Umur pakai <b>to be</b>.`,0),
+Q(`Can you ___ me your pen? (pinjamkan)`,`lend`,[`borrow`,`loan to`],`<b>lend</b> = meminjamkan, <b>borrow</b> = meminjam.`,1),
+T(`Ketik kata yang tepat: Let us ___ the problem. (membahas, tanpa about)`,`discuss`,`<b>discuss</b> langsung diikuti objek.`),
+T(`Perbaiki satu kata: She is more smarter than me. → She is ___ than me.`,`smarter`,`Jangan dobel: <b>smarter</b>, bukan more smarter.`),
+O(`Susun: "Dia menikah dengan dokter."`,[`She`,`is`,`married`,`to`,`a`,`doctor`],`She is married to a doctor`,`<b>married to</b> + orang.`),
+L(`I am bored because the film is boring.`,null,`i am bored because the film is boring`,`<b>bored</b> = aku, <b>boring</b> = filmnya.`)],
+K(`INDONGLISH`,[`🚫 Buang`,`am agree`,`discuss about`,`more better`],[`🎭 -ed / -ing`,`bored = aku`,`boring = penyebab`],[`🔁 Pasangan`,`borrow = pinjam`,`lend = pinjamkan`,`married to`]),1,
+{e:`🕵️`,t:`Detektif Indonglish`,sc:[[`🧑‍🎓`,`📝`,`Temanmu menulis pesan. Cari kalimat yang NATURAL.|Pilih yang benar.`,[`I agree with you.`,`I am agree with you.`,`I agree about you.`],0,`✅`,`hop`,`agree = kata kerja, tidak pakai am.`],[`👩`,`🎂`,`Dina baru berulang tahun. Ceritakan umurnya.|Pilih yang benar.`,[`She has 17 years old.`,`She is 17 years old.`,`She have 17 years.`],1,`🎂`,`wiggle`,`Umur pakai to be.`],[`🧑`,`📚`,`Filmnya membosankan sekali.|Ungkapkan perasaanmu.`,[`I am boring.`,`I am bored.`,`I am bore.`],1,`😴`,`slide`,`Perasaanku → bored.`]]});
+
+A(2,`False Friends: Teman Palsu Indonesia–Inggris`,`📖 Vocabulary`,[
+S(`<b>False friends</b> 🎭 = kata yang <b>mirip tampangnya</b> tapi <b>beda artinya</b>. Mereka seperti saudara kembar yang beda kepribadian. Salah pakai bisa bikin kalimat jadi lucu, atau memalukan di rapat.`,[],{tbl:[[`Kata Inggris`,`Mirip dengan`,`Arti SEBENARNYA`],[`actually`,`aktual`,`sebenarnya`],[`eventually`,`eventual`,`akhirnya`],[`sensible`,`sensibel / sensitif`,`masuk akal`],[`sensitive`,`sensitif`,`peka / mudah tersinggung`],[`sympathetic`,`simpatik`,`berempati / turut prihatin`],[`fabric`,`pabrik`,`kain`],[`factory`,`fabrik`,`pabrik`],[`college`,`kolese`,`perguruan tinggi`],[`library`,`libreri`,`perpustakaan`],[`terrific`,`terrifik`,`hebat sekali`]]}),
+S(`Dua jebakan yang paling sering muncul di ujian: <b>actually</b> bukan "aktualnya", dan <b>library</b> bukan toko buku.`,[`<b>Actually</b>, I live in Bogor. (Sebenarnya…)`,`I borrow books from the <b>library</b>. (perpustakaan)`,`I bought a novel at the <b>bookstore</b>. (toko buku)`],{tip:`Ragu pada kata yang "terlalu mirip" bahasa Indonesia? Curigai dulu, cek kamus.`})],
+[Q(`"Actually" artinya…`,`sebenarnya`,[`aktual`,`sekarang`,`mutakhir`],`<b>actually</b> = sebenarnya.`,2),
+Q(`Tempat meminjam buku disebut…`,`library`,[`bookstore`,`libreri`],`<b>library</b> = perpustakaan.`,0),
+Q(`"Fabric" artinya…`,`kain`,[`pabrik`,`fabel`,`rumah produksi`],`<b>fabric</b> = kain, <b>factory</b> = pabrik.`,1),
+Q(`He is very ___. He always gives logical advice. (masuk akal)`,`sensible`,[`sensitive`,`sensational`],`<b>sensible</b> = masuk akal.`,2),
+T(`Ketik bahasa Inggris untuk "akhirnya" (awalan e):`,`eventually`,`<b>eventually</b> = akhirnya, bukan "eventual".`),
+O(`Susun: "Sebenarnya, aku tinggal di Bogor."`,[`Actually`,`I`,`live`,`in`,`Bogor`],`Actually I live in Bogor`,`<b>Actually</b> membuka kalimat.`),
+L(`We eventually found the library.`,null,`we eventually found the library`,`<b>eventually</b> = akhirnya.`)],
+K(`FALSE FRIENDS`,[`🎭 Tertukar`,`actually = sebenarnya`,`eventually = akhirnya`],[`🧵 Pasangan`,`fabric = kain`,`factory = pabrik`],[`📚 Tempat`,`library = perpustakaan`,`bookstore = toko buku`]),1);
+
+A(1,`Pelafalan: Jebakan Lidah Indonesia`,`🗣️ Basic Conversation`,[
+S(`Lidah Indonesia terbiasa dengan bunyi yang <b>pendek dan tegas</b>. Inggris punya beberapa bunyi baru. Anggap ini <b>latihan otot lidah</b> 🏋️. Ketuk contoh biar Pak Yood yang membacakan!`,[],{tbl:[[`Bunyi`,`Cara`,`Contoh`],[`th`,`ujung lidah di antara gigi, bukan "t" atau "d"`,`think, three, this`],[`v vs f`,`v = gigi atas + getar, f = tanpa getar`,`very vs ferry`],[`-ed`,`ada 3 bunyi: /t/, /d/, /ɪd/`,`walked, played, wanted`],[`Huruf bisu`,`ada huruf yang tidak dibaca`,`know, write, walk, island`],[`sh vs ch`,`sh = desis, ch = letup`,`ship vs chip`]]}),
+S(`<b>Aturan -ed</b> 🎩: setelah bunyi <b>t / d</b> terdengar <b>-id</b> (wanted). Setelah bunyi tak bergetar (walk, help) terdengar <b>-t</b>. Sisanya <b>-d</b>.`,[`wanted → /wan-tid/`,`walked → /wokt/`,`played → /pleid/`],{tip:`Jangan baca <b>walked</b> jadi "wal-ked". Hanya satu suku kata!`})],
+[Q(`Bunyi "th" pada "think" dibuat dengan…`,`ujung lidah di antara gigi`,[`bibir bawah ke gigi atas`,`pangkal lidah ke langit-langit`],`Ujung lidah di antara gigi atas dan bawah.`,1),
+Q(`"Wanted" dibaca dengan akhiran…`,`-id (dua suku kata)`,[`-t`,`-d`],`Setelah t/d → <b>-id</b>.`,2),
+Q(`Huruf yang tidak dibaca pada "know":`,`k`,[`n`,`o`],`<b>k</b> bisu: dibaca "no".`,0),
+T(`Ketik kata yang dibacakan:`,`three`,`<b>three</b> /θriː/, bukan "tri".`),
+L(`I think this is very good.`,null,`i think this is very good`,`Ada <b>th</b> dan <b>v</b> sekaligus!`),
+L(`She walked and played on the island.`,null,`she walked and played on the island`,`<b>walked</b> /t/, <b>played</b> /d/, <b>island</b> huruf s bisu.`)],
+K(`PELAFALAN`,[`👅 th`,`think`,`three`,`this`],[`🎩 -ed`,`/t/ walked`,`/d/ played`,`/id/ wanted`],[`🤫 Bisu`,`know`,`write`,`island`]),1);
+
+A(3,`Negosiasi Gaji & Benefit`,`💼 Komunikasi Kerja`,[
+S(`Menawar gaji itu seperti <b>menukar kartu di meja</b> 🃏: kamu harus punya <b>bukti nilai</b>, bukan cuma harapan. Urutannya: apresiasi → bukti → angka → fleksibel.`,[],{tbl:[[`Tahap`,`Kalimat`],[`Apresiasi`,`Thank you for the offer. I'm excited about the role.`],[`Bukti nilai`,`Based on my experience and results, I believe…`],[`Angka`,`I was hoping for a salary in the range of…`],[`Fleksibel`,`I'm open to discussing the overall package.`],[`Tutup`,`Could we revisit this after three months?`]]}),
+S(`<b>Benefit</b> bukan cuma gaji. Kenali istilahnya biar tidak bingung di surat penawaran (offer letter).`,[`<b>salary</b> = gaji pokok`,`<b>allowance</b> = tunjangan`,`<b>bonus</b> = bonus kinerja`,`<b>paid leave</b> = cuti berbayar`,`<b>probation</b> = masa percobaan`],{tip:`Jangan langsung menolak keras. Pakai <b>"I was hoping for…"</b> terdengar tegas tapi sopan.`})],
+[Q(`Kalimat paling sopan untuk menyebut angka gaji:`,`I was hoping for a salary in the range of...`,[`Give me more money.`,`Your offer is too low.`],`Sopan, jelas, dan terbuka.`,0),
+Q(`"Allowance" artinya…`,`tunjangan`,[`gaji pokok`,`cuti`,`denda`],`<b>allowance</b> = tunjangan.`,2),
+Q(`Masa percobaan di kantor disebut…`,`probation`,[`promotion`,`profession`],`<b>probation</b> = masa percobaan.`,1),
+T(`Ketik: I'm open ___ discussing the overall package.`,`to`,`<b>open to</b> + V-ing.`),
+O(`Susun: "Terima kasih atas penawarannya."`,[`Thank`,`you`,`for`,`the`,`offer`],`Thank you for the offer`,`Selalu mulai dengan apresiasi.`),
+L(`I was hoping for a higher salary.`,null,`i was hoping for a higher salary`,`<b>I was hoping for</b> melunakkan permintaan.`)],
+K(`NEGOSIASI GAJI`,[`🃏 Urutan`,`apresiasi`,`bukti`,`angka`,`fleksibel`],[`💰 Paket`,`salary`,`allowance`,`bonus`,`paid leave`],[`🗣️ Frasa`,`I was hoping for…`,`I'm open to…`]),1,
+{e:`🤝`,t:`Meja Negosiasi`,sc:[[`🧑‍💼`,`💬`,`HRD menawarkan gaji. Kamu ingin lebih tinggi.|Pilih kalimat terbaik.`,[`I was hoping for a salary in the range of 10 million.`,`Too small. Add more.`,`I don't care.`],0,`🤝`,`hop`,`Sopan, jelas, ada angka.`],[`🧑‍💼`,`📄`,`Di surat penawaran ada kata "allowance".|Apa artinya?`,[`tunjangan`,`denda`,`cuti`],0,`📄`,`wiggle`,`allowance = tunjangan.`],[`🧑‍💼`,`🙏`,`Negosiasi berakhir baik. Tutup dengan sopan.|Pilih kalimat.`,[`Thank you for your time and consideration.`,`Okay bye.`,`Call me later.`],0,`🙏`,`spin`,`Penutup sopan dan profesional.`]]});
+
+}catch(e){console.warn('materi-v90 gagal',e)}})();
+</script>
+<script id="materi-v91">
+/* v91: Chat & Medsos, Restoran, Collocations, Stand-up Meeting */
+(function(){try{
+const MS=mp=>({s:`Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!`,ex:[],map:mp});
+const A=(L,n,g,st,qz,mp,fc,game)=>{if(!LEVELS[L]||LEVELS[L].mods.some(m=>m.n===n))return;const m={n,g,steps:[...st,MS(mp)],quiz:qz,map:mp};if(fc)m.fc=1;if(game)m.game=game;LEVELS[L].mods.push(m)};
+const Q=(q,c,w,why,i)=>{const o=w.slice(),k=i%(w.length+1);o.splice(k,0,c);return{t:'mc',q,o,a:k,why}};
+const T=(q,a,why)=>({t:'type',q,a:[].concat(a),why});
+const O=(q,w,a,why)=>({t:'order',q,w,a,why});
+const L=(say,a,why)=>({t:'listen',say,q:`Dengarkan, lalu ketik kalimat yang kamu dengar:`,a:[a],why});
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const K=(c,...b)=>({c,b:b.map(([t,...k])=>({t,k}))});
+
+A(1,`English di Chat & Medsos`,`🗣️ Basic Conversation`,[
+S(`Chat itu seperti <b>SMS zaman kilat</b> ⚡: orang memendekkan kata. Kenali singkatannya biar tidak bengong di kolom komentar. Tapi ingat: untuk <b>email kerja dan tugas sekolah</b>, tulis lengkap.`,[],{tbl:[[`Singkatan`,`Kepanjangan`,`Arti`],[`BTW`,`by the way`,`omong-omong`],[`ASAP`,`as soon as possible`,`secepatnya`],[`IDK`,`I don't know`,`aku tidak tahu`],[`BRB`,`be right back`,`sebentar ya`],[`FYI`,`for your information`,`sekadar info`],[`TBH`,`to be honest`,`jujur saja`],[`OMW`,`on my way`,`aku otw`],[`IMO`,`in my opinion`,`menurutku`]]}),
+S(`Balasan komentar yang sopan dan natural 💬:`,[`<b>Thanks</b> for sharing!`,`<b>Congrats</b> on your new job!`,`<b>Sorry</b> for the late reply.`,`<b>Hope</b> you feel better soon.`],{tip:`Jangan pakai <b>"thanks you"</b>. Yang benar: <b>thank you</b> atau <b>thanks</b>.`})],
+[Q(`"ASAP" artinya…`,`secepatnya`,[`sebentar lagi`,`tolong`,`sampai jumpa`],`<b>as soon as possible</b>.`,1),
+Q(`Temanmu bilang "BRB". Artinya…`,`sebentar ya`,[`bagus sekali`,`selamat tinggal`],`<b>be right back</b>.`,2),
+Q(`Temanmu dapat pekerjaan baru. Komentar terbaik:`,`Congrats on your new job!`,[`Sorry for your job.`,`Thanks you!`],`<b>Congrats</b> = selamat.`,0),
+T(`Ketik kepanjangan "BTW": by the ___ (jalan)`,`way`,`<b>by the way</b> = omong-omong.`),
+O(`Susun: "Maaf balasnya telat."`,[`Sorry`,`for`,`the`,`late`,`reply`],`Sorry for the late reply`,`<b>Sorry for</b> + noun.`),
+L(`To be honest, I don't know.`,`to be honest i dont know`,`<b>TBH</b> dan <b>IDK</b> versi lengkap.`)],
+K(`CHAT & MEDSOS`,[`⚡ Singkatan`,`BTW`,`ASAP`,`BRB`,`TBH`],[`💬 Balasan`,`Thanks for sharing`,`Congrats on…`,`Sorry for…`],[`⚠️ Formal`,`email kerja = tulis lengkap`]),1);
+
+A(0,`Memesan Makanan & Minuman`,`🧑‍🍳 Percakapan Sehari-hari`,[
+S(`Memesan di restoran itu seperti <b>main peran</b> 🎭 dengan skrip tetap. Hafalkan kalimat intinya, lalu tinggal ganti isi pesanan.`,[],{tbl:[[`Situasi`,`Kalimat`],[`Memesan`,`I would like a fried rice, please.`],[`Minta menu`,`Can I see the menu, please?`],[`Minuman`,`A glass of orange juice, please.`],[`Minta tagihan`,`Can I have the bill, please?`],[`Tidak pedas`,`Not spicy, please.`]]}),
+S(`<b>I would like…</b> lebih sopan daripada <b>I want…</b>. Pelayan juga bertanya: <b>"Anything else?"</b> (ada lagi?). Jawab: <b>"That's all, thank you."</b>`,[`<b>I would like</b> a cup of tea.`,`<b>That's all</b>, thank you.`],{tip:`Selalu tambah <b>please</b> di akhir permintaan.`})],
+[Q(`Cara paling sopan memesan nasi goreng:`,`I would like a fried rice, please.`,[`Give me fried rice.`,`I want fried rice now.`],`<b>I would like…, please</b>.`,0),
+Q(`Meminta tagihan:`,`Can I have the bill, please?`,[`Where is my food?`,`I am full.`],`<b>the bill</b> = tagihan.`,2),
+T(`Ketik: ___ I see the menu, please? (bisakah)`,`can`,`<b>Can I…?</b> = bolehkah saya…`),
+O(`Susun: "Saya mau segelas jus jeruk."`,[`I`,`would`,`like`,`a`,`glass`,`of`,`orange`,`juice`],`I would like a glass of orange juice`,`<b>a glass of</b> + minuman.`),
+L(`That is all, thank you.`,`that is all thank you`,`Penutup pesanan.`)],
+K(`MEMESAN MAKANAN`,[`🍽️ Pesan`,`I would like…`,`please`],[`📋 Minta`,`the menu`,`the bill`],[`✅ Tutup`,`That's all, thank you`]),1,
+{e:`🍜`,t:`Warung Pak Yood`,sc:[[`🧑‍🍳`,`🍛`,`Pelayan menyapamu. Kamu mau nasi goreng.|Pilih kalimat.`,[`I would like a fried rice, please.`,`Fried rice me.`,`I am fried rice.`],0,`🍛`,`hop`,`I would like… = sopan.`],[`🧑‍🍳`,`🧾`,`Kamu selesai makan. Minta tagihan.|Pilih kalimat.`,[`Can I have the bill, please?`,`Where is the rice?`,`I am hungry.`],0,`🧾`,`wiggle`,`the bill = tagihan.`]]});
+
+A(2,`Collocations: Pasangan Kata yang Natural`,`📖 Vocabulary`,[
+S(`<b>Collocation</b> = pasangan kata yang <b>sering bersama</b>, seperti sepasang sepatu 👟. Dalam bahasa Inggris orang bilang <b>heavy rain</b>, bukan "strong rain". Ini rahasia terdengar fasih.`,[],{tbl:[[`Salah terdengar`,`Natural`,`Pola`],[`strong rain`,`heavy rain`,`heavy + rain / traffic`],[`do a decision`,`make a decision`,`make + decision / mistake`],[`do a mistake`,`make a mistake`,`make + mistake`],[`take a photo`,`take a photo`,`take + photo / risk / break`],[`say a lie`,`tell a lie`,`tell + lie / story / truth`],[`fast food`,`fast food`,`tetap: fast + food`],[`high mountain`,`tall building / high mountain`,`tall = orang & gedung`]]}),
+S(`Cara belajar: jangan hafal satu kata, hafal <b>dengan pasangannya</b>. Catat satu <b>kolokasi baru</b> tiap hari.`,[`<b>make</b> a decision, <b>do</b> homework`,`<b>take</b> a risk, <b>have</b> a break`],{tip:`<b>make</b> = menghasilkan sesuatu, <b>do</b> = mengerjakan tugas.`})],
+[Q(`The ___ rain flooded the street.`,`heavy`,[`strong`,`big`,`tall`],`<b>heavy rain</b>.`,3),
+Q(`She needs to ___ a decision today.`,`make`,[`do`,`take`],`<b>make a decision</b>.`,1),
+Q(`He didn't tell the truth. He ___ a lie.`,`told`,[`said`,`spoke`],`<b>tell a lie</b>.`,0),
+T(`Ketik: We should ___ a break. (istirahat)`,`take`,`<b>take a break</b> (atau have).`),
+O(`Susun: "Dia membuat kesalahan."`,[`She`,`made`,`a`,`mistake`],`She made a mistake`,`<b>make a mistake</b>.`),
+L(`Please take a risk and make a decision.`,`please take a risk and make a decision`,`<b>take a risk</b>, <b>make a decision</b>.`)],
+K(`COLLOCATIONS`,[`👟 make`,`a decision`,`a mistake`],[`📚 do`,`homework`,`the dishes`],[`🎯 take`,`a risk`,`a break`,`a photo`],[`🗣️ tell`,`a lie`,`the truth`]),1);
+
+A(3,`Daily Stand-up & Status Update`,`💼 Komunikasi Kerja`,[
+S(`<b>Stand-up</b> = rapat singkat berdiri 🧍 (maks 15 menit). Setiap orang menjawab 3 pertanyaan: <b>kemarin, hari ini, hambatan</b>. Seperti laporan cepat ke atasan.`,[],{tbl:[[`Bagian`,`Kalimat`],[`Kemarin`,`Yesterday I finished the budget report.`],[`Hari ini`,`Today I'm working on the invoice.`],[`Hambatan`,`I'm blocked by missing data.`],[`Minta bantuan`,`Could you help me with the data?`],[`Progres`,`It's about 70 percent done.`]]}),
+S(`Tiga rumus waktu di update: <b>Past Simple</b> (sudah), <b>Present Continuous</b> (sedang), <b>will / going to</b> (rencana). Kata kunci: <b>on track</b> (sesuai jadwal), <b>delayed</b> (terlambat), <b>deadline</b> (tenggat).`,[`The project is <b>on track</b>.`,`We are <b>delayed</b> by two days.`],{tip:`Sebut <b>angka</b> dan <b>tenggat</b>, bukan sekadar "kerja terus".`})],
+[Q(`"Blocked" di stand-up artinya…`,`terhambat`,[`dibatalkan`,`dipecat`,`selesai`],`<b>blocked</b> = terhambat.`,1),
+Q(`Proyek berjalan sesuai jadwal:`,`The project is on track.`,[`The project is delayed.`,`The project is broken.`],`<b>on track</b>.`,0),
+Q(`Kalimat untuk "sedang mengerjakan":`,`I'm working on the report.`,[`I worked on the report tomorrow.`,`I will worked the report.`],`<b>be + V-ing</b>.`,2),
+T(`Ketik: Yesterday I ___ the report. (selesaikan, lampau)`,`finished`,`Kemarin → Past Simple: <b>finished</b>.`),
+O(`Susun: "Saya terhambat oleh data yang hilang."`,[`I'm`,`blocked`,`by`,`missing`,`data`],`I'm blocked by missing data`,`<b>blocked by</b> + penyebab.`),
+L(`It is about seventy percent done.`,`it is about seventy percent done`,`Progres pakai persen.`)],
+K(`STAND-UP`,[`⏪ Kemarin`,`Past Simple`],[`▶️ Hari ini`,`be + V-ing`],[`🚧 Hambatan`,`blocked by…`,`delayed`],[`✅ Status`,`on track`,`70 percent`]),1);
+}catch(e){console.warn('materi-v91 gagal',e)}})();
+</script>
+<script id="materi-v92">
+/* v92: Flirting sopan (SMA) */
+(function(){try{
+const MS=mp=>({s:`Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semuanya. Simpan di kepala, lalu kita uji lewat kuis!`,ex:[],map:mp});
+const Q=(q,c,w,why,i)=>{const o=w.slice(),k=i%(w.length+1);o.splice(k,0,c);return{t:'mc',q,o,a:k,why}};
+const S=(s,ex,x)=>Object.assign({s,ex:ex||[]},x||{});
+const n=`Flirting & PDKT (Versi Sopan)`;
+if(!LEVELS[2]||LEVELS[2].mods.some(m=>m.n===n))return;
+const mp={c:`FLIRTING SOPAN`,b:[{t:`💬 Buka obrolan`,k:[`Hey, how's your day?`,`I like your...`]},{t:`🌟 Pujian`,k:[`You have a great smile.`,`You're so funny.`]},{t:`📅 Ajak`,k:[`Would you like to...?`,`Are you free on...?`]},{t:`🚦 Hormati`,k:[`Dia bilang no = berhenti`,`Don't push`]}]};
+LEVELS[2].mods.push({n,g:`🗣️ Basic Conversation`,steps:[
+S(`PDKT itu seperti <b>main bulutangkis</b> 🏸: lo lempar bola kecil, tunggu dia balas. Kalau dibalas, lanjut. Kalau nggak, <b>santai dan mundur</b>. Kuncinya: <b>tulus, sopan, nggak maksa</b>.`,[],{tbl:[[`Tahap`,`Kalimat`,`Arti`],[`Buka obrolan`,`Hey, how's your day going?`,`Hai, harimu gimana?`],[`Cari kesamaan`,`I heard you like music. Me too!`,`Gue juga suka`],[`Pujian tulus`,`You have a really nice smile.`,`Senyum lo bagus`],[`Pujian sifat`,`I like how kind you are.`,`Gue suka sifat baik lo`],[`Ngajak`,`Would you like to grab a coffee sometime?`,`Mau ngopi bareng?`]]}),
+S(`Pujian terbaik itu <b>spesifik dan tulus</b>, bukan gombal berlebihan. Hindari komentar soal tubuh. Fokus ke <b>senyum, humor, cara dia berpikir, hobi</b>.`,[`❌ Are you a magician? (gombal garing)`,`✅ I really like your sense of humor.`,`✅ You explain things so clearly!`],{tip:`Pakai <b>"I like..."</b> dan <b>"I really enjoy..."</b>. Natural, nggak lebay.`}),
+S(`<b>Baca sinyalnya</b> 🚦. Kalau dia senyum, bales panjang, nanya balik = lampu hijau. Kalau jawab singkat, sibuk sama HP, menghindar = lampu merah. Kalau dia bilang <b>"No, thanks"</b> atau <b>"I'm not interested"</b>, jawab: <b>"No problem, thanks for being honest."</b> Itu keren, bukan kalah.`,[`<b>Would you like to</b> go to the movies with me?`,`<b>No problem</b>, I understand. Take care!`],{tip:`Ditolak itu normal. Respons dewasa: <b>terima, jangan ngotot, jangan marah</b>.`}),
+MS(mp)],
+quiz:[Q(`Pujian paling natural dan sopan:`,`You have a really nice smile.`,[`Are you single tonight?`,`Your body is amazing.`],`Spesifik, tulus, tidak soal tubuh.`,1),
+Q(`Ngajak ngopi dengan sopan:`,`Would you like to grab a coffee sometime?`,[`You must come with me.`,`Come here now.`],`<b>Would you like to...?</b> memberi pilihan.`,0),
+Q(`Dia jawab: "I'm not interested." Respons terbaik:`,`No problem, thanks for being honest.`,[`Why not? Give me a chance!`,`Fine, you're boring.`],`Terima dengan dewasa.`,2),
+Q(`Sinyal LAMPU HIJAU:`,`Dia senyum dan nanya balik`,[`Dia jawab satu kata`,`Dia sibuk main HP`],`Dia ikut aktif ngobrol.`,0),
+{t:'type',q:`Ketik: Would you ___ to go to the movies with me? (mau)`,a:[`like`],why:`<b>Would you like to...?</b>`},
+{t:'order',q:`Susun: "Aku suka selera humormu."`,w:[`I`,`like`,`your`,`sense`,`of`,`humor`],a:`I like your sense of humor`,why:`<b>sense of humor</b> = selera humor.`},
+{t:'listen',say:`Would you like to grab a coffee sometime?`,q:`Dengarkan, lalu ketik kalimat yang kamu dengar:`,a:[`would you like to grab a coffee sometime`],why:`Ajakan sopan.`}],
+map:mp,fc:1,
+game:{e:`🏸`,t:`PDKT Sopan`,sc:[[`🧑`,`👧`,`Lo ketemu cewek yang sekelas di perpustakaan. Buka obrolan.|Pilih kalimat.`,[`Hey, how's your day going?`,`Give me your number.`,`You're mine.`],0,`💬`,`hop`,`Santai dan ramah.`],[`🧑`,`☕`,`Obrolannya lancar. Ajak ngopi.|Pilih kalimat.`,[`Would you like to grab a coffee sometime?`,`You have to come with me.`,`I will wait outside your house.`],0,`☕`,`wiggle`,`Memberi dia pilihan.`],[`🧑`,`🙂`,`Dia bilang "Sorry, I'm not interested."|Pilih respons.`,[`No problem, thanks for being honest.`,`Why? Tell me now!`,`You'll regret this.`],0,`🤝`,`slide`,`Dewasa: terima dan mundur.`]]}});
+}catch(e){console.warn('materi-v92 gagal',e)}})();
+</script>
 <script id="engine">
 /* ━━━━ BAGIAN 1: inti (state, belajar, kuis, hasil, misi, dialog, materi tambahan) ━━━━ */
 /* =====================================================
@@ -6903,5 +7048,197 @@ let raf=0;new MutationObserver(()=>{if(raf)return;raf=requestAnimationFrame(()=>
 }catch(e){console.warn('fix-feedback-v2 gagal',e)}})();
 </script>
 
+<style id="ux-v93-css">/* v93: Jalur belajar berkelok (path) menggantikan daftar kartu */
+.grp .path{display:flex !important;flex-direction:column !important;align-items:center !important;gap:0 !important;padding:6px 0 18px !important;position:relative !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card{position:relative !important;flex-direction:column !important;align-items:center !important;gap:8px !important;width:min(260px,78%) !important;padding:16px 0 18px !important;background:none!important;box-shadow:none!important;border:0 !important;text-align:center !important;transform:translateX(var(--dx,0)) !important;transition:transform .25s var(--ease) !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card:active{transform:translateX(var(--dx,0)) scale(.95) !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card::before{content:"" !important;position:absolute !important;top:var(--cy,53px) !important;left:50% !important;width:0 !important;height:var(--len,0px) !important;border-left:5px dotted rgba(194,89,63,.28) !important;transform-origin:top center !important;transform:translateX(-2.5px) rotate(var(--rot,0deg)) !important;z-index:0 !important;display:block !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card:first-child::before{display:none !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card .ico{width:74px !important;height:74px !important;border-radius:50% !important;display:grid !important;place-items:center !important;background:var(--terra-l) !important;box-shadow:0 7px 0 rgba(0,0,0,.14),inset 0 -4px 0 rgba(0,0,0,.06) !important;position:relative !important;z-index:1 !important;transition:transform .15s var(--ease),box-shadow .15s !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card:active .ico{transform:translateY(5px) !important;box-shadow:0 2px 0 rgba(0,0,0,.14) !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card .ico svg{width:32px !important;height:32px !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card .txt{display:flex !important;flex-direction:column !important;gap:1px !important;min-width:0 !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card .txt small{font-size:11px !important;letter-spacing:.4px !important;color:var(--mute) !important;text-transform:uppercase !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card .txt b{font-size:15px !important;line-height:1.25 !important;display:-webkit-box !important;-webkit-line-clamp:2 !important;-webkit-box-orient:vertical !important;overflow:hidden !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card .stars{margin:0 !important;transform:scale(.9) !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .ico{background:#F2B84B !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-done .ico svg{color:#fff !important;fill:#fff !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico{background:var(--terra) !important;animation:pnpulse 1.8s ease-in-out infinite !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico svg{color:#fff !important;fill:#fff !important}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur::after{display:none !important;content:"MULAI" !important;position:absolute !important;top:-6px !important;left:50% !important;transform:translateX(-50%) !important;background:#fff !important;color:var(--terra) !important;font-weight:800 !important;font-size:12px !important;line-height:1 !important;letter-spacing:.6px !important;padding:6px 10px !important;border-radius:12px !important;box-shadow:0 3px 0 var(--cream-d) !important;animation:pnbob 1.2s ease-in-out infinite !important;z-index:2 !important}
+@keyframes pnpulse{0%,100%{box-shadow:0 7px 0 var(--terra-d),0 0 0 0 rgba(194,89,63,.45)}50%{box-shadow:0 7px 0 var(--terra-d),0 0 0 14px rgba(194,89,63,0)}}
+@keyframes pnbob{0%,100%{margin-top:0}50%{margin-top:-5px}}html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur{padding-top:30px !important}
+@media (prefers-reduced-motion:reduce){html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur .ico,html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur::after{animation:none !important}}html:root[data-mn][data-mn][data-mn] #app .grp>header,html:root[data-mn][data-mn][data-mn] #app .grp>h2,html:root[data-mn][data-mn][data-mn] #app .grp>div:first-child{position:relative !important}
+</style>
+<script id="ux-v93-js">
+(function(){try{
+
+function lines(){document.querySelectorAll('.grp .path').forEach(p=>{const cs=[...p.children].filter(c=>c.classList.contains('card'));
+ const cy=c=>c.classList.contains('pn-cur')?67:53;
+ cs.forEach((c,k)=>{if(!k)return;const q=cs[k-1],vx=(parseFloat(q.style.getPropertyValue('--dx'))||0)-(parseFloat(c.style.getPropertyValue('--dx'))||0),
+  vy=-((c.offsetTop+cy(c))-(q.offsetTop+cy(q))),L=Math.hypot(vx,vy);
+  c.style.setProperty('--cy',cy(c)+'px');c.style.setProperty('--len',Math.max(0,L-74)+'px');c.style.setProperty('--rot',(Math.atan2(-vx,vy)*180/Math.PI)+'deg')})})}
+const DX=[0,46,70,46,0,-46,-70,-46];
+function apply(){document.querySelectorAll('.grp .path').forEach(p=>{
+ if(p.dataset.pn)return;const cs=[...p.children].filter(c=>c.classList.contains('card'));if(!cs.length)return;p.dataset.pn=1;
+ let cur=false;
+ cs.forEach((c,i)=>{const dx=DX[i%8],pv=DX[(i+7)%8];c.style.setProperty('--dx',dx+'px');
+  const d=dx-pv;c.style.setProperty('--pdx',(-d)+'px');c.style.setProperty('--rot',(Math.atan2(d,44)*-180/Math.PI)+'deg');
+  const t=(c.textContent||'').toLowerCase(),al=(c.querySelector('.stars')||{}).getAttribute?c.querySelector('.stars').getAttribute('aria-label')||'':'';
+  if(/giliranmu/.test(t)&&!cur){c.classList.add('pn-cur');cur=true}
+  else if(al&&!/belum/i.test(al))c.classList.add('pn-done')})})}
+new MutationObserver(()=>{apply();requestAnimationFrame(lines);setTimeout(lines,700)}).observe(document.getElementById('app'),{childList:true,subtree:true});apply();[400,900,1600].forEach(t=>setTimeout(lines,t));addEventListener('resize',lines);
+}catch(e){console.warn('ux-v93 gagal',e)}})();
+</script>
+
+<style id="ux-v94-css">
+html:root[data-mn][data-mn][data-mn] #app .grp .path>.card::before{display:none !important}
+html:root[data-mn][data-mn][data-mn] #app .grp .path{display:flex !important;flex-direction:column !important;align-items:center !important;gap:0 !important;padding:6px 0 18px !important}
+html:root[data-mn][data-mn][data-mn] #app .grp .path>.card{margin-left:auto !important;margin-right:auto !important}
+html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur{padding-top:44px !important}
+html:root[data-mn][data-mn][data-mn] #app .grp .path>.card.pn-cur::after{display:none !important}
+.pn-go{position:absolute;top:4px;left:50%;transform:translateX(-50%);background:#fff;color:var(--terra-d);font-weight:800;font-size:12px;letter-spacing:.8px;line-height:1;padding:7px 13px;border-radius:12px;border:2px solid var(--terra);box-shadow:0 3px 0 rgba(194,89,63,.28);z-index:3;animation:pngo 1.2s ease-in-out infinite;pointer-events:none;white-space:nowrap}
+.pn-go::after{content:"";position:absolute;left:50%;bottom:-8px;width:10px;height:10px;background:#fff;border-right:2px solid var(--terra);border-bottom:2px solid var(--terra);border-radius:0 0 3px 0;transform:translateX(-50%) rotate(45deg)}
+@keyframes pngo{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-5px)}}
+.pn-line{position:absolute;inset:0}
+/* panel umpan balik */
+#ft.fb-ok,#ft.fb-bad{margin:0 -18px !important;padding:0 18px calc(14px + env(safe-area-inset-bottom)) !important;gap:10px !important;border-radius:22px 22px 0 0;animation:fbup .38s cubic-bezier(.3,.8,.3,1)}
+#ft.fb-ok{background:#DDF3D5 !important}#ft.fb-bad{background:#FADCD6 !important}
+.fbs{display:flex;gap:12px;align-items:center;padding:16px 0 2px}
+.fbs .fi{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:800;color:#fff;flex:none;animation:fbpop .45s cubic-bezier(.3,1.6,.4,1)}
+.fb-ok .fi{background:#58A55C}.fb-bad .fi{background:#D9534A}
+.fbs b{display:block;font-size:18px;font-weight:800}.fb-ok .fbs b{color:#2F7A36}.fb-bad .fbs b{color:#B24334}
+.fbs span{display:block;font-size:13.5px;line-height:1.4;color:var(--ink);opacity:.85}
+.fbs .xp{margin-left:auto;font-weight:800;color:#2F7A36;background:#fff;border-radius:12px;padding:6px 10px;font-size:13px;flex:none}
+html:root[data-mn][data-mn][data-mn] #app #ft.fb-ok .btn{background:#58A55C !important;border-color:#58A55C !important;color:#fff !important;box-shadow:0 4px 0 #3F7F44 !important}
+html:root[data-mn][data-mn][data-mn] #app #ft.fb-bad .btn#nq{background:#D9534A !important;border-color:#D9534A !important;color:#fff !important;box-shadow:0 4px 0 #A8372F !important}
+@keyframes fbup{from{transform:translateY(60%);opacity:0}to{transform:none;opacity:1}}
+@keyframes fbpop{from{transform:scale(.3)}to{transform:scale(1)}}
+/* perayaan selesai */
+#cel{position:fixed;inset:0;z-index:99990;background:rgba(40,25,20,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px;animation:celin .25s ease}
+#cel .box{background:var(--cream);color:var(--ink);border-radius:28px;max-width:340px;width:100%;padding:26px 22px 20px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:celpop .5s cubic-bezier(.3,1.5,.4,1)}
+#cel .owl{font-size:56px;animation:celbob 1s ease-in-out infinite}
+#cel h2{font-size:22px;margin:4px 0 2px}#cel p{font-size:14px;color:var(--mute)}
+#cel .ring{--a:0deg;width:128px;height:128px;border-radius:50%;margin:16px auto 10px;background:conic-gradient(var(--terra) var(--a),var(--cream-d) 0);display:grid;place-items:center}
+#cel .ring i{width:100px;height:100px;border-radius:50%;background:var(--cream);display:grid;place-items:center;font:800 26px/1 inherit;font-style:normal}
+#cel .stars{font-size:30px;letter-spacing:6px;min-height:38px}
+#cel .xpb{display:inline-block;margin:10px 0 14px;background:#F2B84B;color:#4A3000;font-weight:800;font-size:20px;padding:8px 18px;border-radius:16px;box-shadow:0 4px 0 #C4912E}
+#cel button{width:100%;padding:14px;border-radius:16px;background:var(--terra);color:#fff;font-weight:800;font-size:16px;box-shadow:0 4px 0 var(--terra-d)}
+@keyframes celin{from{opacity:0}to{opacity:1}}@keyframes celpop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}@keyframes celbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){#cel .owl,.pn-go{animation:none}#ft.fb-ok,#ft.fb-bad,.fbs .fi{animation:none}}
+</style>
+<script id="ux-v94-js">
+(function(){try{
+const NS='http://www.w3.org/2000/svg',$=s=>document.querySelector(s);
+function draw(){document.querySelectorAll('.grp .path').forEach(p=>{const cs=[...p.querySelectorAll(':scope>.card')];if(cs.length<2)return;
+ let svg=p.querySelector(':scope>svg.pn-line');if(!svg){svg=document.createElementNS(NS,'svg');svg.setAttribute('class','pn-line');p.prepend(svg)}
+ const W=p.clientWidth,H=p.scrollHeight;svg.setAttribute('viewBox','0 0 '+W+' '+H);
+ const pt=cs.map(c=>{const ic=c.querySelector('.ico');return [c.offsetLeft+ic.offsetLeft+ic.offsetWidth/2+(parseFloat(c.style.getPropertyValue('--dx'))||0),c.offsetTop+ic.offsetTop+ic.offsetHeight/2]});
+ let d='M'+pt[0][0]+' '+pt[0][1];for(let i=1;i<pt.length;i++){const a=pt[i-1],b=pt[i],m=(a[1]+b[1])/2;d+=' C'+a[0]+' '+m+' '+b[0]+' '+m+' '+b[0]+' '+b[1]}
+ if(svg.dataset.d!==d){svg.dataset.d=d;svg.innerHTML='<path d="'+d+'" fill="none" stroke="rgba(194,89,63,.35)" stroke-width="6" stroke-dasharray="1 15" stroke-linecap="round"/>'}
+ const cur=p.querySelector('.card.pn-cur');if(cur&&!cur.querySelector('.pn-go'))cur.insertAdjacentHTML('afterbegin','<span class="pn-go">MULAI</span>')})}
+function buzz(a){try{navigator.vibrate&&navigator.vibrate(a)}catch(e){}}
+function sheet(){const ft=document.getElementById('ft'),w=document.getElementById('why');
+ if(!ft||!w||!w.classList.contains('full')||!ft.querySelector('#nq')||ft.querySelector('.fbs'))return;
+ const bad=w.classList.contains('no'),li=k=>{const l=w.querySelector('li[data-k="'+k+'"]');if(!l)return'';const c=l.cloneNode(true);c.querySelectorAll('strong').forEach(x=>x.remove());return c.textContent.trim()};
+ let msg=bad?li('a'):li('k');if(msg.length>120)msg=msg.slice(0,117)+'…';
+ ft.classList.remove('fb-ok','fb-bad');ft.classList.add(bad?'fb-bad':'fb-ok');
+ ft.insertAdjacentHTML('afterbegin','<div class="fbs" role="status" aria-live="assertive"><div class="fi">'+(bad?'✕':'✓')+'</div><div><b>'+(bad?'Jawaban yang benar:':'Benar!')+'</b><span>'+msg.replace(/</g,'&lt;')+'</span></div>'+(bad?'':'<div class="xp">+10 XP</div>')+'</div>');
+ buzz(bad?[40,30,40]:[15])}
+let lastRes='';
+function celebrate(){const v=$('.view');if(!v||$('#cel'))return;const t=v.innerText||'';if(/Hasil tes/i.test(t))return;const m=t.match(/Skor\s*(\d+)\s*\/\s*(\d+)/);if(!m)return;
+ const n=+m[1],tot=+m[2],key=n+'/'+tot+'|'+(v.querySelector('h2,h1')||{}).innerText;if(!tot||key===lastRes)return;lastRes=key;
+ const pct=n/tot,xp=n*10+(n===tot?10:0),st=pct>=.8?3:pct>=.5?2:1,ov=document.createElement('div');ov.id='cel';
+ ov.innerHTML='<div class="box" role="dialog" aria-label="Modul selesai"><div class="cl-emo">'+(pct>=.8?'🎉':pct>=.5?'👏':'💪')+'</div><h2>'+(pct>=.8?'Luar biasa!':pct>=.5?'Bagus, lanjut!':'Tetap semangat!')+'</h2><p class="cl-sub">Kamu menjawab <b>'+n+' dari '+tot+'</b> soal dengan benar</p><div class="cl-ringw"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="cl-bg" cx="60" cy="60" r="52"/><circle class="cl-fg" cx="60" cy="60" r="52" transform="rotate(-90 60 60)"/></svg><div class="cl-c"><b>0%</b><small>'+n+' / '+tot+' benar</small></div></div><div class="cl-stars" aria-label="'+st+' dari 3 bintang"><span>★</span><span>★</span><span>★</span></div><div class="cl-xp">+<span>0</span> XP</div><button>Lanjut</button></div>';
+ document.body.appendChild(ov);ov.querySelector('button').onclick=()=>ov.remove();ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()});
+ const fg=ov.querySelector('.cl-fg'),pc=ov.querySelector('.cl-c b'),xs=ov.querySelector('.cl-xp span'),sp=[...ov.querySelectorAll('.cl-stars span')],red=matchMedia('(prefers-reduced-motion:reduce)').matches,T=red?1:1100,t0=performance.now(),C=2*Math.PI*52;
+ fg.style.strokeDasharray=C;fg.style.strokeDashoffset=C;
+ (function f(now){const k=Math.min(1,(now-t0)/T),e=1-Math.pow(1-k,3);fg.style.strokeDashoffset=C*(1-pct*e);pc.textContent=Math.round(pct*100*e)+'%';xs.textContent=Math.round(xp*e);
+  sp.forEach((s,i)=>s.classList.toggle('on',i<Math.floor(st*e+.001)));if(k<1)requestAnimationFrame(f);else{try{typeof confetti==='function'&&pct>=.5&&confetti(40)}catch(x){}buzz([20,40,20])}})(t0)}
+const run=()=>{draw();sheet();celebrate()};
+new MutationObserver(()=>requestAnimationFrame(run)).observe(document.getElementById('app'),{childList:true,subtree:true});
+[300,900,1700].forEach(t=>setTimeout(run,t));addEventListener('resize',draw);
+}catch(e){console.warn('ux-v94 gagal',e)}})();
+</script>
+<style id="fix-footclip-v1">
+/* FIX: konten kepotong rata ~28px di atas footer (Beranda / Sebelumnya / Isi / Lanjut).
+   Penyebab: box-shadow spread 100vmax (warna solid) ikut menutup 28px area di atas footer
+   karena clip-path inset(-28px ...) dibuka demi bayangan lembut. Solusi: spread dihapus,
+   latar solid selebar layar dipindah ke ::after yang tingginya = footer. */
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot{
+  box-shadow:0 -14px 26px -18px rgba(34,36,42,.32)!important;
+  clip-path:inset(-28px -100vmax 0 -100vmax)!important}
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot::after{
+  content:"";position:absolute;top:0;bottom:0;left:-100vmax;right:-100vmax;
+  background:var(--mn-surface);z-index:-1;pointer-events:none}
+</style>
+<style id="foot-autohide-v1">
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot{transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+html[data-mn][data-mn][data-mn]:root #app[data-fh="1"][data-mnfocus="1"] .view>.foot{transform:translateY(calc(100% + 40px))}
+#fhandle{position:absolute;left:50%;bottom:calc(8px + env(safe-area-inset-bottom));transform:translate(-50%,40px);width:64px;height:26px;border-radius:99px;border:1px solid var(--mn-line,#E7E9EC);background:var(--mn-surface,#fff);box-shadow:0 4px 14px -4px rgba(34,36,42,.35);display:grid;place-items:center;z-index:41;opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .2s;padding:0;cursor:pointer}
+#fhandle i{display:block;width:22px;height:4px;border-radius:4px;background:var(--mn-mute,#8A8E98)}
+#app[data-fh="1"] #fhandle{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.fhide{position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:56px;height:22px;border-radius:99px 99px 0 0;border:1px solid var(--mn-line,#E7E9EC);border-bottom:0;background:var(--mn-surface,#fff);display:grid;place-items:center;padding:0;cursor:pointer;z-index:2;box-shadow:0 -6px 12px -8px rgba(34,36,42,.3)}
+.fhide i{display:block;width:20px;height:4px;border-radius:4px;background:var(--mn-mute,#8A8E98)}
+</style>
+<script id="foot-autohide-v1-js">
+(function(){try{
+const app=document.getElementById('app'),view=app.querySelector('.view');if(!view)return;
+const hd=document.createElement('button');hd.id='fhandle';hd.setAttribute('aria-label','Tampilkan navigasi');hd.innerHTML='<i></i>';app.appendChild(hd);
+let last=0,y0=0;
+const end=()=>{const f=view.querySelector('.foot');if(!f)return view.scrollHeight;const pr=f.previousElementSibling;if(!pr)return view.scrollHeight;return pr.getBoundingClientRect().bottom-view.getBoundingClientRect().top+view.scrollTop+16+f.offsetHeight};
+const eligible=()=>!!view.querySelector('.foot .v69nav')&&end()-view.clientHeight>120;
+let man=false;
+const hide=(f)=>{if(f===true){man=true;app.setAttribute('data-fh','1')}else if(!man&&eligible())app.setAttribute('data-fh','1')};
+const show=()=>{man=false;app.removeAttribute('data-fh')};
+const quiet=()=>app.removeAttribute('data-fh');
+view.addEventListener('scroll',()=>{
+ const y=view.scrollTop,dy=y-last;
+ if(man){last=y;return}
+ if(!eligible()){quiet();last=y;return}
+ const bottom=y+view.clientHeight>=end()-60;
+ if(bottom){quiet();last=y;return}
+ if(Math.abs(dy)<6)return;last=y;
+ if(dy>0&&y>80)hide();else if(dy<0)quiet();
+},{passive:true});
+hd.onclick=show;
+view.addEventListener('touchstart',e=>{y0=e.touches[0].clientY},{passive:true});
+view.addEventListener('touchend',e=>{const dy=e.changedTouches[0].clientY-y0;if(e.target.closest('.foot')&&dy>40)hide(true)},{passive:true});
+hd.addEventListener('touchstart',e=>{y0=e.touches[0].clientY},{passive:true});
+hd.addEventListener('touchend',e=>{if(y0-e.changedTouches[0].clientY>20)show()},{passive:true});
+const tab=()=>{const f=view.querySelector('.foot');const pv=document.getElementById('v69p');if(pv&&!pv.getAttribute('aria-label')){pv.setAttribute('aria-label',pv.textContent.replace('‹','').trim());pv.title=pv.getAttribute('aria-label')}if(f&&f.querySelector('.v69nav')&&!f.querySelector('.fhide')){const b=document.createElement('button');b.className='fhide';b.setAttribute('aria-label','Sembunyikan navigasi');b.innerHTML='<i></i>';b.onclick=()=>hide(true);f.appendChild(b)}};
+new MutationObserver(()=>{show();last=view.scrollTop;tab()}).observe(view,{childList:true});
+tab();}catch(e){console.warn('foot-autohide gagal',e)}})();
+</script>
+<style id="cel-redesign-v1">
+#cel .box{background:var(--mn-surface,#fff)!important;color:var(--mn-ink,#22242A)!important;max-width:340px;padding:28px 24px 22px!important;border-radius:28px!important;display:flex;flex-direction:column;align-items:center;text-align:center}
+#cel .cl-emo{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;font-size:34px;background:color-mix(in srgb,var(--mn-orange,#EF8A5C) 16%,transparent);animation:celbob 1.4s ease-in-out infinite}
+#cel h2{font-size:24px!important;font-weight:800;letter-spacing:-.02em;margin:14px 0 4px!important;color:var(--mn-ink,#22242A)}
+#cel .cl-sub{font-size:14.5px!important;color:var(--mn-mute,#8A8E98)!important;margin:0 0 18px}
+#cel .cl-sub b{color:var(--mn-ink,#22242A);font-weight:700}
+#cel .cl-ringw{position:relative;width:148px;height:148px;margin:0 0 16px}
+#cel .cl-ringw svg{width:100%;height:100%;display:block}
+#cel .cl-bg,#cel .cl-fg{fill:none;stroke-width:10}
+#cel .cl-bg{stroke:var(--mn-line,#E7E9EC)}
+#cel .cl-fg{stroke:var(--mn-orange,#EF8A5C);stroke-linecap:round}
+#cel .cl-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+#cel .cl-c b{font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--mn-ink,#22242A);font-variant-numeric:tabular-nums}
+#cel .cl-c small{font-size:12.5px;font-weight:600;color:var(--mn-mute,#8A8E98)}
+#cel .cl-stars{display:flex;gap:6px;margin-bottom:14px}
+#cel .cl-stars span{font-size:30px;line-height:1;color:var(--mn-line,#E7E9EC);transition:color .3s,transform .3s cubic-bezier(.3,1.6,.4,1)}
+#cel .cl-stars span.on{color:#F2B84B;transform:scale(1.12)}
+#cel .cl-xp{font-size:14px;font-weight:800;color:#8A5A00;background:color-mix(in srgb,#F2B84B 28%,transparent);padding:6px 14px;border-radius:99px;margin-bottom:20px}
+html[data-theme=dark] #cel .cl-xp{color:#F2B84B}
+#cel button{margin:0!important}
+</style>
+<style id="ux-audit-v1">
+/* 1. Footer belajar satu baris: [‹] [🧭 Isi] [Lanjut]  (hemat ~58px tinggi, Beranda tetap ada di header & panel Isi) */
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot:has(>.v69nav){flex-direction:row!important;align-items:center!important;gap:8px!important;padding:10px 0 calc(12px + env(safe-area-inset-bottom))!important}
+html[data-mn][data-mn][data-mn]:root #app .foot>.v69nav{display:contents!important}
+html[data-mn][data-mn][data-mn]:root #app .foot>.v69nav #v69h{display:none!important}
+html[data-mn][data-mn][data-mn]:root #app .foot>.v69nav #v69p{position:relative!important;flex:0 0 52px!important;width:52px!important;min-width:52px!important;height:52px!important;min-height:52px!important;padding:0!important;font-size:0!important;display:grid!important;place-items:center}
+html[data-mn][data-mn][data-mn]:root #app .foot>.v69nav #v69p::before{content:"";width:11px;height:11px;border-left:3px solid var(--mn-ink,#22242A);border-bottom:3px solid var(--mn-ink,#22242A);position:absolute;left:50%;top:50%;margin:-8px 0 0 -4px;transform:rotate(45deg);border-radius:2px}
+html[data-mn][data-mn][data-mn]:root #app .foot>.v69nav #v69t{flex:0 0 auto!important;height:52px!important;min-height:52px!important;padding:0 14px!important;white-space:nowrap}
+html[data-mn][data-mn][data-mn]:root #app[data-mnfocus="1"] .view>.foot:has(>.v69nav)>.btn{flex:1 1 auto!important;width:auto!important;min-width:0!important;min-height:52px!important;padding:0 12px!important}
+/* 2. Judul header boleh 2 baris, tidak dipotong "…" */
+html[data-mn][data-mn][data-mn]:root #app #title{white-space:normal!important;display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-height:1.15!important;font-size:17px!important;overflow:hidden}
+/* 3. Kontras teks sekunder (mode terang): #8A8E98 = 3.2:1 → #666A75 = 5.3:1 */
+html[data-mn][data-mn][data-mn]:not([data-theme=dark]):root{--mn-mute:#666A75!important;--mute:#666A75!important}
+/* 4. Target sentuh min 44px */
+#app .view .btn.ghost,#app #bx,#app #bi{min-height:44px}
+#app a.msaw{min-height:44px}
+.fhide::after,#fhandle::after{content:"";position:absolute;inset:-14px -18px -6px}
+#fhandle{height:30px!important}
+/* 5. Teks terkecil naik ke 12px */
+#app span.cefr,#app small{font-size:12px!important}
+/* 6. Fokus keyboard terlihat jelas */
+#app :focus-visible,#cel :focus-visible{outline:2.5px solid var(--mn-orange,#EF8A5C)!important;outline-offset:2px!important;border-radius:inherit}
+/* 7. Tekan = ada respons */
+#app .card:active,#app .opt:active,#app .btn:active{transform:scale(.98)}
+</style>
 </body>
 </html>
