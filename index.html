@@ -8629,5 +8629,197 @@ step('sma','Academic Writing',{s:'<b>Checklist formal 5 detik</b> 🎓: tanpa si
 step('sma','Kosakata Akademik & Teknis',{s:'<b>Keluarga kata</b> 🌳: belajar kata dalam satu paket. <i>analyse – analysis – analytical – analytically</i>. Satu akar, empat kelas kata, lebih mudah diingat dan sangat berguna di esai.',ex:['<b>economy</b> – economic – economist – economically','<b>decide</b> – decision – decisive – decisively']});
 }catch(e){console.warn('bank-v102 gagal',e)}})();
 </script>
+<script id="bank-v103">
+/* v103: modul besar SMP/SMA, Slang/Umpatan/Flirting, IELTS baru, dan seluruh Level Kerja */
+(function(){try{
+let c=0;
+const M=(q,ok,w1,w2,why)=>{const o=[w1,w2];const k=(c++)%3;o.splice(k,0,ok);return{t:'mc',q,o,a:k,why}};
+const T=(q,a,why)=>({t:'type',q,a:Array.isArray(a)?a:a.split('|'),why});
+const add=(id,name,list)=>{const L=LEVELS.find(l=>l.id===id);const m=L&&L.mods.find(x=>x.n===name);if(!m){console.warn('v103: modul tidak ketemu',id,name);return}m.quiz.push(...list)};
+const step=(id,name,s)=>{const L=LEVELS.find(l=>l.id===id);const m=L&&L.mods.find(x=>x.n===name);if(!m){console.warn('v103: modul tidak ketemu',id,name);return}m.steps.splice(m.steps.length-1,0,s)};
+
+/* ===== Modul besar ===== */
+add('smp','Simple Present Tense',[M('The Earth ___ around the Sun.','goes','go','is going','Fakta ilmiah → simple present, he/she/it + <b>-es</b>.'),M('My father never ___ coffee after 8 p.m.','drinks','drink','is drinking','<b>never</b> = kebiasaan; he → drinks.'),M('Which question is correct?','Does your sister work in a bank?','Does your sister works in a bank?','Do your sister work in a bank?','Setelah <b>does</b>, verb tanpa -s.'),M('The train ___ at 9.15 tomorrow.','leaves','is leaving','left','Jadwal tetap boleh pakai simple present.'),T('She ___ (not / like) spicy food.','doesn’t like|does not like','Negatif: <b>doesn’t + V1</b>.')]);
+add('smp','Present Perfect',[M('I ___ never ___ sushi before.','have / eaten','did / eat','am / eating','Pengalaman → <b>have + V3</b>.'),M('We ___ each other since 2018.','have known','know','knew','<b>since</b> → present perfect.'),M('Which sentence is wrong?','I have seen him yesterday.','I saw him yesterday.','I have seen him before.','<b>yesterday</b> (waktu pasti) tidak dipakai dengan present perfect.'),M('She has ___ finished her homework.','just','yesterday','last week','<b>just, already, yet</b> cocok dengan present perfect.'),T('How long ___ you ___ (live) here?','have lived|have you lived','<b>have + V3</b>.')]);
+add('sma','Passive Voice',[M('The bridge ___ by a Dutch company in 1920.','was built','built','has built','Lampau pasif: <b>was/were + V3</b>.'),M('A new school ___ next year.','will be opened','will open','opens','Future pasif: <b>will be + V3</b>.'),M('Active → passive: “They are repairing the road.”','The road is being repaired.','The road is repaired.','The road was repairing.','Continuous pasif: <b>is/are being + V3</b>.'),M('Which sentence cannot become passive?','She arrived late.','She wrote a letter.','They built a house.','<b>Arrive</b> = intransitive, tak punya objek.'),T('English ___ (speak) in many countries.','is spoken','Present pasif: is + V3.')]);
+add('sma','Conditional Type 1',[M('If it rains tomorrow, we ___ at home.','will stay','would stay','stayed','Type 1: <b>if + present, will + V1</b>.'),M('Unless you hurry, you ___ late.','will be','would be','are','<b>Unless</b> = if … not.'),M('If you heat ice, it ___.','melts','would melt','melted','Fakta ilmiah (zero conditional): present + present.'),M('Which is correct?','If she calls, tell her I’m busy.','If she will call, tell her I’m busy.','If she called, tell her I’m busy.','Setelah <b>if</b> jangan pakai will.')]);
+add('sma','Reported Speech',[M('“I am tired,” she said. →','She said (that) she was tired.','She said (that) she is tired.','She said (that) I was tired.','Backshift: am → <b>was</b>.'),M('“I will call you,” he said. →','He said he would call me.','He said he will call you.','He said he called me.','will → <b>would</b>.'),M('“Where do you live?” she asked me. →','She asked me where I lived.','She asked me where did I live.','She asked me where I live?','Tanya tak langsung: urutan kalimat biasa.'),M('“Don’t be late,” he told us. →','He told us not to be late.','He told us don’t be late.','He told us to not late.','<b>told + O + (not) to V1</b>.')]);
+add('sma','Relative Clauses',[M('The man ___ lives next door is a doctor.','who','which','whose','Orang → <b>who</b>.'),M('The book ___ cover is red is mine.','whose','who','which','Kepemilikan → <b>whose</b>.'),M('Which sentence is correct?','The laptop that I bought is fast.','The laptop who I bought is fast.','The laptop whose I bought is fast.','Benda → <b>that/which</b>.'),M('My brother, ___ lives in Bali, is a chef.','who','that','whom','Non-defining clause tidak memakai <b>that</b>.')]);
+add('sma','Gerund vs Infinitive',[M('She enjoys ___ novels.','reading','to read','read','<b>enjoy + V-ing</b>.'),M('He decided ___ abroad.','to study','studying','study','<b>decide + to V1</b>.'),M('I stopped ___ when I saw him. (berhenti untuk menyapa)','to say hello','saying hello','say hello','<b>stop to V</b> = berhenti untuk melakukan sesuatu.'),M('She’s looking forward to ___ you.','seeing','see','to see','<b>to</b> di sini preposisi → V-ing.')]);
+
+/* ===== Slang, Umpatan ringan, PDKT (gaya film, tanpa kata kasar berat) ===== */
+add('sma','Slang & Bahasa Gaul (Gaya Film)',[M('Adegan film: “Dude, that’s sick!” (positif) artinya ___.','keren banget','menjijikkan','sakit parah','<b>Sick</b> di slang bisa = keren.'),M('“I’m beat.” maksudnya ___.','aku capek banget','aku dipukul','aku menang','<b>Beat</b> = kecapekan.'),M('“Spill the tea” artinya ___.','ceritakan gosipnya','tumpahkan teh','buat teh','Slang: bergosip.'),M('“No cap” artinya ___.','serius, tidak bohong','tanpa topi','tidak bisa','No cap = jujur.'),M('“He’s totally ghosting me.” artinya ___.','dia menghilang tanpa kabar','dia menakuti aku','dia mengikutiku','<b>Ghost</b> = menghilang tanpa pamit.')]);
+add('sma','Umpatan Ringan & Ungkapan Kasar',[M('“Oh, crap!” cocok dipakai ketika ___.','kaget atau kesal ringan','memuji','memberi salam','Kasar ringan, jangan di situasi formal.'),M('“Shut up!” bisa berarti ___ tergantung nada.','diam! atau “masa sih?” (kaget)','selamat tinggal','terima kasih','Antar-teman sering bermakna kaget.'),M('Dalam wawancara kerja, kata “damn” sebaiknya ___.','dihindari','sering dipakai','diganti slang','Konteks formal → hindari.'),M('“What the hell?” menunjukkan ___.','bingung atau kesal','bahagia','sopan','Ekspresi bingung/kesal.'),M('Cara lebih sopan menggantikan “Shut up!” saat meminta tenang:','Could you please be quiet?','Zip it!','Be silent!','Pakai <b>Could you please</b>.')]);
+add('sma','Flirting & PDKT (Versi Sopan)',[M('Cara sopan memulai obrolan:','I love your book. What are you reading?','You’re mine.','Give me your number.','Mulai dengan hal ringan dan hormati batas.'),M('Jika lawan bicara terlihat tidak nyaman, sebaiknya ___.','berhenti dan menghormati','terus mendekat','mengulangi','Persetujuan itu penting.'),M('“Would you like to grab a coffee sometime?” adalah ___.','ajakan sopan','perintah','penolakan','Ajakan terbuka, mudah ditolak dengan sopan.'),M('Balasan sopan untuk menolak:','Thanks, but I’m not interested.','Go away!','No way, loser.','Tegas tapi sopan.')]);
+
+/* ===== IELTS modul baru: tambah soal ===== */
+const addI=(n,list)=>add('ielts',n,list);
+addI('IELTS Reading: Multiple Choice & Short Answer',[M('Dalam MCQ, opsi mana yang biasanya benar?','yang maknanya sama dengan teks (parafrase)','yang kata-katanya persis sama','yang terpanjang','Sering parafrase, bukan kata sama.'),M('NO MORE THAN THREE WORDS: “the heavy rain” (3 kata) diperbolehkan?','ya','tidak','hanya sebagian','Tiga kata masih dalam batas.'),M('Stem soal membantu kita ___.','menentukan bagian teks yang dicari','menghafal teks','menerjemahkan','Stem = kata kunci pencarian.'),T('Jawaban Short Answer tidak boleh melebihi ___ kata yang ditentukan.',['batas','limit'],'Patuhi batas kata.')]);
+addI('IELTS Reading: Skimming, Scanning & Matching Information',[M('Soal Matching Information jawabannya berupa ___.','huruf paragraf','satu kata','angka','Huruf (A, B, C).'),M('Pertama kali melihat teks 900 kata, kita sebaiknya ___.','skimming 2–3 menit','membaca semua kata','menerjemahkan','Skim dulu.'),M('Kata kunci yang paling mudah di-scan adalah ___.','angka dan nama','kata sambung','artikel','Mudah dikenali mata.'),T('Membaca cepat untuk gambaran besar disebut ___ .',['skimming'],'Skimming.')]);
+addI('IELTS Listening: Form, Map & Multiple Choice',[M('Form Completion: kita menulis ___.','kata/angka persis seperti audio','ringkasan bebas','terjemahan','Sesuai audio.'),M('Kata “opposite” di Map Labelling berarti ___.','berseberangan','di sebelah','di belakang','Opposite = di seberang.'),M('Di MCQ, opsi yang disebut tapi dikoreksi penutur adalah ___.','distractor','jawaban','bonus','Penutur menolak opsi itu.'),T('Nomor telepon biasanya dibaca ___ per angka.',['satu','one'],'Angka dibaca satu per satu.')]);
+addI('IELTS Writing Task 1: Chart, Table & Line Graph',[M('Kata yang tepat untuk menurun tajam:','plummeted','levelled off','peaked','Plummet = anjlok.'),M('Overview berisi ___.','tren utama tanpa angka rinci','semua angka','opini','Gambaran besar.'),M('“Cars accounted for 60%” artinya ___.','mobil menyumbang 60%','mobil bertambah 60','mobil 60 unit','Account for = membentuk persentase.'),T('Titik terendah grafik disebut “bottomed ___ at”.',['out'],'bottomed out at.')]);
+addI('IELTS Writing Task 2: Opinion, Discussion, Problem-Solution',[M('“To what extent do you agree?” membutuhkan ___.','posisi yang jelas','dua sisi tanpa opini','daftar fakta','Opinion essay.'),M('Esai discussion yang baik memiliki ___.','dua pandangan + opini','satu pandangan','tanpa kesimpulan','Dua sisi.'),M('Body paragraph yang kuat memiliki ___.','ide + penjelasan + contoh','banyak ide acak','kutipan saja','PEEL.'),T('Esai Task 2 dinilai pada ___ kriteria.',['4','empat'],'Empat kriteria.')]);
+addI('IELTS Speaking: Fluency, Vocab & Pronunciation',[M('Frasa pengisi yang natural:','Well, let me think…','Err… err… err…','…(diam)','Filler terkontrol.'),M('Word stress yang tepat pada “photograph” (noun):','PHO-to-graph','pho-TO-graph','pho-to-GRAPH','Tekanan pada suku kata pertama.'),M('Kalau tidak tahu kata, kita ___.','menjelaskan dengan kata lain','diam','pindah topik','Paraphrase.'),T('Intonasi adalah naik-turunnya ___ suara.',['nada','pitch'],'Pitch/nada.')]);
+addI('IELTS Band Descriptors & Rencana Belajar',[M('Band 8 menggambarkan pengguna ___.','sangat baik','pemula','terbatas','Very good user.'),M('Evaluasi kesalahan sebaiknya ___.','dicatat dan dikelompokkan','diabaikan','dihafalkan','Pola kesalahan.'),M('Try-out penuh ideal dilakukan ___.','mendekati hari ujian','setiap hari','sekali setahun','Simulasi akhir.'),T('Jumlah skill IELTS adalah ___ .',['4','empat'],'L, R, W, S.')]);
+
+/* ===== LEVEL KERJA ===== */
+add('kerja','Rapat: Setuju, Tidak Setuju, Klarifikasi',[M('Cara sopan tidak setuju:','I see your point, but I’d suggest…','You’re wrong.','No.','Akui dulu lalu beri alternatif.'),M('Untuk meminta klarifikasi:','Could you clarify what you mean by that?','What?','Repeat!','Sopan.'),M('“I’m with you on that” artinya ___.','saya setuju','saya bersamamu','saya pergi','Persetujuan.')]);
+add('kerja','Komplain & Negosiasi',[M('Cara menyampaikan komplain profesional:','I’d like to raise an issue with my order.','Your service is trash.','Fix it now!','Tenang dan spesifik.'),M('“Could we meet halfway?” artinya ___.','bisakah kita berkompromi','bisakah kita bertemu setengah jalan','bisakah kita berhenti','Kompromi.'),M('“That’s a deal-breaker” artinya ___.','itu syarat yang membatalkan kesepakatan','itu kesepakatan bagus','itu opsi','Deal-breaker.')]);
+add('kerja','Small Talk & Networking Kantor',[M('Topik small talk yang aman:','weather, weekend plans, travel','salary, politics','personal problems','Hindari topik sensitif.'),M('Cara mengakhiri obrolan sopan:','It was great talking to you. I’ll let you go.','I’m bored.','Bye.','Sopan dan hangat.'),M('“What do you do?” artinya ___.','apa pekerjaanmu','apa yang kamu lakukan sekarang','kamu mau apa','Pertanyaan umum perkenalan.')]);
+add('kerja','Negosiasi Gaji & Benefit',[M('Cara yang tepat menyebutkan ekspektasi:','Based on my research and experience, I’m looking for…','I need more money.','Whatever you offer.','Berbasis data.'),M('“Total compensation” mencakup ___.','gaji, bonus, dan benefit','gaji pokok saja','cuti saja','Seluruh paket.'),M('Jika tawaran di bawah harapan, sebaiknya ___.','bernegosiasi dengan sopan','menolak langsung dengan marah','menerima diam-diam','Negosiasi biasa.')]);
+add('kerja','Daily Stand-up & Status Update',[M('Format stand-up:','Yesterday, today, blockers','Name, age, hobby','Plan, price, profit','Tiga hal itu.'),M('“I’m blocked by…” artinya ___.','saya terhambat oleh…','saya diblokir','saya tidur','Blocker.'),M('“ETA” artinya ___.','estimasi waktu tiba/selesai','alamat email','kesalahan teknis','Estimated time of arrival.')]);
+add('kerja','Telepon & Panggilan Kantor',[M('Meminta menunggu:','Could you hold the line, please?','Wait!','Hold on, dude.','Sopan.'),M('“I’ll put you through” artinya ___.','saya sambungkan Anda','saya menutup telepon','saya melempar','Menyambungkan.'),M('Menerima pesan:','May I take a message?','Say it.','Call later.','Sopan.')]);
+add('kerja','Onboarding: Hari Pertama Kerja',[M('Pertanyaan yang baik di hari pertama:','Who should I contact if I need help with IT?','Where is the exit?','Is the job easy?','Konkret dan kolaboratif.'),M('“Probation period” adalah ___.','masa percobaan','masa liburan','gaji awal','Masa percobaan.'),M('“Reporting line” berarti ___.','atasan langsung','jalur pulang','telepon','Struktur pelaporan.')]);
+add('kerja','Telepon & Video Call',[M('Ketika suara terputus:','Sorry, you’re breaking up. Could you repeat that?','Hello? Hello?!','You’re bad.','Spesifik.'),M('“You’re on mute” artinya ___.','mikrofonmu mati','kamu bisu','kamu salah','Sering dalam rapat.'),M('Berbagi layar:','Let me share my screen.','Look at me.','Open yours.','Kalimat standar.')]);
+add('kerja','Customer Service & Komplain',[M('Empati kepada pelanggan:','I’m sorry for the inconvenience.','That’s not my fault.','You should know.','Empati.'),M('“We’ll look into it” artinya ___.','kami akan menelusurinya','kami melihat ke dalam','kami menolak','Janji menyelidiki.'),M('Eskalasi:','I’ll escalate this to my supervisor.','Wait.','I don’t know.','Eskalasi profesional.')]);
+add('kerja','Feedback & Evaluasi Kerja',[M('Feedback konstruktif:','You could improve by…, because…','You’re lazy.','Do better.','Spesifik.'),M('“Room for improvement” artinya ___.','ruang untuk berkembang','kamar kosong','kerja bagus','Masih bisa lebih baik.'),M('Merespons kritik:','Thanks for the feedback. I’ll work on it.','That’s unfair.','Whatever.','Terbuka.')]);
+add('kerja','Angka, Tanggal & Grafik Bisnis',[M('Cara membaca 2.5 million:','two point five million','twenty-five million','two five million','Desimal.'),M('Format tanggal Inggris (British): 03/04/2026 berarti ___.','3 April 2026','4 March 2026','3 Maret','British: hari/bulan.'),M('“Year-on-year” artinya ___.','dibanding tahun lalu','tahun ke tahun yang sama','satu tahun','YoY.')]);
+add('kerja','TOEFL: Parallelism & Kontras',[M('Parallel structure yang benar:','She likes swimming, running, and cycling.','She likes swimming, to run, and cycling.','She likes swim, running, and cycle.','Bentuk sejajar.'),M('Pilih linker kontras: “He is rich; ___, he is unhappy.”','however','therefore','moreover','Kontras.'),M('Parallel: “not only … but also …” harus diikuti ___.','bentuk yang sama','bentuk berbeda','kata sambung','Sejajar.')]);
+add('kerja','TOEIC: Detektif Kelas Kata',[M('“The manager gave a ___ presentation.” (adjective)','persuasive','persuade','persuasion','Adjective sebelum noun.'),M('“Please ___ the form carefully.” (verb)','complete','completion','completely','Perintah butuh verb.'),M('“The results were ___ better.” (adverb)','significantly','significant','signify','Adverb menerangkan comparative.')]);
+add('kerja','Presentasi: Q&A dengan Audiens',[M('Menjawab pertanyaan sulit:','That’s a great question. Let me look into it and get back to you.','I don’t know.','Next.','Jujur dan profesional.'),M('Memastikan paham pertanyaan:','If I understand correctly, you’re asking…','What?','Again.','Parafrase.'),M('Menutup Q&A:','Thank you for your questions. Let’s wrap up.','That’s all.','Bye.','Sopan.')]);
+add('kerja','Menyampaikan Pendapat (Giving Opinions)',[M('Opini sopan:','In my view, we should…','It is obvious that you are wrong.','Listen to me.','Sopan.'),M('“From my perspective” artinya ___.','menurut sudut pandang saya','dari perspektifmu','dari jauh','Opini.')]);
+add('kerja','Surat Pengunduran Diri',[M('Pembuka formal:','I am writing to formally resign from my position.','I quit!','Bye.','Formal.'),M('Penutup baik:','Thank you for the opportunity.','See you never.','Whatever.','Profesional.')]);
+step('kerja','Job Interview',{s:'<b>Rumus STAR</b> ⭐ untuk pertanyaan perilaku: <b>S</b>ituation (konteks), <b>T</b>ask (tugasmu), <b>A</b>ction (yang kamu lakukan), <b>R</b>esult (hasil terukur). Jawaban 60-90 detik, satu cerita, satu pelajaran.',ex:['<b>S</b>: Our sales dropped 20% last quarter.','<b>T</b>: I was asked to find the cause.','<b>A</b>: I surveyed customers and redesigned the offer.','<b>R</b>: Sales recovered by 15% in two months.'],tip:'Siapkan 3 cerita STAR, lalu sesuaikan untuk banyak pertanyaan.'});
+step('kerja','Negosiasi Gaji & Benefit',{s:'<b>Urutan negosiasi</b> 🤝: (1) Apresiasi tawaran. (2) Sebut data pasar atau nilai yang kamu bawa. (3) Beri rentang, bukan satu angka. (4) Diskusikan benefit non-gaji (cuti, remote, pelatihan). (5) Minta waktu berpikir.',ex:['<i>Thank you for the offer. I’m excited about the role.</i>','<i>Based on my research, a range of X to Y seems appropriate.</i>']});
+}catch(e){console.warn('bank-v103 gagal',e)}})();
+</script>
+<script id="mic-v104">
+/* v104: Ngobrol Seru bisa dijawab pakai suara (open mic). Salah → ditunjukkan kalimat yang benar */
+(function(){try{
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const $=q=>document.querySelector(q);
+const NUM={0:'zero',1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',8:'eight',9:'nine',10:'ten',11:'eleven',12:'twelve'};
+const nz=s=>String(s||'').replace(/<[^>]+>/g,' ').toLowerCase().replace(/[’‘]/g,"'")
+ .replace(/\bwon't\b/g,'will not').replace(/\bcan't\b/g,'can not').replace(/\bcannot\b/g,'can not')
+ .replace(/\b(it|that|he|she|what|there|here|who)'s\b/g,'$1 is').replace(/\bi'm\b/g,'i am').replace(/n't\b/g,' not')
+ .replace(/'ll\b/g,' will').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'d\b/g,' would')
+ .replace(/\b\d{1,2}\b/g,m=>NUM[+m]||m).replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();
+const lcs=(t,h)=>{const n=t.length,m=h.length,d=Array.from({length:n+1},()=>Array(m+1).fill(0));
+ for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)d[i][j]=t[i]===h[j]?d[i+1][j+1]+1:Math.max(d[i+1][j],d[i][j+1]);
+ const ok=Array(n).fill(false);let i=0,j=0;while(i<n&&j<m){if(t[i]===h[j]){ok[i]=true;i++;j++}else if(d[i+1][j]>=d[i][j+1])i++;else j++}return ok};
+const score=(target,heard)=>{const t=nz(target).split(' ').filter(Boolean),h=nz(heard).split(' ').filter(Boolean);if(!t.length||!h.length)return 0;
+ return 2*lcs(t,h).filter(Boolean).length/(t.length+h.length)};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const speakOK=t=>{try{window.speechSynthesis&&(speechSynthesis.cancel(),speechSynthesis.speak(Object.assign(new SpeechSynthesisUtterance(t),{lang:'en-US',rate:.9})))}catch(e){}};
+const diffHTML=(target,heard)=>{const raw=String(target).replace(/<[^>]+>/g,'').split(/\s+/).filter(Boolean),
+ t=raw.map(nz),h=nz(heard).split(' ').filter(Boolean);
+ /* cocokkan per kata asli; kata hasil ekspansi kontraksi dianggap benar jika seluruh ekspansinya terdengar */
+ const flat=[],map=[];t.forEach((w,i)=>w.split(' ').filter(Boolean).forEach(x=>{flat.push(x);map.push(i)}));
+ const ok=lcs(flat,h),good=raw.map((_,i)=>{const idx=map.map((m,k)=>m===i?k:-1).filter(k=>k>=0);return idx.length?idx.every(k=>ok[k]):true});
+ return raw.map((w,i)=>`<span class="${good[i]?'ok':'no'}" style="${good[i]?'color:#2e7d32':'color:#c62828;text-decoration:underline'};font-weight:700">${esc(w)}</span>`).join(' ')};
+/* cari giliran dialog dari teks tombol pilihan (tanpa bergantung pada state internal) */
+const findTurn=btns=>{const texts=btns.map(b=>b.textContent.trim()).sort().join('|');const DLg=window.DL||[];
+ for(const d of DLg)for(const x of d.s||[])if(Array.isArray(x[0])&&x[0].map(s=>String(s).trim()).sort().join('|')===texts)return x;return null};
+let key='',rec=null;
+function mount(){const ar=$('#ar'),ch=$('#ch');
+ const old=$('#mic104');
+ if(!ar||!ch||!ar.querySelector('.opt')){if(old)old.remove();key='';return}
+ const btns=[...ar.querySelectorAll('.opt')],k=btns.map(b=>b.textContent.trim()).sort().join('|');
+ if(old&&key===k)return;if(old)old.remove();key=k;
+ const x=findTurn(btns);if(!x)return;
+ const [o,a]=x;
+ ar.insertAdjacentHTML('beforebegin',`<div id="mic104" style="margin:6px 0 10px"><button class="btn ghost" id="m104b" type="button" style="width:100%">🎤 Jawab pakai suara</button><div id="m104r" aria-live="polite" style="margin-top:8px"></div></div>`);
+ const b=$('#m104b'),r=$('#m104r');
+ if(!SR){b.disabled=true;r.innerHTML='<div class="why">Browser ini belum mendukung pengenalan suara. Pakai <b>Chrome</b> atau <b>Edge</b> (Android/desktop) ya. Kamu tetap bisa pilih jawaban manual.</div>';return}
+ r.innerHTML='<small style="color:var(--mute,#777)">Ucapkan balasanmu dalam bahasa Inggris. Tidak harus persis, aku cocokkan dengan pilihan terdekat.</small>';
+ const press=i=>{const t=o[i],bt=btns.find(z=>z.textContent.trim()===String(t).trim());if(bt&&!bt.disabled)bt.click()};
+ const showCorrect=(heard,why)=>{r.innerHTML=`<div class="why">${why}<br>🗣️ Terdengar: “${esc(heard||'…')}”<br>✅ <b>Yang benar:</b> ${diffHTML(o[a],heard)}<br><span style="font-size:13px">Merah = kata yang belum terdengar tepat.</span><div class="mb" style="margin-top:8px"><button class="btn ghost" id="m104p" type="button">🔊 Dengar yang benar</button><button class="btn" id="m104a" type="button">🎤 Ucapkan lagi</button></div></div>`;
+  $('#m104p').onclick=()=>speakOK(o[a]);$('#m104a').onclick=go1};
+ function go1(){try{rec&&rec.abort()}catch(e){}try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}
+  rec=new SR();rec.lang='en-US';rec.interimResults=false;rec.maxAlternatives=3;b.textContent='🔴 Mendengarkan…';
+  rec.onresult=e=>{const alts=[...e.results[0]].map(z=>z.transcript);
+   let best={i:-1,s:0,h:alts[0]||''};
+   alts.forEach(h=>o.forEach((t,i)=>{const s=score(t,h)+(i===a?.0001:0);if(s>best.s)best={i,s,h}}));
+   if(best.s>=.6&&best.i===a){const sc=score(o[a],best.h);
+    if(sc<.999)try{r.innerHTML=`<div class="why">✅ Kena! <br>🗣️ Terdengar: “${esc(best.h)}”<br>${diffHTML(o[a],best.h)}</div>`}catch(z){}
+    try{if(typeof P!=='undefined'){P.xp=(P.xp||0)+3;if(typeof save==='function')save()}}catch(z){}
+    press(a);
+   }else if(best.s>=.6){
+    press(best.i);showCorrect(best.h,'🤔 Itu mirip pilihan yang kurang pas.');
+   }else{showCorrect(best.h,'🤷 Belum cocok dengan pilihan mana pun.')}};
+  rec.onerror=e=>{r.innerHTML='<div class="why">'+(e.error==='not-allowed'?'Izin mikrofon ditolak. Aktifkan izin mic di browser ya 🎙️':e.error==='no-speech'?'Suaranya nggak kedengaran. Coba lagi lebih dekat ke mic.':'Gagal mendengar ('+e.error+'). Coba lagi ya.')+'</div>'};
+  rec.onend=()=>{b.textContent='🎤 Jawab pakai suara'};
+  try{rec.start()}catch(e){}}
+ b.onclick=go1}
+let raf=0;new MutationObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{try{mount()}catch(e){}})}).observe(document.body,{childList:true,subtree:true});
+}catch(e){console.warn('mic-v104 gagal',e)}})();
+</script>
+<script id="mascot-v105">
+/* v105: Maskot Pak Yood lebih fleksibel: dandanan (aksesori), warna bulu, otomatis sesuai konteks, mulut bergerak saat bicara, mode mendengar */
+(function(){try{
+const $=q=>document.querySelector(q),KEY='pyfit105';
+const ST=(()=>{try{return Object.assign({fit:'auto',col:'red'},JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return{fit:'auto',col:'red'}}})();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}};
+const COLS={red:['Merah','#D84C37','#B53628'],blue:['Biru','#3D7FD6','#2D5FA8'],green:['Hijau','#3E9B63','#2F7A4D'],purple:['Ungu','#8A5CD0','#6B44A8'],gold:['Emas','#E0A030','#B97F1E']};
+const FITS={auto:['✨','Otomatis'],none:['🦉','Polos'],toga:['🎓','Topi toga'],glasses:['🤓','Kacamata'],tie:['👔','Dasi kerja'],headset:['🎧','Headset'],crown:['👑','Mahkota'],scarf:['🧣','Syal']};
+const ACC=`<g class="acc" pointer-events="none">
+<g class="a-toga"><path d="M48 60 100 38l52 22-52 20z" fill="#2B2B33"/><path d="M48 60 100 38l52 22-52 6z" fill="#fff" opacity=".12"/><circle cx="100" cy="59" r="4.5" fill="#E6A83C"/><path class="k3" d="M100 59 146 63v22"/><path d="M141 84h10l-2 14h-6z" fill="#E6A83C"/></g>
+<g class="a-glasses"><circle class="k" cx="73" cy="104" r="22"/><circle class="k" cx="127" cy="104" r="22"/><path class="k" d="M95 102q5-5 10 0M51 100 44 94M149 100l7-6"/></g>
+<g class="a-tie"><path d="M91 148h18l-3 11H94z" fill="#2F5D8C"/><path d="M95 159h10l7 32-12 11-12-11z" fill="#2F5D8C"/><path d="M100 162v34" stroke="#fff" stroke-opacity=".25" class="tl"/></g>
+<g class="a-headset"><path class="hs" d="M48 104C42 34 158 34 152 104"/><rect x="36" y="92" width="17" height="36" rx="8" fill="#33363F"/><rect x="147" y="92" width="17" height="36" rx="8" fill="#33363F"/><path class="hs" d="M44 126q2 20 28 22"/><circle cx="74" cy="148" r="5" fill="#33363F"/></g>
+<g class="a-crown"><path d="M64 68 70 34l18 18 12-24 12 24 18-18 6 34z" fill="#F2C14E"/><path d="M64 68 70 34l18 18 12-24v40z" fill="#fff" opacity=".18"/><circle cx="100" cy="56" r="4" fill="#D84C37"/><circle cx="78" cy="58" r="3" fill="#4BA3D3"/><circle cx="122" cy="58" r="3" fill="#4BA3D3"/></g>
+<g class="a-scarf"><path d="M56 148q44 24 88 0l-4 17q-40 18-80 0z" fill="#2F8F6B"/><path d="M118 160l16 36-15 4-7-32z" fill="#2F8F6B"/><path d="M118 172l13 2M116 182l14 2" stroke="#fff" stroke-opacity=".4" class="tl"/></g></g>`;
+const css=document.createElement('style');css.textContent=`
+.pyo [fill="#D84C37"]{fill:var(--pyc1,#D84C37)!important}.pyo [fill="#B53628"]{fill:var(--pyc2,#B53628)!important}
+.pyo .acc>g{display:none}
+.pyo[data-fit="toga"] .a-toga,.pyo[data-fit="glasses"] .a-glasses,.pyo[data-fit="tie"] .a-tie,.pyo[data-fit="headset"] .a-headset,.pyo[data-fit="crown"] .a-crown,.pyo[data-fit="scarf"] .a-scarf{display:block}
+.pyo .hs{fill:none!important;stroke:#33363F!important;stroke-width:7!important;stroke-linecap:round!important}
+.pyo .tl{stroke-width:2!important;fill:none!important}
+.py-talk svg.pyo .bk{animation:pytk .17s ease-in-out infinite alternate;transform-origin:50% 0}
+@keyframes pytk{to{transform:scaleY(.55)}}
+.py-listen{filter:drop-shadow(0 0 12px rgba(75,163,211,.9))!important}
+.py-listen svg.pyo .eye{animation:pyls 1s ease-in-out infinite}
+@keyframes pyls{50%{transform:scale(1.14)}}
+#fit105{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.42);display:flex;align-items:flex-end;justify-content:center}
+#fit105 .sh{background:var(--white,#fff);color:var(--ink,#22242A);width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
+#fit105 .pv{width:120px;margin:0 auto 6px}#fit105 h3{margin:10px 0 6px;font-size:14px}
+#fit105 .ch{display:flex;flex-wrap:wrap;gap:8px}
+#fit105 .ch button{border:2px solid var(--cream-d,#e6dccd);background:transparent;color:inherit;border-radius:12px;padding:8px 10px;font:inherit;font-weight:700;cursor:pointer}
+#fit105 .ch button.on{border-color:var(--terra,#EF8A5C);background:rgba(239,138,92,.14)}
+#fit105 .sw{width:30px;height:30px;border-radius:50%;padding:0!important;border:3px solid var(--cream-d,#ddd)}#fit105 .sw.on{border-color:var(--ink,#22242A)}
+@media(prefers-reduced-motion:reduce){.py-talk svg.pyo .bk,.py-listen svg.pyo .eye{animation:none!important}}`;
+document.head.appendChild(css);
+const ctx=()=>{const t=(($('#title')||{}).textContent||'');
+ if(/IELTS|TOEFL|TOEIC|Writing|Academic|Esai|Reading/i.test(t))return'toga';
+ if(/Interview|Rapat|Email|Kantor|Telepon|Negosiasi|Presentasi|Customer|Onboarding|Feedback|Stand-up|Pengunduran/i.test(t))return'tie';
+ if(/Pelafalan|Ngomong|Dikte|Listening|Speaking|Ngobrol|Percakapan/i.test(t))return'headset';
+ return'none'};
+function root(){const r=document.documentElement.style,c=COLS[ST.col]||COLS.red;r.setProperty('--pyc1',c[1]);r.setProperty('--pyc2',c[2])}
+function apply(){root();const f=ST.fit==='auto'?ctx():ST.fit;
+ document.querySelectorAll('svg.pyo').forEach(s=>{
+  if(!s.querySelector(':scope>.acc'))s.insertAdjacentHTML('beforeend',ACC);
+  if(s.dataset.fit!==f)s.dataset.fit=f});
+ /* mode mendengar: tombol mic sedang merekam */
+ const on=[...document.querySelectorAll('button')].some(b=>/^🔴/.test(b.textContent.trim()));
+ document.querySelectorAll('#app .mascot').forEach(m=>m.classList.toggle('py-listen',on))}
+/* mulut bergerak saat Pak Yood bicara */
+try{if(window.speechSynthesis){const _sp=speechSynthesis.speak.bind(speechSynthesis);
+ speechSynthesis.speak=function(u){try{const ms=()=>[...document.querySelectorAll('#app .mascot')];
+  u.addEventListener('start',()=>ms().forEach(m=>m.classList.add('py-talk')));
+  const end=()=>ms().forEach(m=>m.classList.remove('py-talk'));u.addEventListener('end',end);u.addEventListener('error',end)}catch(e){}
+  return _sp(u)}}}catch(e){}
+function openFit(){if($('#fit105'))return;const pv=(document.querySelector('svg.pyo')||{}).outerHTML||'';
+ document.body.insertAdjacentHTML('beforeend',`<div id="fit105" role="dialog" aria-modal="true" aria-label="Dandanan maskot"><div class="sh"><div class="pv" id="f105pv">${pv}</div>
+ <b style="font-size:17px">Dandanan Pak Yood</b><h3>Pakaian</h3><div class="ch" id="f105f">${Object.entries(FITS).map(([k,v])=>`<button type="button" data-f="${k}" class="${ST.fit===k?'on':''}">${v[0]} ${v[1]}</button>`).join('')}</div>
+ <small style="color:var(--mute,#777)">“Otomatis” memakai topi toga di IELTS/Reading, dasi di modul kerja, dan headset di modul bicara.</small>
+ <h3>Warna bulu</h3><div class="ch" id="f105c">${Object.entries(COLS).map(([k,v])=>`<button type="button" class="sw ${ST.col===k?'on':''}" data-c="${k}" aria-label="${v[0]}" style="background:${v[1]}"></button>`).join('')}</div>
+ <button class="btn" id="f105x" type="button" style="width:100%;margin-top:16px">Selesai</button></div></div>`);
+ const pvr=()=>{const p=$('#f105pv svg');if(p){p.dataset.fit=ST.fit==='auto'?ctx():ST.fit}};
+ $('#fit105').onclick=e=>{if(e.target.id==='fit105')$('#fit105').remove()};$('#f105x').onclick=()=>$('#fit105').remove();
+ $('#f105f').onclick=e=>{const b=e.target.closest('[data-f]');if(!b)return;ST.fit=b.dataset.f;save();$('#f105f').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));apply();pvr()};
+ $('#f105c').onclick=e=>{const b=e.target.closest('[data-c]');if(!b)return;ST.col=b.dataset.c;save();$('#f105c').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));apply()};
+ apply();pvr()}
+window.openFit105=openFit;
+/* tekan lama maskot = buka dandanan */
+let lp=0;document.addEventListener('pointerdown',e=>{const m=e.target.closest&&e.target.closest('#app .mascot');if(!m)return;clearTimeout(lp);lp=setTimeout(openFit,650)});
+['pointerup','pointercancel','pointermove'].forEach(ev=>document.addEventListener(ev,()=>clearTimeout(lp)));
+/* tile di beranda */
+function tile(){const tl=$('#mn-tl');if(!tl||$('#fit105t'))return;const f=tl.firstElementChild;if(!f)return;const add=$('#mn-add');
+ const e=document.createElement('button');e.type='button';e.id='fit105t';e.className=f.className.replace(/\bdue\b/,'');
+ e.innerHTML='<span class="ico">🎨</span><span class="txt"><small>Baru · maskot</small><b>Dandanan Pak Yood</b><em>Topi, kacamata, warna bulu</em></span>';e.onclick=openFit;tl.insertBefore(e,add||null)}
+let raf=0;new MutationObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{try{apply();tile()}catch(e){}})}).observe(document.body,{childList:true,subtree:true,characterData:true});
+apply();tile();
+}catch(e){console.warn('mascot-v105 gagal',e)}})();
+</script>
 </body>
 </html>
