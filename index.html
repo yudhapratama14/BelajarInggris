@@ -6084,7 +6084,7 @@ html:root #app .foot{border-top:3px dotted var(--bd)!important}
 html:root #app .path.lv .card::after,html:root #app .path.tools .card::after{display:block!important;content:"";position:absolute;width:36px;height:14px;pointer-events:none;opacity:.55;background:radial-gradient(circle,var(--bd) 1.5px,transparent 2px) 0 0/9px 7px}
 html:root #app .path.lv .card::after{right:14px;bottom:10px}
 html:root #app .path.tools .card::after{right:12px;top:12px}
-html:root #app .bubble::after{content:"✦";position:absolute;right:12px;top:-12px;font-size:16px;color:var(--bd);background:var(--y);border:2px solid var(--bd);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;line-height:1}
+html:root #app .bubble::after{content:none!important;display:none!important}
 html:root #app .res::after{content:"✦  ·  ✦  ·  ✦";display:block;margin-top:8px;letter-spacing:4px;opacity:.5}
 html:root #app{background:var(--cream) radial-gradient(color-mix(in srgb,var(--bd) 6%,transparent) 1px,transparent 1.4px) 0 0/20px 20px!important}
 html:root #app::before{opacity:.5!important;background:radial-gradient(circle,var(--y) 0 3px,transparent 3.5px) 99% 14%/14px 14px no-repeat,radial-gradient(circle,var(--p) 0 2.5px,transparent 3.0px) 0% 33%/12px 12px no-repeat,radial-gradient(circle,var(--b) 0 3px,transparent 3.5px) 100% 52%/14px 14px no-repeat,radial-gradient(circle,var(--g) 0 2.5px,transparent 3.0px) 0% 66%/12px 12px no-repeat!important}
@@ -9131,5 +9131,7 @@ html[data-mn][data-mn][data-mn][data-mn]:root #app .mn-art{opacity:.5!important;
 @keyframes lvIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){html[data-mn] #app .mn-levels .card{animation:none!important}}
 </style>
+<style id="fix-header-lock">html[data-mn][data-mn][data-mn][data-mn]:root #app{overflow:clip!important}</style>
+<script>(function(){try{var a=document.getElementById("app");if(!a)return;var f=function(){if(a.scrollTop)a.scrollTop=0;if(a.scrollLeft)a.scrollLeft=0};a.addEventListener("scroll",f,{passive:true});f()}catch(e){}})();</script>
 </body>
 </html>
