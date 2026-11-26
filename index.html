@@ -9557,5 +9557,658 @@ const after=()=>{
 const _r=window.render;window.render=function(){_r.apply(this,arguments);try{after()}catch(e){console.warn('traktir v2',e)}};
 }catch(e){console.warn('traktir v2 gagal',e)}})();
 </script>
+<style id="pk-coffee-fix">
+/* ===== FIX v1: kartu "Dukung Pak Yood" (sidebar sempit, tablet & mobile) ===== */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup{container-type:inline-size;box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;gap:14px!important;padding:18px!important;overflow:hidden!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup *{box-sizing:border-box;min-width:0}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .tp{display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;align-items:center!important;column-gap:12px!important;row-gap:8px!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp svg,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .tp svg{width:48px!important;height:48px!important;flex:none!important;justify-self:start}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp b,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .tp b{font-size:16px!important;line-height:1.25!important;overflow-wrap:anywhere}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp small,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .tp small{font-size:13px!important;line-height:1.5!important;overflow-wrap:anywhere}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .lk{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:0!important;width:100%}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .lk a{display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:100%!important;max-width:100%!important;height:44px!important;padding:0 10px!important;border-radius:14px!important;font-size:13.5px!important;font-weight:600!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a.pri,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .lk a.pri{grid-column:1/-1!important;height:50px!important;font-size:15px!important;font-weight:800!important;letter-spacing:.01em;gap:8px!important;text-align:center}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a.pri::before,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-side .mn-sup .lk a.pri::before{content:"\2615"!important;margin:0!important;font-size:18px;line-height:1;flex:none}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip{max-width:100%;flex-wrap:wrap}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip a{white-space:normal!important}
+@container (max-width:250px){html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp{grid-template-columns:minmax(0,1fr)!important}html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk{grid-template-columns:minmax(0,1fr)!important}}
+</style>
+<script id="duo-boost-v1">
+/* ===== DUO BOOST v1: Kosakata Kilat (ala Duolingo) + Ngobrol Seru tambahan ===== */
+(function(){try{
+if(typeof LEVELS==='undefined')return;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const strip=s=>s.replace(/[.,!?]/g,'').replace(/\s+/g,' ').trim();
+function rngOf(str){let h=2166136261;for(const c of str){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return()=>{h+=0x6D2B79F5;let t=h;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
+const shuf=(a,r)=>a.map(x=>[r(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);
+const rx=w=>new RegExp('(^|[^A-Za-z])('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')(?![A-Za-z])','i');
+const hl=(s,w)=>rx(w).test(s)?s.replace(rx(w),(m,a,b)=>a+'<b>'+b+'</b>'):s;
+function build(lv,title,icon,raw,opt){
+  opt=opt||{};
+  const W=raw.trim().split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{const [en,id,ex,exid]=l.split('|');return{en,id,ex,exid}}).filter(w=>w.en&&w.id&&w.ex&&w.exid);
+  if(W.length<6)return null;
+  const R=rngOf(lv+title),n=W.length,name='Kosakata Kilat: '+title;
+  const others=(w,key,k)=>shuf(W.filter(x=>x!==w&&x[key]!==w[key]),R).slice(0,k).map(x=>x[key]);
+  const why=w=>`<b>${esc(w.en)}</b> artinya <b>${esc(w.id)}</b>.<br>Contoh: <i>${esc(w.ex)}</i> (${esc(w.exid)})`;
+  const steps=[];
+  steps.push({s:`${icon} <b>${esc(title)}</b>. Kamu akan belajar <b>${n} kata/frasa baru</b>. Caranya seperti di game: <b>lihat → dengar → ucapkan → uji</b>. Tap contoh kalimat untuk mendengar pengucapannya!`,ex:[],tip:'Ucapkan keras-keras minimal 2 kali. Otak lebih ingat kata yang diucapkan daripada yang hanya dibaca.',_st:'intro'});
+  for(let i=0;i<n;i+=5){const c=W.slice(i,i+5);
+    steps.push({s:`📚 <b>Kata baru ${i+1}–${i+c.length}</b>. Baca artinya, tap contoh untuk didengar, lalu ulangi dengan suara.`,ex:c.map(w=>`${hl(esc(w.ex),esc(w.en))} <small>(${esc(w.exid)})</small>`),tbl:[['Inggris','Arti'],...c.map(w=>[`<b>${esc(w.en)}</b>`,esc(w.id)])],_st:'konsep'})}
+  steps.push({s:`🧠 <b>Ringkasan</b>. Tutup satu kolom dengan tanganmu, tebak kolom lainnya. Kalau sudah lancar, kamu siap kuis!`,ex:[],tbl:[['Inggris','Arti'],...W.map(w=>[`<b>${esc(w.en)}</b>`,esc(w.id)])],tip:'Teknik tebak-tutup ini disebut active recall dan jauh lebih ampuh daripada membaca ulang.',_st:'konsep'});
+  const map={c:title.toUpperCase().slice(0,28),b:[]};
+  for(let i=0;i<n;i+=4)map.b.push({t:'Kelompok '+(i/4+1),k:W.slice(i,i+4).map(w=>w.en)});
+  steps.push({s:'Terakhir, ini <b>peta konsep</b> 🧠 untuk merangkum semua kata. Simpan di kepala, lalu kita uji lewat kuis!',ex:[],map});
+  const quiz=[];
+  W.forEach((w,i)=>{
+    const o1=others(w,'id',2);if(o1.length===2){const o=[w.id,...o1];quiz.push({t:'mc',q:`Apa arti <b>${esc(w.en)}</b>?`,o,a:0,why:why(w)})}
+    const o2=others(w,'en',2);if(o2.length===2){quiz.push({t:'mc',q:`Bahasa Inggris dari “${esc(w.id)}” adalah …`,o:[w.en,...o2],a:0,why:why(w)})}
+    if(!opt.noListen){
+      if(o2.length===2)quiz.push({t:'listen',say:w.en,q:'Dengarkan, lalu pilih yang kamu dengar:',o:[w.en,...o2],a:0,why:why(w)});
+      quiz.push({t:'listen',say:w.en,q:'Dengarkan, lalu ketik kata yang kamu dengar:',a:[w.en],why:why(w)})}
+    quiz.push({t:'type',q:`Ketik bahasa Inggrisnya: “${esc(w.id)}”`,a:[w.en],why:why(w)});
+    if(rx(w.en).test(w.ex)&&o2.length===2){quiz.push({t:'mc',q:`${esc(w.ex).replace(rx(esc(w.en)),(m,a)=>a+'___')}<br><small>${esc(w.exid)}</small>`,o:[w.en,...o2],a:0,why:why(w)})}
+    const tk=strip(w.ex).split(' ');
+    if(tk.length>=3&&tk.length<=11)quiz.push({t:'order',q:`Susun kalimat: “${esc(w.exid)}”`,w:tk,a:tk.join(' '),why:`Kalimat lengkap: <b>${esc(w.ex)}</b>`});
+    if(!opt.noListen&&tk.length>=3&&tk.length<=11)quiz.push({t:'listen',say:w.ex,q:'Dengarkan kalimatnya, lalu ketik:',a:[tk.join(' ')],why:`Kalimat lengkap: <b>${esc(w.ex)}</b> (${esc(w.exid)})`});
+  });
+  for(let i=0;i<n;i+=4){const c=W.slice(i,i+4);if(c.length>=3)quiz.push({t:'match',q:'Jodohkan kata dengan artinya:',pairs:c.map(w=>[w.en,w.id]),why:'Ulangi tiap pasangan dengan suara keras supaya melekat.'})}
+  const big=shuf(W,R).slice(0,5);quiz.push({t:'match',q:'Tantangan: jodohkan 5 kata acak',pairs:big.map(w=>[w.en,w.id]),why:'Kata acak melatih ingatan tanpa urutan. Mantap!'});
+  return{n:name,g:'🦉 Kosakata Kilat',steps,quiz,map};
+}
+window.__duoBuild=build;
+window.__duoAdd=function(lv,title,icon,raw,opt){
+  const L=LEVELS[lv];if(!L||L.mods.some(m=>m.n==='Kosakata Kilat: '+title))return;
+  const m=build(lv,title,icon,raw,opt);if(m)L.mods.push(m)};
+}catch(e){console.warn('duo core gagal',e)}})();
+
+(function(){try{
+const A=window.__duoAdd;if(!A)return;
+/* ───────── LEVEL SD ───────── */
+A(0,'Hewan & Kebun Binatang','🐾',`
+cat|kucing|The cat sleeps on the sofa.|Kucing itu tidur di sofa.
+dog|anjing|My dog likes to run in the park.|Anjingku suka berlari di taman.
+bird|burung|A small bird sings in the tree.|Seekor burung kecil bernyanyi di pohon.
+fish|ikan|The fish swims in the pond.|Ikan itu berenang di kolam.
+cow|sapi|The cow gives us milk.|Sapi memberi kita susu.
+chicken|ayam|The chicken lays an egg.|Ayam itu bertelur.
+elephant|gajah|The elephant has a long nose.|Gajah punya hidung yang panjang.
+monkey|monyet|The monkey eats a banana.|Monyet itu makan pisang.
+rabbit|kelinci|The rabbit likes carrots.|Kelinci suka wortel.
+horse|kuda|The horse runs very fast.|Kuda itu berlari sangat cepat.`);
+A(0,'Buah & Sayur','🍎',`
+apple|apel|I eat an apple every morning.|Aku makan apel setiap pagi.
+banana|pisang|The banana is yellow.|Pisang itu berwarna kuning.
+orange|jeruk|She drinks orange juice.|Dia minum jus jeruk.
+mango|mangga|The mango is sweet and juicy.|Mangga itu manis dan berair.
+grape|anggur|The grape is small and round.|Anggur itu kecil dan bulat.
+watermelon|semangka|We eat watermelon on a hot day.|Kami makan semangka saat hari panas.
+carrot|wortel|A carrot is good for your eyes.|Wortel baik untuk matamu.
+potato|kentang|My mother cooks potato soup.|Ibuku memasak sup kentang.
+tomato|tomat|I put a tomato in my salad.|Aku menaruh tomat di saladku.
+onion|bawang|The onion makes me cry.|Bawang itu membuatku menangis.`);
+A(0,'Makanan & Minuman','🍚',`
+rice|nasi|We eat rice for lunch.|Kami makan nasi saat makan siang.
+bread|roti|He eats bread for breakfast.|Dia makan roti untuk sarapan.
+egg|telur|I like a boiled egg.|Aku suka telur rebus.
+milk|susu|The baby drinks milk.|Bayi itu minum susu.
+water|air|Please drink more water.|Tolong minum lebih banyak air.
+tea|teh|My father drinks tea in the morning.|Ayahku minum teh di pagi hari.
+coffee|kopi|She does not drink coffee at night.|Dia tidak minum kopi di malam hari.
+noodle|mi|I want a bowl of noodle soup.|Aku mau semangkuk sup mi.
+cake|kue|We eat a cake on my birthday.|Kami makan kue di hari ulang tahunku.
+soup|sup|The soup is hot.|Sup itu panas.`);
+A(0,'Anggota Tubuh','🧍',`
+head|kepala|I wear a hat on my head.|Aku memakai topi di kepalaku.
+eye|mata|He closes one eye and takes a picture.|Dia menutup satu mata dan memotret.
+ear|telinga|My ear hurts.|Telingaku sakit.
+nose|hidung|I smell flowers with my nose.|Aku mencium bunga dengan hidungku.
+mouth|mulut|Open your mouth, please.|Tolong buka mulutmu.
+hand|tangan|He raises his hand in class.|Dia mengangkat tangannya di kelas.
+finger|jari|I have a ring on my finger.|Aku punya cincin di jariku.
+leg|kaki|My leg hurts after the game.|Kakiku sakit setelah pertandingan.
+tooth|gigi|The baby has a new tooth.|Bayi itu punya gigi baru.
+hair|rambut|She has long black hair.|Dia punya rambut hitam yang panjang.`);
+A(0,'Keluarga & Teman','👨‍👩‍👧',`
+mother|ibu|My mother cooks dinner.|Ibuku memasak makan malam.
+father|ayah|My father drives me to school.|Ayahku mengantarku ke sekolah.
+brother|saudara laki-laki|My brother plays football.|Saudara laki-lakiku bermain sepak bola.
+sister|saudara perempuan|My sister draws very well.|Saudara perempuanku menggambar dengan sangat baik.
+grandmother|nenek|My grandmother tells me stories.|Nenekku bercerita kepadaku.
+grandfather|kakek|My grandfather reads the newspaper.|Kakekku membaca koran.
+uncle|paman|My uncle lives in Bandung.|Pamanku tinggal di Bandung.
+aunt|bibi|My aunt makes delicious cookies.|Bibiku membuat kue kering yang lezat.
+friend|teman|She is my best friend.|Dia teman terbaikku.
+neighbor|tetangga|Our neighbor is very kind.|Tetangga kami sangat baik hati.`);
+A(0,'Warna & Bentuk','🎨',`
+red|merah|The apple is red.|Apel itu merah.
+blue|biru|The sky is blue.|Langit itu biru.
+green|hijau|The grass is green.|Rumput itu hijau.
+yellow|kuning|The sun is yellow.|Matahari itu kuning.
+black|hitam|My cat is black.|Kucingku hitam.
+white|putih|Snow is white.|Salju itu putih.
+pink|merah muda|She has a pink bag.|Dia punya tas merah muda.
+circle|lingkaran|The sun looks like a circle.|Matahari tampak seperti lingkaran.
+square|persegi|The window is a square.|Jendela itu berbentuk persegi.
+triangle|segitiga|A slice of pizza is a triangle.|Seiris pizza berbentuk segitiga.`);
+A(0,'Hari & Waktu','📅',`
+Monday|Senin|I have English class on Monday.|Aku punya pelajaran Bahasa Inggris pada hari Senin.
+Tuesday|Selasa|We play football on Tuesday.|Kami bermain sepak bola pada hari Selasa.
+Wednesday|Rabu|My mother goes to the market on Wednesday.|Ibuku pergi ke pasar pada hari Rabu.
+Thursday|Kamis|I clean my room on Thursday.|Aku membersihkan kamarku pada hari Kamis.
+Friday|Jumat|We wear batik on Friday.|Kami memakai batik pada hari Jumat.
+Saturday|Sabtu|I visit my grandmother on Saturday.|Aku mengunjungi nenekku pada hari Sabtu.
+Sunday|Minggu|We rest at home on Sunday.|Kami beristirahat di rumah pada hari Minggu.
+morning|pagi|I wake up early in the morning.|Aku bangun lebih awal di pagi hari.
+afternoon|sore|We play outside in the afternoon.|Kami bermain di luar pada sore hari.
+night|malam|The stars shine at night.|Bintang bersinar pada malam hari.`);
+A(0,'Rumah & Perabot','🏠',`
+house|rumah|My house has a small garden.|Rumahku punya taman kecil.
+room|kamar|I clean my room every Sunday.|Aku membersihkan kamarku setiap hari Minggu.
+kitchen|dapur|My mother is in the kitchen.|Ibuku ada di dapur.
+bed|tempat tidur|I sleep in my bed.|Aku tidur di tempat tidurku.
+table|meja|The book is on the table.|Buku itu ada di atas meja.
+chair|kursi|Please sit on the chair.|Tolong duduk di kursi.
+door|pintu|Close the door, please.|Tolong tutup pintunya.
+window|jendela|The window is open.|Jendela itu terbuka.
+lamp|lampu|The lamp is on the desk.|Lampu itu ada di atas meja belajar.
+bathroom|kamar mandi|I brush my teeth in the bathroom.|Aku menyikat gigi di kamar mandi.`);
+A(0,'Sekolah & Alat Tulis','🎒',`
+school|sekolah|I go to school by bike.|Aku pergi ke sekolah naik sepeda.
+teacher|guru|The teacher writes on the board.|Guru itu menulis di papan.
+student|siswa|The student reads a book.|Siswa itu membaca buku.
+book|buku|This book is very interesting.|Buku ini sangat menarik.
+pen|pulpen|I write with a blue pen.|Aku menulis dengan pulpen biru.
+pencil|pensil|Can I borrow your pencil?|Bolehkah aku meminjam pensilmu?
+ruler|penggaris|I draw a line with a ruler.|Aku menggambar garis dengan penggaris.
+bag|tas|My bag is very heavy.|Tasku sangat berat.
+classroom|ruang kelas|Our classroom is clean.|Ruang kelas kami bersih.
+homework|PR|I do my homework after dinner.|Aku mengerjakan PR setelah makan malam.`);
+A(0,'Cuaca & Alam','🌦️',`
+sun|matahari|The sun is hot today.|Matahari panas hari ini.
+rain|hujan|I take an umbrella because of the rain.|Aku membawa payung karena hujan.
+cloud|awan|There is a big cloud in the sky.|Ada awan besar di langit.
+wind|angin|The wind is strong today.|Angin kencang hari ini.
+tree|pohon|The bird sits in the tree.|Burung itu duduk di pohon.
+flower|bunga|This flower smells nice.|Bunga ini harum.
+river|sungai|The boy swims in the river.|Anak laki-laki itu berenang di sungai.
+mountain|gunung|We climb the mountain on Sunday.|Kami mendaki gunung pada hari Minggu.
+sea|laut|The sea is very wide.|Laut itu sangat luas.
+star|bintang|I see a star in the sky.|Aku melihat bintang di langit.`);
+A(0,'Kata Kerja Harian','🏃',`
+eat|makan|We eat dinner at seven.|Kami makan malam jam tujuh.
+drink|minum|I drink water after school.|Aku minum air setelah sekolah.
+sleep|tidur|I sleep at nine every night.|Aku tidur jam sembilan setiap malam.
+run|berlari|We run in the park every morning.|Kami berlari di taman setiap pagi.
+walk|berjalan|I walk to school with my friend.|Aku berjalan ke sekolah dengan temanku.
+read|membaca|I read a book before bed.|Aku membaca buku sebelum tidur.
+write|menulis|We write a story in class.|Kami menulis cerita di kelas.
+sing|bernyanyi|They sing a song together.|Mereka bernyanyi bersama.
+swim|berenang|I swim in the pool on Saturday.|Aku berenang di kolam pada hari Sabtu.
+play|bermain|We play football after school.|Kami bermain sepak bola setelah sekolah.`);
+A(0,'Perasaan & Sifat','😊',`
+happy|senang|I am happy today.|Aku senang hari ini.
+sad|sedih|She is sad because her cat is sick.|Dia sedih karena kucingnya sakit.
+angry|marah|He is angry because he is late.|Dia marah karena dia terlambat.
+tired|lelah|I am tired after football.|Aku lelah setelah bermain sepak bola.
+hungry|lapar|I am hungry before lunch.|Aku lapar sebelum makan siang.
+thirsty|haus|The boy is thirsty.|Anak laki-laki itu haus.
+scared|takut|The little girl is scared of the dark.|Gadis kecil itu takut gelap.
+kind|baik hati|My teacher is very kind.|Guruku sangat baik hati.
+funny|lucu|This movie is very funny.|Film ini sangat lucu.
+clever|pintar|She is a clever student.|Dia siswa yang pintar.`);
+
+/* ───────── LEVEL SMP ───────── */
+A(1,'Transportasi & Perjalanan','✈️',`
+bus|bus|I go to school by bus.|Aku pergi ke sekolah naik bus.
+train|kereta|The train arrives at nine.|Kereta itu tiba jam sembilan.
+airport|bandara|We arrive at the airport early.|Kami tiba di bandara lebih awal.
+ticket|tiket|I buy a ticket online.|Aku membeli tiket secara daring.
+passport|paspor|Do not forget your passport.|Jangan lupa paspormu.
+luggage|barang bawaan|My luggage is very heavy.|Barang bawaanku sangat berat.
+hotel|hotel|We stay in a small hotel.|Kami menginap di hotel kecil.
+map|peta|I use a map to find the beach.|Aku memakai peta untuk menemukan pantai.
+tourist|turis|The tourist takes many photos.|Turis itu mengambil banyak foto.
+journey|perjalanan|The journey takes three hours.|Perjalanan itu memakan waktu tiga jam.`);
+A(1,'Belanja & Uang','🛍️',`
+price|harga|The price is very high.|Harganya sangat tinggi.
+cheap|murah|This bag is cheap.|Tas ini murah.
+expensive|mahal|That phone is too expensive.|Ponsel itu terlalu mahal.
+discount|diskon|There is a discount today.|Ada diskon hari ini.
+cashier|kasir|The cashier gives me the receipt.|Kasir itu memberiku struk.
+receipt|struk|Keep the receipt, please.|Tolong simpan struknya.
+customer|pelanggan|The customer asks for a smaller size.|Pelanggan itu meminta ukuran yang lebih kecil.
+size|ukuran|I need a bigger size.|Aku butuh ukuran yang lebih besar.
+change|uang kembalian|Here is your change.|Ini uang kembalianmu.
+wallet|dompet|I keep money in my wallet.|Aku menyimpan uang di dompetku.`);
+A(1,'Kesehatan & Dokter','🩺',`
+doctor|dokter|I see a doctor when I am sick.|Aku menemui dokter saat aku sakit.
+medicine|obat|Take this medicine twice a day.|Minum obat ini dua kali sehari.
+fever|demam|He has a high fever.|Dia demam tinggi.
+cough|batuk|I have a bad cough.|Aku batuk parah.
+headache|sakit kepala|I have a headache today.|Aku sakit kepala hari ini.
+stomachache|sakit perut|She has a stomachache.|Dia sakit perut.
+hospital|rumah sakit|The hospital is near my house.|Rumah sakit itu dekat rumahku.
+healthy|sehat|Fruit is healthy.|Buah itu sehat.
+rest|istirahat|You need more rest.|Kamu butuh lebih banyak istirahat.
+pain|rasa sakit|I feel pain in my back.|Aku merasakan sakit di punggungku.`);
+A(1,'Tempat di Kota','🏙️',`
+bank|bank|I save money in the bank.|Aku menabung di bank.
+library|perpustakaan|We read books in the library.|Kami membaca buku di perpustakaan.
+market|pasar|My mother buys vegetables at the market.|Ibuku membeli sayur di pasar.
+park|taman|Children play in the park.|Anak-anak bermain di taman.
+post office|kantor pos|I send a letter at the post office.|Aku mengirim surat di kantor pos.
+supermarket|supermarket|We buy rice at the supermarket.|Kami membeli beras di supermarket.
+restaurant|restoran|We eat dinner at a restaurant.|Kami makan malam di restoran.
+station|stasiun|The station is very crowded.|Stasiun itu sangat ramai.
+museum|museum|The museum is open on Sunday.|Museum itu buka pada hari Minggu.
+police station|kantor polisi|The police station is on Main Street.|Kantor polisi ada di Jalan Utama.`);
+A(1,'Pekerjaan & Profesi','👷',`
+farmer|petani|The farmer works in the field.|Petani itu bekerja di sawah.
+nurse|perawat|The nurse helps the patient.|Perawat itu membantu pasien.
+engineer|insinyur|My uncle is an engineer.|Pamanku seorang insinyur.
+driver|sopir|The driver waits outside.|Sopir itu menunggu di luar.
+chef|koki|The chef cooks fried rice.|Koki itu memasak nasi goreng.
+pilot|pilot|The pilot flies to Bali.|Pilot itu menerbangkan pesawat ke Bali.
+police officer|polisi|The police officer helps people cross the street.|Polisi itu membantu orang menyeberang jalan.
+dentist|dokter gigi|The dentist checks my teeth.|Dokter gigi itu memeriksa gigiku.
+singer|penyanyi|The singer has a beautiful voice.|Penyanyi itu punya suara yang indah.
+mechanic|montir|The mechanic fixes my motorbike.|Montir itu memperbaiki motorku.`);
+A(1,'Hobi & Olahraga','⚽',`
+hobby|hobi|My hobby is drawing.|Hobiku adalah menggambar.
+football|sepak bola|We play football every Friday.|Kami bermain sepak bola setiap hari Jumat.
+badminton|bulu tangkis|My sister plays badminton well.|Saudara perempuanku bermain bulu tangkis dengan baik.
+basketball|bola basket|He is good at basketball.|Dia jago bola basket.
+cycling|bersepeda|Cycling is good for your health.|Bersepeda baik untuk kesehatanmu.
+painting|melukis|Painting makes me calm.|Melukis membuatku tenang.
+cooking|memasak|Cooking is her favorite hobby.|Memasak adalah hobi favoritnya.
+photography|fotografi|I enjoy photography on weekends.|Aku menikmati fotografi di akhir pekan.
+camping|berkemah|We go camping in the mountains.|Kami pergi berkemah di pegunungan.
+chess|catur|My grandfather teaches me chess.|Kakekku mengajariku catur.`);
+A(1,'Teknologi & Internet','💻',`
+computer|komputer|I do my homework on the computer.|Aku mengerjakan PR di komputer.
+phone|ponsel|My phone is on the table.|Ponselku ada di atas meja.
+internet|internet|The internet is slow today.|Internetnya lambat hari ini.
+website|situs web|I visit this website every day.|Aku mengunjungi situs web ini setiap hari.
+password|kata sandi|Never share your password.|Jangan pernah membagikan kata sandimu.
+battery|baterai|My battery is low.|Baterai ponselku hampir habis.
+message|pesan|I send a message to my friend.|Aku mengirim pesan kepada temanku.
+photo|foto|She takes a photo of the cat.|Dia mengambil foto kucing itu.
+download|mengunduh|I download music for my trip.|Aku mengunduh musik untuk perjalananku.
+screen|layar|The screen is very bright.|Layar itu sangat terang.`);
+A(1,'Phrasal Verbs Dasar','🔗',`
+get up|bangun dari tidur|I get up at five every morning.|Aku bangun jam lima setiap pagi.
+turn on|menyalakan|I turn on the light.|Aku menyalakan lampu.
+turn off|mematikan|Please turn off your phone.|Tolong matikan ponselmu.
+sit down|duduk|Please sit down.|Silakan duduk.
+stand up|berdiri|Everyone stand up, please.|Semuanya berdiri, silakan.
+look for|mencari|I look for my keys.|Aku mencari kunciku.
+put on|memakai|I put on my jacket.|Aku memakai jaketku.
+take off|melepas|Please take off your shoes.|Tolong lepas sepatumu.
+give up|menyerah|Never give up on your dream.|Jangan pernah menyerah pada mimpimu.
+come back|kembali|I come back home at four.|Aku kembali ke rumah jam empat.`);
+A(1,'Frasa Percakapan Harian','💬',`
+Excuse me|Permisi|Excuse me, where is the library?|Permisi, di mana perpustakaan?
+Thank you very much|Terima kasih banyak|Thank you very much for your help.|Terima kasih banyak atas bantuanmu.
+You are welcome|Sama-sama|You are welcome. Have a nice day!|Sama-sama. Semoga harimu menyenangkan!
+I am sorry|Aku minta maaf|I am sorry for being late.|Aku minta maaf karena terlambat.
+How much is this|Berapa harga ini|How much is this bag?|Berapa harga tas ini?
+Where is the toilet|Di mana toiletnya|Excuse me, where is the toilet?|Permisi, di mana toilet?
+I do not understand|Aku tidak mengerti|I do not understand. Please say it again.|Aku tidak mengerti. Tolong ulangi.
+Can you help me|Bisakah kamu membantuku|Can you help me with my homework?|Bisakah kamu membantuku mengerjakan PR?
+Nice to meet you|Senang bertemu denganmu|Hello, I am Ana. Nice to meet you.|Halo, aku Ana. Senang bertemu denganmu.
+See you tomorrow|Sampai jumpa besok|Goodbye! See you tomorrow.|Selamat tinggal! Sampai jumpa besok.`);
+A(1,'Lawan Kata (Antonim)','↔️',`
+hot|panas|The tea is hot.|Tehnya panas.
+cold|dingin|The water is very cold.|Airnya sangat dingin.
+old|tua|My grandfather is very old.|Kakekku sangat tua.
+young|muda|The young teacher is friendly.|Guru muda itu ramah.
+fast|cepat|The train is fast.|Kereta itu cepat.
+slow|lambat|The turtle is slow.|Kura-kura itu lambat.
+easy|mudah|The test is easy.|Ujian itu mudah.
+difficult|sulit|This question is difficult.|Pertanyaan ini sulit.
+near|dekat|My school is near my house.|Sekolahku dekat rumahku.
+far|jauh|The beach is far from here.|Pantai itu jauh dari sini.`);
+}catch(e){console.warn('duo data1 gagal',e)}})();
+
+(function(){try{
+const A=window.__duoAdd;if(!A)return;
+/* ───────── LEVEL SMA ───────── */
+A(2,'Lingkungan Hidup','🌍',`
+pollution|polusi|Air pollution is a serious problem.|Polusi udara adalah masalah serius.
+climate|iklim|The climate is changing quickly.|Iklim berubah dengan cepat.
+recycle|mendaur ulang|We recycle plastic bottles at home.|Kami mendaur ulang botol plastik di rumah.
+waste|sampah|We must reduce food waste.|Kita harus mengurangi sampah makanan.
+energy|energi|Solar panels save energy.|Panel surya menghemat energi.
+forest|hutan|The forest protects many animals.|Hutan melindungi banyak hewan.
+flood|banjir|Heavy rain causes a flood.|Hujan deras menyebabkan banjir.
+protect|melindungi|We protect the environment together.|Kita melindungi lingkungan bersama-sama.
+environment|lingkungan|Plastic harms the environment.|Plastik merusak lingkungan.
+endangered|terancam punah|The tiger is an endangered animal.|Harimau adalah hewan yang terancam punah.`);
+A(2,'Pendidikan & Karier','🎓',`
+scholarship|beasiswa|She wins a scholarship to study abroad.|Dia memenangkan beasiswa untuk kuliah di luar negeri.
+degree|gelar|He has a degree in engineering.|Dia punya gelar di bidang teknik.
+deadline|tenggat waktu|The deadline is next Friday.|Tenggat waktunya hari Jumat depan.
+research|penelitian|Her research is about coral reefs.|Penelitiannya tentang terumbu karang.
+lecture|kuliah|The lecture starts at nine.|Kuliah itu dimulai jam sembilan.
+curriculum|kurikulum|The school updates its curriculum every year.|Sekolah memperbarui kurikulumnya setiap tahun.
+skill|keterampilan|Communication is an important skill.|Komunikasi adalah keterampilan yang penting.
+experience|pengalaman|She has five years of experience.|Dia punya pengalaman lima tahun.
+career|karier|He wants a career in medicine.|Dia menginginkan karier di bidang kedokteran.
+graduate|lulus|They graduate in June.|Mereka lulus pada bulan Juni.`);
+A(2,'Media & Opini','📰',`
+opinion|pendapat|In my opinion, school should start later.|Menurut pendapatku, sekolah harus mulai lebih siang.
+headline|judul berita|The headline caught my attention.|Judul berita itu menarik perhatianku.
+audience|penonton|The audience claps loudly.|Penonton bertepuk tangan dengan keras.
+broadcast|siaran|The broadcast starts at eight.|Siaran itu dimulai jam delapan.
+influence|memengaruhi|Advertisements influence our choices.|Iklan memengaruhi pilihan kita.
+fact|fakta|Check every fact before you share it.|Periksa setiap fakta sebelum kamu membagikannya.
+rumor|desas-desus|Do not believe every rumor.|Jangan percaya setiap desas-desus.
+reliable|dapat diandalkan|This website is a reliable source.|Situs web ini sumber yang dapat diandalkan.
+bias|bias|Good journalists avoid bias.|Jurnalis yang baik menghindari bias.
+viral|viral|The video becomes viral in one day.|Video itu menjadi viral dalam satu hari.`);
+A(2,'Idiom Populer','🎭',`
+break the ice|mencairkan suasana|A joke can break the ice.|Sebuah lelucon bisa mencairkan suasana.
+a piece of cake|sangat mudah|The test was a piece of cake.|Ujian itu sangat mudah.
+under the weather|kurang enak badan|I am under the weather today.|Aku kurang enak badan hari ini.
+hit the books|belajar giat|I need to hit the books tonight.|Aku harus belajar giat malam ini.
+once in a blue moon|sangat jarang|We eat out once in a blue moon.|Kami makan di luar sangat jarang.
+spill the beans|membocorkan rahasia|Please do not spill the beans.|Tolong jangan bocorkan rahasianya.
+cost an arm and a leg|sangat mahal|It will cost an arm and a leg.|Itu akan sangat mahal.
+call it a day|menyudahi pekerjaan|Let us call it a day.|Mari kita sudahi hari ini.
+a blessing in disguise|berkah tersembunyi|Losing that job was a blessing in disguise.|Kehilangan pekerjaan itu adalah berkah tersembunyi.
+the ball is in your court|giliranmu memutuskan|Now the ball is in your court.|Sekarang giliranmu memutuskan.`);
+A(2,'Kolokasi Wajib Tahu','🧩',`
+make a decision|membuat keputusan|You need to make a decision today.|Kamu perlu membuat keputusan hari ini.
+take a break|beristirahat sejenak|Let us take a break.|Mari kita beristirahat sejenak.
+do research|melakukan penelitian|Students do research for their projects.|Siswa melakukan penelitian untuk proyek mereka.
+pay attention|memperhatikan|Please pay attention to the teacher.|Tolong perhatikan guru.
+catch a cold|terkena pilek|I catch a cold in the rainy season.|Aku terkena pilek saat musim hujan.
+keep in touch|tetap berhubungan|Let us keep in touch.|Mari tetap berhubungan.
+save time|menghemat waktu|This app helps us save time.|Aplikasi ini membantu kita menghemat waktu.
+take part in|ikut serta dalam|I take part in the English competition.|Aku ikut serta dalam lomba Bahasa Inggris.
+give a speech|berpidato|I give a speech every Monday.|Aku berpidato setiap hari Senin.
+make progress|membuat kemajuan|You make progress every day.|Kamu membuat kemajuan setiap hari.`);
+A(2,'Phrasal Verbs Menengah','🔗',`
+carry out|melaksanakan|Scientists carry out many experiments.|Para ilmuwan melaksanakan banyak eksperimen.
+figure out|mencari tahu|We must figure out the answer.|Kita harus mencari tahu jawabannya.
+turn down|menolak|I turn down the offer.|Aku menolak tawaran itu.
+put off|menunda|Do not put off your homework.|Jangan menunda PR-mu.
+look after|merawat|I look after my little brother.|Aku merawat adik laki-lakiku.
+run out of|kehabisan|We run out of time.|Kami kehabisan waktu.
+get along with|akur dengan|I get along with my classmates.|Aku akur dengan teman sekelasku.
+set up|mendirikan|They set up a new company.|Mereka mendirikan perusahaan baru.
+break down|mogok|My motorbike may break down.|Motorku mungkin mogok.
+come up with|menemukan ide|We come up with a great idea.|Kami menemukan ide yang bagus.`);
+A(2,'Kata Benda Akademik','📚',`
+decision|keputusan|She makes a good decision.|Dia membuat keputusan yang baik.
+education|pendidikan|Education changes lives.|Pendidikan mengubah hidup.
+information|informasi|I need more information.|Aku butuh lebih banyak informasi.
+explanation|penjelasan|Thank you for the clear explanation.|Terima kasih atas penjelasan yang jelas.
+pronunciation|pelafalan|Your pronunciation is very clear.|Pelafalanmu sangat jelas.
+improvement|peningkatan|I see an improvement in my score.|Aku melihat peningkatan di nilaiku.
+celebration|perayaan|The celebration starts at noon.|Perayaan itu dimulai siang hari.
+development|perkembangan|The development of the city is fast.|Perkembangan kota itu cepat.
+communication|komunikasi|Good communication prevents problems.|Komunikasi yang baik mencegah masalah.
+competition|kompetisi|The competition is very tough.|Kompetisinya sangat ketat.`);
+A(2,'Gaya Hidup Sehat','🥗',`
+balanced diet|pola makan seimbang|A balanced diet keeps you strong.|Pola makan seimbang membuatmu kuat.
+exercise|olahraga|Regular exercise improves your mood.|Olahraga rutin memperbaiki suasana hatimu.
+stress|stres|Too much stress is bad for your health.|Terlalu banyak stres buruk untuk kesehatanmu.
+vitamin|vitamin|Oranges contain a lot of vitamin C.|Jeruk mengandung banyak vitamin C.
+habit|kebiasaan|Reading is a good habit.|Membaca adalah kebiasaan yang baik.
+fitness|kebugaran|Swimming improves your fitness.|Berenang meningkatkan kebugaranmu.
+junk food|makanan tidak sehat|Too much junk food is unhealthy.|Terlalu banyak makanan tidak sehat itu merugikan.
+hydrated|terhidrasi|Drink water to stay hydrated.|Minumlah air agar tetap terhidrasi.
+mental health|kesehatan mental|We should care about mental health.|Kita harus peduli pada kesehatan mental.
+relax|bersantai|I listen to music to relax.|Aku mendengarkan musik untuk bersantai.`);
+
+/* ───────── LEVEL KERJA ───────── */
+A(3,'Email Bisnis','📧',`
+attachment|lampiran|Please see the attachment.|Silakan lihat lampirannya.
+subject line|baris subjek|Write a clear subject line.|Tulis baris subjek yang jelas.
+regards|salam hormat|Kind regards, Dewi.|Salam hormat, Dewi.
+forward|meneruskan|I will forward the email to you.|Aku akan meneruskan email itu kepadamu.
+reply|membalas|I will reply by tomorrow.|Aku akan membalas paling lambat besok.
+inbox|kotak masuk|My inbox is full.|Kotak masukku penuh.
+schedule|menjadwalkan|Can we schedule a meeting for Monday?|Bisakah kita menjadwalkan rapat untuk hari Senin?
+confirm|mengonfirmasi|Please confirm your attendance.|Tolong konfirmasikan kehadiranmu.
+urgent|mendesak|This matter is urgent.|Masalah ini mendesak.
+follow up|menindaklanjuti|I am writing to follow up on our call.|Aku menulis untuk menindaklanjuti panggilan kita.`);
+A(3,'Rapat & Presentasi','📊',`
+agenda|agenda|The agenda has three items.|Agenda itu punya tiga butir.
+minutes|notulen|Dina writes the minutes of the meeting.|Dina menulis notulen rapat.
+proposal|proposal|We present the proposal to the board.|Kami mempresentasikan proposal kepada dewan direksi.
+budget|anggaran|The budget is limited this year.|Anggarannya terbatas tahun ini.
+approve|menyetujui|The manager will approve the plan.|Manajer akan menyetujui rencana itu.
+objective|tujuan|Our main objective is to increase sales.|Tujuan utama kami adalah meningkatkan penjualan.
+slide|slide|Please go to the next slide.|Silakan lanjut ke slide berikutnya.
+feedback|masukan|Thank you for your feedback.|Terima kasih atas masukanmu.
+attendee|peserta|Every attendee receives a name tag.|Setiap peserta menerima tanda nama.
+summarize|merangkum|Let me summarize the main points.|Izinkan aku merangkum poin-poin utamanya.`);
+A(3,'Keuangan Dasar','💰',`
+invoice|faktur|Please send the invoice by Friday.|Tolong kirim fakturnya paling lambat Jumat.
+profit|laba|The company makes a profit this year.|Perusahaan itu meraih laba tahun ini.
+loss|kerugian|The shop reports a loss.|Toko itu melaporkan kerugian.
+revenue|pendapatan|Our revenue grows every quarter.|Pendapatan kami tumbuh setiap kuartal.
+expense|pengeluaran|Rent is our biggest expense.|Sewa adalah pengeluaran terbesar kami.
+tax|pajak|We pay tax every year.|Kami membayar pajak setiap tahun.
+salary|gaji|The salary arrives on the 25th.|Gaji tiba pada tanggal 25.
+payment|pembayaran|The payment is due on Monday.|Pembayaran jatuh tempo pada hari Senin.
+investment|investasi|Education is a good investment.|Pendidikan adalah investasi yang baik.
+refund|pengembalian dana|You can ask for a refund within seven days.|Kamu bisa meminta pengembalian dana dalam tujuh hari.`);
+A(3,'Rekrutmen & Wawancara','🧑‍💼',`
+applicant|pelamar|The applicant sends a CV.|Pelamar itu mengirim CV.
+CV|CV|Please attach your CV.|Tolong lampirkan CV-mu.
+interview|wawancara|I have an interview on Tuesday.|Aku punya wawancara pada hari Selasa.
+candidate|kandidat|The best candidate gets the job.|Kandidat terbaik mendapat pekerjaan itu.
+vacancy|lowongan|There is a vacancy in our team.|Ada lowongan di tim kami.
+strength|kelebihan|My strength is teamwork.|Kelebihanku adalah kerja sama tim.
+weakness|kelemahan|My weakness is public speaking.|Kelemahanku adalah berbicara di depan umum.
+probation|masa percobaan|The probation lasts three months.|Masa percobaan berlangsung tiga bulan.
+resign|mengundurkan diri|She decides to resign next month.|Dia memutuskan untuk mengundurkan diri bulan depan.
+promotion|promosi jabatan|He gets a promotion this year.|Dia mendapat promosi jabatan tahun ini.`);
+A(3,'Layanan Pelanggan','🎧',`
+complaint|keluhan|We take every complaint seriously.|Kami menanggapi setiap keluhan dengan serius.
+apologize|meminta maaf|We apologize for the delay.|Kami meminta maaf atas keterlambatannya.
+delivery|pengiriman|The delivery arrives tomorrow.|Pengiriman tiba besok.
+warranty|garansi|The phone has a one-year warranty.|Ponsel itu punya garansi satu tahun.
+replace|mengganti|We will replace the broken item.|Kami akan mengganti barang yang rusak.
+assist|membantu|How may I assist you?|Apa yang bisa saya bantu?
+out of stock|stok habis|The blue one is out of stock.|Yang biru stoknya habis.
+tracking number|nomor pelacakan|Here is your tracking number.|Ini nomor pelacakanmu.
+policy|kebijakan|Please read our return policy.|Silakan baca kebijakan pengembalian kami.
+satisfied|puas|Are you satisfied with the service?|Apakah kamu puas dengan layanannya?`);
+A(3,'Manajemen Proyek','🗂️',`
+milestone|tonggak proyek|We reach the first milestone in May.|Kami mencapai tonggak proyek pertama di bulan Mei.
+stakeholder|pemangku kepentingan|Every stakeholder joins the meeting.|Setiap pemangku kepentingan hadir di rapat.
+risk|risiko|Every project has a risk.|Setiap proyek punya risiko.
+scope|ruang lingkup|The scope of the project is clear.|Ruang lingkup proyek itu jelas.
+task|tugas|I assign a task to each member.|Aku memberi satu tugas kepada tiap anggota.
+priority|prioritas|Safety is our top priority.|Keselamatan adalah prioritas utama kami.
+delay|keterlambatan|Bad weather causes a delay.|Cuaca buruk menyebabkan keterlambatan.
+outcome|hasil|The outcome is better than we expect.|Hasilnya lebih baik dari yang kami harapkan.
+team|tim|Our team works well together.|Tim kami bekerja dengan baik bersama.
+launch|meluncurkan|We launch the product in June.|Kami meluncurkan produk itu pada bulan Juni.`);
+A(3,'Telepon & Jadwal','📞',`
+Hold on, please|Mohon tunggu sebentar|Hold on, please. I will check.|Mohon tunggu sebentar. Aku akan memeriksanya.
+Can I take a message|Bolehkah saya menyampaikan pesan|He is out. Can I take a message?|Dia sedang keluar. Bolehkah saya menyampaikan pesan?
+I will call you back|Saya akan menelepon balik|I am busy now, but I will call you back.|Aku sedang sibuk sekarang, tapi aku akan meneleponmu kembali.
+Could you repeat that|Bisakah Anda mengulanginya|Sorry, could you repeat that?|Maaf, bisakah Anda mengulanginya?
+The line is bad|Sambungannya buruk|Sorry, the line is bad.|Maaf, sambungannya buruk.
+Are you free on Monday|Apakah Anda luang hari Senin|Are you free on Monday morning?|Apakah Anda luang pada Senin pagi?
+Let us reschedule|Mari kita jadwalkan ulang|I cannot come, so let us reschedule.|Aku tidak bisa datang, jadi mari kita jadwalkan ulang.
+I will be there at nine|Saya akan tiba jam sembilan|Do not worry, I will be there at nine.|Jangan khawatir, aku akan tiba di sana jam sembilan.
+Thank you for calling|Terima kasih telah menelepon|Thank you for calling. Goodbye.|Terima kasih telah menelepon. Selamat tinggal.
+Please leave a message|Silakan tinggalkan pesan|Please leave a message after the beep.|Silakan tinggalkan pesan setelah bunyi bip.`);
+A(3,'Singkatan Kantor','🔤',`
+ASAP|secepat mungkin|Please reply ASAP.|Tolong balas secepat mungkin.
+FYI|sekadar informasi|FYI, the meeting is at ten.|Sekadar informasi, rapatnya jam sepuluh.
+ETA|perkiraan waktu tiba|My ETA is ten minutes.|Perkiraan waktu tibaku sepuluh menit.
+RSVP|konfirmasi kehadiran|Please RSVP by Friday.|Tolong konfirmasi kehadiran paling lambat Jumat.
+BTW|ngomong-ngomong|BTW, I sent you the file.|Ngomong-ngomong, aku sudah mengirimimu file itu.
+EOD|akhir hari kerja|Send the report by EOD.|Kirim laporannya sebelum akhir hari kerja.
+OOO|sedang tidak di kantor|I am OOO until Monday.|Aku tidak di kantor sampai Senin.
+TBA|akan diumumkan|The venue is TBA.|Tempatnya akan diumumkan.
+CEO|direktur utama|The CEO speaks at nine.|Direktur utama berbicara jam sembilan.
+KPI|indikator kinerja utama|We review every KPI monthly.|Kami meninjau setiap indikator kinerja utama setiap bulan.`,{noListen:true});
+
+/* ───────── LEVEL IELTS ───────── */
+A(4,'Environment Vocabulary','🌱',`
+renewable|terbarukan|Renewable energy is growing fast.|Energi terbarukan tumbuh pesat.
+carbon footprint|jejak karbon|We can reduce our carbon footprint by cycling.|Kita bisa mengurangi jejak karbon dengan bersepeda.
+deforestation|penggundulan hutan|Deforestation destroys animal habitats.|Penggundulan hutan merusak habitat hewan.
+biodiversity|keanekaragaman hayati|Biodiversity is essential for a healthy planet.|Keanekaragaman hayati penting bagi planet yang sehat.
+greenhouse gas|gas rumah kaca|Cars release greenhouse gas.|Mobil melepaskan gas rumah kaca.
+sustainable|berkelanjutan|We need sustainable farming methods.|Kita butuh metode pertanian berkelanjutan.
+conservation|konservasi|Wildlife conservation needs more funding.|Konservasi satwa liar butuh lebih banyak dana.
+drought|kekeringan|A long drought hurts farmers.|Kekeringan panjang merugikan petani.
+emissions|emisi|Strict rules reduce emissions.|Aturan yang ketat mengurangi emisi.
+landfill|tempat pembuangan akhir|Most plastic ends up in a landfill.|Sebagian besar plastik berakhir di tempat pembuangan akhir.`);
+A(4,'Technology & Society','📱',`
+artificial intelligence|kecerdasan buatan|Artificial intelligence changes the way we work.|Kecerdasan buatan mengubah cara kita bekerja.
+privacy|privasi|Online privacy is a growing concern.|Privasi daring menjadi kekhawatiran yang meningkat.
+addiction|kecanduan|Screen addiction affects teenagers.|Kecanduan layar memengaruhi remaja.
+automation|otomatisasi|Automation replaces some jobs.|Otomatisasi menggantikan beberapa pekerjaan.
+innovation|inovasi|Innovation drives economic growth.|Inovasi mendorong pertumbuhan ekonomi.
+digital divide|kesenjangan digital|The digital divide separates rural and urban areas.|Kesenjangan digital memisahkan wilayah desa dan kota.
+cyberbullying|perundungan siber|Schools must tackle cyberbullying.|Sekolah harus menangani perundungan siber.
+social media|media sosial|Social media connects people across the world.|Media sosial menghubungkan orang di seluruh dunia.
+data breach|kebocoran data|A data breach exposes personal information.|Kebocoran data membuka informasi pribadi.
+convenient|praktis|Online banking is very convenient.|Perbankan daring sangat praktis.`);
+A(4,'Education Vocabulary','🏫',`
+compulsory|wajib|Primary education is compulsory in many countries.|Pendidikan dasar wajib di banyak negara.
+tuition fee|uang kuliah|The tuition fee at this university is high.|Uang kuliah di universitas ini tinggi.
+vocational|kejuruan|Vocational training prepares students for work.|Pelatihan kejuruan menyiapkan siswa untuk bekerja.
+literacy|literasi|Literacy improves quality of life.|Literasi meningkatkan kualitas hidup.
+peer pressure|tekanan teman sebaya|Peer pressure affects teenage choices.|Tekanan teman sebaya memengaruhi pilihan remaja.
+distance learning|pembelajaran jarak jauh|Distance learning gives rural students access to teachers.|Pembelajaran jarak jauh memberi siswa desa akses ke guru.
+critical thinking|berpikir kritis|Schools should teach critical thinking.|Sekolah harus mengajarkan berpikir kritis.
+extracurricular|ekstrakurikuler|Extracurricular activities build confidence.|Kegiatan ekstrakurikuler membangun rasa percaya diri.
+drop out|putus sekolah|Many students drop out because of money.|Banyak siswa putus sekolah karena uang.
+lifelong learning|belajar sepanjang hayat|Lifelong learning keeps your mind active.|Belajar sepanjang hayat menjaga pikiranmu tetap aktif.`);
+A(4,'Health & Lifestyle','🩹',`
+obesity|obesitas|Obesity is rising among children.|Obesitas meningkat di kalangan anak-anak.
+sedentary|kurang gerak|A sedentary lifestyle harms your health.|Gaya hidup kurang gerak merusak kesehatanmu.
+nutrition|gizi|Good nutrition helps children grow.|Gizi yang baik membantu anak tumbuh.
+life expectancy|harapan hidup|Life expectancy is rising worldwide.|Harapan hidup meningkat di seluruh dunia.
+chronic|kronis|Chronic diseases need long-term care.|Penyakit kronis butuh perawatan jangka panjang.
+vaccination|vaksinasi|Vaccination protects the whole community.|Vaksinasi melindungi seluruh masyarakat.
+well-being|kesejahteraan|Sleep improves your well-being.|Tidur meningkatkan kesejahteraanmu.
+preventive|pencegahan|Preventive care saves money.|Perawatan pencegahan menghemat uang.
+stressful|penuh tekanan|A stressful job can affect sleep.|Pekerjaan yang penuh tekanan bisa memengaruhi tidur.
+healthcare|layanan kesehatan|Healthcare should be affordable for everyone.|Layanan kesehatan harus terjangkau bagi semua orang.`);
+A(4,'Work & Economy','📈',`
+unemployment|pengangguran|Unemployment is high among young people.|Pengangguran tinggi di kalangan anak muda.
+inflation|inflasi|Inflation makes daily goods more expensive.|Inflasi membuat barang harian lebih mahal.
+workforce|angkatan kerja|The workforce is getting older.|Angkatan kerja semakin menua.
+remote work|kerja jarak jauh|Remote work saves commuting time.|Kerja jarak jauh menghemat waktu perjalanan.
+work-life balance|keseimbangan kerja dan hidup|Work-life balance matters to many employees.|Keseimbangan kerja dan hidup penting bagi banyak karyawan.
+entrepreneur|wirausahawan|An entrepreneur takes financial risks.|Wirausahawan mengambil risiko keuangan.
+minimum wage|upah minimum|The government raises the minimum wage.|Pemerintah menaikkan upah minimum.
+overtime|lembur|Many workers do overtime in December.|Banyak pekerja lembur di bulan Desember.
+outsourcing|alih daya|Outsourcing reduces company costs.|Alih daya mengurangi biaya perusahaan.
+globalization|globalisasi|Globalization connects economies around the world.|Globalisasi menghubungkan ekonomi di seluruh dunia.`);
+A(4,'Speaking: Linking Phrases','🗣️',`
+To begin with|Sebagai permulaan|To begin with, I live in a small town.|Sebagai permulaan, aku tinggal di kota kecil.
+In addition|Selain itu|In addition, the city has a large park.|Selain itu, kota itu punya taman besar.
+On the other hand|Di sisi lain|On the other hand, the rent is expensive.|Di sisi lain, sewanya mahal.
+For instance|Misalnya|For instance, many people use bicycles.|Misalnya, banyak orang memakai sepeda.
+As a result|Akibatnya|As a result, the air is cleaner.|Akibatnya, udaranya lebih bersih.
+In my opinion|Menurutku|In my opinion, public transport should be free.|Menurutku, transportasi umum harus gratis.
+To be honest|Jujur saja|To be honest, I never thought about it.|Jujur saja, aku tidak pernah memikirkannya.
+Having said that|Meski begitu|Having said that, I still prefer the countryside.|Meski begitu, aku tetap lebih suka pedesaan.
+In conclusion|Sebagai kesimpulan|In conclusion, both options have benefits.|Sebagai kesimpulan, kedua pilihan itu punya manfaat.
+It depends on|Itu tergantung pada|It depends on the weather.|Itu tergantung pada cuacanya.`);
+A(4,'Writing Task 1: Describing Graphs','📉',`
+rise|naik|Sales rise sharply in July.|Penjualan naik tajam pada bulan Juli.
+fall|turun|Prices fall in winter.|Harga turun saat musim dingin.
+remain stable|tetap stabil|I expect the number to remain stable.|Aku memperkirakan jumlah itu tetap stabil.
+peak|mencapai puncak|Sales peak in December.|Penjualan mencapai puncak pada bulan Desember.
+fluctuate|naik turun tak menentu|Prices fluctuate during the year.|Harga naik turun tak menentu sepanjang tahun.
+double|menjadi dua kali lipat|Profits double in five years.|Laba menjadi dua kali lipat dalam lima tahun.
+overtake|melampaui|Cars overtake buses in 2015.|Mobil melampaui bus pada 2015.
+approximately|sekitar|Approximately half of the students walk to school.|Sekitar separuh siswa berjalan kaki ke sekolah.
+a slight increase|kenaikan kecil|There is a slight increase in 2020.|Ada kenaikan kecil pada 2020.
+a sharp drop|penurunan tajam|The graph shows a sharp drop in 2015.|Grafik itu menunjukkan penurunan tajam pada 2015.`);
+}catch(e){console.warn('duo data2 gagal',e)}})();
+
+(function(){try{
+if(!window.DL||!Array.isArray(window.DL))return;
+const add=d=>{if(!window.DL.some(x=>x.t===d.t))window.DL.push(d)};
+add({e:'🦁',t:'Jalan-jalan di Kebun Binatang',l:'Level SD',p:['🧑‍🏫','Guide'],s:[
+['Welcome to the zoo! What animal do you like?','Selamat datang di kebun binatang! Hewan apa yang kamu suka?'],
+[['I like elephants.','I likes elephants.','I am like elephants.'],0,'Subjek <b>I</b> memakai kata kerja dasar: <b>like</b>, bukan likes.'],
+['Great! Elephants are big. Do you see the monkey?','Bagus! Gajah itu besar. Kamu melihat monyetnya?'],
+[['Yes, I do. It is eating a banana.','Yes, I am. It eat a banana.','Yes, I see. It are eating banana.'],0,'<b>It is eating</b>: it memakai is + V-ing. Jawaban singkat untuk <b>Do you…?</b> adalah <b>Yes, I do.</b>'],
+['Now it is time for lunch. Are you hungry?','Sekarang waktunya makan siang. Kamu lapar?'],
+[['Yes, I am very hungry.','Yes, I very hungry.','Yes, I do hungry.'],0,'Kata sifat butuh to be: <b>I am hungry</b>. Tidak bisa dipakai tanpa am/is/are.']]});
+add({e:'🍽️',t:'Makan Malam Bersama Keluarga',l:'Level SD',p:['👩','Mother'],s:[
+['Dinner is ready! Do you want rice or noodles?','Makan malam sudah siap! Kamu mau nasi atau mi?'],
+[['I want rice, please.','I wants rice, please.','I want rice, thanks you.'],0,'Setelah <b>I</b> pakai <b>want</b>. Kata sopan: <b>please</b>.'],
+['Here you are. Would you like some water?','Ini dia. Kamu mau air?'],
+[['Yes, please.','Yes, I would like.','Yes, I like water please you.'],0,'Jawaban sopan singkat untuk tawaran: <b>Yes, please.</b>'],
+['Can you help me set the table?','Bisakah kamu membantuku menata meja?'],
+[['Sure, I can.','Sure, I can to.','Sure, I cans.'],0,'<b>can</b> tidak berubah bentuk. Jawaban singkat: <b>Sure, I can.</b>']]});
+add({e:'👕',t:'Belanja Baju',l:'Level SMP',p:['🧑‍💼','Seller'],s:[
+['Hello! Can I help you?','Halo! Ada yang bisa kubantu?'],
+[['Yes, I am looking for a blue shirt.','Yes, I look for a blue shirt now.','Yes, I am look for blue shirt.'],0,'Sedang mencari: <b>am looking for</b> (to be + V-ing).'],
+['What size do you wear?','Kamu pakai ukuran berapa?'],
+[['I wear size M.','I wearing size M.','I am wear size M.'],0,'Kebiasaan atau fakta: <b>I wear</b> (simple present).'],
+['It is fifty thousand rupiah.','Harganya lima puluh ribu rupiah.'],
+[['That is cheap. I will take it.','That cheap. I take it will.','That are cheap. I taking it.'],0,'<b>That is</b> untuk satu benda. <b>I will take it</b> = keputusan membeli.']]});
+add({e:'🩺',t:'Periksa ke Dokter',l:'Level SMP',p:['👩‍⚕️','Doctor'],s:[
+['Good morning. What is the problem?','Selamat pagi. Apa keluhanmu?'],
+[['I have a fever and a cough.','I am have a fever and cough.','I has a fever and a cough.'],0,'<b>I have</b> untuk gejala. Tidak ada I has atau I am have.'],
+['How long have you had it?','Sudah berapa lama kamu mengalaminya?'],
+[['For two days.','Since two days.','From two days.'],0,'<b>For</b> + lama waktu (two days). <b>Since</b> + titik awal (Monday).'],
+['Take this medicine twice a day and get some rest.','Minum obat ini dua kali sehari dan istirahatlah.'],
+[['Thank you, doctor. I will rest.','Thank you, doctor. I rest will.','Thanks doctor. I resting.'],0,'Janji spontan: <b>I will + V1</b>.']]});
+add({e:'♻️',t:'Diskusi Sampah Plastik',l:'Level SMA',p:['🧑‍🎓','Classmate'],s:[
+['How can we reduce plastic waste at school?','Bagaimana kita mengurangi sampah plastik di sekolah?'],
+[['We should bring our own bottles.','We should to bring our own bottles.','We should brings our own bottles.'],0,'Setelah <b>should</b> langsung kata kerja dasar, tanpa to dan tanpa -s.'],
+['Good idea. What else can we do?','Ide bagus. Apa lagi yang bisa kita lakukan?'],
+[['We can recycle paper and plastic.','We can recycling paper and plastic.','We can to recycle paper and plastic.'],0,'<b>can + V1</b>: recycle, bukan recycling atau to recycle.'],
+['Do you think other students will join?','Menurutmu siswa lain akan ikut?'],
+[['I think so, if the rules are clear.','I think so, if the rules will be clear.','I thinks so, if the rules are clear.'],0,'Kalimat <b>if</b> tentang masa depan memakai present: <b>if the rules are clear</b>.']]});
+add({e:'🎓',t:'Wawancara Beasiswa',l:'Level SMA',p:['🧑‍🏫','Panelist'],s:[
+['Why do you want this scholarship?','Mengapa kamu menginginkan beasiswa ini?'],
+[['Because I want to study engineering and help my town.','Because I wants study engineering and help my town.','Because I want study engineering for help my town.'],0,'<b>want to + V1</b> untuk keinginan, <b>and help</b> menyambung tujuan kedua.'],
+['What is your biggest strength?','Apa kelebihan terbesarmu?'],
+[['I work hard and learn quickly.','I works hard and learns quickly.','I am work hard and learn quick.'],0,'Subjek <b>I</b> memakai kata kerja dasar, dan <b>quickly</b> adalah adverb.'],
+['Where do you see yourself in ten years?','Kamu melihat dirimu di mana sepuluh tahun lagi?'],
+[['I see myself working as an engineer.','I see me working as an engineer.','I see myself work as an engineer.'],0,'<b>myself</b> (refleksif) + <b>V-ing</b> setelah see.']]});
+add({e:'📋',t:'Rapat Singkat Pagi Hari',l:'Level Kerja',p:['🧑‍💼','Manager'],s:[
+['Let us start the meeting. Do you have the report?','Mari mulai rapat. Kamu sudah punya laporannya?'],
+[['Yes, I sent it this morning.','Yes, I send it this morning.','Yes, I have sent it yesterday morning.'],0,'Waktu selesai yang jelas (this morning) → <b>simple past: sent</b>.'],
+['Can you summarize the main points?','Bisakah kamu merangkum poin utamanya?'],
+[['Sure. Sales rose by ten percent.','Sure. Sales raised by ten percent.','Sure. Sales rise by ten percent last month.'],0,'<b>rise → rose</b> (tanpa objek). <b>raise</b> butuh objek.'],
+['Great. Does anyone have questions?','Bagus. Ada yang punya pertanyaan?'],
+[['No questions. Thank you.','No question. Thanks you.','Not questions. Thank.'],0,'<b>No questions</b> (jamak). <b>Thank you</b> adalah ungkapan tetap.']]});
+add({e:'☎️',t:'Menerima Telepon Kantor',l:'Level Kerja',p:['🧑‍💻','Receptionist'],s:[
+['Good morning, ABC Company. How may I help you?','Selamat pagi, Perusahaan ABC. Ada yang bisa saya bantu?'],
+[['May I speak to Mr. Adi, please?','May I speaking to Mr. Adi, please?','I want speak with Mr. Adi.'],0,'<b>May I + V1</b> adalah permintaan sopan di telepon.'],
+['I am sorry, he is in a meeting. Can I take a message?','Maaf, beliau sedang rapat. Bolehkah saya menyampaikan pesan?'],
+[['Yes, please ask him to call me back.','Yes, please ask him call me back.','Yes, please tell him calling me back.'],0,'<b>ask + orang + to + V1</b>: ask him to call me back.'],
+['Could I have your name, please?','Boleh saya tahu nama Anda?'],
+[['Yes, my name is Dina Putri.','Yes, I name is Dina Putri.','Yes, me is Dina Putri.'],0,'<b>my name is</b>: my adalah kata kepemilikan.']]});
+add({e:'🏙️',t:'IELTS Speaking Part 1: Hometown',l:'Level IELTS',p:['👩‍🏫','Examiner'],s:[
+['Where is your hometown?','Di mana kota asalmu?'],
+[['I come from Surabaya, a large port city.','I am come from Surabaya, a large port city.','I coming from Surabaya, large port city.'],0,'<b>come from</b> menyatakan asal. Tambahkan detail (a large port city) untuk jawaban lebih kaya.'],
+['What do you like about it?','Apa yang kamu suka darinya?'],
+[['I like the food. In addition, people are friendly.','I like the food. In addition, people is friendly.','I liking the food. Addition, people friendly.'],0,'<b>people</b> jamak → <b>are</b>. <b>In addition</b> adalah penghubung yang menambah skor Coherence.'],
+['Is it a good place to live?','Apakah tempat itu bagus untuk ditinggali?'],
+[['Yes, mostly. However, the traffic is heavy.','Yes, mostly. However the traffics is heavy.','Yes, mostly. But, traffic are heavy.'],0,'<b>traffic</b> tak dapat dihitung → <b>is</b>. <b>However</b> + koma untuk kontras.']]});
+add({e:'🤖',t:'IELTS Speaking Part 3: Technology',l:'Level IELTS',p:['👩‍🏫','Examiner'],s:[
+['Do you think technology makes life easier?','Menurutmu teknologi membuat hidup lebih mudah?'],
+[['In general, yes. For instance, we can study online.','In general, yes. For instance, we can studying online.','In general yes. For example we studying online.'],0,'<b>can + V1</b>. <b>For instance</b> memperkenalkan contoh.'],
+['Are there any disadvantages?','Apakah ada kekurangannya?'],
+[['Yes. Some people become addicted to their phones.','Yes. Some people becomes addicted to their phones.','Yes. Some people become addicted with their phones.'],0,'<b>people</b> jamak → <b>become</b>. Kolokasi: <b>addicted to</b>.'],
+['How will technology change education?','Bagaimana teknologi akan mengubah pendidikan?'],
+[['I think classes will become more flexible.','I think classes will becomes more flexible.','I think classes will be more flexibly.'],0,'<b>will + V1</b>. <b>flexible</b> adalah kata sifat setelah become/be.']]});
+}catch(e){console.warn('duo data3 gagal',e)}})();
+
+
+;(function(){try{if(window.render)setTimeout(function(){try{render()}catch(e){}},50)}catch(e){}})();
+</script>
 </body>
 </html>
