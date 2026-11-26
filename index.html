@@ -11105,5 +11105,227 @@ var _r=window.render;if(typeof _r==='function')window.render=function(){var r=_r
 setTimeout(function(){try{if(typeof S!=='undefined'&&S.view==='menu'){milestone();paintApp()}}catch(e){}},900);
 }catch(e){console.warn('kopi-max-v1 gagal',e)}})();
 </script>
+
+<style id="pk-sup-polish">
+/* ===== Polish kartu "Dukung Pak Yood": satu sumber aturan, rapi di sidebar sempit maupun lebar ===== */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup{--s-bg:#FFF6EA;--s-line:#F3DCC4;--s-ink:#3A2410;--s-mut:#7A5A43;--s-chip:#fff;--s-btn2:#fff;--s-btn2-line:#EBD5BD;
+ container-type:inline-size;display:flex!important;flex-direction:column!important;gap:12px!important;box-sizing:border-box!important;width:100%!important;max-width:100%!important;
+ padding:16px!important;border-radius:20px!important;background:var(--s-bg)!important;border:1px solid var(--s-line)!important;box-shadow:none!important;overflow:hidden!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup::before,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup::after{display:none!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup *{box-sizing:border-box;min-width:0}
+/* header: ikon kecil + judul sejajar, deskripsi di bawah selebar kartu */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp{display:grid!important;grid-template-columns:36px 1fr!important;grid-template-areas:"ic ti" "tx tx"!important;align-items:center!important;column-gap:10px!important;row-gap:8px!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp>svg{grid-area:ic!important;width:36px!important;height:36px!important;border-radius:50%!important;background:#fff!important;box-shadow:0 0 0 1px var(--s-line)!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp>div{display:contents!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp b{grid-area:ti!important;font-size:16px!important;line-height:1.25!important;font-weight:800!important;color:var(--s-ink)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp small{grid-area:tx!important;display:block!important;font-size:13px!important;line-height:1.5!important;font-weight:500!important;color:var(--s-mut)!important}
+/* chip hadiah: satu baris, tanpa garis putus-putus */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip{display:flex!important;flex-wrap:nowrap!important;align-items:flex-start!important;gap:8px!important;margin:0!important;padding:10px 12px!important;border-radius:12px!important;
+ background:var(--s-chip)!important;border:1px solid var(--s-line)!important;font-size:12.5px!important;line-height:1.45!important;font-weight:600!important;color:var(--s-ink)!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip em{font-size:16px!important;line-height:1.2!important;flex:none!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip span{flex:1 1 auto}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip.ok{background:rgba(46,160,90,.10)!important;border-color:rgba(46,160,90,.35)!important;color:#1E5A36!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip a{flex:none!important;margin-left:6px!important;white-space:nowrap!important}
+/* tombol */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin:0!important;width:100%}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:42px!important;padding:0 8px!important;gap:6px!important;border-radius:12px!important;
+ background:var(--s-btn2)!important;border:1px solid var(--s-btn2-line)!important;color:var(--s-ink)!important;font-size:13.5px!important;font-weight:700!important;white-space:nowrap;text-decoration:none!important;box-shadow:none!important;transition:background .15s,transform .15s}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a:hover{background:#FFF1DE!important;transform:translateY(-1px)}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a:not(.pri)::after{content:none!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a.pri{grid-column:1/-1!important;height:48px!important;border:0!important;font-size:15px!important;font-weight:800!important;color:#2B1E06!important;
+ background:linear-gradient(180deg,#FBC85A,#F2A93B)!important;box-shadow:0 6px 14px -8px rgba(214,128,20,.8)!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a.pri:hover{background:linear-gradient(180deg,#FDD070,#F5B04A)!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a.pri::before{content:"\2615"!important;font-size:17px;line-height:1}
+/* kutipan pesan terbaru */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-q{margin:0!important;padding:0 2px!important;font-size:12px!important;line-height:1.5!important;color:var(--s-mut)!important}
+/* sidebar sangat sempit: tombol sekunder ditumpuk */
+@container (max-width:230px){html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk{grid-template-columns:1fr!important}}
+/* dark */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-theme="dark"]:root #app .mn-sup{--s-bg:#211C19;--s-line:#3A302A;--s-ink:#F4EAE0;--s-mut:#C9B8AB;--s-chip:#2A2420;--s-btn2:#2A2420;--s-btn2-line:#44382F}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-theme="dark"]:root #app .mn-sup .tp>svg{background:#2A2420!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-theme="dark"]:root #app .mn-sup .lk a:hover{background:#342C26!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-theme="dark"]:root #app .mn-sup .pk-chip.ok{color:#BFE8CF!important}
+</style>
+
+<script id="vocab-expand-v1">
+/* Perluasan kosakata: set baru memakai pembuat modul Kosakata Kilat (materi, kuis pilihan, ketik, dengar, susun, jodohkan otomatis) */
+(function(){try{const A=window.__duoAdd;if(!A)return;
+A(0,'Pakaian & Aksesori','👕',`
+shirt|kemeja|He wears a blue shirt.|Dia memakai kemeja biru.
+pants|celana panjang|My pants are too long.|Celana panjangku terlalu panjang.
+dress|gaun|She has a pretty dress.|Dia punya gaun yang cantik.
+shoes|sepatu|I put on my shoes.|Aku memakai sepatuku.
+socks|kaus kaki|These socks are warm.|Kaus kaki ini hangat.
+hat|topi|Dad wears a hat to the beach.|Ayah memakai topi ke pantai.
+jacket|jaket|Take your jacket, it is cold.|Bawa jaketmu, dingin.
+umbrella|payung|I need an umbrella today.|Aku butuh payung hari ini.
+glasses|kacamata|Grandpa reads with glasses.|Kakek membaca dengan kacamata.
+bag|tas|My bag is very heavy.|Tasku berat sekali.`);
+A(0,'Kegiatan Pagi Hari','🌅',`
+wake up|bangun|I wake up at six.|Aku bangun jam enam.
+brush|menyikat|I brush my teeth.|Aku menyikat gigi.
+wash|mencuci|Wash your face every morning.|Cuci wajahmu setiap pagi.
+shower|mandi (pancuran)|She takes a shower quickly.|Dia mandi dengan cepat.
+breakfast|sarapan|We eat breakfast together.|Kami sarapan bersama.
+comb|menyisir|He combs his hair.|Dia menyisir rambutnya.
+dress up|berpakaian|The kids dress up for school.|Anak-anak berpakaian untuk sekolah.
+leave|berangkat|We leave home at seven.|Kami berangkat dari rumah jam tujuh.
+ready|siap|Are you ready for school?|Apakah kamu siap ke sekolah?
+late|terlambat|Don't be late today.|Jangan terlambat hari ini.`);
+A(0,'Alat Dapur & Memasak','🍳',`
+spoon|sendok|Use a spoon for the soup.|Pakai sendok untuk sup.
+fork|garpu|I eat noodles with a fork.|Aku makan mi dengan garpu.
+knife|pisau|Be careful with the knife.|Hati-hati dengan pisau itu.
+plate|piring|Put the rice on the plate.|Taruh nasi di piring.
+bowl|mangkuk|She eats soup from a bowl.|Dia makan sup dari mangkuk.
+pan|wajan|Mom fries eggs in a pan.|Ibu menggoreng telur di wajan.
+pot|panci|The water boils in the pot.|Air mendidih di dalam panci.
+cup|cangkir|He drinks tea from a cup.|Dia minum teh dari cangkir.
+fridge|kulkas|The milk is in the fridge.|Susunya ada di kulkas.
+stove|kompor|Turn off the stove, please.|Tolong matikan kompor.`);
+A(1,'Perasaan & Ekspresi Lanjutan','😊',`
+excited|bersemangat|I am excited about the trip.|Aku bersemangat soal perjalanan itu.
+nervous|gugup|She feels nervous before the test.|Dia gugup sebelum ujian.
+proud|bangga|My parents are proud of me.|Orang tuaku bangga padaku.
+jealous|iri|Don't be jealous of your friend.|Jangan iri pada temanmu.
+embarrassed|malu|He was embarrassed in class.|Dia malu di kelas.
+disappointed|kecewa|We were disappointed with the result.|Kami kecewa dengan hasilnya.
+confident|percaya diri|Be confident when you speak.|Percaya dirilah saat berbicara.
+lonely|kesepian|He feels lonely at night.|Dia merasa kesepian di malam hari.
+grateful|bersyukur|I am grateful for your help.|Aku bersyukur atas bantuanmu.
+worried|khawatir|Mom is worried about me.|Ibu khawatir tentang aku.
+curious|penasaran|Cats are curious animals.|Kucing adalah hewan yang penasaran.
+bored|bosan|I am bored at home.|Aku bosan di rumah.`);
+A(1,'Media Sosial & Konten','📱',`
+post|mengunggah|She posts a photo every day.|Dia mengunggah foto setiap hari.
+follow|mengikuti|I follow my favorite singer.|Aku mengikuti penyanyi favoritku.
+comment|komentar|Please leave a comment below.|Tolong tinggalkan komentar di bawah.
+share|membagikan|Share this video with friends.|Bagikan video ini ke teman.
+like|menyukai (tombol suka)|He likes every post of mine.|Dia menyukai setiap unggahanku.
+upload|mengunggah|I upload videos on weekends.|Aku mengunggah video saat akhir pekan.
+download|mengunduh|You can download the app free.|Kamu bisa mengunduh aplikasinya gratis.
+password|kata sandi|Never share your password.|Jangan pernah bagikan kata sandimu.
+profile|profil|Update your profile picture.|Perbarui foto profilmu.
+notification|notifikasi|I got a new notification.|Aku dapat notifikasi baru.
+viral|viral|The video went viral overnight.|Videonya viral dalam semalam.
+privacy|privasi|Protect your privacy online.|Lindungi privasimu secara daring.`);
+A(1,'Restoran & Memesan Makanan','🍽️',`
+menu|menu|Can I see the menu, please?|Boleh saya lihat menunya?
+order|memesan|We would like to order now.|Kami ingin memesan sekarang.
+waiter|pelayan|The waiter brings our drinks.|Pelayan membawakan minuman kami.
+bill|tagihan|Could we have the bill, please?|Boleh kami minta tagihannya?
+reservation|reservasi|I have a reservation for four.|Aku punya reservasi untuk empat orang.
+appetizer|hidangan pembuka|We share an appetizer first.|Kami berbagi hidangan pembuka dulu.
+dessert|makanan penutup|I want ice cream for dessert.|Aku mau es krim untuk penutup.
+tip|uang tip|Leave a small tip for the waiter.|Tinggalkan sedikit tip untuk pelayan.
+spicy|pedas|This soup is too spicy.|Sup ini terlalu pedas.
+delicious|lezat|The fried rice is delicious.|Nasi gorengnya lezat.
+takeaway|bawa pulang|Can I have this as takeaway?|Boleh ini dibawa pulang?
+allergic|alergi|I am allergic to peanuts.|Aku alergi kacang.`);
+A(1,'Alam Liar & Konservasi','🦁',`
+forest|hutan|Many animals live in the forest.|Banyak hewan tinggal di hutan.
+jungle|rimba|Tigers hunt in the jungle.|Harimau berburu di rimba.
+ocean|samudra|Whales swim in the ocean.|Paus berenang di samudra.
+desert|gurun|Camels walk across the desert.|Unta berjalan melintasi gurun.
+endangered|terancam punah|The tiger is an endangered animal.|Harimau adalah hewan terancam punah.
+habitat|habitat|Trees are the habitat of monkeys.|Pohon adalah habitat monyet.
+protect|melindungi|We must protect wild animals.|Kita harus melindungi hewan liar.
+hunt|berburu|Lions hunt in groups.|Singa berburu secara berkelompok.
+extinct|punah|Dinosaurs are extinct.|Dinosaurus sudah punah.
+rescue|menyelamatkan|They rescue injured turtles.|Mereka menyelamatkan penyu yang terluka.`);
+A(2,'Sains & Penelitian','🔬',`
+experiment|eksperimen|The students did an experiment.|Para siswa melakukan eksperimen.
+evidence|bukti|There is strong evidence for this theory.|Ada bukti kuat untuk teori ini.
+sample|sampel|The sample was too small.|Sampelnya terlalu kecil.
+data|data|We collected data for a month.|Kami mengumpulkan data selama sebulan.
+conclusion|kesimpulan|The conclusion is clear and short.|Kesimpulannya jelas dan singkat.
+theory|teori|Einstein developed a famous theory.|Einstein mengembangkan teori terkenal.
+measure|mengukur|Scientists measure temperature daily.|Ilmuwan mengukur suhu setiap hari.
+observe|mengamati|Observe the plant for a week.|Amati tanaman itu selama seminggu.
+result|hasil|The result surprised everyone.|Hasilnya mengejutkan semua orang.
+research|penelitian|Her research focuses on climate.|Penelitiannya berfokus pada iklim.
+discover|menemukan|They discovered a new species.|Mereka menemukan spesies baru.
+analyze|menganalisis|We analyze the data carefully.|Kami menganalisis data dengan cermat.`);
+A(2,'Masyarakat & Pemerintahan','🏛️',`
+government|pemerintah|The government built a new road.|Pemerintah membangun jalan baru.
+citizen|warga negara|Every citizen has rights.|Setiap warga negara punya hak.
+election|pemilihan umum|The election takes place in May.|Pemilu berlangsung bulan Mei.
+law|hukum|Everyone must obey the law.|Semua orang harus menaati hukum.
+policy|kebijakan|The new policy helps farmers.|Kebijakan baru membantu petani.
+tax|pajak|We pay tax every year.|Kami membayar pajak setiap tahun.
+equality|kesetaraan|They fight for equality.|Mereka memperjuangkan kesetaraan.
+poverty|kemiskinan|Education can reduce poverty.|Pendidikan dapat mengurangi kemiskinan.
+community|komunitas|The community cleans the river.|Komunitas itu membersihkan sungai.
+volunteer|relawan|She works as a volunteer.|Dia bekerja sebagai relawan.
+protest|protes|Students protest against the plan.|Mahasiswa memprotes rencana itu.
+reform|reformasi|The country needs education reform.|Negara butuh reformasi pendidikan.`);
+A(2,'Kepribadian & Karakter','🧠',`
+honest|jujur|An honest person tells the truth.|Orang jujur mengatakan kebenaran.
+generous|dermawan|He is generous to his neighbors.|Dia dermawan kepada tetangganya.
+stubborn|keras kepala|My brother is very stubborn.|Kakakku sangat keras kepala.
+ambitious|ambisius|She is an ambitious student.|Dia siswa yang ambisius.
+reliable|dapat diandalkan|Tono is a reliable teammate.|Tono rekan tim yang dapat diandalkan.
+creative|kreatif|Creative people see new ideas.|Orang kreatif melihat ide baru.
+polite|sopan|Be polite to your elders.|Bersikaplah sopan kepada yang lebih tua.
+patient|sabar|A good teacher is patient.|Guru yang baik itu sabar.
+shy|pemalu|The shy boy sat quietly.|Anak pemalu itu duduk diam.
+arrogant|sombong|Nobody likes an arrogant person.|Tidak ada yang suka orang sombong.
+optimistic|optimis|Stay optimistic about the future.|Tetaplah optimis soal masa depan.
+responsible|bertanggung jawab|She is responsible for the project.|Dia bertanggung jawab atas proyek itu.`);
+A(3,'Kerja Hybrid & Produktivitas','💻',`
+remote|jarak jauh|I work remote on Fridays.|Aku bekerja jarak jauh pada hari Jumat.
+deadline|tenggat|The deadline is next Monday.|Tenggatnya hari Senin depan.
+priority|prioritas|Urgent tasks are top priority.|Tugas mendesak adalah prioritas utama.
+schedule|jadwal|Please check the team schedule.|Tolong cek jadwal tim.
+delegate|mendelegasikan|A good leader knows how to delegate.|Pemimpin yang baik bisa mendelegasikan.
+workload|beban kerja|My workload is heavy this week.|Beban kerjaku berat minggu ini.
+feedback|masukan|I appreciate your feedback.|Aku menghargai masukanmu.
+collaborate|berkolaborasi|Our teams collaborate every day.|Tim kami berkolaborasi setiap hari.
+update|pembaruan|Send me a quick update.|Kirim saya pembaruan singkat.
+follow up|menindaklanjuti|I will follow up tomorrow.|Saya akan menindaklanjuti besok.
+availability|ketersediaan|Please share your availability.|Tolong bagikan ketersediaanmu.
+overtime|lembur|He worked overtime last night.|Dia lembur tadi malam.`);
+A(3,'Pengiriman & Logistik','📦',`
+shipment|pengiriman|The shipment arrived this morning.|Kiriman tiba pagi ini.
+invoice|faktur|Please send the invoice today.|Tolong kirim faktur hari ini.
+warehouse|gudang|Goods are stored in the warehouse.|Barang disimpan di gudang.
+delivery|pengantaran|Delivery takes three days.|Pengantaran memakan tiga hari.
+tracking|pelacakan|Use the tracking number online.|Gunakan nomor pelacakan secara daring.
+supplier|pemasok|We changed our supplier last year.|Kami mengganti pemasok tahun lalu.
+stock|stok|We are out of stock.|Stok kami habis.
+fragile|mudah pecah|This box is fragile.|Kotak ini mudah pecah.
+refund|pengembalian dana|You can request a refund.|Kamu bisa meminta pengembalian dana.
+damaged|rusak|The package arrived damaged.|Paketnya tiba dalam keadaan rusak.
+customs|bea cukai|The parcel is stuck at customs.|Paketnya tertahan di bea cukai.
+reschedule|menjadwal ulang|Can we reschedule the delivery?|Bisakah kita menjadwal ulang pengantaran?`);
+A(4,'Travel & Tourism','✈️',`
+itinerary|rencana perjalanan|Our itinerary includes three cities.|Rencana perjalanan kami mencakup tiga kota.
+destination|tujuan|Bali is a popular destination.|Bali adalah tujuan populer.
+accommodation|akomodasi|We booked cheap accommodation.|Kami memesan akomodasi murah.
+sightseeing|wisata keliling|We went sightseeing all day.|Kami berwisata keliling seharian.
+luggage|bagasi|My luggage was lost.|Bagasiku hilang.
+passport|paspor|Don't forget your passport.|Jangan lupa paspormu.
+souvenir|oleh-oleh|I bought a souvenir for Mom.|Aku membeli oleh-oleh untuk Ibu.
+local|lokal|Try the local food.|Cobalah makanan lokal.
+delay|keterlambatan|There is a flight delay.|Ada keterlambatan penerbangan.
+tourist|turis|The beach is full of tourists.|Pantainya penuh turis.
+border|perbatasan|We crossed the border by bus.|Kami melewati perbatasan naik bus.
+heritage|warisan budaya|Borobudur is a world heritage site.|Borobudur adalah situs warisan dunia.`);
+A(4,'Crime, Law & Justice','⚖️',`
+crime|kejahatan|Crime has fallen in this city.|Kejahatan menurun di kota ini.
+evidence|bukti|The police found new evidence.|Polisi menemukan bukti baru.
+witness|saksi|A witness saw the accident.|Seorang saksi melihat kecelakaan itu.
+trial|persidangan|The trial lasted two weeks.|Persidangan berlangsung dua minggu.
+sentence|hukuman|He received a ten-year sentence.|Dia menerima hukuman sepuluh tahun.
+guilty|bersalah|The jury found him guilty.|Juri menyatakan dia bersalah.
+innocent|tidak bersalah|She was proven innocent.|Dia terbukti tidak bersalah.
+fine|denda|He paid a heavy fine.|Dia membayar denda berat.
+prevent|mencegah|Education can prevent crime.|Pendidikan dapat mencegah kejahatan.
+victim|korban|The victim received help quickly.|Korban menerima bantuan dengan cepat.
+arrest|menangkap|Police arrested two suspects.|Polisi menangkap dua tersangka.
+regulation|peraturan|New regulations protect consumers.|Peraturan baru melindungi konsumen.`);
+try{if(typeof render==='function')render()}catch(e){}
+}catch(e){console.warn('vocab-expand gagal',e)}})();
+</script>
 </body>
 </html>
