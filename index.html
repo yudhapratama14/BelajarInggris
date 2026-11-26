@@ -5560,12 +5560,7 @@ document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest
 /* pop up kopi: tiap 5 menit WAKTU BELAJAR AKTIF (tab terlihat, ada interaksi <60 dtk, sedang di materi/kuis/latihan), dan setelah materi/soal selesai */
 let act=Date.now(),studied=0;
 ['pointerdown','keydown','touchstart','scroll'].forEach(ev=>document.addEventListener(ev,()=>{act=Date.now()},{passive:true,capture:true}));
-setInterval(()=>{if(document.hidden||Date.now()-act>60000)return;
- if(!['learn','quiz','fc','gm','dl'].includes(S.view))return;
- if(document.getElementById('kopi-ov'))return;
- studied++;if(studied>=300){studied=0;show(true)}},1000);
-const _vr=window.vResult;if(typeof _vr==='function')window.vResult=function(){const r=_vr.apply(this,arguments);let mod=false;try{mod=!S.kind}catch(e){}
- setTimeout(()=>{if(S.view==='result'){studied=0;show(true)}},1800);return r};
+/* [traktir v2] pop-up otomatis tiap 5 menit & tiap hasil kuis dinonaktifkan; diganti pemicu cerdas di blok TRAKTIR v2 */
 }catch(e){console.warn('kopi-v80 gagal',e)}})();}catch(e){console.warn("blok gagal",e)}
 try{/* Lapisan UX: ukuran teks, getar halus, geser-kembali, meta mobile, tombol kopi di header, gerak dikurangi */
 (function(){try{
@@ -9375,5 +9370,192 @@ html[data-mn][data-mn][data-mn][data-mn][data-mn]:root #app[data-mnv=menu] .mn-h
 html[data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .sup :is(.btn,a,button){box-sizing:border-box!important;max-width:100%!important}
 html[data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .sup{overflow:hidden}
 </style>
+<style id="pk-sup-css">
+/* Kartu "Dukung Pak Yood" v2: hangat, ada chip hadiah PDF, tombol utama lebih menonjol */
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup{position:relative;overflow:hidden;padding:20px!important;border-radius:24px!important;background:linear-gradient(135deg,#FFF4E0 0%,#FCE3D2 100%)!important;border:1px solid rgba(239,138,92,.35)!important;box-shadow:0 10px 28px -14px rgba(185,88,47,.45)!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup::before{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(244,183,64,.38),transparent 70%);pointer-events:none}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp{position:relative;display:flex;gap:14px;align-items:center}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp svg{width:56px!important;height:56px!important;border-radius:50%;background:#fff;box-shadow:0 6px 14px -6px rgba(185,88,47,.5)}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp b{font-size:18px!important;color:#3A2410!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .tp small{color:#6B4A32!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip{position:relative;display:flex;gap:10px;align-items:center;margin-top:14px;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.72);border:1.5px dashed rgba(185,88,47,.42);font-size:13px;line-height:1.45;color:#4A2F1B}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip em{font-style:normal;font-size:20px;flex:none}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip.ok{border-style:solid;border-color:rgba(46,160,90,.45);background:rgba(46,160,90,.12);color:#1E5A36}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-chip a{margin-left:auto;font-weight:800;color:#1E7A45;text-decoration:none;white-space:nowrap}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .pk-q{position:relative;margin:12px 2px 0;font-size:12.5px;line-height:1.5;color:#6B4A32;font-style:italic;overflow-wrap:anywhere}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk{position:relative}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a.pri{height:52px!important;border-radius:15px!important;font-size:16px!important;background:linear-gradient(180deg,#F8C85A,#F2A93B)!important;box-shadow:0 8px 18px -8px rgba(185,88,47,.7)!important}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a.pri::before{content:"☕"!important;margin-right:6px;font-size:18px}
+html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app .mn-sup .lk a:not(.pri){background:rgba(255,255,255,.75)!important;border-color:rgba(185,88,47,.2)!important}
+html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup{background:linear-gradient(135deg,#2B2327,#241E23)!important;border-color:rgba(239,138,92,.3)!important;box-shadow:none!important}
+html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup .tp b{color:#F7EDE4!important}
+html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup .tp small,html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup .pk-q{color:#CDBBB0!important}
+html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup .pk-chip{background:rgba(255,255,255,.06);border-color:rgba(239,138,92,.4);color:#EBDDD2}
+html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup .pk-chip.ok{background:rgba(46,160,90,.18);color:#BFE8CF}
+html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup .pk-chip a{color:#7FDBA2}
+html[data-mn][data-mn][data-mn][data-mn][data-theme="dark"][data-theme="dark"][data-theme="dark"][data-theme="dark"]:root #app .mn-sup .lk a:not(.pri){background:rgba(255,255,255,.07)!important;border-color:rgba(255,255,255,.14)!important;color:#F4F4EE!important}
+</style>
+<!-- ===================== TRAKTIR v2 · Pak Yood =====================
+     Bukti bayar (OCR) + hadiah PDF + nama & pesan + dinding + pemicu cerdas.
+     Modal QRIS asli tetap dipakai; blok ini hanya MENAMBAHKAN isinya. -->
+<script>
+(function(){try{
+/* >>>>>> [ISI DI SINI] URL Web App Apps Script (berakhiran /exec) <<<<<< */
+const API='https://script.google.com/macros/s/AKfycbz6WGmk1Es_9a_hfHtDzsqtVNSQ_1qjKOoMstaN9PbTgdarAEGJJBp82cVStHKF7v71/exec';
+/* ID file PDF hadiah TIDAK di sini: ada di Code.gs (LINK_HADIAH_PDF) supaya tidak terekspos di HTML */
+const GK='pyd_gift',M3='pyd_kopi_m3',SK='pyd_streak_seen';
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const okUrl=u=>/^https:\/\/drive\.google\.com\//.test(u||'');
+const gift=()=>{try{const g=JSON.parse(ls.g(GK)||'null');return g&&okUrl(g.url)?g:null}catch(e){return null}};
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const V=()=>document.querySelector('.view');
+const open=(f,c)=>window.__kopi&&window.__kopi(f,c);
+
+const st=document.createElement('style');st.textContent=`
+.pk-info{margin:0 0 12px;padding:11px 13px;border-radius:14px;background:rgba(239,138,92,.13);border:1px solid rgba(239,138,92,.3);font-size:13px;line-height:1.5;color:var(--ink)}
+.pk-up{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(0,0,0,.16)}
+:is(#kopi-box,#pk-box) .pk-open{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border-radius:16px;border:1.5px solid rgba(46,160,90,.45);background:linear-gradient(135deg,rgba(46,160,90,.15),rgba(46,160,90,.05));color:var(--ink);transition:transform .1s,background .15s}
+:is(#kopi-box,#pk-box) .pk-open:hover{background:rgba(46,160,90,.2)}
+:is(#kopi-box,#pk-box) .pk-open:active{transform:scale(.98)}
+.pk-open .gi{flex:none;width:40px;height:40px;border-radius:50%;background:#2EA05A;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 6px 12px -6px rgba(46,160,90,.9)}
+.pk-open .gt{flex:1;display:flex;flex-direction:column;line-height:1.3}
+.pk-open .gt b{font-size:14.5px;font-weight:800}
+.pk-open .gt small{font-size:12.5px;font-weight:600;color:var(--mute)}
+.pk-open .gc{flex:none;font-size:22px;line-height:1;color:var(--mute);transition:transform .2s}
+.pk-open[aria-expanded=true] .gc{transform:rotate(90deg)}
+:is(#kopi-box,#pk-box) .pk-btn,:is(#kopi-box,#pk-box) .pk-go,:is(#kopi-box,#pk-box) .pk-pick{display:flex;align-items:center;justify-content:center;width:100%;padding:12px;border-radius:14px;font-size:14px;font-weight:800;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+:is(#kopi-box,#pk-box) .pk-go{background:var(--ink);color:var(--cream);margin-top:8px}
+:is(#kopi-box,#pk-box) .pk-go:disabled{opacity:.4;cursor:not-allowed}
+:is(#kopi-box,#pk-box) .pk-pick{border-style:dashed;font-weight:700;margin-top:8px}
+.pk-form{margin-top:10px;padding:12px;border-radius:16px;background:rgba(0,0,0,.035)}.pk-form[hidden]{display:none}
+.pk-in{display:block;width:100%;box-sizing:border-box;padding:10px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#222;font:inherit;font-size:14px;margin-top:8px;resize:none}
+.pk-st{margin-top:10px;font-size:13px;line-height:1.5;text-align:center;color:var(--mute)}
+.pk-st.load::before{content:"";display:inline-block;width:12px;height:12px;margin-right:8px;vertical-align:-2px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:pks .8s linear infinite}
+.pk-st.err{color:#B4452B;background:rgba(180,69,43,.08);padding:9px 11px;border-radius:12px}
+@keyframes pks{to{transform:rotate(360deg)}}
+.pk-ok{margin:0 0 12px;padding:14px;border-radius:16px;background:rgba(46,160,90,.12);border:1px solid rgba(46,160,90,.35);font-size:13.5px;line-height:1.55;color:var(--ink)}
+:is(#kopi-box,#pk-box) a.pk-dl{display:flex;align-items:center;justify-content:center;margin-top:10px;padding:13px;border-radius:14px;background:#2EA05A;color:#fff;font-weight:800;font-size:15px;text-decoration:none}
+.pk-wall{margin-top:14px}.pk-wall h4{margin:0 0 8px;font-size:13px;color:var(--ink)}
+.pk-wc{padding:10px 12px;margin-bottom:8px;border-radius:14px;background:rgba(0,0,0,.04);font-size:13px;line-height:1.45;color:var(--ink);overflow-wrap:anywhere}
+.pk-wc p{margin:0 0 4px}.pk-wc b{font-size:12px;color:var(--mute)}
+.pk-res{margin:12px 0 0;display:flex;justify-content:center}
+.pk-str{position:relative;margin:0 0 14px;padding:16px 40px 16px 16px;border-radius:20px;background:rgba(239,138,92,.14);border:1px solid rgba(239,138,92,.35);color:var(--ink)}
+.pk-str b{display:block;font-size:12px;margin-bottom:4px;color:var(--mute)}
+.pk-str p{margin:0 0 10px;font-size:14px;line-height:1.55}
+.pk-str .pk-btn{width:auto;padding:9px 16px;border-radius:12px;border:0;background:var(--y,#F5C84B);color:#111;font:inherit;font-weight:800;font-size:14px;cursor:pointer}
+.pk-str .pk-x{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.07);color:var(--ink);font-size:16px;cursor:pointer}
+.pk-hw{margin:18px 0}.pk-hw h2{margin:0 0 10px;font-size:18px;color:var(--ink)}
+.pk-hs{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.pk-hs .pk-wc{flex:0 0 78%;max-width:280px;margin:0;scroll-snap-align:start;background:rgba(239,138,92,.1)}
+#pk-ov{position:fixed;inset:0;z-index:100000;background:rgba(15,15,15,.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:14px;animation:kfd .2s ease}
+#pk-box{position:relative;background:var(--cream);color:var(--ink);border:1px solid rgba(0,0,0,.08);border-radius:26px;box-shadow:0 24px 60px rgba(0,0,0,.3);max-width:360px;width:100%;max-height:94vh;overflow:auto;padding:22px 20px 16px;font-family:var(--ui,inherit);animation:kpop .3s cubic-bezier(.2,1.2,.4,1)}
+#pk-box *{box-sizing:border-box}#pk-box button{font:inherit;cursor:pointer}
+#pk-box h3{margin:0 34px 4px 0;font-size:20px;line-height:1.2;font-weight:800;color:var(--ink)}
+#pk-box .pk-sub{margin:0 0 6px;font-size:13.5px;line-height:1.5;color:var(--mute)}
+#pk-box .pk-x2{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(0,0,0,.06);font-size:18px;line-height:1;color:var(--ink)}
+#pk-box .pk-prev{display:block;width:100%;max-height:150px;object-fit:cover;border-radius:12px;margin-top:8px;border:1px solid rgba(0,0,0,.1)}
+#pk-box .pk-prev[hidden]{display:none}
+#pk-box .pk-back{display:block;margin:10px auto 0;padding:4px 8px;background:transparent;border:0;font-size:12.5px;font-weight:600;color:var(--mute)}
+@media(prefers-reduced-motion:reduce){#pk-ov,#pk-box{animation:none}}
+@media(prefers-reduced-motion:reduce){.pk-st.load::before{animation:none}}`;
+document.head.appendChild(st);
+
+/* ---- dinding pesan (GET) ---- */
+let wall=null,wt=0;
+const loadWall=async()=>{if(wall&&Date.now()-wt<3e5)return wall;
+ try{const j=await(await fetch(API+'?action=dinding')).json();wall=Array.isArray(j.items)?j.items:[];wt=Date.now()}catch(e){wall=wall||[]}return wall};
+const wc=m=>{const c=el('div','pk-wc');c.append(el('p','',m.pesan),el('b','','— '+m.nama));return c};
+
+/* ---- kompres gambar: maks 800px, JPEG 0.8 ---- */
+const compress=f=>new Promise((ok,no)=>{const r=new FileReader();r.onerror=no;r.onload=()=>{const i=new Image();i.onerror=no;i.onload=()=>{
+ const k=Math.min(1,800/i.width),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);
+ const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(i,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.8))};i.src=r.result};r.readAsDataURL(f)});
+
+/* ---- kotak sukses + tombol download hijau ---- */
+const doneBox=(url,nama,msg)=>{const d=el('div','pk-ok');
+ d.append(el('div','',msg||('Makasih banyak'+(nama?', '+nama:'')+', sudah traktir Pak Yood ☕ Ini hadiah Cheat Sheet 16 Tenses buat kamu!')));
+ const a=el('a','pk-dl','📥 Download PDF Cheat Sheet 16 Tenses');a.href=url;a.target='_blank';a.rel='noopener noreferrer';d.append(a);return d};
+
+/* ---- tombol di modal QRIS -> membuka POP-UP LANJUTAN untuk upload bukti ---- */
+const uploadBox=box=>{
+ const w=el('div','pk-up'),b=el('button','pk-open'),gt=el('span','gt');
+ b.setAttribute('aria-label','Sudah Traktir? Upload Bukti & Ambil Hadiah');b.setAttribute('aria-haspopup','dialog');
+ gt.append(el('b','','Sudah Traktir?'),el('small','','Upload Bukti & Ambil Hadiah'));b.append(el('span','gi','🎁'),gt,el('span','gc','›'));
+ b.onclick=()=>openUpload(box);w.append(b);return w};
+
+const openUpload=main=>{
+ if(document.getElementById('pk-ov'))return;
+ const ov=el('div');ov.id='pk-ov';const bx=el('div');bx.id='pk-box';bx.setAttribute('role','dialog');bx.setAttribute('aria-modal','true');bx.setAttribute('aria-label','Ambil hadiah');
+ let pu=null;const close=()=>{if(pu)URL.revokeObjectURL(pu);ov.remove()};
+ const x=el('button','pk-x2','×');x.setAttribute('aria-label','Tutup');x.onclick=close;
+ const nm=el('input','pk-in');nm.placeholder='Namamu (boleh dikosongkan)';nm.maxLength=40;try{nm.value=(window.P&&P.name)||''}catch(e){}
+ const ms=el('textarea','pk-in');ms.placeholder='Kesan & pesan buat Pak Yood (opsional, tampil di aplikasi)';ms.maxLength=200;ms.rows=3;
+ const fi=el('input');fi.type='file';fi.accept='image/*';fi.hidden=true;
+ const pick=el('button','pk-pick','📷 Pilih foto bukti transfer'),pv=el('img','pk-prev');pv.hidden=true;pv.alt='Pratinjau bukti transfer';
+ const go=el('button','pk-go','Kirim & Ambil Hadiah');go.disabled=true;
+ const s=el('div','pk-st');s.setAttribute('role','status');
+ const no=el('button','pk-back','Nanti saja');no.onclick=close;
+ pick.onclick=()=>fi.click();
+ fi.onchange=()=>{const f=fi.files[0];if(!f)return;if(pu)URL.revokeObjectURL(pu);pu=URL.createObjectURL(f);pv.src=pu;pv.hidden=false;pick.textContent='🔄 Ganti foto';go.disabled=false;s.textContent='';s.className='pk-st'};
+ go.onclick=async()=>{if(!fi.files[0])return;go.disabled=pick.disabled=true;s.className='pk-st load';
+  const T=['Pak Yood lagi ngecek bukti transfermu… ☕','Lagi baca nominalnya, sabar ya…','Hampir selesai, tinggal nyocokin penerimanya…'];let i=0;s.textContent=T[0];
+  const tm=setInterval(()=>{i=(i+1)%T.length;s.textContent=T[i]},2500);
+  try{
+   const img=await compress(fi.files[0]),nama=nm.value.trim();
+   const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({image:img,name:nama,message:ms.value.trim()})});
+   const j=await r.json();
+   if(j.status==='success'&&okUrl(j.downloadUrl)){
+    ls.s(GK,JSON.stringify({url:j.downloadUrl,nama:nama,t:Date.now()}));wall=null;
+    if(main.isConnected){const u=main.querySelector('.pk-up'),n=main.querySelector('.pk-info');if(u)u.replaceWith(doneBox(j.downloadUrl,nama,j.message));if(n)n.remove()}
+    const cl=el('button','pk-back','Tutup');cl.onclick=close;
+    bx.replaceChildren(x,el('h3','','🎁 Hadiahmu sudah terbuka!'),doneBox(j.downloadUrl,nama,j.message),cl);
+    try{confetti(30)}catch(e){}
+   }else{s.className='pk-st err';s.textContent=j.message||'Bukti belum bisa dibaca, coba foto yang lebih jelas ya!';go.disabled=pick.disabled=false}
+  }catch(e){s.className='pk-st err';s.textContent='Koneksi lagi kurang stabil nih. Coba kirim lagi ya!';go.disabled=pick.disabled=false}
+  finally{clearInterval(tm)}};
+ bx.append(x,el('h3','','🎁 Ambil Hadiahmu'),el('p','pk-sub','Upload bukti transfer ≥ Rp10.000. Nama dan pesanmu (kalau diisi) akan tampil di aplikasi sebagai ucapan dari sahabat Pak Yood.'),nm,ms,pick,fi,pv,go,s,no);
+ ov.append(bx);ov.addEventListener('click',e=>{if(e.target===ov)close()});document.body.append(ov);setTimeout(()=>{try{nm.focus({preventScroll:true})}catch(e){}},60)};
+/* Escape menutup pop-up lanjutan dulu, bukan modal QRIS di belakangnya */
+document.addEventListener('keydown',e=>{const o=document.getElementById('pk-ov');if(e.key==='Escape'&&o){e.stopImmediatePropagation();o.remove()}},true);
+
+/* ---- sisipkan ke modal QRIS yang sudah ada ---- */
+const enhance=box=>{if(box.dataset.pk)return;box.dataset.pk=1;
+ const kp=box.querySelector('.kp'),kop=box.querySelector('a.kop'),kft=box.querySelector('.kft'),g=gift();
+ if(g)kp.after(doneBox(g.url,g.nama));
+ else{kp.after(el('div','pk-info','☕ Sebagai tanda terima kasih, traktir kopi minimal Rp10.000 otomatis membuka akses download PDF Cheat Sheet 16 Tenses Pak Yood!'));kop.after(uploadBox(box))}
+ const w=el('div','pk-wall');kft.before(w);
+ loadWall().then(it=>{if(!it.length)return;w.append(el('h4','','💛 Kata Sahabat Pak Yood'));it.slice(0,4).forEach(m=>w.append(wc(m)))})};
+new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.id==='kopi-ov'){const b=n.querySelector('#kopi-box');if(b)enhance(b)}}))).observe(document.body,{childList:true});
+
+/* ---- PEMICU: hasil kuis, 3 modul, streak, dinding di beranda ---- */
+const doneMods=()=>{try{return Object.values(P.stars||{}).filter(v=>v>0).length}catch(e){return 0}};
+const home=()=>{const v=V();if(!v)return;const body=v.querySelector('.mn-body')||v;
+ const n=P.streak||0,d0=new Date().toLocaleDateString('en-CA'),d1=new Date(Date.now()-864e5).toLocaleDateString('en-CA');
+ if(!gift()&&!v.querySelector('.pk-str')&&(P.last===d0||P.last===d1)&&n>=3&&(n%3===0||n%7===0)&&ls.g(SK)!==String(n)){
+  const d=el('section','pk-str'),b=el('button','pk-btn','☕ Traktir Pak Yood'),x=el('button','pk-x','×');x.setAttribute('aria-label','Tutup');
+  b.onclick=()=>open(true,true);x.onclick=()=>{ls.s(SK,String(n));d.remove()};
+  d.append(el('b','','Dari Pak Yood 💛'),el('p','','Kamu sudah konsisten belajar '+n+' hari! Kalau aplikasi ini bermanfaat, boleh traktir Pak Yood es kopi biar makin semangat bikin soal baru ☕'),b,x);body.prepend(d)}
+ loadWall().then(it=>{const v2=V();if(!it.length||v2!==v||v.querySelector('.pk-hw'))return;
+  const s=el('section','pk-hw'),h=el('div','pk-hs');s.append(el('h2','','💛 Kata Sahabat Pak Yood'),h);it.slice(0,10).forEach(m=>h.append(wc(m)));body.append(s)})};
+/* ---- kartu "Dukung Pak Yood": tambah chip hadiah + kutipan pesan terbaru ---- */
+const sup=()=>{document.querySelectorAll('.mn-sup:not([data-pk])').forEach(c=>{c.dataset.pk=1;
+ const tp=c.querySelector('.tp'),g=gift();if(!tp)return;
+ const chip=el('div','pk-chip'+(g?' ok':''));
+ if(g){chip.append(el('em','','✅'),el('span','','Terima kasih! Hadiah Cheat Sheet 16 Tenses sudah terbuka.'));const a=el('a','','Download');a.href=g.url;a.target='_blank';a.rel='noopener noreferrer';chip.append(a)}
+ else chip.append(el('em','','🎁'),el('span','','Traktir mulai Rp10.000, langsung dapat PDF Cheat Sheet 16 Tenses.'));
+ tp.after(chip);
+ loadWall().then(it=>{const lk=c.querySelector('.lk');if(!it.length||!lk||!c.isConnected)return;lk.before(el('div','pk-q','“'+it[0].pesan+'” — '+it[0].nama))})})};
+const after=()=>{
+ try{sup()}catch(e){}
+ if(S.view==='menu')home();
+ if(S.view==='result'&&!S.retry&&!gift()){const v=V(),res=v&&v.querySelector('.res');
+  if(res&&!v.querySelector('.pk-res')){
+   const top=S.list&&S.list.length&&S.score===S.list.length,d=el('div','pk-res'),b=el('button','btn ghost',top?'☕ Skor tinggi! Traktir Pak Yood Kopi':'☕ Traktir Pak Yood Kopi');
+   b.onclick=()=>open(true,true);d.append(b);res.after(d);
+   /* auto pop-up halus: sekali, setelah 3 modul selesai (flag M3); hormati "sembunyikan 3 hari" */
+   if(!S.kind&&doneMods()>=3&&!ls.g(M3))setTimeout(()=>{if(S.view==='result'){open(true,false);if(document.getElementById('kopi-ov'))ls.s(M3,'1')}},2200)}}};
+const _r=window.render;window.render=function(){_r.apply(this,arguments);try{after()}catch(e){console.warn('traktir v2',e)}};
+}catch(e){console.warn('traktir v2 gagal',e)}})();
+</script>
 </body>
 </html>
