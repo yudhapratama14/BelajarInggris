@@ -4242,11 +4242,19 @@ const _r=window.render;window.render=function(){stop();_r();ly=0;upd()};
 setInterval(()=>{if(st||document.hidden||RM.matches||P.calm)return;const m=Q('#app .mascot');if(!m)return;const r=m.getBoundingClientRect();if(r.bottom<70||r.top>innerHeight)return;fun(m,Math.random()<.5?'spin':'boing')},9000);
 
 /* tombol back HP: mundur di dalam app; di beranda perlu 2x untuk keluar */
-const g=()=>history.pushState({pk:1},'');history.replaceState({pk:0},'');g();
+try{history.replaceState({pk:0},'')}catch(e){}
+let guarded=false;
+const g=()=>{try{history.pushState({pk:1},'');guarded=true}catch(e){}};
+/* Chrome/Android melewati entri riwayat yang dibuat tanpa interaksi pengguna, jadi penjaga dipasang saat sentuhan/klik pertama (bukan saat load) */
+['click','touchend','keydown'].forEach(ev=>document.addEventListener(ev,()=>{if(!guarded)g()},true));
 let armed=0,tb;const toast=t=>{const d=document.createElement('div');d.className='v34t';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)};
+const OVL='#mov,#kopi-ov,#sov,#v69sheet,.gsh,.pn-ov,#nb-ov';
+const closeOverlay=()=>{const o=[...document.querySelectorAll(OVL)].find(x=>x.offsetParent!==null||getComputedStyle(x).position==='fixed');if(!o)return false;
+ const b=o.querySelector('.mrow button,[data-close],.x,.cl,button[aria-label*=utup],button[aria-label*=lose]');(b||o).click();return true};
 window.addEventListener('popstate',()=>{
+ guarded=false;
  if(armed){armed=0;clearTimeout(tb);history.back();return}
- const mv=Q('#mov');if(mv){const b=mv.querySelector('.mrow button');if(b)b.click();g();return}
+ if(closeOverlay()){g();return}
  if(S.view!=='menu'){back.onclick();g();return}
  armed=1;toast('Tekan back sekali lagi untuk keluar');g();tb=setTimeout(()=>armed=0,2000)});
 upd();
@@ -11584,6 +11592,14 @@ html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app[da
 html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app[data-mnv=menu] .mn-lvc .stars{top:12px!important;right:14px!important;transform:scale(.78);transform-origin:top right}
 html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app[data-mnv=menu] .mn-lvc .go{right:12px!important;bottom:12px!important;transform:scale(.82);transform-origin:bottom right}
 html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app[data-mnv=menu] .mn-lvc .sw-art,html[data-mn][data-mn][data-mn][data-mn][data-mn][data-mn][data-mn]:root #app[data-mnv=menu] .mn-lvc .art{opacity:.6}
+</style>
+<style id="ux-extra">
+html,body{overscroll-behavior-y:none}
+#app button:focus-visible,#app a:focus-visible,#app .card:focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:14px}
+#app .card,#app .opt,#app .btn{-webkit-user-select:none;user-select:none}
+#app .card:active,#app .opt:active,#app .btn:active{transform:scale(.975);transition:transform .12s}
+#app .opt,#app .btn{min-height:48px}
+@media(max-width:480px){#app .view{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}}
 </style>
 </body>
 </html>
